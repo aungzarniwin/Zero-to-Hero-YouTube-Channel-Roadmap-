@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Zero to Hero - YouTube Money</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#1f2937;
+}
+
+header{
+background:#111827;
+color:white;
+padding:25px 18px;
+text-align:center;
+}
+
+header h1{
+font-size:28px;
+margin-bottom:7px;
+}
+
+header p{
+color:#d1d5db;
+font-size:14px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:25px 16px;
+}
+
+.hero{
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+margin-bottom:20px;
+}
+
+.hero h2{
+font-size:24px;
+margin-bottom:8px;
+}
+
+.hero p{
+color:#6b7280;
+line-height:1.6;
+}
+
+.progress-box{
+margin-top:20px;
+}
+
+.progress-title{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+.progress{
+width:100%;
+height:14px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#111827;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-top:15px;
+}
+
+.stat{
+background:#f9fafb;
+padding:15px;
+border-radius:12px;
+text-align:center;
+}
+
+.stat strong{
+display:block;
+font-size:22px;
+margin-bottom:4px;
+}
+
+.stat span{
+font-size:12px;
+color:#6b7280;
+}
+
+.section-title{
+margin:25px 0 15px;
+font-size:21px;
+}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 15px rgba(0,0,0,.07);
+cursor:pointer;
+transition:.2s;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+.icon{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.card h3{
+margin-bottom:7px;
+}
+
+.card p{
+font-size:14px;
+color:#6b7280;
+line-height:1.5;
+}
+
+.badge{
+display:inline-block;
+margin-top:10px;
+padding:5px 9px;
+background:#ecfdf5;
+color:#047857;
+border-radius:20px;
+font-size:11px;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+padding:30px 15px;
+color:#6b7280;
+font-size:13px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🚀 Zero to Hero</h1>
+
+<p>YouTube Money & Growth Academy</p>
+
+</header>
+
+
+<main class="container">
+
+
+<div class="hero">
+
+<h2>Start Your YouTube Journey</h2>
+
+<p>
+Learn how to start a YouTube channel,
+grow your audience and build multiple
+income streams.
+</p>
+
+
+<div class="progress-box">
+
+<div class="progress-title">
+
+<span>Monetization Progress</span>
+
+<span id="progressText">0%</span>
+
+</div>
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<strong id="subscriberCount">
+0
+</strong>
+
+<span>Subscribers</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="watchHours">
+0
+</strong>
+
+<span>Watch Hours</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+📚 Learn YouTube
+</h2>
+
+
+<div class="menu">
+
+
+<div class="card"
+onclick="showMessage('Start From Zero')">
+
+<div class="icon">
+🚀
+</div>
+
+<h3>Start From Zero</h3>
+
+<p>
+Learn how to create your channel,
+choose a niche and set up your YouTube brand.
+</p>
+
+<span class="badge">
+FREE
+</span>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('Grow Your Channel')">
+
+<div class="icon">
+📈
+</div>
+
+<h3>Grow Your Channel</h3>
+
+<p>
+Learn subscribers, watch hours,
+Shorts, long videos and SEO strategies.
+</p>
+
+<span class="badge">
+FREE
+</span>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('Monetization')">
+
+<div class="icon">
+💰
+</div>
+
+<h3>YouTube Monetization</h3>
+
+<p>
+Learn YouTube Partner Program,
+ads and other income opportunities.
+</p>
+
+<span class="badge">
+FREE
+</span>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('Income Calculator')">
+
+<div class="icon">
+🧮
+</div>
+
+<h3>Income Calculator</h3>
+
+<p>
+Estimate YouTube revenue based on
+views and RPM.
+</p>
+
+<span class="badge">
+FREE
+</span>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('AI YouTube Tools')">
+
+<div class="icon">
+🤖
+</div>
+
+<h3>AI YouTube Tools</h3>
+
+<p>
+Generate video ideas, titles,
+descriptions and thumbnail prompts.
+</p>
+
+<span class="badge">
+FREE
+</span>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('30 Day Challenge')">
+
+<div class="icon">
+🔥
+</div>
+
+<h3>30-Day Challenge</h3>
+
+<p>
+Follow a daily action plan to
+build your YouTube channel.
+</p>
+
+<span class="badge">
+FREE
+</span>
+
+</div>
+
+
+</div>
+
+
+<h2 class="section-title">
+💵 YouTube Income Streams
+</h2>
+
+
+<div class="menu">
+
+
+<div class="card"
+onclick="showMessage('Ad Revenue')">
+
+<div class="icon">
+📺
+</div>
+
+<h3>Ad Revenue</h3>
+
+<p>
+Earn from advertisements shown
+on eligible YouTube content.
+</p>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('Affiliate Marketing')">
+
+<div class="icon">
+🔗
+</div>
+
+<h3>Affiliate Marketing</h3>
+
+<p>
+Learn how to earn commissions
+by recommending products.
+</p>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('Sponsorship')">
+
+<div class="icon">
+🤝
+</div>
+
+<h3>Sponsorship</h3>
+
+<p>
+Learn how creators can work
+with brands and businesses.
+</p>
+
+</div>
+
+
+<div class="card"
+onclick="showMessage('Digital Products')">
+
+<div class="icon">
+📚
+</div>
+
+<h3>Digital Products</h3>
+
+<p>
+Learn how to create and sell
+digital products to your audience.
+</p>
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+<footer>
+
+© 2026 Zero to Hero — YouTube Money Academy
+
+</footer>
+
+
+<script>
+
+function showMessage(title){
+
+alert(
+"🚀 " +
+title +
+"\n\nThis lesson will be available in the next update."
+);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
