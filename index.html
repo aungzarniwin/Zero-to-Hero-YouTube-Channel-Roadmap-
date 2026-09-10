@@ -7,7 +7,6 @@
 <title>Zero to Hero - YouTube Money Academy</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -20,10 +19,10 @@ body{
 }
 
 header{
-    background:linear-gradient(135deg,#ff0000,#cc0000);
+    background:linear-gradient(135deg,#ff0000,#b80000);
     color:white;
-    padding:22px;
     text-align:center;
+    padding:24px 15px;
 }
 
 header h1{
@@ -33,7 +32,6 @@ header h1{
 
 header p{
     margin:8px 0 0;
-    opacity:.9;
 }
 
 .app{
@@ -42,16 +40,20 @@ header p{
     padding:20px;
 }
 
-.hero{
+.hero,
+.dashboard-card,
+.overall,
+.course-card,
+.lesson-page,
+.challenge,
+.tool-card{
     background:white;
     border-radius:18px;
-    padding:25px;
-    margin-bottom:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
-.hero h2{
-    margin-top:0;
+.hero{
+    padding:25px;
 }
 
 .stats{
@@ -62,11 +64,10 @@ header p{
 }
 
 .stat{
-    background:#fff;
-    border-radius:15px;
-    padding:20px;
+    background:#fafafa;
+    padding:18px;
+    border-radius:14px;
     text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
 .stat h3{
@@ -75,36 +76,8 @@ header p{
 }
 
 .stat p{
-    margin:8px 0 0;
-    color:#777;
-}
-
-button{
-    border:0;
-    border-radius:10px;
-    padding:11px 16px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.red{
-    background:#ff0000;
-    color:white;
-}
-
-.blue{
-    background:#1976d2;
-    color:white;
-}
-
-.green{
-    background:#16a085;
-    color:white;
-}
-
-.dark{
-    background:#222;
-    color:white;
+    color:#666;
+    margin-bottom:0;
 }
 
 .buttons{
@@ -114,13 +87,47 @@ button{
     margin-top:20px;
 }
 
+button{
+    border:0;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:14px;
+}
+
+button:hover{
+    opacity:.88;
+}
+
+.red{
+    background:#ff0000;
+    color:white;
+}
+
+.green{
+    background:#16a085;
+    color:white;
+}
+
+.blue{
+    background:#1976d2;
+    color:white;
+}
+
+.dark{
+    background:#222;
+    color:white;
+}
+
 .section{
     margin-top:25px;
 }
 
 .section-title{
     font-size:24px;
-    margin-bottom:15px;
+    font-weight:bold;
+    margin-bottom:12px;
 }
 
 .dashboard{
@@ -130,10 +137,7 @@ button{
 }
 
 .dashboard-card{
-    background:white;
     padding:20px;
-    border-radius:16px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
 .dashboard-card h3{
@@ -152,15 +156,12 @@ button{
     height:100%;
     width:0%;
     background:#ff0000;
-    transition:.4s;
+    transition:.3s;
 }
 
 .overall{
-    background:white;
-    padding:22px;
-    border-radius:16px;
-    margin-top:20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    padding:20px;
+    margin-top:15px;
 }
 
 .achievements{
@@ -170,16 +171,17 @@ button{
 }
 
 .badge{
-    background:#eee;
+    background:#e8e8e8;
     padding:18px;
-    text-align:center;
     border-radius:14px;
-    opacity:.45;
+    text-align:center;
+    opacity:.5;
+    font-weight:bold;
 }
 
 .badge.unlocked{
-    background:#fff3cd;
     opacity:1;
+    background:#fff0b3;
 }
 
 .courses{
@@ -189,15 +191,7 @@ button{
 }
 
 .course-card{
-    background:white;
-    padding:22px;
-    border-radius:18px;
-    box-shadow:0 5px 18px rgba(0,0,0,.07);
-    transition:.2s;
-}
-
-.course-card:hover{
-    transform:translateY(-3px);
+    padding:25px;
 }
 
 .course-icon{
@@ -205,6 +199,7 @@ button{
 }
 
 .course-card h3{
+    font-size:23px;
     margin:10px 0;
 }
 
@@ -215,36 +210,30 @@ button{
 
 .course-progress-text{
     font-weight:bold;
-    margin-top:10px;
 }
 
 .lesson-list{
-    margin-top:18px;
+    margin-top:20px;
 }
 
 .lesson-item{
-    background:white;
+    background:#f8f8f8;
+    border-radius:14px;
     padding:18px;
     margin-bottom:12px;
-    border-radius:14px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:10px;
-    box-shadow:0 3px 12px rgba(0,0,0,.05);
+    gap:15px;
 }
 
 .lesson-item.locked{
     opacity:.55;
 }
 
-.lesson-info{
-    flex:1;
-}
-
 .lesson-number{
-    font-size:13px;
     color:#777;
+    font-size:13px;
 }
 
 .lesson-name{
@@ -253,66 +242,69 @@ button{
 }
 
 .lesson-page{
-    background:white;
     padding:25px;
-    border-radius:18px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
 .lesson-content{
     line-height:1.8;
-    color:#444;
+    margin-top:20px;
 }
 
 .lesson-content h3{
-    color:#d60000;
+    color:#d00000;
 }
 
 .complete-btn{
+    width:100%;
     margin-top:25px;
     background:#16a085;
     color:white;
-    width:100%;
-    font-size:16px;
+    font-size:17px;
     padding:15px;
 }
 
 .back-btn{
+    margin-bottom:15px;
     background:#222;
     color:white;
-    margin-bottom:15px;
+}
+
+.tools{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.tool-card{
+    padding:20px;
 }
 
 .challenge{
-    background:white;
-    padding:22px;
-    border-radius:16px;
-    margin-top:20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    padding:20px;
 }
 
 .challenge-item{
-    padding:12px;
+    padding:12px 5px;
     border-bottom:1px solid #eee;
 }
 
-.challenge-item label{
-    cursor:pointer;
+.challenge-item input{
+    width:auto;
 }
 
 .calculator{
-    background:white;
-    padding:22px;
-    border-radius:16px;
+    background:#f7f7f7;
+    padding:20px;
+    border-radius:14px;
     margin-top:20px;
 }
 
-input{
+input[type="number"]{
     width:100%;
     padding:12px;
     margin:8px 0 15px;
-    border:1px solid #ddd;
-    border-radius:9px;
+    border:1px solid #ccc;
+    border-radius:8px;
     font-size:16px;
 }
 
@@ -322,49 +314,18 @@ input{
     font-weight:bold;
 }
 
-.income-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.income-card{
-    background:white;
-    padding:20px;
-    text-align:center;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-
-.empty{
-    text-align:center;
-    padding:40px;
-    background:white;
-    border-radius:16px;
-}
-
 @media(max-width:800px){
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .dashboard{
-        grid-template-columns:1fr;
-    }
-
-    .courses{
-        grid-template-columns:1fr;
-    }
-
+    .stats,
     .achievements{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .income-grid{
-        grid-template-columns:repeat(2,1fr);
+    .courses,
+    .dashboard,
+    .tools{
+        grid-template-columns:1fr;
     }
-
 }
 
 @media(max-width:500px){
@@ -373,25 +334,27 @@ input{
         padding:12px;
     }
 
-    header h1{
-        font-size:23px;
-    }
-
     .stats{
-        grid-template-columns:1fr 1fr;
+        gap:8px;
     }
 
-    .income-grid{
-        grid-template-columns:1fr;
+    .stat{
+        padding:12px 5px;
+    }
+
+    .stat h3{
+        font-size:20px;
     }
 
     .lesson-item{
-        align-items:flex-start;
         flex-direction:column;
+        align-items:flex-start;
     }
 
+    button{
+        width:auto;
+    }
 }
-
 </style>
 </head>
 
@@ -403,6 +366,8 @@ input{
 </header>
 
 <div class="app" id="app">
+
+    <!-- DASHBOARD -->
 
     <section class="hero">
 
@@ -466,58 +431,42 @@ input{
         <div class="dashboard">
 
             <div class="dashboard-card">
-
                 <h3>👥 Subscribers</h3>
-
                 <strong id="dashSubscribers">0 / 1,000</strong>
 
                 <div class="progress">
                     <div id="subscriberGoalBar" class="progress-bar"></div>
                 </div>
-
             </div>
 
-
             <div class="dashboard-card">
-
                 <h3>⏱ Watch Hours</h3>
-
                 <strong id="dashWatchHours">0 / 4,000</strong>
 
                 <div class="progress">
                     <div id="watchGoalBar" class="progress-bar"></div>
                 </div>
-
             </div>
 
-
             <div class="dashboard-card">
-
                 <h3>💰 Monthly Income</h3>
-
                 <strong id="dashIncome">$0 / $1,000</strong>
 
                 <div class="progress">
                     <div id="incomeGoalBar" class="progress-bar"></div>
                 </div>
-
             </div>
 
-
             <div class="dashboard-card">
-
                 <h3>📚 Lessons</h3>
-
                 <strong id="dashLessons">0 / 10</strong>
 
                 <div class="progress">
                     <div id="lessonGoalBar" class="progress-bar"></div>
                 </div>
-
             </div>
 
         </div>
-
 
         <div class="overall">
 
@@ -545,23 +494,19 @@ input{
         <div class="achievements">
 
             <div id="achievementSubscriber" class="badge">
-                👥<br>
-                1K Subscribers
+                👥<br>1K Subscribers
             </div>
 
             <div id="achievementWatch" class="badge">
-                ⏱<br>
-                4K Watch Hours
+                ⏱<br>4K Watch Hours
             </div>
 
             <div id="achievementLesson" class="badge">
-                📚<br>
-                10 Lessons
+                📚<br>10 Lessons
             </div>
 
             <div id="achievementChallenge" class="badge">
-                🔥<br>
-                30-Day Challenge
+                🔥<br>30-Day Challenge
             </div>
 
         </div>
@@ -578,7 +523,7 @@ input{
         </div>
 
         <p>
-            Learn step-by-step and complete every lesson to unlock the next one.
+            Learn step-by-step and unlock lessons as you progress.
         </p>
 
         <div class="courses">
@@ -593,7 +538,7 @@ input{
                     Learn the basics and build your YouTube foundation.
                 </p>
 
-                <div id="courseProgressBeginner" class="course-progress-text">
+                <div id="courseProgressBeginner">
                     0 / 2 Lessons
                 </div>
 
@@ -601,8 +546,9 @@ input{
                     <div id="courseBarBeginner" class="progress-bar"></div>
                 </div>
 
-                <button class="red"
-                        onclick="showCourse('beginner')">
+                <button
+                    class="red"
+                    onclick="showCourse('beginner')">
                     Start Course →
                 </button>
 
@@ -619,7 +565,7 @@ input{
                     Learn how to increase views, subscribers and channel growth.
                 </p>
 
-                <div id="courseProgressGrowth" class="course-progress-text">
+                <div id="courseProgressGrowth">
                     0 / 2 Lessons
                 </div>
 
@@ -627,8 +573,9 @@ input{
                     <div id="courseBarGrowth" class="progress-bar"></div>
                 </div>
 
-                <button class="red"
-                        onclick="showCourse('growth')">
+                <button
+                    class="red"
+                    onclick="showCourse('growth')">
                     Start Course →
                 </button>
 
@@ -642,10 +589,10 @@ input{
                 <h3>YouTube Monetization</h3>
 
                 <p>
-                    Understand YouTube monetization and different revenue streams.
+                    Understand YouTube monetization and revenue streams.
                 </p>
 
-                <div id="courseProgressMonetization" class="course-progress-text">
+                <div id="courseProgressMonetization">
                     0 / 3 Lessons
                 </div>
 
@@ -653,8 +600,9 @@ input{
                     <div id="courseBarMonetization" class="progress-bar"></div>
                 </div>
 
-                <button class="red"
-                        onclick="showCourse('monetization')">
+                <button
+                    class="red"
+                    onclick="showCourse('monetization')">
                     Start Course →
                 </button>
 
@@ -668,10 +616,10 @@ input{
                 <h3>YouTube Income</h3>
 
                 <p>
-                    Learn how to build multiple income streams from YouTube.
+                    Learn how to build multiple YouTube income streams.
                 </p>
 
-                <div id="courseProgressIncome" class="course-progress-text">
+                <div id="courseProgressIncome">
                     0 / 3 Lessons
                 </div>
 
@@ -679,8 +627,9 @@ input{
                     <div id="courseBarIncome" class="progress-bar"></div>
                 </div>
 
-                <button class="red"
-                        onclick="showCourse('income')">
+                <button
+                    class="red"
+                    onclick="showCourse('income')">
                     Start Course →
                 </button>
 
@@ -691,7 +640,7 @@ input{
     </section>
 
 
-    <!-- OLD LEARNING TOOLS -->
+    <!-- CREATOR TOOLS -->
 
     <section class="section">
 
@@ -699,99 +648,39 @@ input{
             🛠 Creator Tools
         </div>
 
-        <div class="courses">
+        <div class="tools">
 
-            <div class="course-card">
-                <div class="course-icon">📖</div>
-                <h3>Start From Zero</h3>
+            <div class="tool-card">
+                <h3>📖 Start From Zero</h3>
                 <p>Learn how to start a YouTube channel.</p>
-                <button class="blue" onclick="showMessage('Start From Zero')">
+
+                <button
+                    class="blue"
+                    onclick="showTool('start')">
                     Open
                 </button>
             </div>
 
-            <div class="course-card">
-                <div class="course-icon">📈</div>
-                <h3>Grow Your Channel</h3>
-                <p>Learn channel growth strategies.</p>
-                <button class="blue" onclick="showMessage('Grow Your Channel')">
+            <div class="tool-card">
+                <h3>🤖 AI YouTube Tools</h3>
+                <p>Use AI for ideas, titles and scripts.</p>
+
+                <button
+                    class="blue"
+                    onclick="showTool('ai')">
                     Open
                 </button>
             </div>
 
-            <div class="course-card">
-                <div class="course-icon">💰</div>
-                <h3>Monetization</h3>
-                <p>Learn how YouTube monetization works.</p>
-                <button class="blue" onclick="showMessage('Monetization')">
+            <div class="tool-card">
+                <h3>🔥 30 Day Challenge</h3>
+                <p>Complete one YouTube task every day.</p>
+
+                <button
+                    class="blue"
+                    onclick="showTool('challenge')">
                     Open
                 </button>
-            </div>
-
-            <div class="course-card">
-                <div class="course-icon">🧮</div>
-                <h3>Income Calculator</h3>
-                <p>Estimate your YouTube advertising income.</p>
-                <button class="blue" onclick="showMessage('Income Calculator')">
-                    Open
-                </button>
-            </div>
-
-            <div class="course-card">
-                <div class="course-icon">🤖</div>
-                <h3>AI YouTube Tools</h3>
-                <p>Use AI to create titles, scripts and ideas.</p>
-                <button class="blue" onclick="showMessage('AI YouTube Tools')">
-                    Open
-                </button>
-            </div>
-
-            <div class="course-card">
-                <div class="course-icon">🔥</div>
-                <h3>30 Day Challenge</h3>
-                <p>Complete 30 daily tasks to build your channel.</p>
-                <button class="blue" onclick="showMessage('30 Day Challenge')">
-                    Open
-                </button>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- INCOME STREAMS -->
-
-    <section class="section">
-
-        <div class="section-title">
-            💰 YouTube Income Streams
-        </div>
-
-        <div class="income-grid">
-
-            <div class="income-card">
-                <h3>📺</h3>
-                <strong>Ad Revenue</strong>
-                <p>YouTube advertising income.</p>
-            </div>
-
-            <div class="income-card">
-                <h3>🔗</h3>
-                <strong>Affiliate</strong>
-                <p>Earn commission from products.</p>
-            </div>
-
-            <div class="income-card">
-                <h3>🤝</h3>
-                <strong>Sponsorship</strong>
-                <p>Work with brands.</p>
-            </div>
-
-            <div class="income-card">
-                <h3>📦</h3>
-                <strong>Digital Products</strong>
-                <p>Sell your own products.</p>
             </div>
 
         </div>
@@ -804,7 +693,7 @@ input{
     <section class="section">
 
         <div class="section-title">
-            🔥 30-Day Challenge
+            🔥 30-Day Challenge Progress
         </div>
 
         <div class="challenge">
@@ -814,8 +703,10 @@ input{
             </strong>
 
             <div class="progress">
-                <div id="challengeProgressBar"
-                     class="progress-bar"></div>
+                <div
+                    id="challengeProgressBar"
+                    class="progress-bar">
+                </div>
             </div>
 
         </div>
@@ -825,7 +716,9 @@ input{
 </div>
 
 
-<script src="app.js?v=11"></script>
+<!-- IMPORTANT: defer makes JavaScript load safely -->
+
+<script src="app.js?v=11" defer></script>
 
 </body>
 </html>
