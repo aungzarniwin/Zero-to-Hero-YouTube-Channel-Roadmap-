@@ -2,893 +2,768 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Zero to Hero - YouTube Money Academy</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #f5f7fb;
-            color: #1f2937;
-        }
-
-        header {
-            background: #111827;
-            color: white;
-            padding: 28px 18px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
-
-        header p {
-            color: #d1d5db;
-            font-size: 14px;
-        }
-
-        .container {
-            max-width: 950px;
-            margin: auto;
-            padding: 25px 16px;
-        }
-
-        .hero {
-            background: white;
-            padding: 25px;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,.08);
-            margin-bottom: 25px;
-        }
-
-        .hero h2 {
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            color: #6b7280;
-            line-height: 1.6;
-        }
-
-        .progress-box {
-            margin-top: 22px;
-        }
-
-        .progress-title {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .progress {
-            width: 100%;
-            height: 14px;
-            background: #e5e7eb;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: #111827;
-            transition: width .3s ease;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-top: 18px;
-        }
-
-        .stat {
-            background: #f9fafb;
-            padding: 18px 10px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .stat strong {
-            display: block;
-            font-size: 22px;
-            margin-bottom: 6px;
-        }
-
-        .stat span {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .dashboard-buttons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .dashboard-buttons button {
-            border: none;
-            color: white;
-            padding: 13px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .dashboard-buttons button:hover {
-            opacity: .9;
-        }
-
-        .btn-dark {
-            background: #111827;
-        }
-
-        .btn-gray {
-            background: #374151;
-        }
-
-        .btn-green {
-            background: #047857;
-        }
-
-        .overall-card {
-            margin-top: 25px;
-            padding: 20px;
-            background: #111827;
-            color: white;
-            border-radius: 15px;
-        }
-
-        .overall-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .overall-header strong {
-            font-size: 17px;
-        }
-
-        .overall-progress {
-            width: 100%;
-            height: 14px;
-            background: #374151;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .overall-progress-bar {
-            width: 0%;
-            height: 100%;
-            background: #10b981;
-            transition: width .3s ease;
-        }
-
-        .overall-card p {
-            margin-top: 10px;
-            color: #d1d5db;
-            font-size: 13px;
-        }
-
-        .challenge-dashboard {
-            margin-top: 15px;
-            padding: 20px;
-            background: #111827;
-            color: white;
-            border-radius: 15px;
-        }
-
-        .challenge-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .challenge-header strong {
-            font-size: 16px;
-        }
-
-        .challenge-progress {
-            width: 100%;
-            height: 12px;
-            background: #374151;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .challenge-progress-bar {
-            width: 0%;
-            height: 100%;
-            background: #10b981;
-            transition: width .3s ease;
-        }
-
-        .challenge-dashboard p {
-            margin-top: 10px;
-            color: #d1d5db;
-            font-size: 13px;
-        }
-
-        .section-title {
-            margin: 28px 0 15px;
-            font-size: 22px;
-        }
-
-        .menu {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,.07);
-            cursor: pointer;
-            transition: .2s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-        }
-
-        .icon {
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
-
-        .card h3 {
-            margin-bottom: 7px;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #6b7280;
-            line-height: 1.5;
-        }
-
-        .badge {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 5px 9px;
-            background: #ecfdf5;
-            color: #047857;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 15px;
-            color: #6b7280;
-            font-size: 13px;
-        }
-
-        .back-button {
-            border: none;
-            background: #111827;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-bottom: 18px;
-            font-size: 14px;
-        }
-
-        .lesson-page {
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,.08);
-        }
-
-        .lesson-icon {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-
-        .lesson-page h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        .lesson-content {
-            color: #374151;
-            line-height: 1.7;
-        }
-
-        .lesson-content h3 {
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-
-        .lesson-content h4 {
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-
-        .lesson-content ul,
-        .lesson-content ol {
-            padding-left: 25px;
-            margin: 10px 0;
-        }
-
-        .lesson-tip {
-            margin-top: 20px;
-            padding: 15px;
-            background: #ecfdf5;
-            border-radius: 12px;
-            font-weight: bold;
-        }
-
-        .lesson-content label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-
-        .lesson-content input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #d1d5db;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-size: 15px;
-        }
-
-        .lesson-content button {
-            border: none;
-            background: #111827;
-            color: white;
-            padding: 13px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-
-        .result-box {
-            margin-top: 20px;
-            padding: 18px;
-            background: #f3f4f6;
-            border-radius: 12px;
-        }
-
-        .challenge-list {
-            margin-top: 20px;
-        }
-
-        .challenge-day {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 8px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .challenge-day input {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            margin: 0;
-        }
-
-        .challenge-day label {
-            margin: 0;
-            cursor: pointer;
-            line-height: 1.5;
-        }
-
-        .challenge-complete {
-            margin-top: 20px;
-            padding: 20px;
-            background: #ecfdf5;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        @media (max-width: 700px) {
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .dashboard-buttons {
-                grid-template-columns: 1fr;
-            }
-
-            .lesson-page {
-                padding: 20px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zero to Hero - YouTube Money Academy</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#1f2937;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:28px 18px;
+    text-align:center;
+}
+
+header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+header p{
+    color:#d1d5db;
+    font-size:14px;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+    padding:25px 16px;
+}
+
+.hero{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.hero h2{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#6b7280;
+    line-height:1.6;
+}
+
+.progress-box{
+    margin-top:22px;
+}
+
+.progress-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.progress{
+    width:100%;
+    height:14px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#111827;
+    transition:width .3s ease;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:18px;
+}
+
+.stat{
+    background:#f9fafb;
+    padding:18px 10px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.stat strong{
+    display:block;
+    font-size:22px;
+    margin-bottom:6px;
+}
+
+.stat span{
+    font-size:12px;
+    color:#6b7280;
+}
+
+.dashboard-buttons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+
+.dashboard-buttons button{
+    border:none;
+    color:white;
+    padding:13px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.dashboard-buttons button:hover{
+    opacity:.9;
+}
+
+.btn-dark{
+    background:#111827;
+}
+
+.btn-gray{
+    background:#374151;
+}
+
+.btn-green{
+    background:#047857;
+}
+
+.overall-card{
+    margin-top:25px;
+    padding:20px;
+    background:#111827;
+    color:white;
+    border-radius:15px;
+}
+
+.overall-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.overall-header strong{
+    font-size:17px;
+}
+
+.overall-progress{
+    width:100%;
+    height:14px;
+    background:#374151;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.overall-progress-bar{
+    width:0%;
+    height:100%;
+    background:#10b981;
+    transition:width .3s ease;
+}
+
+.overall-card p{
+    margin-top:10px;
+    color:#d1d5db;
+    font-size:13px;
+}
+
+.challenge-dashboard{
+    margin-top:15px;
+    padding:20px;
+    background:#111827;
+    color:white;
+    border-radius:15px;
+}
+
+.challenge-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.challenge-progress{
+    width:100%;
+    height:12px;
+    background:#374151;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.challenge-progress-bar{
+    width:0%;
+    height:100%;
+    background:#10b981;
+    transition:width .3s ease;
+}
+
+.challenge-dashboard p{
+    margin-top:10px;
+    color:#d1d5db;
+    font-size:13px;
+}
+
+.section-title{
+    margin:28px 0 15px;
+    font-size:22px;
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.icon{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    margin-bottom:7px;
+}
+
+.card p{
+    font-size:14px;
+    color:#6b7280;
+    line-height:1.5;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 9px;
+    background:#ecfdf5;
+    color:#047857;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    padding:30px 15px;
+    color:#6b7280;
+    font-size:13px;
+}
+
+.back-button{
+    border:none;
+    background:#111827;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-bottom:18px;
+    font-size:14px;
+}
+
+.lesson-page{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.lesson-icon{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.lesson-page h2{
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.lesson-content{
+    color:#374151;
+    line-height:1.7;
+}
+
+.lesson-content h3{
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.lesson-content h4{
+    margin-top:20px;
+    margin-bottom:8px;
+}
+
+.lesson-content ul,
+.lesson-content ol{
+    padding-left:25px;
+    margin:10px 0;
+}
+
+.lesson-tip{
+    margin-top:20px;
+    padding:15px;
+    background:#ecfdf5;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+.lesson-content label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+.lesson-content input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+.lesson-content button{
+    border:none;
+    background:#111827;
+    color:white;
+    padding:13px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:8px;
+}
+
+.result-box{
+    margin-top:20px;
+    padding:18px;
+    background:#f3f4f6;
+    border-radius:12px;
+}
+
+.challenge-list{
+    margin-top:20px;
+}
+
+.challenge-day{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 8px;
+    border-bottom:1px solid #eee;
+}
+
+.challenge-day input{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+    margin:0;
+}
+
+.challenge-day label{
+    margin:0;
+    cursor:pointer;
+    line-height:1.5;
+}
+
+.challenge-complete{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-radius:12px;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+}
+
+@media(max-width:700px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-buttons{
+        grid-template-columns:1fr;
+    }
+
+    .lesson-page{
+        padding:20px;
+    }
+}
+
+</style>
 
 </head>
 
-
 <body>
-
 
 <header>
 
-    <h1>🚀 Zero to Hero</h1>
+<h1>🚀 Zero to Hero</h1>
 
-    <p>
-        YouTube Money Academy
-    </p>
+<p>YouTube Money Academy</p>
 
 </header>
 
 
-<main class="container">
+<main class="container" id="app">
 
+<section class="hero">
 
-    <section class="hero">
+<h2>💰 Build Your YouTube Income</h2>
 
-        <h2>
-            💰 Build Your YouTube Income
-        </h2>
+<p>
+YouTube ကို Zero ကနေ စတင်ပြီး
+Channel Growth နဲ့ Income ရတဲ့အထိ
+Step by Step လေ့လာပါ။
+</p>
 
-        <p>
-            YouTube ကို Zero ကနေ စတင်ပြီး
-            Channel Growth နဲ့ Income ရတဲ့အထိ
-            Step by Step လေ့လာပါ။
-        </p>
 
+<div class="progress-box">
 
-        <!-- MONETIZATION -->
+<div class="progress-title">
 
-        <div class="progress-box">
+<span>🎯 Monetization Progress</span>
 
-            <div class="progress-title">
+<span id="progressText">0%</span>
 
-                <span>
-                    🎯 Monetization Progress
-                </span>
+</div>
 
-                <span id="progressText">
-                    0%
-                </span>
+<div class="progress">
 
-            </div>
+<div id="progressBar" class="progress-bar"></div>
 
-            <div class="progress">
+</div>
 
-                <div
-                    id="progressBar"
-                    class="progress-bar">
-                </div>
+</div>
 
-            </div>
 
-        </div>
+<div class="stats">
 
+<div class="stat">
 
-        <!-- STATS -->
+<strong id="subscriberCount">0</strong>
 
-        <div class="stats">
+<span>👥 Subscribers</span>
 
-            <div class="stat">
+</div>
 
-                <strong id="subscriberCount">
-                    0
-                </strong>
 
-                <span>
-                    👥 Subscribers
-                </span>
+<div class="stat">
 
-            </div>
+<strong id="watchHours">0</strong>
 
+<span>⏱️ Watch Hours</span>
 
-            <div class="stat">
+</div>
 
-                <strong id="watchHours">
-                    0
-                </strong>
 
-                <span>
-                    ⏱️ Watch Hours
-                </span>
+<div class="stat">
 
-            </div>
+<strong id="monthlyIncome">$0.00</strong>
 
+<span>💰 Monthly Income</span>
 
-            <div class="stat">
+</div>
 
-                <strong id="monthlyIncome">
-                    $0.00
-                </strong>
 
-                <span>
-                    💰 Monthly Income
-                </span>
+<div class="stat">
 
-            </div>
+<strong id="lessonProgress">0%</strong>
 
+<span>📚 Lesson Progress</span>
 
-            <div class="stat">
+</div>
 
-                <strong id="lessonProgress">
-                    0%
-                </strong>
+</div>
 
-                <span>
-                    📚 Lesson Progress
-                </span>
 
-            </div>
+<div class="dashboard-buttons">
 
-        </div>
+<button class="btn-dark" onclick="updateSubscribers()">
 
+👥 Update Subscribers
 
-        <!-- UPDATE BUTTONS -->
+</button>
 
-        <div class="dashboard-buttons">
 
-            <button
-                class="btn-dark"
-                onclick="updateSubscribers()">
+<button class="btn-gray" onclick="updateWatchHours()">
 
-                👥 Update Subscribers
+⏱️ Update Watch Hours
 
-            </button>
+</button>
 
 
-            <button
-                class="btn-gray"
-                onclick="updateWatchHours()">
+<button class="btn-green" onclick="updateIncome()">
 
-                ⏱️ Update Watch Hours
+💰 Update Income
 
-            </button>
+</button>
 
+</div>
 
-            <button
-                class="btn-green"
-                onclick="updateIncome()">
 
-                💰 Update Income
+<div class="overall-card">
 
-            </button>
+<div class="overall-header">
 
-        </div>
+<strong>🚀 Overall Progress</strong>
 
+<strong id="overallProgressText">0%</strong>
 
-        <!-- OVERALL PROGRESS -->
+</div>
 
-        <div class="overall-card">
+<div class="overall-progress">
 
-            <div class="overall-header">
+<div id="overallProgressBar"
+class="overall-progress-bar"></div>
 
-                <strong>
-                    🚀 Overall Progress
-                </strong>
+</div>
 
-                <strong id="overallProgressText">
-                    0%
-                </strong>
+<p>
+Your overall YouTube learning and growth progress.
+</p>
 
-            </div>
+</div>
 
 
-            <div class="overall-progress">
+<div class="challenge-dashboard">
 
-                <div
-                    id="overallProgressBar"
-                    class="overall-progress-bar">
-                </div>
+<div class="challenge-header">
 
-            </div>
+<strong>🔥 30-Day Challenge</strong>
 
+<strong id="challengeProgressText">
+0 / 30
+</strong>
 
-            <p>
-                Your overall YouTube learning
-                and growth progress.
-            </p>
+</div>
 
-        </div>
+<div class="challenge-progress">
 
+<div id="challengeProgressBar"
+class="challenge-progress-bar"></div>
 
-        <!-- 30 DAY CHALLENGE -->
+</div>
 
-        <div class="challenge-dashboard">
+<p>
+Complete your daily YouTube actions and build your channel step by step.
+</p>
 
-            <div class="challenge-header">
+</div>
 
-                <strong>
-                    🔥 30-Day Challenge
-                </strong>
+</section>
 
-                <strong id="challengeProgressText">
-                    0 / 30
-                </strong>
 
-            </div>
+<h2 class="section-title">
+📚 Learn YouTube
+</h2>
 
 
-            <div class="challenge-progress">
+<div class="menu">
 
-                <div
-                    id="challengeProgressBar"
-                    class="challenge-progress-bar">
-                </div>
 
-            </div>
+<div class="card"
+onclick="showMessage('Start From Zero')">
 
+<div class="icon">🚀</div>
 
-            <p>
-                Complete your daily YouTube actions
-                and build your channel step by step.
-            </p>
+<h3>Start From Zero</h3>
 
-        </div>
+<p>
+Learn how to start your YouTube channel from zero.
+</p>
 
-    </section>
+<span class="badge">START</span>
 
+</div>
 
-    <h2 class="section-title">
-        📚 Learn YouTube
-    </h2>
 
+<div class="card"
+onclick="showMessage('Grow Your Channel')">
 
-    <div class="menu">
+<div class="icon">📈</div>
 
+<h3>Grow Your Channel</h3>
 
-        <div
-            class="card"
-            onclick="showMessage('Start From Zero')">
+<p>
+Learn CTR, Retention, Watch Time and Growth.
+</p>
 
-            <div class="icon">🚀</div>
+<span class="badge">GROW</span>
 
-            <h3>
-                Start From Zero
-            </h3>
+</div>
 
-            <p>
-                Learn how to start your
-                YouTube channel from zero.
-            </p>
 
-            <span class="badge">
-                START
-            </span>
+<div class="card"
+onclick="showMessage('Monetization')">
 
-        </div>
+<div class="icon">💰</div>
 
+<h3>YouTube Monetization</h3>
 
-        <div
-            class="card"
-            onclick="showMessage('Grow Your Channel')">
+<p>
+Learn different ways to make money from YouTube.
+</p>
 
-            <div class="icon">📈</div>
+<span class="badge">MONEY</span>
 
-            <h3>
-                Grow Your Channel
-            </h3>
+</div>
 
-            <p>
-                Learn CTR, Retention,
-                Watch Time and Growth.
-            </p>
 
-            <span class="badge">
-                GROW
-            </span>
+<div class="card"
+onclick="showMessage('Income Calculator')">
 
-        </div>
+<div class="icon">🧮</div>
 
+<h3>Income Calculator</h3>
 
-        <div
-            class="card"
-            onclick="showMessage('Monetization')">
+<p>
+Estimate your possible YouTube advertising income.
+</p>
 
-            <div class="icon">💰</div>
+<span class="badge">CALCULATE</span>
 
-            <h3>
-                YouTube Monetization
-            </h3>
+</div>
 
-            <p>
-                Learn different ways
-                to make money from YouTube.
-            </p>
 
-            <span class="badge">
-                MONEY
-            </span>
+<div class="card"
+onclick="showMessage('AI YouTube Tools')">
 
-        </div>
+<div class="icon">🤖</div>
 
+<h3>AI YouTube Tools</h3>
 
-        <div
-            class="card"
-            onclick="showMessage('Income Calculator')">
+<p>
+Use AI for ideas, scripts, titles and thumbnails.
+</p>
 
-            <div class="icon">🧮</div>
+<span class="badge">AI</span>
 
-            <h3>
-                Income Calculator
-            </h3>
+</div>
 
-            <p>
-                Estimate your possible
-                YouTube advertising income.
-            </p>
 
-            <span class="badge">
-                CALCULATE
-            </span>
+<div class="card"
+onclick="showMessage('30 Day Challenge')">
 
-        </div>
+<div class="icon">🔥</div>
 
+<h3>30-Day Challenge</h3>
 
-        <div
-            class="card"
-            onclick="showMessage('AI YouTube Tools')">
+<p>
+Follow a 30-day action plan to build your channel.
+</p>
 
-            <div class="icon">🤖</div>
+<span class="badge">CHALLENGE</span>
 
-            <h3>
-                AI YouTube Tools
-            </h3>
+</div>
 
-            <p>
-                Use AI for ideas, scripts,
-                titles and thumbnails.
-            </p>
+</div>
 
-            <span class="badge">
-                AI
-            </span>
 
-        </div>
+<h2 class="section-title">
+💵 YouTube Income Streams
+</h2>
 
 
-        <div
-            class="card"
-            onclick="showMessage('30 Day Challenge')">
+<div class="menu">
 
-            <div class="icon">🔥</div>
 
-            <h3>
-                30-Day Challenge
-            </h3>
+<div class="card"
+onclick="showMessage('Ad Revenue')">
 
-            <p>
-                Follow a 30-day action plan
-                to build your channel.
-            </p>
+<div class="icon">📺</div>
 
-            <span class="badge">
-                CHALLENGE
-            </span>
+<h3>Ad Revenue</h3>
 
-        </div>
+<p>
+Learn how YouTube advertising revenue works.
+</p>
 
-    </div>
+</div>
 
 
-    <h2 class="section-title">
-        💵 YouTube Income Streams
-    </h2>
+<div class="card"
+onclick="showMessage('Affiliate Marketing')">
 
+<div class="icon">🔗</div>
 
-    <div class="menu">
+<h3>Affiliate Marketing</h3>
 
+<p>
+Recommend products and earn qualifying commissions.
+</p>
 
-        <div
-            class="card"
-            onclick="showMessage('Ad Revenue')">
+</div>
 
-            <div class="icon">📺</div>
 
-            <h3>
-                Ad Revenue
-            </h3>
+<div class="card"
+onclick="showMessage('Sponsorship')">
 
-            <p>
-                Learn how YouTube advertising
-                revenue works.
-            </p>
+<div class="icon">🤝</div>
 
-        </div>
+<h3>Sponsorship</h3>
 
+<p>
+Work with brands and promote their products.
+</p>
 
-        <div
-            class="card"
-            onclick="showMessage('Affiliate Marketing')">
+</div>
 
-            <div class="icon">🔗</div>
 
-            <h3>
-                Affiliate Marketing
-            </h3>
+<div class="card"
+onclick="showMessage('Digital Products')">
 
-            <p>
-                Recommend products and earn
-                qualifying commissions.
-            </p>
+<div class="icon">📚</div>
 
-        </div>
+<h3>Digital Products</h3>
 
+<p>
+Sell e-books, courses, templates and digital tools.
+</p>
 
-        <div
-            class="card"
-            onclick="showMessage('Sponsorship')">
+</div>
 
-            <div class="icon">🤝</div>
-
-            <h3>
-                Sponsorship
-            </h3>
-
-            <p>
-                Work with brands and promote
-                their products.
-            </p>
-
-        </div>
-
-
-        <div
-            class="card"
-            onclick="showMessage('Digital Products')">
-
-            <div class="icon">📚</div>
-
-            <h3>
-                Digital Products
-            </h3>
-
-            <p>
-                Sell e-books, courses,
-                templates and digital tools.
-            </p>
-
-        </div>
-
-    </div>
-
+</div>
 
 </main>
 
 
 <footer>
 
-    © 2026 Zero to Hero -
-    YouTube Money Academy
+© 2026 Zero to Hero - YouTube Money Academy
 
 </footer>
 
 
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 
 </body>
 
