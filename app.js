@@ -1,7 +1,7 @@
 // ==========================================
 // ZERO TO HERO
 // YOUTUBE MONEY ACADEMY
-// APP.JS V9
+// APP.JS V10
 // ==========================================
 
 
@@ -20,7 +20,6 @@ let monthlyIncome =
 
 let lessonsCompleted =
     Number(localStorage.getItem("lessonsCompleted")) || 0;
-
 
 let challengeDays = [];
 
@@ -41,11 +40,9 @@ try {
                 .map(Number)
                 .filter(function(day){
 
-                    return (
-                        Number.isInteger(day) &&
-                        day >= 1 &&
-                        day <= 30
-                    );
+                    return Number.isInteger(day)
+                    && day >= 1
+                    && day <= 30;
 
                 });
 
@@ -59,88 +56,52 @@ try {
 
 }
 
-
 challengeDays =
     [...new Set(challengeDays)];
 
-challengeDays.sort(function(a,b){
-
-    return a-b;
-
-});
-
 
 // ================================
-// 30 DAY CHALLENGE
+// CHALLENGE TASKS
 // ================================
 
 const challengeTasks = [
 
 "Choose your YouTube niche",
-
 "Create your YouTube channel",
-
 "Create channel branding",
-
 "Research 5 competitors",
-
 "Create 10 video ideas",
-
 "Write your first video script",
-
 "Create your first video",
-
 "Create your first thumbnail",
-
 "Upload your first video",
-
 "Study YouTube Analytics",
-
 "Improve your video title",
-
 "Improve your thumbnail",
-
 "Create your next video",
-
 "Upload your second video",
-
 "Study audience retention",
-
 "Create your first Short",
-
 "Create another Short",
-
 "Research YouTube keywords",
-
 "Create another video",
-
 "Upload another video",
-
 "Analyze your channel results",
-
 "Improve your video hook",
-
 "Create another video",
-
 "Upload another video",
-
 "Improve your thumbnail design",
-
 "Create another video",
-
 "Upload another video",
-
 "Analyze your channel",
-
 "Plan next month's content",
-
 "Review your 30-Day progress 🚀"
 
 ];
 
 
 // ================================
-// LESSON DATA
+// LESSONS
 // ================================
 
 const lessons = {
@@ -156,25 +117,19 @@ content:`
 <h3>🚀 Start Your YouTube Journey</h3>
 
 <p>
-You don't need thousands of subscribers to start YouTube.
+You don't need thousands of subscribers to start.
 You only need to start.
 </p>
 
 <h4>Step 1 — Choose Your Niche</h4>
 
-<p>
-Choose a topic you can consistently create content about.
-</p>
-
 <ul>
-
 <li>🎵 Music</li>
 <li>📚 Education</li>
 <li>🎬 Entertainment</li>
 <li>💻 Technology</li>
 <li>💼 Business</li>
 <li>🎮 Gaming</li>
-
 </ul>
 
 <h4>Step 2 — Create Your Channel</h4>
@@ -192,9 +147,7 @@ Publish, analyze and improve.
 </p>
 
 <div class="lesson-tip">
-
 💡 Your first 10 videos are mainly for learning.
-
 </div>
 
 `
@@ -212,11 +165,6 @@ content:`
 
 <h3>📈 Grow Your YouTube Channel</h3>
 
-<p>
-Channel growth comes from creating videos
-people want to click and watch.
-</p>
-
 <h4>1. CTR</h4>
 
 <p>
@@ -226,25 +174,23 @@ Improve your title and thumbnail to increase clicks.
 <h4>2. Retention</h4>
 
 <p>
-Keep viewers interested from the beginning to the end.
+Keep viewers interested from beginning to end.
 </p>
 
 <h4>3. Watch Time</h4>
 
 <p>
-Useful viewing sessions can help build watch time.
+Useful viewing sessions help build watch time.
 </p>
 
 <h4>4. Consistency</h4>
 
 <p>
-Create a realistic upload schedule and follow it.
+Create a realistic upload schedule.
 </p>
 
 <div class="lesson-tip">
-
 🔥 Focus on CTR + Retention + Value.
-
 </div>
 
 `
@@ -263,33 +209,21 @@ content:`
 <h3>💰 YouTube Monetization</h3>
 
 <p>
-YouTube creators can build multiple income streams.
+Creators can build multiple income streams.
 </p>
 
-<h4>Main Income Opportunities</h4>
-
 <ul>
-
 <li>📺 Advertising</li>
-
 <li>⭐ Channel Memberships</li>
-
 <li>💚 Super Thanks</li>
-
 <li>🔴 Live Stream Features</li>
-
 <li>🤝 Sponsorships</li>
-
 <li>🔗 Affiliate Marketing</li>
-
 <li>📚 Digital Products</li>
-
 </ul>
 
 <div class="lesson-tip">
-
 💡 Don't depend on only one income source.
-
 </div>
 
 `
@@ -308,34 +242,26 @@ content:`
 <h3>🧮 YouTube Income Calculator</h3>
 
 <p>
-Estimate possible advertising revenue using views and RPM.
+Estimate advertising revenue using views and RPM.
 </p>
 
-<label>
-Monthly Views
-</label>
+<label>Monthly Views</label>
 
 <input
 id="calcViews"
 type="number"
-placeholder="100000"
->
+placeholder="100000">
 
-<label>
-RPM ($)
-</label>
+<label>RPM ($)</label>
 
 <input
 id="calcRPM"
 type="number"
 step="0.01"
-placeholder="1.00"
->
+placeholder="1.00">
 
 <button onclick="calculateIncome()">
-
 Calculate Income
-
 </button>
 
 <div
@@ -366,29 +292,17 @@ AI can help you save time when planning
 and producing YouTube content.
 </p>
 
-<h4>AI Content Workflow</h4>
-
 <ol>
-
 <li>💡 Generate video ideas</li>
-
 <li>✍️ Create a script</li>
-
 <li>🎯 Generate titles</li>
-
 <li>📝 Write description</li>
-
 <li>🏷️ Create keywords</li>
-
 <li>🖼️ Create thumbnail prompts</li>
-
 </ol>
 
 <div class="lesson-tip">
-
-💡 Use AI as a creative assistant,
-not a replacement for your judgment.
-
+💡 Use AI as a creative assistant.
 </div>
 
 `
@@ -408,7 +322,6 @@ content:`
 
 <p>
 Complete one important action every day.
-Check each day when you finish it.
 </p>
 
 <div id="challengeContainer"></div>
@@ -429,14 +342,12 @@ content:`
 <h3>📺 YouTube Ad Revenue</h3>
 
 <p>
-YouTube advertising revenue depends on factors
-such as views, audience, ad demand and RPM.
+Advertising revenue depends on factors such as
+views, audience, advertiser demand and RPM.
 </p>
 
 <div class="lesson-tip">
-
 💡 Views and RPM both affect advertising revenue.
-
 </div>
 
 `
@@ -460,9 +371,7 @@ and earn commissions from qualifying purchases.
 </p>
 
 <div class="lesson-tip">
-
 💡 Recommend products relevant to your audience.
-
 </div>
 
 `
@@ -485,9 +394,7 @@ Brands may pay creators to promote products or services.
 </p>
 
 <div class="lesson-tip">
-
 💡 Build audience trust before accepting sponsorships.
-
 </div>
 
 `
@@ -511,9 +418,7 @@ templates, guides or digital tools.
 </p>
 
 <div class="lesson-tip">
-
 💡 Create products that solve a real problem.
-
 </div>
 
 `
@@ -551,13 +456,10 @@ function getMonetizationProgress(){
 function getLessonProgress(){
 
     return Math.min(
-
         Math.round(
             (lessonsCompleted / 10) * 100
         ),
-
         100
-
     );
 
 }
@@ -566,13 +468,10 @@ function getLessonProgress(){
 function getChallengeProgress(){
 
     return Math.min(
-
         Math.round(
             (challengeDays.length / 30) * 100
         ),
-
         100
-
     );
 
 }
@@ -589,78 +488,49 @@ function getOverallProgress(){
     const challenge =
         getChallengeProgress();
 
-    return Math.min(
-
-        Math.max(
-
-            Math.round(
-                (
-                    monetization +
-                    lesson +
-                    challenge
-                ) / 3
-            ),
-
-            0
-
-        ),
-
-        100
-
+    return Math.round(
+        (
+            monetization +
+            lesson +
+            challenge
+        ) / 3
     );
 
 }
 
 
 // ================================
-// DASHBOARD
+// UPDATE DASHBOARD
 // ================================
 
 function updateDashboard(){
 
     const subscriberElement =
-        document.getElementById(
-            "subscriberCount"
-        );
+        document.getElementById("subscriberCount");
 
     const watchElement =
-        document.getElementById(
-            "watchHours"
-        );
+        document.getElementById("watchHours");
 
     const incomeElement =
-        document.getElementById(
-            "monthlyIncome"
-        );
+        document.getElementById("monthlyIncome");
 
     const lessonElement =
-        document.getElementById(
-            "lessonProgress"
-        );
+        document.getElementById("lessonProgress");
 
 
-    if(subscriberElement){
-
+    if(subscriberElement)
         subscriberElement.textContent =
             subscribers.toLocaleString();
 
-    }
 
-
-    if(watchElement){
-
+    if(watchElement)
         watchElement.textContent =
             watchHours.toLocaleString();
 
-    }
 
-
-    if(incomeElement){
-
+    if(incomeElement)
         incomeElement.textContent =
             "$" + monthlyIncome.toFixed(2);
-
-    }
 
 
     const monetization =
@@ -668,47 +538,145 @@ function updateDashboard(){
 
 
     const progressText =
-        document.getElementById(
-            "progressText"
-        );
+        document.getElementById("progressText");
 
     const progressBar =
-        document.getElementById(
-            "progressBar"
-        );
+        document.getElementById("progressBar");
 
 
-    if(progressText){
-
+    if(progressText)
         progressText.textContent =
             monetization + "%";
 
-    }
 
-
-    if(progressBar){
-
+    if(progressBar)
         progressBar.style.width =
             monetization + "%";
-
-    }
 
 
     const lesson =
         getLessonProgress();
 
 
-    if(lessonElement){
-
+    if(lessonElement)
         lessonElement.textContent =
             lesson + "%";
 
-    }
 
+    updateProfessionalDashboard();
 
     updateChallengeDashboard();
 
     updateOverallProgress();
+
+    updateAchievements();
+
+}
+
+
+// ================================
+// PROFESSIONAL DASHBOARD
+// ================================
+
+function updateProfessionalDashboard(){
+
+    const dashSubscribers =
+        document.getElementById("dashSubscribers");
+
+    const dashWatchHours =
+        document.getElementById("dashWatchHours");
+
+    const dashIncome =
+        document.getElementById("dashIncome");
+
+    const dashLessons =
+        document.getElementById("dashLessons");
+
+
+    if(dashSubscribers)
+        dashSubscribers.textContent =
+            subscribers.toLocaleString();
+
+
+    if(dashWatchHours)
+        dashWatchHours.textContent =
+            watchHours.toLocaleString();
+
+
+    if(dashIncome)
+        dashIncome.textContent =
+            "$" + monthlyIncome.toFixed(2);
+
+
+    if(dashLessons)
+        dashLessons.textContent =
+            lessonsCompleted + " / 10";
+
+
+    const subscriberPercent =
+        Math.min(
+            (subscribers / 1000) * 100,
+            100
+        );
+
+
+    const watchPercent =
+        Math.min(
+            (watchHours / 4000) * 100,
+            100
+        );
+
+
+    const incomePercent =
+        Math.min(
+            (monthlyIncome / 1000) * 100,
+            100
+        );
+
+
+    const lessonPercent =
+        getLessonProgress();
+
+
+    const subscriberBar =
+        document.getElementById(
+            "subscriberGoalBar"
+        );
+
+    const watchBar =
+        document.getElementById(
+            "watchGoalBar"
+        );
+
+    const incomeBar =
+        document.getElementById(
+            "incomeGoalBar"
+        );
+
+    const lessonBar =
+        document.getElementById(
+            "lessonGoalBar"
+        );
+
+
+    if(subscriberBar)
+        subscriberBar.style.width =
+            subscriberPercent + "%";
+
+
+    if(watchBar)
+        watchBar.style.width =
+            watchPercent + "%";
+
+
+    if(incomeBar)
+        incomeBar.style.width =
+            incomePercent + "%";
+
+
+    if(lessonBar)
+        lessonBar.style.width =
+            lessonPercent + "%";
 
 }
 
@@ -734,20 +702,14 @@ function updateOverallProgress(){
         );
 
 
-    if(text){
-
+    if(text)
         text.textContent =
             overall + "%";
 
-    }
 
-
-    if(bar){
-
+    if(bar)
         bar.style.width =
             overall + "%";
-
-    }
 
 }
 
@@ -776,18 +738,73 @@ function updateChallengeDashboard(){
         );
 
 
-    if(text){
-
+    if(text)
         text.textContent =
             completed + " / 30";
+
+
+    if(bar)
+        bar.style.width =
+            progress + "%";
+
+}
+
+
+// ================================
+// ACHIEVEMENTS
+// ================================
+
+function updateAchievements(){
+
+    const subscriberBadge =
+        document.getElementById(
+            "achievementSubscriber"
+        );
+
+    const watchBadge =
+        document.getElementById(
+            "achievementWatch"
+        );
+
+    const lessonBadge =
+        document.getElementById(
+            "achievementLesson"
+        );
+
+    const challengeBadge =
+        document.getElementById(
+            "achievementChallenge"
+        );
+
+
+    if(subscribers >= 1000 &&
+       subscriberBadge){
+
+        subscriberBadge.classList.remove("locked");
 
     }
 
 
-    if(bar){
+    if(watchHours >= 4000 &&
+       watchBadge){
 
-        bar.style.width =
-            progress + "%";
+        watchBadge.classList.remove("locked");
+
+    }
+
+
+    if(lessonsCompleted >= 10 &&
+       lessonBadge){
+
+        lessonBadge.classList.remove("locked");
+
+    }
+
+
+    if(challengeDays.length >= 30 &&
+       challengeBadge){
+
+        challengeBadge.classList.remove("locked");
 
     }
 
@@ -806,21 +823,15 @@ function updateSubscribers(){
         );
 
 
-    if(value === null){
-
+    if(value === null)
         return;
-
-    }
 
 
     const number =
         Number(value);
 
 
-    if(
-        !Number.isFinite(number) ||
-        number < 0
-    ){
+    if(!Number.isFinite(number) || number < 0){
 
         alert(
             "⚠️ Please enter a valid number."
@@ -863,21 +874,15 @@ function updateWatchHours(){
         );
 
 
-    if(value === null){
-
+    if(value === null)
         return;
-
-    }
 
 
     const number =
         Number(value);
 
 
-    if(
-        !Number.isFinite(number) ||
-        number < 0
-    ){
+    if(!Number.isFinite(number) || number < 0){
 
         alert(
             "⚠️ Please enter a valid number."
@@ -920,21 +925,15 @@ function updateIncome(){
         );
 
 
-    if(value === null){
-
+    if(value === null)
         return;
-
-    }
 
 
     const number =
         Number(value);
 
 
-    if(
-        !Number.isFinite(number) ||
-        number < 0
-    ){
+    if(!Number.isFinite(number) || number < 0){
 
         alert(
             "⚠️ Please enter a valid amount."
@@ -986,9 +985,7 @@ function showMessage(title){
     }
 
 
-    if(
-        title !== "30 Day Challenge"
-    ){
+    if(title !== "30 Day Challenge"){
 
         lessonsCompleted =
             Math.min(
@@ -1006,16 +1003,11 @@ function showMessage(title){
 
 
     const app =
-        document.getElementById(
-            "app"
-        );
+        document.getElementById("app");
 
 
-    if(!app){
-
+    if(!app)
         return;
-
-    }
 
 
     app.innerHTML = `
@@ -1028,27 +1020,18 @@ function showMessage(title){
 
         </button>
 
-
         <div class="lesson-page">
 
             <div class="lesson-icon">
-
                 ${lesson.icon}
-
             </div>
 
-
             <h2>
-
                 ${lesson.title}
-
             </h2>
 
-
             <div class="lesson-content">
-
                 ${lesson.content}
-
             </div>
 
         </div>
@@ -1056,9 +1039,7 @@ function showMessage(title){
     `;
 
 
-    if(
-        title === "30 Day Challenge"
-    ){
+    if(title === "30 Day Challenge"){
 
         renderChallenge();
 
@@ -1074,7 +1055,7 @@ function showMessage(title){
 
 
 // ================================
-// GO DASHBOARD
+// BACK TO DASHBOARD
 // ================================
 
 function goDashboard(){
@@ -1096,11 +1077,8 @@ function renderChallenge(){
         );
 
 
-    if(!container){
-
+    if(!container)
         return;
-
-    }
 
 
     const completed =
@@ -1123,7 +1101,6 @@ function renderChallenge(){
                 🔥 Challenge Progress
             </strong>
 
-
             <div style="
                 margin-top:10px;
                 height:14px;
@@ -1136,11 +1113,9 @@ function renderChallenge(){
                     height:100%;
                     width:${progress}%;
                     background:#047857;
-                    transition:.3s;
                 "></div>
 
             </div>
-
 
             <p style="
                 margin-top:10px;
@@ -1154,7 +1129,6 @@ function renderChallenge(){
 
         </div>
 
-
         <div class="challenge-list">
 
     `;
@@ -1165,7 +1139,6 @@ function renderChallenge(){
 
             const day =
                 index + 1;
-
 
             const checked =
                 challengeDays.includes(day);
@@ -1181,7 +1154,6 @@ function renderChallenge(){
                         ${checked ? "checked" : ""}
                         onchange="toggleChallengeDay(${day})"
                     >
-
 
                     <label for="day${day}">
 
@@ -1201,18 +1173,14 @@ function renderChallenge(){
     );
 
 
-    html += `
-
-        </div>
-
-    `;
+    html += `</div>`;
 
 
     if(completed === 30){
 
         html += `
 
-            <div class="challenge-complete">
+            <div class="lesson-tip">
 
                 🎉 Congratulations!
 
@@ -1244,9 +1212,7 @@ function toggleChallengeDay(day){
         Number(day);
 
 
-    if(
-        challengeDays.includes(numericDay)
-    ){
+    if(challengeDays.includes(numericDay)){
 
         challengeDays =
             challengeDays.filter(
@@ -1289,9 +1255,7 @@ function toggleChallengeDay(day){
 
     renderChallenge();
 
-    updateChallengeDashboard();
-
-    updateOverallProgress();
+    updateDashboard();
 
 }
 
@@ -1303,28 +1267,18 @@ function toggleChallengeDay(day){
 function calculateIncome(){
 
     const viewsElement =
-        document.getElementById(
-            "calcViews"
-        );
-
+        document.getElementById("calcViews");
 
     const rpmElement =
-        document.getElementById(
-            "calcRPM"
-        );
-
+        document.getElementById("calcRPM");
 
     const result =
-        document.getElementById(
-            "incomeResult"
-        );
+        document.getElementById("incomeResult");
 
 
-    if(
-        !viewsElement ||
-        !rpmElement ||
-        !result
-    ){
+    if(!viewsElement ||
+       !rpmElement ||
+       !result){
 
         return;
 
@@ -1332,15 +1286,10 @@ function calculateIncome(){
 
 
     const views =
-        Number(
-            viewsElement.value
-        );
-
+        Number(viewsElement.value);
 
     const rpm =
-        Number(
-            rpmElement.value
-        );
+        Number(rpmElement.value);
 
 
     if(
@@ -1390,7 +1339,7 @@ function calculateIncome(){
 
 
 // ================================
-// MAKE FUNCTIONS GLOBAL
+// GLOBAL FUNCTIONS
 // ================================
 
 window.showMessage =
@@ -1416,7 +1365,7 @@ window.calculateIncome =
 
 
 // ================================
-// START APP
+// START
 // ================================
 
 document.addEventListener(
