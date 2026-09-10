@@ -1,8 +1,7 @@
 // ==========================================
 // ZERO TO HERO
 // YOUTUBE MONEY ACADEMY
-// APP.JS V5
-// 30-DAY CHALLENGE SYSTEM
+// APP.JS V6
 // ==========================================
 
 
@@ -24,7 +23,7 @@ let lessonsCompleted =
 
 
 // ==========================================
-// 30 DAY CHALLENGE DATA
+// 30 DAY CHALLENGE
 // ==========================================
 
 let challengeDays =
@@ -34,69 +33,40 @@ let challengeDays =
 
 
 // ==========================================
-// CHALLENGE TASKS
+// 30 CHALLENGE TASKS
 // ==========================================
 
 const challengeTasks = [
 
     "Choose your YouTube niche",
-
     "Create your YouTube channel",
-
     "Create channel branding",
-
     "Research 5 competitors",
-
     "Create 10 video ideas",
-
     "Write your first video script",
-
     "Create your first video",
-
     "Create your first thumbnail",
-
     "Upload your first video",
-
     "Study YouTube Analytics",
-
     "Improve your video title",
-
     "Improve your thumbnail",
-
     "Create your next video",
-
     "Upload your second video",
-
     "Study audience retention",
-
     "Create your first Short",
-
     "Create another Short",
-
     "Research YouTube keywords",
-
     "Create another video",
-
     "Upload another video",
-
     "Analyze your channel results",
-
     "Improve your video hook",
-
     "Create another video",
-
     "Upload another video",
-
     "Improve your thumbnail design",
-
     "Create another video",
-
     "Upload another video",
-
     "Analyze your channel",
-
     "Plan next month's content",
-
     "Review your 30-Day progress 🚀"
 
 ];
@@ -119,16 +89,16 @@ const lessons = {
             <h3>🚀 Start Your YouTube Journey</h3>
 
             <p>
-            You don't need thousands of subscribers
-            to start YouTube.
-            You only need to start.
+                You don't need thousands of subscribers
+                to start YouTube.
+                You only need to start.
             </p>
 
             <h4>Step 1 — Choose Your Niche</h4>
 
             <p>
-            Choose a topic you can consistently
-            create content about.
+                Choose a topic you can consistently
+                create content about.
             </p>
 
             <ul>
@@ -143,15 +113,15 @@ const lessons = {
             <h4>Step 2 — Create Your Channel</h4>
 
             <p>
-            Choose a memorable channel name,
-            profile picture, banner and description.
+                Choose a memorable channel name,
+                profile picture, banner and description.
             </p>
 
             <h4>Step 3 — Upload Your First Video</h4>
 
             <p>
-            Don't wait for perfection.
-            Publish, analyze and improve.
+                Don't wait for perfection.
+                Publish, analyze and improve.
             </p>
 
             <div class="lesson-tip">
@@ -174,36 +144,36 @@ const lessons = {
             <h3>📈 Grow Your YouTube Channel</h3>
 
             <p>
-            Channel growth comes from creating
-            videos people want to click and watch.
+                Channel growth comes from creating
+                videos people want to click and watch.
             </p>
 
             <h4>1. CTR</h4>
 
             <p>
-            Improve your title and thumbnail
-            to increase clicks.
+                Improve your title and thumbnail
+                to increase clicks.
             </p>
 
             <h4>2. Retention</h4>
 
             <p>
-            Keep viewers interested from the
-            beginning to the end.
+                Keep viewers interested from the
+                beginning to the end.
             </p>
 
             <h4>3. Watch Time</h4>
 
             <p>
-            Useful viewing sessions can help
-            build watch time.
+                Useful viewing sessions can help
+                build watch time.
             </p>
 
             <h4>4. Consistency</h4>
 
             <p>
-            Create a realistic upload schedule
-            and follow it.
+                Create a realistic upload schedule
+                and follow it.
             </p>
 
             <div class="lesson-tip">
@@ -225,8 +195,8 @@ const lessons = {
             <h3>💰 YouTube Monetization</h3>
 
             <p>
-            YouTube creators can build multiple
-            income streams.
+                YouTube creators can build multiple
+                income streams.
             </p>
 
             <h4>Main Income Opportunities</h4>
@@ -261,8 +231,8 @@ const lessons = {
             <h3>🧮 YouTube Income Calculator</h3>
 
             <p>
-            Estimate possible advertising revenue
-            using views and RPM.
+                Estimate possible advertising revenue
+                using views and RPM.
             </p>
 
             <label>
@@ -316,8 +286,8 @@ const lessons = {
             <h3>🤖 AI YouTube Tools</h3>
 
             <p>
-            AI can help you save time when planning
-            and producing YouTube content.
+                AI can help you save time when planning
+                and producing YouTube content.
             </p>
 
             <h4>AI Content Workflow</h4>
@@ -351,7 +321,7 @@ const lessons = {
             <h3>🔥 30-Day YouTube Challenge</h3>
 
             <p>
-                Complete one action every day.
+                Complete one important action every day.
                 Check each day when you finish it.
             </p>
 
@@ -372,8 +342,8 @@ const lessons = {
             <h3>📺 YouTube Ad Revenue</h3>
 
             <p>
-            Learn how YouTube advertising revenue
-            works and how RPM affects earnings.
+                Learn how YouTube advertising revenue
+                works and how RPM affects earnings.
             </p>
 
             <div class="lesson-tip">
@@ -396,9 +366,9 @@ const lessons = {
             <h3>🔗 Affiliate Marketing</h3>
 
             <p>
-            Recommend useful products or services
-            and earn commissions from qualifying
-            purchases.
+                Recommend useful products or services
+                and earn commissions from qualifying
+                purchases.
             </p>
 
             <div class="lesson-tip">
@@ -421,8 +391,8 @@ const lessons = {
             <h3>🤝 Sponsorship</h3>
 
             <p>
-            Brands may pay creators to promote
-            products or services.
+                Brands may pay creators to promote
+                products or services.
             </p>
 
             <div class="lesson-tip">
@@ -445,8 +415,8 @@ const lessons = {
             <h3>📚 Digital Products</h3>
 
             <p>
-            Create and sell e-books, courses,
-            templates, guides or digital tools.
+                Create and sell e-books, courses,
+                templates, guides or digital tools.
             </p>
 
             <div class="lesson-tip">
@@ -503,6 +473,8 @@ function updateDashboard() {
     }
 
 
+    // MONETIZATION PROGRESS
+
     const subscriberProgress =
         Math.min(
             (subscribers / 1000) * 100,
@@ -527,11 +499,15 @@ function updateDashboard() {
 
 
     const bar =
-        document.getElementById("progressBar");
+        document.getElementById(
+            "progressBar"
+        );
 
 
     const text =
-        document.getElementById("progressText");
+        document.getElementById(
+            "progressText"
+        );
 
 
     if (bar) {
@@ -550,6 +526,8 @@ function updateDashboard() {
     }
 
 
+    // LESSON PROGRESS
+
     if (lessonElement) {
 
         const lessonProgress =
@@ -558,7 +536,60 @@ function updateDashboard() {
             );
 
         lessonElement.textContent =
-            Math.min(lessonProgress, 100) + "%";
+            Math.min(
+                lessonProgress,
+                100
+            ) + "%";
+
+    }
+
+
+    // CHALLENGE PROGRESS
+
+    updateChallengeDashboard();
+
+}
+
+
+// ==========================================
+// CHALLENGE DASHBOARD
+// ==========================================
+
+function updateChallengeDashboard() {
+
+    const text =
+        document.getElementById(
+            "challengeProgressText"
+        );
+
+    const bar =
+        document.getElementById(
+            "challengeProgressBar"
+        );
+
+
+    const completed =
+        challengeDays.length;
+
+
+    const progress =
+        Math.round(
+            (completed / 30) * 100
+        );
+
+
+    if (text) {
+
+        text.textContent =
+            completed + " / 30";
+
+    }
+
+
+    if (bar) {
+
+        bar.style.width =
+            progress + "%";
 
     }
 
@@ -738,8 +769,8 @@ function showMessage(title) {
     }
 
 
-    // Only count normal lessons.
-    // Don't count the 30-Day Challenge.
+    // Challenge ကို lesson progress မတွက်ပါ
+
     if (
         title !== "30 Day Challenge"
     ) {
@@ -802,7 +833,8 @@ function showMessage(title) {
     `;
 
 
-    // Load challenge UI
+    // Challenge UI
+
     if (
         title === "30 Day Challenge"
     ) {
@@ -821,7 +853,7 @@ function showMessage(title) {
 
 
 // ==========================================
-// RENDER 30 DAY CHALLENGE
+// RENDER CHALLENGE
 // ==========================================
 
 function renderChallenge() {
@@ -887,6 +919,7 @@ function renderChallenge() {
 
         </div>
 
+        <div class="challenge-list">
     `;
 
 
@@ -896,39 +929,24 @@ function renderChallenge() {
             const day =
                 index + 1;
 
+
             const checked =
                 challengeDays.includes(day);
 
 
             html += `
 
-                <div style="
-                    display:flex;
-                    align-items:center;
-                    gap:12px;
-                    padding:14px 8px;
-                    border-bottom:1px solid #eee;
-                ">
+                <div class="challenge-day">
 
                     <input
                         type="checkbox"
                         id="day${day}"
                         ${checked ? "checked" : ""}
                         onchange="toggleChallengeDay(${day})"
-                        style="
-                            width:20px;
-                            height:20px;
-                            cursor:pointer;
-                        "
                     >
 
-                    <label
-                        for="day${day}"
-                        style="
-                            cursor:pointer;
-                            line-height:1.5;
-                        "
-                    >
+
+                    <label for="day${day}">
 
                         <strong>
                             Day ${day}
@@ -946,19 +964,14 @@ function renderChallenge() {
     );
 
 
+    html += `</div>`;
+
+
     if (completed === 30) {
 
         html += `
 
-            <div style="
-                margin-top:20px;
-                padding:20px;
-                background:#ecfdf5;
-                border-radius:12px;
-                text-align:center;
-                font-weight:bold;
-                font-size:18px;
-            ">
+            <div class="challenge-complete">
 
                 🎉 Congratulations!
 
@@ -1002,13 +1015,11 @@ function toggleChallengeDay(day) {
     }
 
 
-    // Sort days
     challengeDays.sort(
         (a, b) => a - b
     );
 
 
-    // Save progress
     localStorage.setItem(
         "challengeDays",
         JSON.stringify(
@@ -1017,8 +1028,9 @@ function toggleChallengeDay(day) {
     );
 
 
-    // Refresh challenge
     renderChallenge();
+
+    updateChallengeDashboard();
 
 }
 
@@ -1029,25 +1041,40 @@ function toggleChallengeDay(day) {
 
 function calculateIncome() {
 
-    const views =
-        Number(
-            document.getElementById(
-                "calcViews"
-            ).value
+    const viewsElement =
+        document.getElementById(
+            "calcViews"
         );
 
 
-    const rpm =
-        Number(
-            document.getElementById(
-                "calcRPM"
-            ).value
+    const rpmElement =
+        document.getElementById(
+            "calcRPM"
         );
 
 
     const result =
         document.getElementById(
             "incomeResult"
+        );
+
+
+    if (
+        !viewsElement ||
+        !rpmElement ||
+        !result
+    ) return;
+
+
+    const views =
+        Number(
+            viewsElement.value
+        );
+
+
+    const rpm =
+        Number(
+            rpmElement.value
         );
 
 
