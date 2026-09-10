@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Zero to Hero - YouTube Money</title>
+    <title>Zero to Hero - YouTube Money Academy</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -23,13 +24,13 @@
         header {
             background: #111827;
             color: white;
-            padding: 25px 18px;
+            padding: 28px 18px;
             text-align: center;
         }
 
         header h1 {
-            font-size: 28px;
-            margin-bottom: 7px;
+            font-size: 30px;
+            margin-bottom: 8px;
         }
 
         header p {
@@ -38,7 +39,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: auto;
             padding: 25px 16px;
         }
@@ -48,12 +49,12 @@
             padding: 25px;
             border-radius: 18px;
             box-shadow: 0 4px 15px rgba(0,0,0,.08);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .hero h2 {
-            font-size: 24px;
-            margin-bottom: 8px;
+            font-size: 25px;
+            margin-bottom: 10px;
         }
 
         .hero p {
@@ -62,7 +63,7 @@
         }
 
         .progress-box {
-            margin-top: 20px;
+            margin-top: 22px;
         }
 
         .progress-title {
@@ -89,14 +90,14 @@
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            margin-top: 15px;
+            margin-top: 18px;
         }
 
         .stat {
             background: #f9fafb;
-            padding: 15px;
+            padding: 18px 10px;
             border-radius: 12px;
             text-align: center;
         }
@@ -104,7 +105,7 @@
         .stat strong {
             display: block;
             font-size: 22px;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .stat span {
@@ -112,14 +113,43 @@
             color: #6b7280;
         }
 
+        .dashboard-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dashboard-buttons button {
+            border: none;
+            color: white;
+            padding: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-dark {
+            background: #111827;
+        }
+
+        .btn-gray {
+            background: #374151;
+        }
+
+        .btn-green {
+            background: #047857;
+        }
+
         .section-title {
-            margin: 25px 0 15px;
-            font-size: 21px;
+            margin: 28px 0 15px;
+            font-size: 22px;
         }
 
         .menu {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
         }
 
@@ -133,11 +163,11 @@
         }
 
         .card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
 
         .icon {
-            font-size: 32px;
+            font-size: 34px;
             margin-bottom: 10px;
         }
 
@@ -266,8 +296,13 @@
             border-bottom: 1px solid #eee;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
+
             .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-buttons {
                 grid-template-columns: 1fr;
             }
 
@@ -275,225 +310,388 @@
                 padding: 20px;
             }
 
-            .hero h2 {
-                font-size: 21px;
-            }
         }
+
     </style>
 </head>
+
 
 <body>
 
     <header>
+
         <h1>🚀 Zero to Hero</h1>
-        <p>YouTube Money Academy</p>
+
+        <p>
+            YouTube Money Academy
+        </p>
+
     </header>
+
 
     <main class="container">
 
+
+        <!-- DASHBOARD -->
+
         <section class="hero">
 
-            <h2>💰 Build Your YouTube Income</h2>
+            <h2>
+                💰 Build Your YouTube Income
+            </h2>
 
             <p>
-                Learn how to start, grow and monetize
-                your YouTube channel step by step.
+                YouTube ကို Zero ကနေ စတင်ပြီး
+                Channel Growth နဲ့ Income ရတဲ့အထိ
+                Step by Step လေ့လာပါ။
             </p>
+
 
             <div class="progress-box">
 
                 <div class="progress-title">
-                    <span>Monetization Progress</span>
-                    <span id="progressText">0%</span>
+
+                    <span>
+                        🎯 Monetization Progress
+                    </span>
+
+                    <span id="progressText">
+                        0%
+                    </span>
+
                 </div>
 
+
                 <div class="progress">
+
                     <div
                         class="progress-bar"
                         id="progressBar">
                     </div>
+
                 </div>
 
             </div>
 
+
             <div class="stats">
 
-                <div class="stat">
-                    <strong id="subscriberCount">0</strong>
-                    <span>Subscribers</span>
-                </div>
 
                 <div class="stat">
-                    <strong id="watchHours">0</strong>
-                    <span>Watch Hours</span>
+
+                    <strong id="subscriberCount">
+                        0
+                    </strong>
+
+                    <span>
+                        👥 Subscribers
+                    </span>
+
                 </div>
+
+
+                <div class="stat">
+
+                    <strong id="watchHours">
+                        0
+                    </strong>
+
+                    <span>
+                        ⏱️ Watch Hours
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong id="monthlyIncome">
+                        $0
+                    </strong>
+
+                    <span>
+                        💰 Monthly Income
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong id="lessonProgress">
+                        0%
+                    </strong>
+
+                    <span>
+                        📚 Lesson Progress
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="dashboard-buttons">
+
+                <button
+                    class="btn-dark"
+                    onclick="updateSubscribers()">
+
+                    👥 Update Subscribers
+
+                </button>
+
+
+                <button
+                    class="btn-gray"
+                    onclick="updateWatchHours()">
+
+                    ⏱️ Update Watch Hours
+
+                </button>
+
+
+                <button
+                    class="btn-green"
+                    onclick="updateIncome()">
+
+                    💰 Update Income
+
+                </button>
 
             </div>
 
         </section>
 
 
+
+        <!-- LEARN -->
+
         <h2 class="section-title">
             📚 Learn YouTube
         </h2>
 
+
         <div class="menu">
+
 
             <div
                 class="card"
                 onclick="showMessage('Start From Zero')">
 
-                <div class="icon">🚀</div>
+                <div class="icon">
+                    🚀
+                </div>
 
-                <h3>Start From Zero</h3>
+                <h3>
+                    Start From Zero
+                </h3>
 
                 <p>
-                    Learn how to start your YouTube
-                    channel from zero.
+                    Learn how to start your
+                    YouTube channel from zero.
                 </p>
 
-                <span class="badge">START</span>
+                <span class="badge">
+                    START
+                </span>
 
             </div>
+
 
 
             <div
                 class="card"
                 onclick="showMessage('Grow Your Channel')">
 
-                <div class="icon">📈</div>
+                <div class="icon">
+                    📈
+                </div>
 
-                <h3>Grow Your Channel</h3>
+                <h3>
+                    Grow Your Channel
+                </h3>
 
                 <p>
-                    Learn CTR, retention, watch time
-                    and channel growth.
+                    Learn CTR, Retention,
+                    Watch Time and Growth.
                 </p>
 
-                <span class="badge">GROW</span>
+                <span class="badge">
+                    GROW
+                </span>
 
             </div>
+
 
 
             <div
                 class="card"
                 onclick="showMessage('Monetization')">
 
-                <div class="icon">💰</div>
+                <div class="icon">
+                    💰
+                </div>
 
-                <h3>YouTube Monetization</h3>
+                <h3>
+                    YouTube Monetization
+                </h3>
 
                 <p>
-                    Learn different ways to make money
-                    from YouTube.
+                    Learn different ways
+                    to make money from YouTube.
                 </p>
 
-                <span class="badge">MONEY</span>
+                <span class="badge">
+                    MONEY
+                </span>
 
             </div>
+
 
 
             <div
                 class="card"
                 onclick="showMessage('Income Calculator')">
 
-                <div class="icon">🧮</div>
+                <div class="icon">
+                    🧮
+                </div>
 
-                <h3>Income Calculator</h3>
+                <h3>
+                    Income Calculator
+                </h3>
 
                 <p>
-                    Estimate your YouTube advertising
-                    income.
+                    Estimate your possible
+                    YouTube advertising income.
                 </p>
 
-                <span class="badge">CALCULATE</span>
+                <span class="badge">
+                    CALCULATE
+                </span>
 
             </div>
+
 
 
             <div
                 class="card"
                 onclick="showMessage('AI YouTube Tools')">
 
-                <div class="icon">🤖</div>
+                <div class="icon">
+                    🤖
+                </div>
 
-                <h3>AI YouTube Tools</h3>
+                <h3>
+                    AI YouTube Tools
+                </h3>
 
                 <p>
-                    Use AI for ideas, scripts, titles,
-                    descriptions and thumbnails.
+                    Use AI for ideas, scripts,
+                    titles and thumbnails.
                 </p>
 
-                <span class="badge">AI</span>
+                <span class="badge">
+                    AI
+                </span>
 
             </div>
+
 
 
             <div
                 class="card"
                 onclick="showMessage('30 Day Challenge')">
 
-                <div class="icon">🔥</div>
+                <div class="icon">
+                    🔥
+                </div>
 
-                <h3>30-Day Challenge</h3>
+                <h3>
+                    30-Day Challenge
+                </h3>
 
                 <p>
-                    Follow a 30-day action plan to
-                    build your channel.
+                    Follow a 30-day action plan
+                    to build your channel.
                 </p>
 
-                <span class="badge">CHALLENGE</span>
+                <span class="badge">
+                    CHALLENGE
+                </span>
 
             </div>
 
+
         </div>
 
+
+
+        <!-- INCOME STREAMS -->
 
         <h2 class="section-title">
             💵 YouTube Income Streams
         </h2>
 
+
         <div class="menu">
+
 
             <div
                 class="card"
                 onclick="showMessage('Ad Revenue')">
 
-                <div class="icon">📺</div>
+                <div class="icon">
+                    📺
+                </div>
 
-                <h3>Ad Revenue</h3>
+                <h3>
+                    Ad Revenue
+                </h3>
 
                 <p>
-                    Earn from eligible advertising
-                    on your content.
+                    Learn how YouTube advertising
+                    revenue works.
                 </p>
 
             </div>
+
 
 
             <div
                 class="card"
                 onclick="showMessage('Affiliate Marketing')">
 
-                <div class="icon">🔗</div>
+                <div class="icon">
+                    🔗
+                </div>
 
-                <h3>Affiliate Marketing</h3>
+                <h3>
+                    Affiliate Marketing
+                </h3>
 
                 <p>
                     Recommend products and earn
-                    commissions.
+                    qualifying commissions.
                 </p>
 
             </div>
+
 
 
             <div
                 class="card"
                 onclick="showMessage('Sponsorship')">
 
-                <div class="icon">🤝</div>
+                <div class="icon">
+                    🤝
+                </div>
 
-                <h3>Sponsorship</h3>
+                <h3>
+                    Sponsorship
+                </h3>
 
                 <p>
                     Work with brands and promote
@@ -503,32 +701,43 @@
             </div>
 
 
+
             <div
                 class="card"
                 onclick="showMessage('Digital Products')">
 
-                <div class="icon">📚</div>
+                <div class="icon">
+                    📚
+                </div>
 
-                <h3>Digital Products</h3>
+                <h3>
+                    Digital Products
+                </h3>
 
                 <p>
-                    Sell e-books, courses, templates
-                    and digital tools.
+                    Sell e-books, courses,
+                    templates and digital tools.
                 </p>
 
             </div>
 
+
         </div>
+
 
     </main>
 
 
     <footer>
-        © 2026 Zero to Hero - YouTube Money Academy
+
+        © 2026 Zero to Hero -
+        YouTube Money Academy
+
     </footer>
 
 
     <script src="app.js"></script>
 
 </body>
+
 </html>
