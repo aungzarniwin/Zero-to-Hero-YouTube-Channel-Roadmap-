@@ -1,12 +1,11 @@
-/* =====================================================
-   ZERO TO HERO - YOUTUBE MONEY ACADEMY
-   V11 COURSE SYSTEM
-===================================================== */
+/* =========================================
+   ZERO TO HERO
+   YOUTUBE MONEY ACADEMY
+   V11
+========================================= */
 
 
-/* =========================
-   BASIC DATA
-========================= */
+/* ---------- BASIC DATA ---------- */
 
 let subscribers =
     Number(localStorage.getItem("subscribers")) || 0;
@@ -17,296 +16,8 @@ let watchHours =
 let monthlyIncome =
     Number(localStorage.getItem("monthlyIncome")) || 0;
 
-let lessonsCompleted =
-    Number(localStorage.getItem("lessonsCompleted")) || 0;
 
-
-/* =========================
-   30 DAY CHALLENGE
-========================= */
-
-let challengeDays = [];
-
-try {
-    challengeDays =
-        JSON.parse(localStorage.getItem("challengeDays")) || [];
-} catch (error) {
-    challengeDays = [];
-}
-
-
-const challengeTasks = [
-
-    "Choose your YouTube niche",
-    "Create your YouTube channel",
-    "Create channel branding",
-    "Research 5 competitors",
-    "Create 10 video ideas",
-    "Write your first video script",
-    "Create your first video",
-    "Create your first thumbnail",
-    "Upload your first video",
-    "Study YouTube Analytics",
-
-    "Improve your video title",
-    "Improve your thumbnail",
-    "Create your next video",
-    "Upload your second video",
-    "Study audience retention",
-    "Create your first Short",
-    "Create another Short",
-    "Research YouTube keywords",
-    "Create another video",
-    "Upload another video",
-
-    "Analyze your channel results",
-    "Improve your video hook",
-    "Create another video",
-    "Upload another video",
-    "Improve your thumbnail design",
-    "Create another video",
-    "Upload another video",
-    "Analyze your channel",
-    "Plan next month's content",
-    "Review your 30-Day progress 🚀"
-
-];
-
-
-/* =========================
-   OLD LESSON CONTENT
-========================= */
-
-const lessons = {
-
-    "Start From Zero": {
-        title: "🌱 Start From Zero",
-        content: `
-            <h3>Step 1 — Choose Your Niche</h3>
-            <p>
-                Choose one clear topic for your YouTube channel.
-                Examples: Music, Education, Food, Technology,
-                Gaming, Business and Lifestyle.
-            </p>
-
-            <h3>Step 2 — Create Your Channel</h3>
-            <p>
-                Create a professional channel name, profile picture,
-                banner and description.
-            </p>
-
-            <h3>Step 3 — Start Creating</h3>
-            <p>
-                Your first goal is not perfection.
-                Your goal is to publish consistently and learn.
-            </p>
-        `
-    },
-
-
-    "Grow Your Channel": {
-        title: "📈 Grow Your Channel",
-        content: `
-            <h3>Focus on 3 Things</h3>
-
-            <p>
-                1. Click-through rate (CTR)
-            </p>
-
-            <p>
-                2. Audience retention
-            </p>
-
-            <p>
-                3. Consistent content
-            </p>
-
-            <h3>Simple Growth Strategy</h3>
-
-            <p>
-                Study videos that are already performing well
-                in your niche and create better versions
-                with your own original value.
-            </p>
-        `
-    },
-
-
-    "Monetization": {
-        title: "💰 YouTube Monetization",
-        content: `
-            <h3>YouTube Partner Program</h3>
-
-            <p>
-                YouTube monetization allows eligible creators
-                to earn money from their content.
-            </p>
-
-            <h3>Important Metrics</h3>
-
-            <p>
-                Subscribers, watch hours, views,
-                audience retention and RPM are important
-                metrics for understanding your channel.
-            </p>
-        `
-    },
-
-
-    "Income Calculator": {
-        title: "🧮 Income Calculator",
-        content: `
-            <h3>YouTube Revenue Formula</h3>
-
-            <p>
-                Estimated Revenue =
-                Views ÷ 1,000 × RPM
-            </p>
-
-            <div class="calculator">
-
-                <label>Monthly Views</label>
-
-                <input
-                    type="number"
-                    id="calcViews"
-                    placeholder="Example: 100000"
-                >
-
-                <label>RPM ($)</label>
-
-                <input
-                    type="number"
-                    id="calcRPM"
-                    placeholder="Example: 1"
-                    step="0.01"
-                >
-
-                <button
-                    class="green"
-                    onclick="calculateIncome()"
-                >
-                    Calculate Income
-                </button>
-
-                <div
-                    id="calcResult"
-                    class="result"
-                ></div>
-
-            </div>
-        `
-    },
-
-
-    "AI YouTube Tools": {
-        title: "🤖 AI YouTube Tools",
-        content: `
-            <h3>Use AI to Work Faster</h3>
-
-            <p>
-                AI can help you generate video ideas,
-                titles, descriptions, scripts and thumbnail concepts.
-            </p>
-
-            <h3>Simple Workflow</h3>
-
-            <p>
-                Idea → Script → Recording → Editing →
-                Thumbnail → Upload → Analytics
-            </p>
-        `
-    },
-
-
-    "30 Day Challenge": {
-        title: "🔥 30-Day YouTube Challenge",
-        content: `
-            <p>
-                Complete one YouTube task every day
-                for 30 days.
-            </p>
-        `
-    },
-
-
-    "Ad Revenue": {
-        title: "📺 Ad Revenue",
-        content: `
-            <h3>YouTube Ads</h3>
-
-            <p>
-                Advertising is one of the main income streams
-                for monetized YouTube channels.
-            </p>
-
-            <p>
-                Revenue can vary depending on audience,
-                country, niche, views and RPM.
-            </p>
-        `
-    },
-
-
-    "Affiliate Marketing": {
-        title: "🔗 Affiliate Marketing",
-        content: `
-            <h3>How Affiliate Marketing Works</h3>
-
-            <p>
-                You recommend a product or service using
-                an affiliate link.
-            </p>
-
-            <p>
-                When someone purchases through your link,
-                you may receive a commission.
-            </p>
-        `
-    },
-
-
-    "Sponsorship": {
-        title: "🤝 Sponsorship",
-        content: `
-            <h3>Brand Sponsorship</h3>
-
-            <p>
-                Brands may pay creators to promote their
-                products or services.
-            </p>
-
-            <p>
-                A professional media kit, audience profile
-                and consistent content can help attract sponsors.
-            </p>
-        `
-    },
-
-
-    "Digital Products": {
-        title: "📦 Digital Products",
-        content: `
-            <h3>Create Your Own Product</h3>
-
-            <p>
-                You can create ebooks, courses, templates,
-                guides or other digital products.
-            </p>
-
-            <p>
-                YouTube can be used as a traffic source
-                to promote your own products.
-            </p>
-        `
-    }
-
-};
-
-
-/* =====================================================
-   V11 COURSE SYSTEM
-===================================================== */
+/* ---------- COURSE DATA ---------- */
 
 const courses = {
 
@@ -314,19 +25,69 @@ const courses = {
 
         name: "🌱 YouTube Beginner",
 
-        description:
-            "Build your YouTube foundation from zero.",
-
         lessons: [
 
             {
                 title: "Start From Zero",
-                content: lessons["Start From Zero"].content
+
+                content: `
+                    <h3>🌱 Start Your YouTube Journey</h3>
+
+                    <p>
+                    YouTube channel စတင်ဖို့ အရင်ဆုံး
+                    ကိုယ်တကယ်လုပ်နိုင်မယ့် Niche တစ်ခုရွေးပါ။
+                    </p>
+
+                    <h3>1. Choose Your Niche</h3>
+
+                    <p>
+                    Music, Education, Food, Business,
+                    Technology, Gaming စတဲ့ topic တွေထဲက
+                    ကိုယ်ကျွမ်းကျင်ပြီး ရေရှည်လုပ်နိုင်တာကိုရွေးပါ။
+                    </p>
+
+                    <h3>2. Create Your Channel</h3>
+
+                    <p>
+                    Channel Name, Profile Picture, Banner
+                    နဲ့ Description ကို professional ဖြစ်အောင်ပြင်ပါ။
+                    </p>
+
+                    <h3>3. Start Creating</h3>
+
+                    <p>
+                    ပထမဆုံး Video တွေမှာ perfection ထက်
+                    consistency ကို ဦးစားပေးပါ။
+                    </p>
+                `
             },
 
             {
                 title: "AI YouTube Tools",
-                content: lessons["AI YouTube Tools"].content
+
+                content: `
+                    <h3>🤖 AI YouTube Tools</h3>
+
+                    <p>
+                    AI ကိုအသုံးပြုပြီး YouTube အလုပ်တွေကို
+                    ပိုမြန်အောင်လုပ်နိုင်ပါတယ်။
+                    </p>
+
+                    <h3>AI နဲ့လုပ်နိုင်တာများ</h3>
+
+                    <p>💡 Video Ideas</p>
+                    <p>📝 Scripts</p>
+                    <p>🎯 Titles</p>
+                    <p>📄 Descriptions</p>
+                    <p>🖼 Thumbnail Ideas</p>
+
+                    <h3>Simple Workflow</h3>
+
+                    <p>
+                    Idea → Script → Video → Thumbnail →
+                    Upload → Analytics
+                    </p>
+                `
             }
 
         ]
@@ -338,49 +99,57 @@ const courses = {
 
         name: "📈 Channel Growth",
 
-        description:
-            "Learn how to grow views, subscribers and engagement.",
-
         lessons: [
 
             {
                 title: "Grow Your Channel",
-                content: lessons["Grow Your Channel"].content
+
+                content: `
+                    <h3>📈 YouTube Growth</h3>
+
+                    <p>
+                    Channel growth အတွက် အရေးကြီးဆုံး
+                    metric သုံးခုက CTR, Retention နဲ့ Consistency ဖြစ်ပါတယ်။
+                    </p>
+
+                    <h3>CTR</h3>
+
+                    <p>
+                    Thumbnail နဲ့ Title က viewer ကို
+                    click လုပ်ချင်စေဖို့လိုပါတယ်။
+                    </p>
+
+                    <h3>Retention</h3>
+
+                    <p>
+                    Video အစပိုင်းမှာ strong hook တစ်ခုထားပြီး
+                    viewer ကို ဆက်ကြည့်ချင်အောင်လုပ်ပါ။
+                    </p>
+                `
             },
 
             {
                 title: "YouTube Analytics",
+
                 content: `
-                    <h3>📊 Understand Your Analytics</h3>
+                    <h3>📊 YouTube Analytics</h3>
 
                     <p>
-                        YouTube Analytics helps you understand
-                        what is working on your channel.
+                    Analytics က ဘယ် Video တွေကောင်းလဲ
+                    ဘယ်နေရာမှာ viewer တွေထွက်သွားလဲဆိုတာ
+                    သိနိုင်စေပါတယ်။
                     </p>
 
-                    <h3>Important Metrics</h3>
+                    <h3>အရေးကြီး Metrics</h3>
+
+                    <p>👀 Views</p>
+                    <p>🖱 CTR</p>
+                    <p>⏱ Average View Duration</p>
+                    <p>👥 Returning Viewers</p>
 
                     <p>
-                        👀 Views
-                    </p>
-
-                    <p>
-                        🖱 Click-through rate (CTR)
-                    </p>
-
-                    <p>
-                        ⏱ Average view duration
-                    </p>
-
-                    <p>
-                        👥 Returning viewers
-                    </p>
-
-                    <h3>Action</h3>
-
-                    <p>
-                        Every week, identify your best-performing
-                        video and learn why it performed well.
+                    တစ်ပတ်တစ်ကြိမ် Best Performing Video ကို
+                    ပြန်လေ့လာပါ။
                     </p>
                 `
             }
@@ -394,24 +163,66 @@ const courses = {
 
         name: "💵 YouTube Monetization",
 
-        description:
-            "Learn the main ways YouTube creators can earn money.",
-
         lessons: [
 
             {
                 title: "Monetization",
-                content: lessons["Monetization"].content
+
+                content: `
+                    <h3>💵 YouTube Monetization</h3>
+
+                    <p>
+                    Eligible ဖြစ်တဲ့ Creator တွေဟာ
+                    YouTube Partner Program ကနေ
+                    ဝင်ငွေရနိုင်ပါတယ်။
+                    </p>
+
+                    <h3>အရေးကြီးတာများ</h3>
+
+                    <p>
+                    Subscribers, Watch Hours, Views,
+                    Audience Retention နဲ့ RPM တို့ကို
+                    နားလည်ထားဖို့လိုပါတယ်။
+                    </p>
+                `
             },
 
             {
                 title: "Ad Revenue",
-                content: lessons["Ad Revenue"].content
+
+                content: `
+                    <h3>📺 Ad Revenue</h3>
+
+                    <p>
+                    YouTube Ads က Creator တွေအတွက်
+                    အဓိကဝင်ငွေလမ်းကြောင်းတစ်ခု ဖြစ်ပါတယ်။
+                    </p>
+
+                    <p>
+                    RPM က Audience, Country, Niche,
+                    Content နဲ့ advertiser demand စတာတွေအပေါ်
+                    မူတည်ပြီး ပြောင်းလဲနိုင်ပါတယ်။
+                    </p>
+                `
             },
 
             {
                 title: "Affiliate Marketing",
-                content: lessons["Affiliate Marketing"].content
+
+                content: `
+                    <h3>🔗 Affiliate Marketing</h3>
+
+                    <p>
+                    Product သို့မဟုတ် Service တစ်ခုကို
+                    ကိုယ့် Audience ကို recommend လုပ်ပြီး
+                    Affiliate Link အသုံးပြုနိုင်ပါတယ်။
+                    </p>
+
+                    <p>
+                    သတ်မှတ်ချက်များအတိုင်း ဝယ်ယူမှုဖြစ်လာရင်
+                    commission ရနိုင်ပါတယ်။
+                    </p>
+                `
             }
 
         ]
@@ -423,24 +234,92 @@ const courses = {
 
         name: "🚀 YouTube Income",
 
-        description:
-            "Build multiple income streams from your audience.",
-
         lessons: [
 
             {
                 title: "Sponsorship",
-                content: lessons["Sponsorship"].content
+
+                content: `
+                    <h3>🤝 Sponsorship</h3>
+
+                    <p>
+                    Brand တွေက Creator တွေနဲ့
+                    ပူးပေါင်းပြီး Product/Service promotion
+                    လုပ်နိုင်ပါတယ်။
+                    </p>
+
+                    <h3>Professional ဖြစ်ဖို့</h3>
+
+                    <p>
+                    Media Kit, Audience Information,
+                    Channel Statistics နဲ့ Professional Content
+                    တွေရှိထားတာက အရေးကြီးပါတယ်။
+                    </p>
+                `
             },
 
             {
                 title: "Digital Products",
-                content: lessons["Digital Products"].content
+
+                content: `
+                    <h3>📦 Digital Products</h3>
+
+                    <p>
+                    ကိုယ်ပိုင် eBook, Course, Template,
+                    Guide စတဲ့ Digital Product တွေဖန်တီးပြီး
+                    ရောင်းချနိုင်ပါတယ်။
+                    </p>
+
+                    <p>
+                    YouTube ကို ကိုယ့် Product အတွက်
+                    Traffic Source အဖြစ်အသုံးပြုနိုင်ပါတယ်။
+                    </p>
+                `
             },
 
             {
                 title: "Income Calculator",
-                content: lessons["Income Calculator"].content
+
+                content: `
+                    <h3>🧮 YouTube Income Calculator</h3>
+
+                    <p>
+                    Estimated Revenue =
+                    Views ÷ 1,000 × RPM
+                    </p>
+
+                    <div class="calculator">
+
+                        <label>Monthly Views</label>
+
+                        <input
+                            type="number"
+                            id="calcViews"
+                            placeholder="Example: 100000"
+                        >
+
+                        <label>RPM ($)</label>
+
+                        <input
+                            type="number"
+                            id="calcRPM"
+                            placeholder="Example: 1"
+                            step="0.01"
+                        >
+
+                        <button
+                            class="green"
+                            onclick="calculateIncome()">
+                            Calculate
+                        </button>
+
+                        <div
+                            id="calcResult"
+                            class="result">
+                        </div>
+
+                    </div>
+                `
             }
 
         ]
@@ -450,973 +329,146 @@ const courses = {
 };
 
 
-/* =========================
-   COMPLETED COURSE LESSONS
-========================= */
+/* ---------- COMPLETED LESSONS ---------- */
 
-let completedCourseLessons = [];
+let completedLessons = [];
 
-try {
+try{
 
-    completedCourseLessons =
+    completedLessons =
         JSON.parse(
             localStorage.getItem("completedCourseLessons")
         ) || [];
 
-} catch (error) {
+}catch(error){
 
-    completedCourseLessons = [];
+    completedLessons = [];
 
 }
 
 
-/* =========================
-   SAVE COURSE PROGRESS
-========================= */
+/* ---------- SAVE ---------- */
 
-function saveCourseProgress(){
+function saveLessons(){
 
     localStorage.setItem(
         "completedCourseLessons",
-        JSON.stringify(completedCourseLessons)
+        JSON.stringify(completedLessons)
     );
 
 }
 
 
-/* =========================
-   CHECK COMPLETED
-========================= */
+/* ---------- KEY ---------- */
 
-function isLessonCompleted(courseId, lessonIndex){
+function lessonKey(courseId,index){
 
-    const key =
-        courseId + "-" + lessonIndex;
-
-    return completedCourseLessons.includes(key);
+    return courseId + "_" + index;
 
 }
 
 
-/* =========================
-   CHECK UNLOCKED
-========================= */
+/* ---------- COMPLETED CHECK ---------- */
 
-function isLessonUnlocked(courseId, lessonIndex){
+function isCompleted(courseId,index){
 
-    if(lessonIndex === 0){
+    return completedLessons.includes(
+        lessonKey(courseId,index)
+    );
+
+}
+
+
+/* ---------- UNLOCK CHECK ---------- */
+
+function isUnlocked(courseId,index){
+
+    if(index === 0){
         return true;
     }
 
-    return isLessonCompleted(
+    return isCompleted(
         courseId,
-        lessonIndex - 1
+        index - 1
     );
 
 }
 
 
-/* =========================
-   COURSE PROGRESS
-========================= */
+/* ---------- COURSE PROGRESS ---------- */
 
-function getCourseProgress(courseId){
+function courseProgress(courseId){
 
-    const course = courses[courseId];
-
-    if(!course){
-        return 0;
-    }
+    const course =
+        courses[courseId];
 
     let completed = 0;
 
-    course.lessons.forEach(function(lesson,index){
+    for(
+        let i = 0;
+        i < course.lessons.length;
+        i++
+    ){
 
         if(
-            isLessonCompleted(
-                courseId,
-                index
-            )
+            isCompleted(courseId,i)
         ){
 
             completed++;
 
         }
 
-    });
+    }
 
     return Math.round(
-        (completed / course.lessons.length) * 100
+        completed /
+        course.lessons.length *
+        100
     );
 
 }
 
 
-/* =========================
-   TOTAL COURSE LESSONS
-========================= */
+/* ---------- TOTAL LESSONS ---------- */
 
-function getTotalCourseCompleted(){
+function totalCompletedLessons(){
 
-    return completedCourseLessons.length;
+    return completedLessons.length;
 
 }
 
 
-/* =========================
-   UPDATE COURSE CARDS
-========================= */
+/* ---------- DASHBOARD ---------- */
 
-function updateCourseCards(){
+function updateDashboard(){
 
-    const mapping = {
-
-        beginner: {
-            text:"courseProgressBeginner",
-            bar:"courseBarBeginner"
-        },
-
-        growth: {
-            text:"courseProgressGrowth",
-            bar:"courseBarGrowth"
-        },
-
-        monetization: {
-            text:"courseProgressMonetization",
-            bar:"courseBarMonetization"
-        },
-
-        income: {
-            text:"courseProgressIncome",
-            bar:"courseBarIncome"
-        }
-
-    };
-
-
-    Object.keys(mapping).forEach(function(courseId){
-
-        const course =
-            courses[courseId];
-
-        const completed =
-            course.lessons.filter(
-                function(lesson,index){
-
-                    return isLessonCompleted(
-                        courseId,
-                        index
-                    );
-
-                }
-            ).length;
-
-
-        const total =
-            course.lessons.length;
-
-
-        const progress =
-            Math.round(
-                (completed / total) * 100
-            );
-
-
-        const textElement =
-            document.getElementById(
-                mapping[courseId].text
-            );
-
-        const barElement =
-            document.getElementById(
-                mapping[courseId].bar
-            );
-
-
-        if(textElement){
-
-            textElement.innerText =
-                completed + " / " + total + " Lessons";
-
-        }
-
-
-        if(barElement){
-
-            barElement.style.width =
-                progress + "%";
-
-        }
-
-    });
-
-}
-
-
-/* =====================================================
-   SHOW COURSE
-===================================================== */
-
-function showCourse(courseId){
-
-    const course =
-        courses[courseId];
-
-    if(!course){
-        return;
-    }
-
-
-    let html = `
-
-        <button
-            class="back-btn"
-            onclick="goDashboard()"
-        >
-            ← Back to Dashboard
-        </button>
-
-        <div class="lesson-page">
-
-            <h2>${course.name}</h2>
-
-            <p>
-                ${course.description}
-            </p>
-
-            <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    style="width:${getCourseProgress(courseId)}%"
-                ></div>
-
-            </div>
-
-            <strong>
-                ${getCourseProgress(courseId)}% Complete
-            </strong>
-
-            <div class="lesson-list">
-
-    `;
-
-
-    course.lessons.forEach(
-        function(lesson,index){
-
-            const completed =
-                isLessonCompleted(
-                    courseId,
-                    index
-                );
-
-
-            const unlocked =
-                isLessonUnlocked(
-                    courseId,
-                    index
-                );
-
-
-            if(completed){
-
-                html += `
-
-                    <div class="lesson-item">
-
-                        <div class="lesson-info">
-
-                            <div class="lesson-number">
-                                Lesson ${index + 1}
-                            </div>
-
-                            <div class="lesson-name">
-                                ✅ ${lesson.title}
-                            </div>
-
-                        </div>
-
-                        <button
-                            class="green"
-                            onclick="showCourseLesson('${courseId}',${index})"
-                        >
-                            Review
-                        </button>
-
-                    </div>
-
-                `;
-
-            }
-            else if(unlocked){
-
-                html += `
-
-                    <div class="lesson-item">
-
-                        <div class="lesson-info">
-
-                            <div class="lesson-number">
-                                Lesson ${index + 1}
-                            </div>
-
-                            <div class="lesson-name">
-                                📖 ${lesson.title}
-                            </div>
-
-                        </div>
-
-                        <button
-                            class="red"
-                            onclick="showCourseLesson('${courseId}',${index})"
-                        >
-                            Start
-                        </button>
-
-                    </div>
-
-                `;
-
-            }
-            else{
-
-                html += `
-
-                    <div class="lesson-item locked">
-
-                        <div class="lesson-info">
-
-                            <div class="lesson-number">
-                                Lesson ${index + 1}
-                            </div>
-
-                            <div class="lesson-name">
-                                🔒 ${lesson.title}
-                            </div>
-
-                        </div>
-
-                        <button
-                            class="dark"
-                            disabled
-                        >
-                            Locked
-                        </button>
-
-                    </div>
-
-                `;
-
-            }
-
-        }
-    );
-
-
-    html += `
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.getElementById("app").innerHTML =
-        html;
-
-    window.scrollTo(0,0);
-
-}
-
-
-/* =====================================================
-   SHOW COURSE LESSON
-===================================================== */
-
-function showCourseLesson(courseId,lessonIndex){
-
-    const course =
-        courses[courseId];
-
-    if(!course){
-        return;
-    }
-
-
-    const lesson =
-        course.lessons[lessonIndex];
-
-    if(!lesson){
-        return;
-    }
-
-
-    if(
-        !isLessonUnlocked(
-            courseId,
-            lessonIndex
-        )
-    ){
-
-        alert(
-            "🔒 Complete the previous lesson first."
-        );
-
-        return;
-
-    }
-
-
-    const completed =
-        isLessonCompleted(
-            courseId,
-            lessonIndex
-        );
-
-
-    let buttonHTML = "";
-
-
-    if(completed){
-
-        buttonHTML = `
-
-            <button
-                class="complete-btn"
-                disabled
-            >
-                ✅ Lesson Completed
-            </button>
-
-        `;
-
-    }
-    else{
-
-        buttonHTML = `
-
-            <button
-                class="complete-btn"
-                onclick="completeCourseLesson('${courseId}',${lessonIndex})"
-            >
-                ✅ Complete Lesson
-            </button>
-
-        `;
-
-    }
-
-
-    document.getElementById("app").innerHTML = `
-
-        <button
-            class="back-btn"
-            onclick="showCourse('${courseId}')"
-        >
-            ← Back to Course
-        </button>
-
-        <div class="lesson-page">
-
-            <h2>
-                Lesson ${lessonIndex + 1}:
-                ${lesson.title}
-            </h2>
-
-            <div class="lesson-content">
-
-                ${lesson.content}
-
-            </div>
-
-            ${buttonHTML}
-
-        </div>
-
-    `;
-
-
-    window.scrollTo(0,0);
-
-}
-
-
-/* =====================================================
-   COMPLETE COURSE LESSON
-===================================================== */
-
-function completeCourseLesson(courseId,lessonIndex){
-
-    const key =
-        courseId + "-" + lessonIndex;
-
-
-    if(
-        completedCourseLessons.includes(key)
-    ){
-
-        return;
-
-    }
-
-
-    completedCourseLessons.push(key);
-
-
-    saveCourseProgress();
-
-
-    /*
-       Keep old dashboard lesson count
-       synchronized with course completion.
-    */
-
-    lessonsCompleted =
+    const lessonCount =
         Math.min(
-            getTotalCourseCompleted(),
+            totalCompletedLessons(),
             10
         );
 
 
     localStorage.setItem(
         "lessonsCompleted",
-        lessonsCompleted
+        lessonCount
     );
 
-
-    updateDashboard();
-
-
-    const course =
-        courses[courseId];
-
-
-    if(
-        lessonIndex ===
-        course.lessons.length - 1
-    ){
-
-        alert(
-            "🎉 Course Completed!\n\n" +
-            course.name +
-            "\n\nGreat job! 🚀"
-        );
-
-    }
-    else{
-
-        alert(
-            "✅ Lesson Completed!\n\n" +
-            "Next lesson is now unlocked! 🔓"
-        );
-
-    }
-
-
-    showCourse(courseId);
-
-}
-
-
-/* =====================================================
-   DASHBOARD PROGRESS
-===================================================== */
-
-function getMonetizationProgress(){
-
-    const subscriberProgress =
-        Math.min(
-            (subscribers / 1000) * 100,
-            100
-        );
-
-
-    const watchProgress =
-        Math.min(
-            (watchHours / 4000) * 100,
-            100
-        );
-
-
-    return Math.round(
-        (
-            subscriberProgress +
-            watchProgress
-        ) / 2
-    );
-
-}
-
-
-function getLessonProgress(){
-
-    return Math.min(
-        Math.round(
-            (lessonsCompleted / 10) * 100
-        ),
-        100
-    );
-
-}
-
-
-function getChallengeProgress(){
-
-    return Math.min(
-        Math.round(
-            (challengeDays.length / 30) * 100
-        ),
-        100
-    );
-
-}
-
-
-function getOverallProgress(){
-
-    const monetization =
-        getMonetizationProgress();
-
-    const lesson =
-        getLessonProgress();
-
-    const challenge =
-        getChallengeProgress();
-
-
-    return Math.round(
-        (
-            monetization +
-            lesson +
-            challenge
-        ) / 3
-    );
-
-}
-
-
-/* =====================================================
-   PROFESSIONAL DASHBOARD
-===================================================== */
-
-function updateProfessionalDashboard(){
-
-    const subscriberPercent =
-        Math.min(
-            (subscribers / 1000) * 100,
-            100
-        );
-
-
-    const watchPercent =
-        Math.min(
-            (watchHours / 4000) * 100,
-            100
-        );
-
-
-    const incomePercent =
-        Math.min(
-            (monthlyIncome / 1000) * 100,
-            100
-        );
-
-
-    const lessonPercent =
-        Math.min(
-            (lessonsCompleted / 10) * 100,
-            100
-        );
-
-
-    const dashSubscribers =
-        document.getElementById(
-            "dashSubscribers"
-        );
-
-    const dashWatchHours =
-        document.getElementById(
-            "dashWatchHours"
-        );
-
-    const dashIncome =
-        document.getElementById(
-            "dashIncome"
-        );
-
-    const dashLessons =
-        document.getElementById(
-            "dashLessons"
-        );
-
-
-    if(dashSubscribers){
-
-        dashSubscribers.innerText =
-            subscribers.toLocaleString() +
-            " / 1,000";
-
-    }
-
-
-    if(dashWatchHours){
-
-        dashWatchHours.innerText =
-            watchHours.toLocaleString() +
-            " / 4,000";
-
-    }
-
-
-    if(dashIncome){
-
-        dashIncome.innerText =
-            "$" +
-            monthlyIncome.toLocaleString() +
-            " / $1,000";
-
-    }
-
-
-    if(dashLessons){
-
-        dashLessons.innerText =
-            lessonsCompleted +
-            " / 10";
-
-    }
-
-
-    const subscriberBar =
-        document.getElementById(
-            "subscriberGoalBar"
-        );
-
-    const watchBar =
-        document.getElementById(
-            "watchGoalBar"
-        );
-
-    const incomeBar =
-        document.getElementById(
-            "incomeGoalBar"
-        );
-
-    const lessonBar =
-        document.getElementById(
-            "lessonGoalBar"
-        );
-
-
-    if(subscriberBar){
-        subscriberBar.style.width =
-            subscriberPercent + "%";
-    }
-
-
-    if(watchBar){
-        watchBar.style.width =
-            watchPercent + "%";
-    }
-
-
-    if(incomeBar){
-        incomeBar.style.width =
-            incomePercent + "%";
-    }
-
-
-    if(lessonBar){
-        lessonBar.style.width =
-            lessonPercent + "%";
-    }
-
-}
-
-
-/* =====================================================
-   CHALLENGE DASHBOARD
-===================================================== */
-
-function updateChallengeDashboard(){
-
-    const progress =
-        getChallengeProgress();
-
-
-    const text =
-        document.getElementById(
-            "challengeProgressText"
-        );
-
-
-    const bar =
-        document.getElementById(
-            "challengeProgressBar"
-        );
-
-
-    if(text){
-
-        text.innerText =
-            challengeDays.length +
-            " / 30 Days";
-
-    }
-
-
-    if(bar){
-
-        bar.style.width =
-            progress + "%";
-
-    }
-
-}
-
-
-/* =====================================================
-   OVERALL PROGRESS
-===================================================== */
-
-function updateOverallProgress(){
-
-    const progress =
-        getOverallProgress();
-
-
-    const text =
-        document.getElementById(
-            "overallProgressText"
-        );
-
-
-    const bar =
-        document.getElementById(
-            "overallProgressBar"
-        );
-
-
-    if(text){
-
-        text.innerText =
-            progress + "%";
-
-    }
-
-
-    if(bar){
-
-        bar.style.width =
-            progress + "%";
-
-    }
-
-}
-
-
-/* =====================================================
-   ACHIEVEMENTS
-===================================================== */
-
-function updateAchievements(){
-
-    const subscriberBadge =
-        document.getElementById(
-            "achievementSubscriber"
-        );
-
-    const watchBadge =
-        document.getElementById(
-            "achievementWatch"
-        );
-
-    const lessonBadge =
-        document.getElementById(
-            "achievementLesson"
-        );
-
-    const challengeBadge =
-        document.getElementById(
-            "achievementChallenge"
-        );
-
-
-    if(
-        subscriberBadge &&
-        subscribers >= 1000
-    ){
-
-        subscriberBadge.classList.add(
-            "unlocked"
-        );
-
-    }
-
-
-    if(
-        watchBadge &&
-        watchHours >= 4000
-    ){
-
-        watchBadge.classList.add(
-            "unlocked"
-        );
-
-    }
-
-
-    if(
-        lessonBadge &&
-        lessonsCompleted >= 10
-    ){
-
-        lessonBadge.classList.add(
-            "unlocked"
-        );
-
-    }
-
-
-    if(
-        challengeBadge &&
-        challengeDays.length >= 30
-    ){
-
-        challengeBadge.classList.add(
-            "unlocked"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   UPDATE DASHBOARD
-===================================================== */
-
-function updateDashboard(){
 
     const subscriberElement =
         document.getElementById(
             "subscriberCount"
         );
 
-
     const watchElement =
         document.getElementById(
             "watchHours"
         );
 
-
     const incomeElement =
         document.getElementById(
             "monthlyIncome"
         );
-
 
     const lessonElement =
         document.getElementById(
@@ -1452,224 +504,623 @@ function updateDashboard(){
     if(lessonElement){
 
         lessonElement.innerText =
-            getLessonProgress() + "%";
+            Math.round(
+                lessonCount / 10 * 100
+            ) + "%";
 
     }
 
 
     updateProfessionalDashboard();
 
-    updateChallengeDashboard();
-
-    updateOverallProgress();
+    updateOverall();
 
     updateAchievements();
 
     updateCourseCards();
 
+    updateChallengeDashboard();
+
 }
 
 
-/* =====================================================
-   UPDATE SUBSCRIBERS
-===================================================== */
+/* ---------- PROFESSIONAL DASHBOARD ---------- */
 
-function updateSubscribers(){
+function updateProfessionalDashboard(){
 
-    const value =
-        prompt(
-            "Enter your current subscribers:"
+    setText(
+        "dashSubscribers",
+        subscribers.toLocaleString() +
+        " / 1,000"
+    );
+
+    setText(
+        "dashWatchHours",
+        watchHours.toLocaleString() +
+        " / 4,000"
+    );
+
+    setText(
+        "dashIncome",
+        "$" +
+        monthlyIncome.toLocaleString() +
+        " / $1,000"
+    );
+
+
+    const lessons =
+        Math.min(
+            totalCompletedLessons(),
+            10
         );
 
 
-    if(value === null){
-        return;
-    }
+    setText(
+        "dashLessons",
+        lessons + " / 10"
+    );
 
 
-    const number =
-        Number(value);
+    setWidth(
+        "subscriberGoalBar",
+        subscribers / 1000 * 100
+    );
+
+    setWidth(
+        "watchGoalBar",
+        watchHours / 4000 * 100
+    );
+
+    setWidth(
+        "incomeGoalBar",
+        monthlyIncome / 1000 * 100
+    );
+
+    setWidth(
+        "lessonGoalBar",
+        lessons / 10 * 100
+    );
+
+}
 
 
-    if(
-        !Number.isFinite(number) ||
-        number < 0
+/* ---------- OVERALL ---------- */
+
+function updateOverall(){
+
+    const subscriber =
+        Math.min(
+            subscribers / 1000 * 100,
+            100
+        );
+
+    const watch =
+        Math.min(
+            watchHours / 4000 * 100,
+            100
+        );
+
+    const lessons =
+        Math.min(
+            totalCompletedLessons() / 10 * 100,
+            100
+        );
+
+    const challenge =
+        Math.min(
+            getChallengeProgress(),
+            100
+        );
+
+
+    const overall =
+        Math.round(
+            (
+                subscriber +
+                watch +
+                lessons +
+                challenge
+            ) / 4
+        );
+
+
+    setText(
+        "overallProgressText",
+        overall + "%"
+    );
+
+    setWidth(
+        "overallProgressBar",
+        overall
+    );
+
+}
+
+
+/* ---------- ACHIEVEMENTS ---------- */
+
+function updateAchievements(){
+
+    unlock(
+        "achievementSubscriber",
+        subscribers >= 1000
+    );
+
+    unlock(
+        "achievementWatch",
+        watchHours >= 4000
+    );
+
+    unlock(
+        "achievementLesson",
+        totalCompletedLessons() >= 10
+    );
+
+    unlock(
+        "achievementChallenge",
+        challengeDays.length >= 30
+    );
+
+}
+
+
+/* ---------- COURSE CARDS ---------- */
+
+function updateCourseCards(){
+
+    updateCourseCard(
+        "beginner",
+        "courseProgressBeginner",
+        "courseBarBeginner"
+    );
+
+    updateCourseCard(
+        "growth",
+        "courseProgressGrowth",
+        "courseBarGrowth"
+    );
+
+    updateCourseCard(
+        "monetization",
+        "courseProgressMonetization",
+        "courseBarMonetization"
+    );
+
+    updateCourseCard(
+        "income",
+        "courseProgressIncome",
+        "courseBarIncome"
+    );
+
+}
+
+
+function updateCourseCard(
+    courseId,
+    textId,
+    barId
+){
+
+    const course =
+        courses[courseId];
+
+    let completed = 0;
+
+    for(
+        let i = 0;
+        i < course.lessons.length;
+        i++
     ){
 
-        alert(
-            "Please enter a valid number."
-        );
+        if(
+            isCompleted(courseId,i)
+        ){
 
-        return;
+            completed++;
+
+        }
 
     }
 
 
-    subscribers =
-        Math.floor(number);
-
-
-    localStorage.setItem(
-        "subscribers",
-        subscribers
+    setText(
+        textId,
+        completed +
+        " / " +
+        course.lessons.length +
+        " Lessons"
     );
 
 
-    updateDashboard();
-
-
-    alert(
-        "✅ Subscribers updated!"
+    setWidth(
+        barId,
+        courseProgress(courseId)
     );
 
 }
 
 
-/* =====================================================
-   UPDATE WATCH HOURS
-===================================================== */
+/* ---------- SHOW COURSE ---------- */
 
-function updateWatchHours(){
+function showCourse(courseId){
 
-    const value =
-        prompt(
-            "Enter your current watch hours:"
-        );
+    const course =
+        courses[courseId];
 
+    if(!course){
 
-    if(value === null){
+        alert("Course not found.");
+
         return;
+
     }
 
 
-    const number =
-        Number(value);
+    let html = `
+
+        <button
+            class="back-btn"
+            onclick="goDashboard()">
+            ← Back to Dashboard
+        </button>
+
+        <div class="lesson-page">
+
+            <h2>${course.name}</h2>
+
+            <p>
+                Complete each lesson to unlock the next one.
+            </p>
+
+            <strong>
+                ${courseProgress(courseId)}% Complete
+            </strong>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:${courseProgress(courseId)}%">
+                </div>
+
+            </div>
+
+            <div class="lesson-list">
+
+    `;
 
 
-    if(
-        !Number.isFinite(number) ||
-        number < 0
+    for(
+        let i = 0;
+        i < course.lessons.length;
+        i++
     ){
 
-        alert(
-            "Please enter a valid number."
-        );
+        const lesson =
+            course.lessons[i];
 
-        return;
+        const completed =
+            isCompleted(courseId,i);
+
+        const unlocked =
+            isUnlocked(courseId,i);
+
+
+        if(completed){
+
+            html += `
+
+                <div class="lesson-item">
+
+                    <div>
+
+                        <div class="lesson-number">
+                            Lesson ${i + 1}
+                        </div>
+
+                        <div class="lesson-name">
+                            ✅ ${lesson.title}
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="green"
+                        onclick="showLesson('${courseId}',${i})">
+                        Review
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+        else if(unlocked){
+
+            html += `
+
+                <div class="lesson-item">
+
+                    <div>
+
+                        <div class="lesson-number">
+                            Lesson ${i + 1}
+                        </div>
+
+                        <div class="lesson-name">
+                            📖 ${lesson.title}
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="red"
+                        onclick="showLesson('${courseId}',${i})">
+                        Start
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+        else{
+
+            html += `
+
+                <div class="lesson-item locked">
+
+                    <div>
+
+                        <div class="lesson-number">
+                            Lesson ${i + 1}
+                        </div>
+
+                        <div class="lesson-name">
+                            🔒 ${lesson.title}
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="dark"
+                        disabled>
+                        Locked
+                    </button>
+
+                </div>
+
+            `;
+
+        }
 
     }
 
 
-    watchHours =
-        Math.floor(number);
+    html += `
+
+            </div>
+
+        </div>
+
+    `;
 
 
-    localStorage.setItem(
-        "watchHours",
-        watchHours
-    );
+    document.getElementById("app").innerHTML =
+        html;
 
-
-    updateDashboard();
-
-
-    alert(
-        "✅ Watch hours updated!"
-    );
+    window.scrollTo(0,0);
 
 }
 
 
-/* =====================================================
-   UPDATE INCOME
-===================================================== */
+/* ---------- SHOW LESSON ---------- */
 
-function updateIncome(){
+function showLesson(courseId,index){
 
-    const value =
-        prompt(
-            "Enter your monthly YouTube income ($):"
-        );
+    const course =
+        courses[courseId];
 
-
-    if(value === null){
+    if(!course){
         return;
     }
 
-
-    const number =
-        Number(value);
-
-
-    if(
-        !Number.isFinite(number) ||
-        number < 0
-    ){
-
-        alert(
-            "Please enter a valid number."
-        );
-
-        return;
-
-    }
-
-
-    monthlyIncome =
-        Math.floor(number);
-
-
-    localStorage.setItem(
-        "monthlyIncome",
-        monthlyIncome
-    );
-
-
-    updateDashboard();
-
-
-    alert(
-        "✅ Income updated!"
-    );
-
-}
-
-
-/* =====================================================
-   OLD LESSON SYSTEM
-===================================================== */
-
-function showMessage(title){
 
     const lesson =
-        lessons[title];
-
+        course.lessons[index];
 
     if(!lesson){
         return;
     }
 
 
-    if(title === "30 Day Challenge"){
+    if(
+        !isUnlocked(courseId,index)
+    ){
 
-        document.getElementById("app").innerHTML = `
+        alert(
+            "🔒 Complete the previous lesson first."
+        );
+
+        return;
+
+    }
+
+
+    const completed =
+        isCompleted(courseId,index);
+
+
+    let completeButton = "";
+
+
+    if(completed){
+
+        completeButton = `
 
             <button
-                class="back-btn"
-                onclick="goDashboard()"
-            >
-                ← Back to Dashboard
+                class="complete-btn"
+                disabled>
+                ✅ Lesson Completed
             </button>
 
-            <div class="lesson-page">
+        `;
 
-                <h2>${lesson.title}</h2>
+    }
+    else{
+
+        completeButton = `
+
+            <button
+                class="complete-btn"
+                onclick="completeLesson('${courseId}',${index})">
+                ✅ Complete Lesson
+            </button>
+
+        `;
+
+    }
+
+
+    document.getElementById("app").innerHTML = `
+
+        <button
+            class="back-btn"
+            onclick="showCourse('${courseId}')">
+            ← Back to Course
+        </button>
+
+        <div class="lesson-page">
+
+            <h2>
+                Lesson ${index + 1}:
+                ${lesson.title}
+            </h2>
+
+            <div class="lesson-content">
 
                 ${lesson.content}
 
             </div>
 
+            ${completeButton}
+
+        </div>
+
+    `;
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* ---------- COMPLETE LESSON ---------- */
+
+function completeLesson(courseId,index){
+
+    const key =
+        lessonKey(courseId,index);
+
+
+    if(
+        completedLessons.includes(key)
+    ){
+
+        return;
+
+    }
+
+
+    completedLessons.push(key);
+
+    saveLessons();
+
+
+    updateDashboard();
+
+
+    const course =
+        courses[courseId];
+
+
+    if(
+        index === course.lessons.length - 1
+    ){
+
+        alert(
+            "🎉 Course Completed!\n\n" +
+            course.name
+        );
+
+    }
+    else{
+
+        alert(
+            "✅ Lesson Completed!\n\n" +
+            "Next lesson is unlocked! 🔓"
+        );
+
+    }
+
+
+    showCourse(courseId);
+
+}
+
+
+/* ---------- CREATOR TOOLS ---------- */
+
+function showTool(type){
+
+    let title = "";
+    let content = "";
+
+
+    if(type === "start"){
+
+        title =
+            "📖 Start From Zero";
+
+        content = `
+
+            <h3>🌱 Start Your Channel</h3>
+
+            <p>
+            Choose a clear niche and create a professional
+            YouTube channel.
+            </p>
+
+            <p>
+            Start publishing consistently and improve
+            based on your Analytics.
+            </p>
+
         `;
+
+    }
+
+
+    if(type === "ai"){
+
+        title =
+            "🤖 AI YouTube Tools";
+
+        content = `
+
+            <h3>Use AI to save time</h3>
+
+            <p>💡 Generate video ideas</p>
+            <p>📝 Create scripts</p>
+            <p>🎯 Generate titles</p>
+            <p>📄 Write descriptions</p>
+            <p>🖼 Create thumbnail concepts</p>
+
+        `;
+
+    }
+
+
+    if(type === "challenge"){
 
         renderChallenge();
 
@@ -1682,49 +1133,117 @@ function showMessage(title){
 
         <button
             class="back-btn"
-            onclick="goDashboard()"
-        >
+            onclick="goDashboard()">
             ← Back to Dashboard
         </button>
 
         <div class="lesson-page">
 
-            <h2>${lesson.title}</h2>
+            <h2>${title}</h2>
 
             <div class="lesson-content">
-
-                ${lesson.content}
-
+                ${content}
             </div>
 
         </div>
 
     `;
 
-
     window.scrollTo(0,0);
 
 }
 
 
-/* =====================================================
-   GO DASHBOARD
-===================================================== */
+/* ---------- CHALLENGE ---------- */
 
-function goDashboard(){
+const challengeTasks = [
 
-    location.reload();
+    "Choose your YouTube niche",
+    "Create your YouTube channel",
+    "Create channel branding",
+    "Research 5 competitors",
+    "Create 10 video ideas",
+    "Write your first video script",
+    "Create your first video",
+    "Create your first thumbnail",
+    "Upload your first video",
+    "Study YouTube Analytics",
+    "Improve your video title",
+    "Improve your thumbnail",
+    "Create your next video",
+    "Upload your second video",
+    "Study audience retention",
+    "Create your first Short",
+    "Create another Short",
+    "Research YouTube keywords",
+    "Create another video",
+    "Upload another video",
+    "Analyze your channel results",
+    "Improve your video hook",
+    "Create another video",
+    "Upload another video",
+    "Improve your thumbnail design",
+    "Create another video",
+    "Upload another video",
+    "Analyze your channel",
+    "Plan next month's content",
+    "Review your 30-Day progress 🚀"
+
+];
+
+
+let challengeDays = [];
+
+try{
+
+    challengeDays =
+        JSON.parse(
+            localStorage.getItem("challengeDays")
+        ) || [];
+
+}catch(error){
+
+    challengeDays = [];
 
 }
 
 
-/* =====================================================
-   RENDER CHALLENGE
-===================================================== */
+function getChallengeProgress(){
+
+    return Math.round(
+        challengeDays.length /
+        30 *
+        100
+    );
+
+}
+
+
+function updateChallengeDashboard(){
+
+    setText(
+        "challengeProgressText",
+        challengeDays.length +
+        " / 30 Days"
+    );
+
+    setWidth(
+        "challengeProgressBar",
+        getChallengeProgress()
+    );
+
+}
+
 
 function renderChallenge(){
 
     let html = `
+
+        <button
+            class="back-btn"
+            onclick="goDashboard()">
+            ← Back to Dashboard
+        </button>
 
         <div class="challenge">
 
@@ -1742,74 +1261,65 @@ function renderChallenge(){
 
                 <div
                     class="progress-bar"
-                    style="width:${getChallengeProgress()}%"
-                ></div>
-
-            </div>
-
-            <div>
-
-    `;
-
-
-    challengeTasks.forEach(
-        function(task,index){
-
-            const day =
-                index + 1;
-
-            const checked =
-                challengeDays.includes(day)
-                    ? "checked"
-                    : "";
-
-
-            html += `
-
-                <div class="challenge-item">
-
-                    <label>
-
-                        <input
-                            type="checkbox"
-                            ${checked}
-                            onchange="toggleChallengeDay(${day})"
-                        >
-
-                        <strong>
-                            Day ${day}
-                        </strong>
-
-                        — ${task}
-
-                    </label>
-
+                    style="width:${getChallengeProgress()}%">
                 </div>
 
-            `;
-
-        }
-    );
-
-
-    html += `
-
             </div>
-
-        </div>
 
     `;
 
 
-    document.getElementById("app").innerHTML +=
+    for(
+        let i = 0;
+        i < challengeTasks.length;
+        i++
+    ){
+
+        const day =
+            i + 1;
+
+        const checked =
+            challengeDays.includes(day)
+            ? "checked"
+            : "";
+
+
+        html += `
+
+            <div class="challenge-item">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        ${checked}
+                        onchange="toggleChallengeDay(${day})">
+
+                    <strong>
+                        Day ${day}
+                    </strong>
+
+                    — ${challengeTasks[i]}
+
+                </label>
+
+            </div>
+
+        `;
+
+    }
+
+
+    html += `</div>`;
+
+
+    document.getElementById("app").innerHTML =
         html;
+
+    window.scrollTo(0,0);
 
 }
 
-
-/* =====================================================
-   TOGGLE CHALLENGE
-===================================================== */
 
 function toggleChallengeDay(day){
 
@@ -1849,55 +1359,170 @@ function toggleChallengeDay(day){
 
     renderChallenge();
 
-    updateDashboard();
-
 }
 
 
-/* =====================================================
-   INCOME CALCULATOR
-===================================================== */
+/* ---------- UPDATE SUBSCRIBERS ---------- */
 
-function calculateIncome(){
+function updateSubscribers(){
 
-    const viewsElement =
-        document.getElementById(
-            "calcViews"
+    const value =
+        prompt(
+            "Enter current subscribers:"
         );
 
 
-    const rpmElement =
-        document.getElementById(
-            "calcRPM"
-        );
+    if(value === null){
+        return;
+    }
 
 
-    const result =
-        document.getElementById(
-            "calcResult"
-        );
+    const number =
+        Number(value);
 
 
     if(
-        !viewsElement ||
-        !rpmElement ||
-        !result
+        !Number.isFinite(number) ||
+        number < 0
     ){
+
+        alert("Enter a valid number.");
 
         return;
 
     }
 
 
+    subscribers =
+        Math.floor(number);
+
+
+    localStorage.setItem(
+        "subscribers",
+        subscribers
+    );
+
+
+    updateDashboard();
+
+}
+
+
+/* ---------- UPDATE WATCH HOURS ---------- */
+
+function updateWatchHours(){
+
+    const value =
+        prompt(
+            "Enter current watch hours:"
+        );
+
+
+    if(value === null){
+        return;
+    }
+
+
+    const number =
+        Number(value);
+
+
+    if(
+        !Number.isFinite(number) ||
+        number < 0
+    ){
+
+        alert("Enter a valid number.");
+
+        return;
+
+    }
+
+
+    watchHours =
+        Math.floor(number);
+
+
+    localStorage.setItem(
+        "watchHours",
+        watchHours
+    );
+
+
+    updateDashboard();
+
+}
+
+
+/* ---------- UPDATE INCOME ---------- */
+
+function updateIncome(){
+
+    const value =
+        prompt(
+            "Enter monthly YouTube income ($):"
+        );
+
+
+    if(value === null){
+        return;
+    }
+
+
+    const number =
+        Number(value);
+
+
+    if(
+        !Number.isFinite(number) ||
+        number < 0
+    ){
+
+        alert("Enter a valid number.");
+
+        return;
+
+    }
+
+
+    monthlyIncome =
+        Math.floor(number);
+
+
+    localStorage.setItem(
+        "monthlyIncome",
+        monthlyIncome
+    );
+
+
+    updateDashboard();
+
+}
+
+
+/* ---------- INCOME CALCULATOR ---------- */
+
+function calculateIncome(){
+
     const views =
         Number(
-            viewsElement.value
+            document.getElementById(
+                "calcViews"
+            ).value
         );
 
 
     const rpm =
         Number(
-            rpmElement.value
+            document.getElementById(
+                "calcRPM"
+            ).value
+        );
+
+
+    const result =
+        document.getElementById(
+            "calcResult"
         );
 
 
@@ -1916,32 +1541,104 @@ function calculateIncome(){
     }
 
 
-    const income =
-        (views / 1000) * rpm;
-
-
     result.innerText =
         "Estimated Revenue: $" +
-        income.toFixed(2);
+        (
+            views / 1000 * rpm
+        ).toFixed(2);
 
 }
 
 
-/* =====================================================
-   GLOBAL FUNCTIONS
-===================================================== */
+/* ---------- HELPERS ---------- */
 
-window.showMessage =
-    showMessage;
+function setText(id,value){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+
+        element.innerText = value;
+
+    }
+
+}
+
+
+function setWidth(id,value){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+
+        const safe =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    value
+                )
+            );
+
+        element.style.width =
+            safe + "%";
+
+    }
+
+}
+
+
+function unlock(id,status){
+
+    const element =
+        document.getElementById(id);
+
+    if(!element){
+        return;
+    }
+
+    if(status){
+
+        element.classList.add(
+            "unlocked"
+        );
+
+    }
+    else{
+
+        element.classList.remove(
+            "unlocked"
+        );
+
+    }
+
+}
+
+
+/* ---------- BACK ---------- */
+
+function goDashboard(){
+
+    location.reload();
+
+}
+
+
+/* ---------- GLOBAL FUNCTIONS ---------- */
 
 window.showCourse =
     showCourse;
 
-window.showCourseLesson =
-    showCourseLesson;
+window.showLesson =
+    showLesson;
 
-window.completeCourseLesson =
-    completeCourseLesson;
+window.completeLesson =
+    completeLesson;
+
+window.showTool =
+    showTool;
 
 window.updateSubscribers =
     updateSubscribers;
@@ -1952,19 +1649,17 @@ window.updateWatchHours =
 window.updateIncome =
     updateIncome;
 
-window.goDashboard =
-    goDashboard;
+window.calculateIncome =
+    calculateIncome;
 
 window.toggleChallengeDay =
     toggleChallengeDay;
 
-window.calculateIncome =
-    calculateIncome;
+window.goDashboard =
+    goDashboard;
 
 
-/* =====================================================
-   START APP
-===================================================== */
+/* ---------- START ---------- */
 
 document.addEventListener(
     "DOMContentLoaded",
