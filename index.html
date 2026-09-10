@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +88,7 @@
             height: 100%;
             width: 0%;
             background: #111827;
-            transition: .3s;
+            transition: width .3s ease;
         }
 
         .stats {
@@ -133,6 +132,10 @@
             font-size: 14px;
         }
 
+        .dashboard-buttons button:hover {
+            opacity: .9;
+        }
+
         .btn-dark {
             background: #111827;
         }
@@ -145,12 +148,44 @@
             background: #047857;
         }
 
-        .dashboard-progress {
+        .overall-card {
             margin-top: 25px;
             padding: 20px;
             background: #111827;
             color: white;
             border-radius: 15px;
+        }
+
+        .overall-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .overall-header strong {
+            font-size: 17px;
+        }
+
+        .overall-progress {
+            width: 100%;
+            height: 14px;
+            background: #374151;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .overall-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #10b981;
+            transition: width .3s ease;
+        }
+
+        .overall-card p {
+            margin-top: 10px;
+            color: #d1d5db;
+            font-size: 13px;
         }
 
         .challenge-dashboard {
@@ -184,7 +219,7 @@
             width: 0%;
             height: 100%;
             background: #10b981;
-            transition: .3s;
+            transition: width .3s ease;
         }
 
         .challenge-dashboard p {
@@ -414,8 +449,6 @@
 <main class="container">
 
 
-    <!-- DASHBOARD -->
-
     <section class="hero">
 
         <h2>
@@ -515,7 +548,7 @@
         </div>
 
 
-        <!-- BUTTONS -->
+        <!-- UPDATE BUTTONS -->
 
         <div class="dashboard-buttons">
 
@@ -550,9 +583,9 @@
 
         <!-- OVERALL PROGRESS -->
 
-        <div class="dashboard-progress">
+        <div class="overall-card">
 
-            <div class="challenge-header">
+            <div class="overall-header">
 
                 <strong>
                     🚀 Overall Progress
@@ -565,11 +598,11 @@
             </div>
 
 
-            <div class="challenge-progress">
+            <div class="overall-progress">
 
                 <div
                     id="overallProgressBar"
-                    class="challenge-progress-bar">
+                    class="overall-progress-bar">
                 </div>
 
             </div>
@@ -619,8 +652,6 @@
 
     </section>
 
-
-    <!-- LEARN -->
 
     <h2 class="section-title">
         📚 Learn YouTube
@@ -764,8 +795,6 @@
     </div>
 
 
-    <!-- INCOME STREAMS -->
-
     <h2 class="section-title">
         💵 YouTube Income Streams
     </h2>
@@ -859,11 +888,8 @@
 </footer>
 
 
-<!-- CACHE BUSTING V7 -->
-
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 
 </body>
 
 </html>
-```
