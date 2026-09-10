@@ -100,6 +100,10 @@ button:hover{
     opacity:.88;
 }
 
+button:disabled{
+    cursor:not-allowed;
+}
+
 .red{
     background:#ff0000;
     color:white;
@@ -288,10 +292,6 @@ button:hover{
     border-bottom:1px solid #eee;
 }
 
-.challenge-item input{
-    width:auto;
-}
-
 .calculator{
     background:#f7f7f7;
     padding:20px;
@@ -299,7 +299,8 @@ button:hover{
     margin-top:20px;
 }
 
-input[type="number"]{
+input[type="number"],
+.tool-input{
     width:100%;
     padding:12px;
     margin:8px 0 15px;
@@ -312,6 +313,18 @@ input[type="number"]{
     margin-top:15px;
     font-size:20px;
     font-weight:bold;
+}
+
+.ai-result{
+    margin-top:15px;
+    padding:18px;
+    background:#f7f7f7;
+    border-radius:12px;
+    line-height:1.7;
+}
+
+.copy-btn{
+    margin-top:10px;
 }
 
 @media(max-width:800px){
@@ -716,9 +729,7 @@ input[type="number"]{
 </div>
 
 
-<!-- IMPORTANT: defer makes JavaScript load safely -->
-
-<script src="app.js?v=11" defer></script>
+<script src="app.js?v=12" defer></script>
 
 </body>
 </html>
