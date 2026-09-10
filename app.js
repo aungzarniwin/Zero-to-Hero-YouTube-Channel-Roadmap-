@@ -1,12 +1,13 @@
 // ==========================================
 // ZERO TO HERO
 // YOUTUBE MONEY ACADEMY
-// APP.JS V4
+// APP.JS V5
+// 30-DAY CHALLENGE SYSTEM
 // ==========================================
 
 
 // ==========================================
-// DATA
+// DASHBOARD DATA
 // ==========================================
 
 let subscribers =
@@ -20,6 +21,85 @@ let monthlyIncome =
 
 let lessonsCompleted =
     Number(localStorage.getItem("lessonsCompleted")) || 0;
+
+
+// ==========================================
+// 30 DAY CHALLENGE DATA
+// ==========================================
+
+let challengeDays =
+    JSON.parse(
+        localStorage.getItem("challengeDays")
+    ) || [];
+
+
+// ==========================================
+// CHALLENGE TASKS
+// ==========================================
+
+const challengeTasks = [
+
+    "Choose your YouTube niche",
+
+    "Create your YouTube channel",
+
+    "Create channel branding",
+
+    "Research 5 competitors",
+
+    "Create 10 video ideas",
+
+    "Write your first video script",
+
+    "Create your first video",
+
+    "Create your first thumbnail",
+
+    "Upload your first video",
+
+    "Study YouTube Analytics",
+
+    "Improve your video title",
+
+    "Improve your thumbnail",
+
+    "Create your next video",
+
+    "Upload your second video",
+
+    "Study audience retention",
+
+    "Create your first Short",
+
+    "Create another Short",
+
+    "Research YouTube keywords",
+
+    "Create another video",
+
+    "Upload another video",
+
+    "Analyze your channel results",
+
+    "Improve your video hook",
+
+    "Create another video",
+
+    "Upload another video",
+
+    "Improve your thumbnail design",
+
+    "Create another video",
+
+    "Upload another video",
+
+    "Analyze your channel",
+
+    "Plan next month's content",
+
+    "Review your 30-Day progress 🚀"
+
+];
 
 
 // ==========================================
@@ -268,46 +348,14 @@ const lessons = {
 
         content: `
 
-            <h3>🔥 30-Day Challenge</h3>
+            <h3>🔥 30-Day YouTube Challenge</h3>
 
             <p>
-            Complete one important action every day.
+                Complete one action every day.
+                Check each day when you finish it.
             </p>
 
-            <div class="challenge-list">
-
-                <p>✅ Day 1 — Choose your niche</p>
-                <p>⬜ Day 2 — Create channel</p>
-                <p>⬜ Day 3 — Create branding</p>
-                <p>⬜ Day 4 — Research competitors</p>
-                <p>⬜ Day 5 — Create 10 video ideas</p>
-                <p>⬜ Day 6 — Write first script</p>
-                <p>⬜ Day 7 — Create first video</p>
-                <p>⬜ Day 8 — Create thumbnail</p>
-                <p>⬜ Day 9 — Upload video</p>
-                <p>⬜ Day 10 — Study analytics</p>
-                <p>⬜ Day 11 — Improve title</p>
-                <p>⬜ Day 12 — Improve thumbnail</p>
-                <p>⬜ Day 13 — Create next video</p>
-                <p>⬜ Day 14 — Upload</p>
-                <p>⬜ Day 15 — Study retention</p>
-                <p>⬜ Day 16 — Create Short</p>
-                <p>⬜ Day 17 — Create another Short</p>
-                <p>⬜ Day 18 — Research keywords</p>
-                <p>⬜ Day 19 — Create video</p>
-                <p>⬜ Day 20 — Upload</p>
-                <p>⬜ Day 21 — Analyze results</p>
-                <p>⬜ Day 22 — Improve hook</p>
-                <p>⬜ Day 23 — Create video</p>
-                <p>⬜ Day 24 — Upload</p>
-                <p>⬜ Day 25 — Improve thumbnail</p>
-                <p>⬜ Day 26 — Create video</p>
-                <p>⬜ Day 27 — Upload</p>
-                <p>⬜ Day 28 — Analyze channel</p>
-                <p>⬜ Day 29 — Plan next month</p>
-                <p>⬜ Day 30 — 🚀 Review progress</p>
-
-            </div>
+            <div id="challengeContainer"></div>
 
         `
     },
@@ -690,17 +738,25 @@ function showMessage(title) {
     }
 
 
-    lessonsCompleted =
-        Math.min(
-            lessonsCompleted + 1,
-            10
+    // Only count normal lessons.
+    // Don't count the 30-Day Challenge.
+    if (
+        title !== "30 Day Challenge"
+    ) {
+
+        lessonsCompleted =
+            Math.min(
+                lessonsCompleted + 1,
+                10
+            );
+
+
+        localStorage.setItem(
+            "lessonsCompleted",
+            lessonsCompleted
         );
 
-
-    localStorage.setItem(
-        "lessonsCompleted",
-        lessonsCompleted
-    );
+    }
 
 
     const oldContent =
@@ -746,10 +802,223 @@ function showMessage(title) {
     `;
 
 
+    // Load challenge UI
+    if (
+        title === "30 Day Challenge"
+    ) {
+
+        renderChallenge();
+
+    }
+
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
+}
+
+
+// ==========================================
+// RENDER 30 DAY CHALLENGE
+// ==========================================
+
+function renderChallenge() {
+
+    const container =
+        document.getElementById(
+            "challengeContainer"
+        );
+
+
+    if (!container) return;
+
+
+    const completed =
+        challengeDays.length;
+
+
+    const progress =
+        Math.round(
+            (completed / 30) * 100
+        );
+
+
+    let html = `
+
+        <div style="
+            background:#f3f4f6;
+            padding:18px;
+            border-radius:12px;
+            margin:20px 0;
+        ">
+
+            <strong>
+                🔥 Challenge Progress
+            </strong>
+
+            <div style="
+                margin-top:10px;
+                height:14px;
+                background:#e5e7eb;
+                border-radius:20px;
+                overflow:hidden;
+            ">
+
+                <div style="
+                    height:100%;
+                    width:${progress}%;
+                    background:#047857;
+                    transition:.3s;
+                "></div>
+
+            </div>
+
+            <p style="
+                margin-top:10px;
+                font-weight:bold;
+            ">
+
+                ${completed} / 30 Days Completed
+                — ${progress}%
+
+            </p>
+
+        </div>
+
+    `;
+
+
+    challengeTasks.forEach(
+        (task, index) => {
+
+            const day =
+                index + 1;
+
+            const checked =
+                challengeDays.includes(day);
+
+
+            html += `
+
+                <div style="
+                    display:flex;
+                    align-items:center;
+                    gap:12px;
+                    padding:14px 8px;
+                    border-bottom:1px solid #eee;
+                ">
+
+                    <input
+                        type="checkbox"
+                        id="day${day}"
+                        ${checked ? "checked" : ""}
+                        onchange="toggleChallengeDay(${day})"
+                        style="
+                            width:20px;
+                            height:20px;
+                            cursor:pointer;
+                        "
+                    >
+
+                    <label
+                        for="day${day}"
+                        style="
+                            cursor:pointer;
+                            line-height:1.5;
+                        "
+                    >
+
+                        <strong>
+                            Day ${day}
+                        </strong>
+
+                        — ${task}
+
+                    </label>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    if (completed === 30) {
+
+        html += `
+
+            <div style="
+                margin-top:20px;
+                padding:20px;
+                background:#ecfdf5;
+                border-radius:12px;
+                text-align:center;
+                font-weight:bold;
+                font-size:18px;
+            ">
+
+                🎉 Congratulations!
+
+                <br><br>
+
+                You completed the
+                30-Day YouTube Challenge! 🚀
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+// ==========================================
+// TOGGLE CHALLENGE DAY
+// ==========================================
+
+function toggleChallengeDay(day) {
+
+    if (
+        challengeDays.includes(day)
+    ) {
+
+        challengeDays =
+            challengeDays.filter(
+                item => item !== day
+            );
+
+    } else {
+
+        challengeDays.push(day);
+
+    }
+
+
+    // Sort days
+    challengeDays.sort(
+        (a, b) => a - b
+    );
+
+
+    // Save progress
+    localStorage.setItem(
+        "challengeDays",
+        JSON.stringify(
+            challengeDays
+        )
+    );
+
+
+    // Refresh challenge
+    renderChallenge();
 
 }
 
