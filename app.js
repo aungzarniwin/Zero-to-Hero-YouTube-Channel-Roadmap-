@@ -1,13 +1,13 @@
 // ==========================================
 // ZERO TO HERO
 // YOUTUBE MONEY ACADEMY
-// APP.JS V8
+// APP.JS V9
 // ==========================================
 
 
-// ==========================================
-// LOAD SAVED DATA
-// ==========================================
+// ================================
+// DATA
+// ================================
 
 let subscribers =
     Number(localStorage.getItem("subscribers")) || 0;
@@ -21,10 +21,6 @@ let monthlyIncome =
 let lessonsCompleted =
     Number(localStorage.getItem("lessonsCompleted")) || 0;
 
-
-// ==========================================
-// LOAD CHALLENGE DATA
-// ==========================================
 
 let challengeDays = [];
 
@@ -42,467 +38,496 @@ try {
 
             challengeDays =
                 parsed
-                    .map(Number)
-                    .filter(
-                        day =>
-                            Number.isInteger(day) &&
-                            day >= 1 &&
-                            day <= 30
+                .map(Number)
+                .filter(function(day){
+
+                    return (
+                        Number.isInteger(day) &&
+                        day >= 1 &&
+                        day <= 30
                     );
+
+                });
 
         }
 
     }
 
-} catch (error) {
+} catch(error){
 
     challengeDays = [];
 
 }
 
 
-// Remove duplicate days
-
 challengeDays =
     [...new Set(challengeDays)];
 
+challengeDays.sort(function(a,b){
 
-// Sort days
+    return a-b;
 
-challengeDays.sort(
-    (a, b) => a - b
-);
+});
 
 
-// ==========================================
-// CHALLENGE TASKS
-// ==========================================
+// ================================
+// 30 DAY CHALLENGE
+// ================================
 
 const challengeTasks = [
 
-    "Choose your YouTube niche",
+"Choose your YouTube niche",
 
-    "Create your YouTube channel",
+"Create your YouTube channel",
 
-    "Create channel branding",
+"Create channel branding",
 
-    "Research 5 competitors",
+"Research 5 competitors",
 
-    "Create 10 video ideas",
+"Create 10 video ideas",
 
-    "Write your first video script",
+"Write your first video script",
 
-    "Create your first video",
+"Create your first video",
 
-    "Create your first thumbnail",
+"Create your first thumbnail",
 
-    "Upload your first video",
+"Upload your first video",
 
-    "Study YouTube Analytics",
+"Study YouTube Analytics",
 
-    "Improve your video title",
+"Improve your video title",
 
-    "Improve your thumbnail",
+"Improve your thumbnail",
 
-    "Create your next video",
+"Create your next video",
 
-    "Upload your second video",
+"Upload your second video",
 
-    "Study audience retention",
+"Study audience retention",
 
-    "Create your first Short",
+"Create your first Short",
 
-    "Create another Short",
+"Create another Short",
 
-    "Research YouTube keywords",
+"Research YouTube keywords",
 
-    "Create another video",
+"Create another video",
 
-    "Upload another video",
+"Upload another video",
 
-    "Analyze your channel results",
+"Analyze your channel results",
 
-    "Improve your video hook",
+"Improve your video hook",
 
-    "Create another video",
+"Create another video",
 
-    "Upload another video",
+"Upload another video",
 
-    "Improve your thumbnail design",
+"Improve your thumbnail design",
 
-    "Create another video",
+"Create another video",
 
-    "Upload another video",
+"Upload another video",
 
-    "Analyze your channel",
+"Analyze your channel",
 
-    "Plan next month's content",
+"Plan next month's content",
 
-    "Review your 30-Day progress 🚀"
+"Review your 30-Day progress 🚀"
 
 ];
 
 
-// ==========================================
-// LESSONS
-// ==========================================
+// ================================
+// LESSON DATA
+// ================================
 
 const lessons = {
 
-    "Start From Zero": {
+"Start From Zero": {
 
-        icon: "🚀",
+icon:"🚀",
 
-        title: "Start From Zero",
+title:"Start From Zero",
 
-        content: `
+content:`
 
-            <h3>🚀 Start Your YouTube Journey</h3>
+<h3>🚀 Start Your YouTube Journey</h3>
 
-            <p>
-                You don't need thousands of subscribers
-                to start YouTube.
-                You only need to start.
-            </p>
+<p>
+You don't need thousands of subscribers to start YouTube.
+You only need to start.
+</p>
 
-            <h4>Step 1 — Choose Your Niche</h4>
+<h4>Step 1 — Choose Your Niche</h4>
 
-            <p>
-                Choose a topic you can consistently
-                create content about.
-            </p>
+<p>
+Choose a topic you can consistently create content about.
+</p>
 
-            <ul>
-                <li>🎵 Music</li>
-                <li>📚 Education</li>
-                <li>🎬 Entertainment</li>
-                <li>💻 Technology</li>
-                <li>💼 Business</li>
-                <li>🎮 Gaming</li>
-            </ul>
+<ul>
 
-            <h4>Step 2 — Create Your Channel</h4>
+<li>🎵 Music</li>
+<li>📚 Education</li>
+<li>🎬 Entertainment</li>
+<li>💻 Technology</li>
+<li>💼 Business</li>
+<li>🎮 Gaming</li>
 
-            <p>
-                Choose a memorable channel name,
-                profile picture, banner and description.
-            </p>
+</ul>
 
-            <h4>Step 3 — Upload Your First Video</h4>
+<h4>Step 2 — Create Your Channel</h4>
 
-            <p>
-                Don't wait for perfection.
-                Publish, analyze and improve.
-            </p>
+<p>
+Choose a memorable channel name,
+profile picture, banner and description.
+</p>
 
-            <div class="lesson-tip">
-                💡 Your first 10 videos are mainly
-                for learning.
-            </div>
+<h4>Step 3 — Upload Your First Video</h4>
 
-        `
-    },
+<p>
+Don't wait for perfection.
+Publish, analyze and improve.
+</p>
 
+<div class="lesson-tip">
 
-    "Grow Your Channel": {
+💡 Your first 10 videos are mainly for learning.
 
-        icon: "📈",
+</div>
 
-        title: "Grow Your Channel",
+`
 
-        content: `
+},
 
-            <h3>📈 Grow Your YouTube Channel</h3>
 
-            <p>
-                Channel growth comes from creating
-                videos people want to click and watch.
-            </p>
+"Grow Your Channel": {
 
-            <h4>1. CTR</h4>
+icon:"📈",
 
-            <p>
-                Improve your title and thumbnail
-                to increase clicks.
-            </p>
+title:"Grow Your Channel",
 
-            <h4>2. Retention</h4>
+content:`
 
-            <p>
-                Keep viewers interested from the
-                beginning to the end.
-            </p>
+<h3>📈 Grow Your YouTube Channel</h3>
 
-            <h4>3. Watch Time</h4>
+<p>
+Channel growth comes from creating videos
+people want to click and watch.
+</p>
 
-            <p>
-                Useful viewing sessions can help
-                build watch time.
-            </p>
+<h4>1. CTR</h4>
 
-            <h4>4. Consistency</h4>
+<p>
+Improve your title and thumbnail to increase clicks.
+</p>
 
-            <p>
-                Create a realistic upload schedule
-                and follow it.
-            </p>
+<h4>2. Retention</h4>
 
-            <div class="lesson-tip">
-                🔥 Focus on CTR + Retention + Value.
-            </div>
+<p>
+Keep viewers interested from the beginning to the end.
+</p>
 
-        `
-    },
+<h4>3. Watch Time</h4>
 
+<p>
+Useful viewing sessions can help build watch time.
+</p>
 
-    "Monetization": {
+<h4>4. Consistency</h4>
 
-        icon: "💰",
+<p>
+Create a realistic upload schedule and follow it.
+</p>
 
-        title: "YouTube Monetization",
+<div class="lesson-tip">
 
-        content: `
+🔥 Focus on CTR + Retention + Value.
 
-            <h3>💰 YouTube Monetization</h3>
+</div>
 
-            <p>
-                YouTube creators can build multiple
-                income streams.
-            </p>
+`
 
-            <h4>Main Income Opportunities</h4>
+},
 
-            <ul>
-                <li>📺 Advertising</li>
-                <li>⭐ Channel Memberships</li>
-                <li>💚 Super Thanks</li>
-                <li>🔴 Live Stream Features</li>
-                <li>🤝 Sponsorships</li>
-                <li>🔗 Affiliate Marketing</li>
-                <li>📚 Digital Products</li>
-            </ul>
 
-            <div class="lesson-tip">
-                💡 Don't depend on only one
-                income source.
-            </div>
+"Monetization": {
 
-        `
-    },
+icon:"💰",
 
+title:"YouTube Monetization",
 
-    "Income Calculator": {
+content:`
 
-        icon: "🧮",
+<h3>💰 YouTube Monetization</h3>
 
-        title: "YouTube Income Calculator",
+<p>
+YouTube creators can build multiple income streams.
+</p>
 
-        content: `
+<h4>Main Income Opportunities</h4>
 
-            <h3>🧮 YouTube Income Calculator</h3>
+<ul>
 
-            <p>
-                Estimate possible advertising revenue
-                using views and RPM.
-            </p>
+<li>📺 Advertising</li>
 
-            <label>
-                Monthly Views
-            </label>
+<li>⭐ Channel Memberships</li>
 
-            <input
-                id="calcViews"
-                type="number"
-                placeholder="100000"
-            >
+<li>💚 Super Thanks</li>
 
-            <label>
-                RPM ($)
-            </label>
+<li>🔴 Live Stream Features</li>
 
-            <input
-                id="calcRPM"
-                type="number"
-                step="0.01"
-                placeholder="1.00"
-            >
+<li>🤝 Sponsorships</li>
 
-            <button onclick="calculateIncome()">
-                Calculate Income
-            </button>
+<li>🔗 Affiliate Marketing</li>
 
-            <div
-                id="incomeResult"
-                class="result-box">
+<li>📚 Digital Products</li>
 
-                Enter your views and RPM.
+</ul>
 
-            </div>
+<div class="lesson-tip">
 
-        `
-    },
+💡 Don't depend on only one income source.
 
+</div>
 
-    "AI YouTube Tools": {
+`
 
-        icon: "🤖",
+},
 
-        title: "AI YouTube Tools",
 
-        content: `
+"Income Calculator": {
 
-            <h3>🤖 AI YouTube Tools</h3>
+icon:"🧮",
 
-            <p>
-                AI can help you save time when planning
-                and producing YouTube content.
-            </p>
+title:"YouTube Income Calculator",
 
-            <h4>AI Content Workflow</h4>
+content:`
 
-            <ol>
-                <li>💡 Generate video ideas</li>
-                <li>✍️ Create a script</li>
-                <li>🎯 Generate titles</li>
-                <li>📝 Write description</li>
-                <li>🏷️ Create keywords</li>
-                <li>🖼️ Create thumbnail prompts</li>
-            </ol>
+<h3>🧮 YouTube Income Calculator</h3>
 
-            <div class="lesson-tip">
-                💡 Use AI as a creative assistant,
-                not a replacement for your judgment.
-            </div>
+<p>
+Estimate possible advertising revenue using views and RPM.
+</p>
 
-        `
-    },
+<label>
+Monthly Views
+</label>
 
+<input
+id="calcViews"
+type="number"
+placeholder="100000"
+>
 
-    "30 Day Challenge": {
+<label>
+RPM ($)
+</label>
 
-        icon: "🔥",
+<input
+id="calcRPM"
+type="number"
+step="0.01"
+placeholder="1.00"
+>
 
-        title: "30-Day YouTube Challenge",
+<button onclick="calculateIncome()">
 
-        content: `
+Calculate Income
 
-            <h3>🔥 30-Day YouTube Challenge</h3>
+</button>
 
-            <p>
-                Complete one important action every day.
-                Check each day when you finish it.
-            </p>
+<div
+id="incomeResult"
+class="result-box">
 
-            <div id="challengeContainer"></div>
+Enter your views and RPM.
 
-        `
-    },
+</div>
 
+`
 
-    "Ad Revenue": {
+},
 
-        icon: "📺",
 
-        title: "Ad Revenue",
+"AI YouTube Tools": {
 
-        content: `
+icon:"🤖",
 
-            <h3>📺 YouTube Ad Revenue</h3>
+title:"AI YouTube Tools",
 
-            <p>
-                Learn how YouTube advertising revenue
-                works and how RPM affects earnings.
-            </p>
+content:`
 
-            <div class="lesson-tip">
-                💡 Views and RPM both affect
-                advertising revenue.
-            </div>
+<h3>🤖 AI YouTube Tools</h3>
 
-        `
-    },
+<p>
+AI can help you save time when planning
+and producing YouTube content.
+</p>
 
+<h4>AI Content Workflow</h4>
 
-    "Affiliate Marketing": {
+<ol>
 
-        icon: "🔗",
+<li>💡 Generate video ideas</li>
 
-        title: "Affiliate Marketing",
+<li>✍️ Create a script</li>
 
-        content: `
+<li>🎯 Generate titles</li>
 
-            <h3>🔗 Affiliate Marketing</h3>
+<li>📝 Write description</li>
 
-            <p>
-                Recommend useful products or services
-                and earn commissions from qualifying
-                purchases.
-            </p>
+<li>🏷️ Create keywords</li>
 
-            <div class="lesson-tip">
-                💡 Recommend products relevant
-                to your audience.
-            </div>
+<li>🖼️ Create thumbnail prompts</li>
 
-        `
-    },
+</ol>
 
+<div class="lesson-tip">
 
-    "Sponsorship": {
+💡 Use AI as a creative assistant,
+not a replacement for your judgment.
 
-        icon: "🤝",
+</div>
 
-        title: "Sponsorship",
+`
 
-        content: `
+},
 
-            <h3>🤝 Sponsorship</h3>
 
-            <p>
-                Brands may pay creators to promote
-                products or services.
-            </p>
+"30 Day Challenge": {
 
-            <div class="lesson-tip">
-                💡 Build audience trust before
-                accepting sponsorships.
-            </div>
+icon:"🔥",
 
-        `
-    },
+title:"30-Day YouTube Challenge",
 
+content:`
 
-    "Digital Products": {
+<h3>🔥 30-Day YouTube Challenge</h3>
 
-        icon: "📚",
+<p>
+Complete one important action every day.
+Check each day when you finish it.
+</p>
 
-        title: "Digital Products",
+<div id="challengeContainer"></div>
 
-        content: `
+`
 
-            <h3>📚 Digital Products</h3>
+},
 
-            <p>
-                Create and sell e-books, courses,
-                templates, guides or digital tools.
-            </p>
 
-            <div class="lesson-tip">
-                💡 Create products that solve
-                a real problem.
-            </div>
+"Ad Revenue": {
 
-        `
-    }
+icon:"📺",
+
+title:"Ad Revenue",
+
+content:`
+
+<h3>📺 YouTube Ad Revenue</h3>
+
+<p>
+YouTube advertising revenue depends on factors
+such as views, audience, ad demand and RPM.
+</p>
+
+<div class="lesson-tip">
+
+💡 Views and RPM both affect advertising revenue.
+
+</div>
+
+`
+
+},
+
+
+"Affiliate Marketing": {
+
+icon:"🔗",
+
+title:"Affiliate Marketing",
+
+content:`
+
+<h3>🔗 Affiliate Marketing</h3>
+
+<p>
+Recommend useful products or services
+and earn commissions from qualifying purchases.
+</p>
+
+<div class="lesson-tip">
+
+💡 Recommend products relevant to your audience.
+
+</div>
+
+`
+
+},
+
+
+"Sponsorship": {
+
+icon:"🤝",
+
+title:"Sponsorship",
+
+content:`
+
+<h3>🤝 Sponsorship</h3>
+
+<p>
+Brands may pay creators to promote products or services.
+</p>
+
+<div class="lesson-tip">
+
+💡 Build audience trust before accepting sponsorships.
+
+</div>
+
+`
+
+},
+
+
+"Digital Products": {
+
+icon:"📚",
+
+title:"Digital Products",
+
+content:`
+
+<h3>📚 Digital Products</h3>
+
+<p>
+Create and sell e-books, courses,
+templates, guides or digital tools.
+</p>
+
+<div class="lesson-tip">
+
+💡 Create products that solve a real problem.
+
+</div>
+
+`
+
+}
 
 };
 
 
-// ==========================================
-// MONETIZATION PROGRESS
-// ==========================================
+// ================================
+// PROGRESS
+// ================================
 
-function getMonetizationProgress() {
+function getMonetizationProgress(){
 
     const subscriberProgress =
         Math.min(
@@ -517,52 +542,43 @@ function getMonetizationProgress() {
         );
 
     return Math.round(
-        (
-            subscriberProgress +
-            watchProgress
-        ) / 2
+        (subscriberProgress + watchProgress) / 2
     );
 
 }
 
 
-// ==========================================
-// LESSON PROGRESS
-// ==========================================
-
-function getLessonProgress() {
+function getLessonProgress(){
 
     return Math.min(
+
         Math.round(
             (lessonsCompleted / 10) * 100
         ),
+
         100
+
     );
 
 }
 
 
-// ==========================================
-// CHALLENGE PROGRESS
-// ==========================================
-
-function getChallengeProgress() {
+function getChallengeProgress(){
 
     return Math.min(
+
         Math.round(
             (challengeDays.length / 30) * 100
         ),
+
         100
+
     );
 
 }
 
 
-// ==========================================
-// OVERALL PROGRESS
-// ==========================================
-
-function getOverallProgress() {
+function getOverallProgress(){
 
     const monetization =
         getMonetizationProgress();
@@ -573,133 +589,49 @@ function getOverallProgress() {
     const challenge =
         getChallengeProgress();
 
-
-    const overall =
-        Math.round(
-            (
-                monetization +
-                lesson +
-                challenge
-            ) / 3
-        );
-
-
     return Math.min(
-        Math.max(overall, 0),
+
+        Math.max(
+
+            Math.round(
+                (
+                    monetization +
+                    lesson +
+                    challenge
+                ) / 3
+            ),
+
+            0
+
+        ),
+
         100
+
     );
 
 }
 
 
-// ==========================================
-// UPDATE OVERALL UI
-// ==========================================
+// ================================
+// DASHBOARD
+// ================================
 
-function updateOverallProgress() {
-
-    const overall =
-        getOverallProgress();
-
-
-    const text =
-        document.getElementById(
-            "overallProgressText"
-        );
-
-
-    const bar =
-        document.getElementById(
-            "overallProgressBar"
-        );
-
-
-    if (text) {
-
-        text.textContent =
-            overall + "%";
-
-    }
-
-
-    if (bar) {
-
-        bar.style.width =
-            overall + "%";
-
-    }
-
-}
-
-
-// ==========================================
-// UPDATE CHALLENGE UI
-// ==========================================
-
-function updateChallengeDashboard() {
-
-    const completed =
-        challengeDays.length;
-
-
-    const progress =
-        getChallengeProgress();
-
-
-    const text =
-        document.getElementById(
-            "challengeProgressText"
-        );
-
-
-    const bar =
-        document.getElementById(
-            "challengeProgressBar"
-        );
-
-
-    if (text) {
-
-        text.textContent =
-            completed + " / 30";
-
-    }
-
-
-    if (bar) {
-
-        bar.style.width =
-            progress + "%";
-
-    }
-
-}
-
-
-// ==========================================
-// UPDATE DASHBOARD
-// ==========================================
-
-function updateDashboard() {
-
+function updateDashboard(){
 
     const subscriberElement =
         document.getElementById(
             "subscriberCount"
         );
 
-
     const watchElement =
         document.getElementById(
             "watchHours"
         );
 
-
     const incomeElement =
         document.getElementById(
             "monthlyIncome"
         );
-
 
     const lessonElement =
         document.getElementById(
@@ -707,9 +639,7 @@ function updateDashboard() {
         );
 
 
-    // Subscribers
-
-    if (subscriberElement) {
+    if(subscriberElement){
 
         subscriberElement.textContent =
             subscribers.toLocaleString();
@@ -717,9 +647,7 @@ function updateDashboard() {
     }
 
 
-    // Watch Hours
-
-    if (watchElement) {
+    if(watchElement){
 
         watchElement.textContent =
             watchHours.toLocaleString();
@@ -727,18 +655,13 @@ function updateDashboard() {
     }
 
 
-    // Income
-
-    if (incomeElement) {
+    if(incomeElement){
 
         incomeElement.textContent =
-            "$" +
-            monthlyIncome.toFixed(2);
+            "$" + monthlyIncome.toFixed(2);
 
     }
 
-
-    // Monetization
 
     const monetization =
         getMonetizationProgress();
@@ -749,14 +672,13 @@ function updateDashboard() {
             "progressText"
         );
 
-
     const progressBar =
         document.getElementById(
             "progressBar"
         );
 
 
-    if (progressText) {
+    if(progressText){
 
         progressText.textContent =
             monetization + "%";
@@ -764,7 +686,7 @@ function updateDashboard() {
     }
 
 
-    if (progressBar) {
+    if(progressBar){
 
         progressBar.style.width =
             monetization + "%";
@@ -772,13 +694,11 @@ function updateDashboard() {
     }
 
 
-    // Lesson
-
     const lesson =
         getLessonProgress();
 
 
-    if (lessonElement) {
+    if(lessonElement){
 
         lessonElement.textContent =
             lesson + "%";
@@ -786,23 +706,99 @@ function updateDashboard() {
     }
 
 
-    // Challenge
-
     updateChallengeDashboard();
-
-
-    // Overall
 
     updateOverallProgress();
 
 }
 
 
-// ==========================================
-// UPDATE SUBSCRIBERS
-// ==========================================
+// ================================
+// OVERALL PROGRESS
+// ================================
 
-function updateSubscribers() {
+function updateOverallProgress(){
+
+    const overall =
+        getOverallProgress();
+
+
+    const text =
+        document.getElementById(
+            "overallProgressText"
+        );
+
+    const bar =
+        document.getElementById(
+            "overallProgressBar"
+        );
+
+
+    if(text){
+
+        text.textContent =
+            overall + "%";
+
+    }
+
+
+    if(bar){
+
+        bar.style.width =
+            overall + "%";
+
+    }
+
+}
+
+
+// ================================
+// CHALLENGE DASHBOARD
+// ================================
+
+function updateChallengeDashboard(){
+
+    const completed =
+        challengeDays.length;
+
+    const progress =
+        getChallengeProgress();
+
+
+    const text =
+        document.getElementById(
+            "challengeProgressText"
+        );
+
+    const bar =
+        document.getElementById(
+            "challengeProgressBar"
+        );
+
+
+    if(text){
+
+        text.textContent =
+            completed + " / 30";
+
+    }
+
+
+    if(bar){
+
+        bar.style.width =
+            progress + "%";
+
+    }
+
+}
+
+
+// ================================
+// UPDATE SUBSCRIBERS
+// ================================
+
+function updateSubscribers(){
 
     const value =
         prompt(
@@ -810,17 +806,21 @@ function updateSubscribers() {
         );
 
 
-    if (value === null) return;
+    if(value === null){
+
+        return;
+
+    }
 
 
     const number =
         Number(value);
 
 
-    if (
+    if(
         !Number.isFinite(number) ||
         number < 0
-    ) {
+    ){
 
         alert(
             "⚠️ Please enter a valid number."
@@ -851,11 +851,11 @@ function updateSubscribers() {
 }
 
 
-// ==========================================
+// ================================
 // UPDATE WATCH HOURS
-// ==========================================
+// ================================
 
-function updateWatchHours() {
+function updateWatchHours(){
 
     const value =
         prompt(
@@ -863,17 +863,21 @@ function updateWatchHours() {
         );
 
 
-    if (value === null) return;
+    if(value === null){
+
+        return;
+
+    }
 
 
     const number =
         Number(value);
 
 
-    if (
+    if(
         !Number.isFinite(number) ||
         number < 0
-    ) {
+    ){
 
         alert(
             "⚠️ Please enter a valid number."
@@ -904,11 +908,11 @@ function updateWatchHours() {
 }
 
 
-// ==========================================
+// ================================
 // UPDATE INCOME
-// ==========================================
+// ================================
 
-function updateIncome() {
+function updateIncome(){
 
     const value =
         prompt(
@@ -916,17 +920,21 @@ function updateIncome() {
         );
 
 
-    if (value === null) return;
+    if(value === null){
+
+        return;
+
+    }
 
 
     const number =
         Number(value);
 
 
-    if (
+    if(
         !Number.isFinite(number) ||
         number < 0
-    ) {
+    ){
 
         alert(
             "⚠️ Please enter a valid amount."
@@ -957,17 +965,17 @@ function updateIncome() {
 }
 
 
-// ==========================================
+// ================================
 // SHOW LESSON
-// ==========================================
+// ================================
 
-function showMessage(title) {
+function showMessage(title){
 
     const lesson =
         lessons[title];
 
 
-    if (!lesson) {
+    if(!lesson){
 
         alert(
             "Lesson coming soon!"
@@ -978,11 +986,9 @@ function showMessage(title) {
     }
 
 
-    // Count lesson
-
-    if (
+    if(
         title !== "30 Day Challenge"
-    ) {
+    ){
 
         lessonsCompleted =
             Math.min(
@@ -999,16 +1005,20 @@ function showMessage(title) {
     }
 
 
-    const main =
-        document.querySelector(
-            "main.container"
+    const app =
+        document.getElementById(
+            "app"
         );
 
 
-    if (!main) return;
+    if(!app){
+
+        return;
+
+    }
 
 
-    main.innerHTML = `
+    app.innerHTML = `
 
         <button
             class="back-button"
@@ -1022,12 +1032,18 @@ function showMessage(title) {
         <div class="lesson-page">
 
             <div class="lesson-icon">
+
                 ${lesson.icon}
+
             </div>
 
+
             <h2>
+
                 ${lesson.title}
+
             </h2>
+
 
             <div class="lesson-content">
 
@@ -1040,9 +1056,9 @@ function showMessage(title) {
     `;
 
 
-    if (
+    if(
         title === "30 Day Challenge"
-    ) {
+    ){
 
         renderChallenge();
 
@@ -1050,29 +1066,29 @@ function showMessage(title) {
 
 
     window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        top:0,
+        behavior:"smooth"
     });
 
 }
 
 
-// ==========================================
-// BACK TO DASHBOARD
-// ==========================================
+// ================================
+// GO DASHBOARD
+// ================================
 
-function goDashboard() {
+function goDashboard(){
 
     location.reload();
 
 }
 
 
-// ==========================================
+// ================================
 // RENDER CHALLENGE
-// ==========================================
+// ================================
 
-function renderChallenge() {
+function renderChallenge(){
 
     const container =
         document.getElementById(
@@ -1080,12 +1096,15 @@ function renderChallenge() {
         );
 
 
-    if (!container) return;
+    if(!container){
+
+        return;
+
+    }
 
 
     const completed =
         challengeDays.length;
-
 
     const progress =
         getChallengeProgress();
@@ -1104,6 +1123,7 @@ function renderChallenge() {
                 🔥 Challenge Progress
             </strong>
 
+
             <div style="
                 margin-top:10px;
                 height:14px;
@@ -1121,6 +1141,7 @@ function renderChallenge() {
 
             </div>
 
+
             <p style="
                 margin-top:10px;
                 font-weight:bold;
@@ -1133,13 +1154,14 @@ function renderChallenge() {
 
         </div>
 
+
         <div class="challenge-list">
 
     `;
 
 
     challengeTasks.forEach(
-        function(task, index) {
+        function(task,index){
 
             const day =
                 index + 1;
@@ -1160,6 +1182,7 @@ function renderChallenge() {
                         onchange="toggleChallengeDay(${day})"
                     >
 
+
                     <label for="day${day}">
 
                         <strong>
@@ -1179,11 +1202,13 @@ function renderChallenge() {
 
 
     html += `
+
         </div>
+
     `;
 
 
-    if (completed === 30) {
+    if(completed === 30){
 
         html += `
 
@@ -1209,30 +1234,30 @@ function renderChallenge() {
 }
 
 
-// ==========================================
+// ================================
 // TOGGLE CHALLENGE
-// ==========================================
+// ================================
 
-function toggleChallengeDay(day) {
+function toggleChallengeDay(day){
 
     const numericDay =
         Number(day);
 
 
-    if (
+    if(
         challengeDays.includes(numericDay)
-    ) {
+    ){
 
         challengeDays =
             challengeDays.filter(
-                function(item) {
+                function(item){
 
                     return item !== numericDay;
 
                 }
             );
 
-    } else {
+    }else{
 
         challengeDays.push(
             numericDay
@@ -1246,15 +1271,13 @@ function toggleChallengeDay(day) {
 
 
     challengeDays.sort(
-        function(a, b) {
+        function(a,b){
 
-            return a - b;
+            return a-b;
 
         }
     );
 
-
-    // SAVE
 
     localStorage.setItem(
         "challengeDays",
@@ -1264,12 +1287,7 @@ function toggleChallengeDay(day) {
     );
 
 
-    // UPDATE CURRENT CHALLENGE SCREEN
-
     renderChallenge();
-
-
-    // UPDATE DASHBOARD
 
     updateChallengeDashboard();
 
@@ -1278,11 +1296,11 @@ function toggleChallengeDay(day) {
 }
 
 
-// ==========================================
+// ================================
 // INCOME CALCULATOR
-// ==========================================
+// ================================
 
-function calculateIncome() {
+function calculateIncome(){
 
     const viewsElement =
         document.getElementById(
@@ -1302,11 +1320,15 @@ function calculateIncome() {
         );
 
 
-    if (
+    if(
         !viewsElement ||
         !rpmElement ||
         !result
-    ) return;
+    ){
+
+        return;
+
+    }
 
 
     const views =
@@ -1321,12 +1343,12 @@ function calculateIncome() {
         );
 
 
-    if (
+    if(
         !Number.isFinite(views) ||
         !Number.isFinite(rpm) ||
         views < 0 ||
         rpm < 0
-    ) {
+    ){
 
         result.innerHTML =
             "⚠️ Please enter valid numbers.";
@@ -1367,13 +1389,39 @@ function calculateIncome() {
 }
 
 
-// ==========================================
+// ================================
+// MAKE FUNCTIONS GLOBAL
+// ================================
+
+window.showMessage =
+    showMessage;
+
+window.updateSubscribers =
+    updateSubscribers;
+
+window.updateWatchHours =
+    updateWatchHours;
+
+window.updateIncome =
+    updateIncome;
+
+window.goDashboard =
+    goDashboard;
+
+window.toggleChallengeDay =
+    toggleChallengeDay;
+
+window.calculateIncome =
+    calculateIncome;
+
+
+// ================================
 // START APP
-// ==========================================
+// ================================
 
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    function(){
 
         updateDashboard();
 
