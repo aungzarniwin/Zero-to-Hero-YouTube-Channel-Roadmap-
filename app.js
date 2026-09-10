@@ -1,13 +1,12 @@
-```javascript
 // ==========================================
 // ZERO TO HERO
 // YOUTUBE MONEY ACADEMY
-// APP.JS V7
+// APP.JS V8
 // ==========================================
 
 
 // ==========================================
-// DASHBOARD DATA
+// LOAD SAVED DATA
 // ==========================================
 
 let subscribers =
@@ -24,17 +23,36 @@ let lessonsCompleted =
 
 
 // ==========================================
-// 30 DAY CHALLENGE DATA
+// LOAD CHALLENGE DATA
 // ==========================================
 
 let challengeDays = [];
 
 try {
 
-    challengeDays =
-        JSON.parse(
-            localStorage.getItem("challengeDays")
-        ) || [];
+    const saved =
+        localStorage.getItem("challengeDays");
+
+    if (saved) {
+
+        const parsed =
+            JSON.parse(saved);
+
+        if (Array.isArray(parsed)) {
+
+            challengeDays =
+                parsed
+                    .map(Number)
+                    .filter(
+                        day =>
+                            Number.isInteger(day) &&
+                            day >= 1 &&
+                            day <= 30
+                    );
+
+        }
+
+    }
 
 } catch (error) {
 
@@ -43,8 +61,21 @@ try {
 }
 
 
+// Remove duplicate days
+
+challengeDays =
+    [...new Set(challengeDays)];
+
+
+// Sort days
+
+challengeDays.sort(
+    (a, b) => a - b
+);
+
+
 // ==========================================
-// 30 CHALLENGE TASKS
+// CHALLENGE TASKS
 // ==========================================
 
 const challengeTasks = [
@@ -113,11 +144,10 @@ const challengeTasks = [
 
 
 // ==========================================
-// LESSON DATABASE
+// LESSONS
 // ==========================================
 
 const lessons = {
-
 
     "Start From Zero": {
 
@@ -469,7 +499,7 @@ const lessons = {
 
 
 // ==========================================
-// CALCULATE MONETIZATION PROGRESS
+// MONETIZATION PROGRESS
 // ==========================================
 
 function getMonetizationProgress() {
@@ -497,7 +527,7 @@ function getMonetizationProgress() {
 
 
 // ==========================================
-// CALCULATE LESSON PROGRESS
+// LESSON PROGRESS
 // ==========================================
 
 function getLessonProgress() {
@@ -513,7 +543,7 @@ function getLessonProgress() {
 
 
 // ==========================================
-// CALCULATE CHALLENGE PROGRESS
+// CHALLENGE PROGRESS
 // ==========================================
 
 function getChallengeProgress() {
@@ -529,204 +559,47 @@ function getChallengeProgress() {
 
 
 // ==========================================
-// UPDATE DASHBOARD
+// OVERALL PROGRESS
 // ==========================================
 
-function updateDashboard() {
+function getOverallProgress() {
 
-
-    // Subscribers
-
-    const subscriberElement =
-        document.getElementById(
-            "subscriberCount"
-        );
-
-    if (subscriberElement) {
-
-        subscriberElement.textContent =
-            subscribers.toLocaleString();
-
-    }
-
-
-    // Watch Hours
-
-    const watchElement =
-        document.getElementById(
-            "watchHours"
-        );
-
-    if (watchElement) {
-
-        watchElement.textContent =
-            watchHours.toLocaleString();
-
-    }
-
-
-    // Income
-
-    const incomeElement =
-        document.getElementById(
-            "monthlyIncome"
-        );
-
-    if (incomeElement) {
-
-        incomeElement.textContent =
-            "$" +
-            monthlyIncome.toFixed(2);
-
-    }
-
-
-    // ======================================
-    // MONETIZATION PROGRESS
-    // ======================================
-
-    const monetizationProgress =
+    const monetization =
         getMonetizationProgress();
 
-
-    const progressBar =
-        document.getElementById(
-            "progressBar"
-        );
-
-    const progressText =
-        document.getElementById(
-            "progressText"
-        );
-
-
-    if (progressBar) {
-
-        progressBar.style.width =
-            monetizationProgress + "%";
-
-    }
-
-
-    if (progressText) {
-
-        progressText.textContent =
-            monetizationProgress + "%";
-
-    }
-
-
-    // ======================================
-    // LESSON PROGRESS
-    // ======================================
-
-    const lessonElement =
-        document.getElementById(
-            "lessonProgress"
-        );
-
-
-    const lessonProgress =
+    const lesson =
         getLessonProgress();
 
-
-    if (lessonElement) {
-
-        lessonElement.textContent =
-            lessonProgress + "%";
-
-    }
-
-
-    // ======================================
-    // CHALLENGE
-    // ======================================
-
-    updateChallengeDashboard();
-
-
-    // ======================================
-    // OVERALL PROGRESS
-    // ======================================
-
-    updateOverallProgress();
-
-}
-
-
-// ==========================================
-// UPDATE CHALLENGE DASHBOARD
-// ==========================================
-
-function updateChallengeDashboard() {
-
-
-    const text =
-        document.getElementById(
-            "challengeProgressText"
-        );
-
-
-    const bar =
-        document.getElementById(
-            "challengeProgressBar"
-        );
-
-
-    const completed =
-        challengeDays.length;
-
-
-    const progress =
+    const challenge =
         getChallengeProgress();
 
 
-    if (text) {
+    const overall =
+        Math.round(
+            (
+                monetization +
+                lesson +
+                challenge
+            ) / 3
+        );
 
-        text.textContent =
-            completed +
-            " / 30";
 
-    }
-
-
-    if (bar) {
-
-        bar.style.width =
-            progress + "%";
-
-    }
+    return Math.min(
+        Math.max(overall, 0),
+        100
+    );
 
 }
 
 
 // ==========================================
-// UPDATE OVERALL PROGRESS
+// UPDATE OVERALL UI
 // ==========================================
 
 function updateOverallProgress() {
 
-
-    const monetizationProgress =
-        getMonetizationProgress();
-
-
-    const lessonProgress =
-        getLessonProgress();
-
-
-    const challengeProgress =
-        getChallengeProgress();
-
-
-    const overallProgress =
-        Math.round(
-            (
-                monetizationProgress +
-                lessonProgress +
-                challengeProgress
-            ) / 3
-        );
+    const overall =
+        getOverallProgress();
 
 
     const text =
@@ -744,7 +617,7 @@ function updateOverallProgress() {
     if (text) {
 
         text.textContent =
-            overallProgress + "%";
+            overall + "%";
 
     }
 
@@ -752,9 +625,175 @@ function updateOverallProgress() {
     if (bar) {
 
         bar.style.width =
-            overallProgress + "%";
+            overall + "%";
 
     }
+
+}
+
+
+// ==========================================
+// UPDATE CHALLENGE UI
+// ==========================================
+
+function updateChallengeDashboard() {
+
+    const completed =
+        challengeDays.length;
+
+
+    const progress =
+        getChallengeProgress();
+
+
+    const text =
+        document.getElementById(
+            "challengeProgressText"
+        );
+
+
+    const bar =
+        document.getElementById(
+            "challengeProgressBar"
+        );
+
+
+    if (text) {
+
+        text.textContent =
+            completed + " / 30";
+
+    }
+
+
+    if (bar) {
+
+        bar.style.width =
+            progress + "%";
+
+    }
+
+}
+
+
+// ==========================================
+// UPDATE DASHBOARD
+// ==========================================
+
+function updateDashboard() {
+
+
+    const subscriberElement =
+        document.getElementById(
+            "subscriberCount"
+        );
+
+
+    const watchElement =
+        document.getElementById(
+            "watchHours"
+        );
+
+
+    const incomeElement =
+        document.getElementById(
+            "monthlyIncome"
+        );
+
+
+    const lessonElement =
+        document.getElementById(
+            "lessonProgress"
+        );
+
+
+    // Subscribers
+
+    if (subscriberElement) {
+
+        subscriberElement.textContent =
+            subscribers.toLocaleString();
+
+    }
+
+
+    // Watch Hours
+
+    if (watchElement) {
+
+        watchElement.textContent =
+            watchHours.toLocaleString();
+
+    }
+
+
+    // Income
+
+    if (incomeElement) {
+
+        incomeElement.textContent =
+            "$" +
+            monthlyIncome.toFixed(2);
+
+    }
+
+
+    // Monetization
+
+    const monetization =
+        getMonetizationProgress();
+
+
+    const progressText =
+        document.getElementById(
+            "progressText"
+        );
+
+
+    const progressBar =
+        document.getElementById(
+            "progressBar"
+        );
+
+
+    if (progressText) {
+
+        progressText.textContent =
+            monetization + "%";
+
+    }
+
+
+    if (progressBar) {
+
+        progressBar.style.width =
+            monetization + "%";
+
+    }
+
+
+    // Lesson
+
+    const lesson =
+        getLessonProgress();
+
+
+    if (lessonElement) {
+
+        lessonElement.textContent =
+            lesson + "%";
+
+    }
+
+
+    // Challenge
+
+    updateChallengeDashboard();
+
+
+    // Overall
+
+    updateOverallProgress();
 
 }
 
@@ -764,7 +803,6 @@ function updateOverallProgress() {
 // ==========================================
 
 function updateSubscribers() {
-
 
     const value =
         prompt(
@@ -819,7 +857,6 @@ function updateSubscribers() {
 
 function updateWatchHours() {
 
-
     const value =
         prompt(
             "Enter your current watch hours:"
@@ -872,7 +909,6 @@ function updateWatchHours() {
 // ==========================================
 
 function updateIncome() {
-
 
     const value =
         prompt(
@@ -927,7 +963,6 @@ function updateIncome() {
 
 function showMessage(title) {
 
-
     const lesson =
         lessons[title];
 
@@ -943,7 +978,7 @@ function showMessage(title) {
     }
 
 
-    // Count lesson progress
+    // Count lesson
 
     if (
         title !== "30 Day Challenge"
@@ -964,16 +999,16 @@ function showMessage(title) {
     }
 
 
-    const oldContent =
+    const main =
         document.querySelector(
             "main.container"
         );
 
 
-    if (!oldContent) return;
+    if (!main) return;
 
 
-    oldContent.innerHTML = `
+    main.innerHTML = `
 
         <button
             class="back-button"
@@ -990,11 +1025,9 @@ function showMessage(title) {
                 ${lesson.icon}
             </div>
 
-
             <h2>
                 ${lesson.title}
             </h2>
-
 
             <div class="lesson-content">
 
@@ -1036,11 +1069,10 @@ function goDashboard() {
 
 
 // ==========================================
-// RENDER 30-DAY CHALLENGE
+// RENDER CHALLENGE
 // ==========================================
 
 function renderChallenge() {
-
 
     const container =
         document.getElementById(
@@ -1072,7 +1104,6 @@ function renderChallenge() {
                 🔥 Challenge Progress
             </strong>
 
-
             <div style="
                 margin-top:10px;
                 height:14px;
@@ -1090,7 +1121,6 @@ function renderChallenge() {
 
             </div>
 
-
             <p style="
                 margin-top:10px;
                 font-weight:bold;
@@ -1103,7 +1133,6 @@ function renderChallenge() {
 
         </div>
 
-
         <div class="challenge-list">
 
     `;
@@ -1111,7 +1140,6 @@ function renderChallenge() {
 
     challengeTasks.forEach(
         function(task, index) {
-
 
             const day =
                 index + 1;
@@ -1132,7 +1160,6 @@ function renderChallenge() {
                         onchange="toggleChallengeDay(${day})"
                     >
 
-
                     <label for="day${day}">
 
                         <strong>
@@ -1152,9 +1179,7 @@ function renderChallenge() {
 
 
     html += `
-
         </div>
-
     `;
 
 
@@ -1185,11 +1210,10 @@ function renderChallenge() {
 
 
 // ==========================================
-// TOGGLE CHALLENGE DAY
+// TOGGLE CHALLENGE
 // ==========================================
 
 function toggleChallengeDay(day) {
-
 
     const numericDay =
         Number(day);
@@ -1217,13 +1241,9 @@ function toggleChallengeDay(day) {
     }
 
 
-    // Remove duplicates
-
     challengeDays =
         [...new Set(challengeDays)];
 
-
-    // Sort
 
     challengeDays.sort(
         function(a, b) {
@@ -1234,7 +1254,7 @@ function toggleChallengeDay(day) {
     );
 
 
-    // Save
+    // SAVE
 
     localStorage.setItem(
         "challengeDays",
@@ -1244,12 +1264,12 @@ function toggleChallengeDay(day) {
     );
 
 
-    // Update challenge screen
+    // UPDATE CURRENT CHALLENGE SCREEN
 
     renderChallenge();
 
 
-    // Update dashboard values
+    // UPDATE DASHBOARD
 
     updateChallengeDashboard();
 
@@ -1263,7 +1283,6 @@ function toggleChallengeDay(day) {
 // ==========================================
 
 function calculateIncome() {
-
 
     const viewsElement =
         document.getElementById(
@@ -1360,4 +1379,3 @@ document.addEventListener(
 
     }
 );
-```
