@@ -1,31 +1,34 @@
-// ================================
-// ZERO TO HERO - YOUTUBE MONEY
-// App JavaScript
-// ================================
+```javascript
+// ==========================================
+// ZERO TO HERO - YOUTUBE MONEY ACADEMY
+// V2 APP.JS
+// ==========================================
 
-// YouTube Progress Data
 let subscribers = Number(localStorage.getItem("subscribers")) || 0;
 let watchHours = Number(localStorage.getItem("watchHours")) || 0;
 
 
-// ================================
-// UPDATE DASHBOARD
-// ================================
+// ==========================================
+// DASHBOARD
+// ==========================================
 
 function updateDashboard() {
 
-    // Subscriber display
-    document.getElementById("subscriberCount").textContent =
-        subscribers.toLocaleString();
+    const subscriberElement =
+        document.getElementById("subscriberCount");
 
-    // Watch Hours display
-    document.getElementById("watchHours").textContent =
-        watchHours.toLocaleString();
+    const watchElement =
+        document.getElementById("watchHours");
 
-    // Monetization progress
-    // Example target:
-    // 1,000 Subscribers
-    // 4,000 Watch Hours
+    if (subscriberElement) {
+        subscriberElement.textContent =
+            subscribers.toLocaleString();
+    }
+
+    if (watchElement) {
+        watchElement.textContent =
+            watchHours.toLocaleString();
+    }
 
     const subscriberProgress =
         Math.min((subscribers / 1000) * 100, 100);
@@ -34,38 +37,46 @@ function updateDashboard() {
         Math.min((watchHours / 4000) * 100, 100);
 
     const progress =
-        Math.round((subscriberProgress + watchProgress) / 2);
+        Math.round(
+            (subscriberProgress + watchProgress) / 2
+        );
 
-    document.getElementById("progressBar").style.width =
-        progress + "%";
+    const bar =
+        document.getElementById("progressBar");
 
-    document.getElementById("progressText").textContent =
-        progress + "%";
+    const text =
+        document.getElementById("progressText");
+
+    if (bar) {
+        bar.style.width = progress + "%";
+    }
+
+    if (text) {
+        text.textContent = progress + "%";
+    }
 }
 
 
-// ================================
+// ==========================================
 // UPDATE SUBSCRIBERS
-// ================================
+// ==========================================
 
 function updateSubscribers() {
 
-    let value = prompt(
+    const value = prompt(
         "Enter your current subscribers:"
     );
 
     if (value === null) return;
 
-    value = Number(value);
+    const number = Number(value);
 
-    if (isNaN(value) || value < 0) {
-
+    if (isNaN(number) || number < 0) {
         alert("Please enter a valid number.");
-
         return;
     }
 
-    subscribers = value;
+    subscribers = number;
 
     localStorage.setItem(
         "subscribers",
@@ -76,28 +87,26 @@ function updateSubscribers() {
 }
 
 
-// ================================
+// ==========================================
 // UPDATE WATCH HOURS
-// ================================
+// ==========================================
 
 function updateWatchHours() {
 
-    let value = prompt(
+    const value = prompt(
         "Enter your current watch hours:"
     );
 
     if (value === null) return;
 
-    value = Number(value);
+    const number = Number(value);
 
-    if (isNaN(value) || value < 0) {
-
+    if (isNaN(number) || number < 0) {
         alert("Please enter a valid number.");
-
         return;
     }
 
-    watchHours = value;
+    watchHours = number;
 
     localStorage.setItem(
         "watchHours",
@@ -108,190 +117,406 @@ function updateWatchHours() {
 }
 
 
-// ================================
-// LESSON SYSTEM
-// ================================
+// ==========================================
+// LESSON DATA
+// ==========================================
+
+const lessons = {
+
+    "Start From Zero": {
+
+        icon: "🚀",
+
+        title: "Start From Zero",
+
+        content: `
+            <h3>🚀 Start Your YouTube Journey</h3>
+
+            <p>
+            You don't need thousands of subscribers
+            to start YouTube. You only need to start.
+            </p>
+
+            <h4>Step 1 — Choose Your Niche</h4>
+            <p>
+            Pick a topic you can consistently create
+            content about.
+            </p>
+
+            <ul>
+                <li>Music</li>
+                <li>Education</li>
+                <li>Entertainment</li>
+                <li>Technology</li>
+                <li>Business</li>
+                <li>Gaming</li>
+            </ul>
+
+            <h4>Step 2 — Create Your Channel</h4>
+            <p>
+            Choose a memorable channel name and create
+            your profile picture, banner and description.
+            </p>
+
+            <h4>Step 3 — Upload Your First Video</h4>
+            <p>
+            Don't wait for perfection. Publish,
+            analyze the results and improve.
+            </p>
+
+            <div class="lesson-tip">
+            💡 Tip: Your first 10 videos are mainly
+            for learning.
+            </div>
+        `
+    },
+
+
+    "Grow Your Channel": {
+
+        icon: "📈",
+
+        title: "Grow Your Channel",
+
+        content: `
+            <h3>📈 Grow Your YouTube Channel</h3>
+
+            <p>
+            Channel growth comes from creating videos
+            people want to click and watch.
+            </p>
+
+            <h4>1. CTR</h4>
+            <p>
+            Improve your title and thumbnail so viewers
+            want to click.
+            </p>
+
+            <h4>2. Retention</h4>
+            <p>
+            Keep viewers interested from the first few
+            seconds until the end.
+            </p>
+
+            <h4>3. Watch Time</h4>
+            <p>
+            Longer useful viewing sessions can help
+            your channel build watch time.
+            </p>
+
+            <h4>4. Consistency</h4>
+            <p>
+            Create a realistic upload schedule and
+            follow it consistently.
+            </p>
+
+            <div class="lesson-tip">
+            🔥 Focus on CTR + Retention + Value.
+            </div>
+        `
+    },
+
+
+    "Monetization": {
+
+        icon: "💰",
+
+        title: "YouTube Monetization",
+
+        content: `
+            <h3>💰 YouTube Monetization</h3>
+
+            <p>
+            YouTube creators can build multiple income
+            streams when their channel and content
+            qualify.
+            </p>
+
+            <h4>Main Income Opportunities</h4>
+
+            <ul>
+                <li>📺 Advertising</li>
+                <li>⭐ Channel Memberships</li>
+                <li>💚 Super Thanks</li>
+                <li>🔴 Live Stream Features</li>
+                <li>🤝 Sponsorships</li>
+                <li>🔗 Affiliate Marketing</li>
+                <li>📚 Digital Products</li>
+            </ul>
+
+            <div class="lesson-tip">
+            💡 Don't depend on only one income source.
+            </div>
+        `
+    },
+
+
+    "Income Calculator": {
+
+        icon: "🧮",
+
+        title: "YouTube Income Calculator",
+
+        content: `
+            <h3>🧮 YouTube Income Calculator</h3>
+
+            <p>
+            Estimate possible advertising revenue
+            using views and RPM.
+            </p>
+
+            <label>Monthly Views</label>
+
+            <input
+                id="calcViews"
+                type="number"
+                placeholder="100000"
+            >
+
+            <label>RPM ($)</label>
+
+            <input
+                id="calcRPM"
+                type="number"
+                step="0.01"
+                placeholder="1.00"
+            >
+
+            <button onclick="calculateIncome()">
+                Calculate Income
+            </button>
+
+            <div
+                id="incomeResult"
+                class="result-box">
+            </div>
+        `
+    },
+
+
+    "AI YouTube Tools": {
+
+        icon: "🤖",
+
+        title: "AI YouTube Tools",
+
+        content: `
+            <h3>🤖 AI YouTube Tools</h3>
+
+            <p>
+            AI can help you save time when planning
+            and producing YouTube content.
+            </p>
+
+            <h4>AI Content Workflow</h4>
+
+            <ol>
+                <li>💡 Generate video ideas</li>
+                <li>✍️ Create a script</li>
+                <li>🎯 Generate titles</li>
+                <li>📝 Write description</li>
+                <li>🏷️ Create keywords</li>
+                <li>🖼️ Create thumbnail prompts</li>
+            </ol>
+
+            <div class="lesson-tip">
+            💡 Use AI as a creative assistant,
+            not as a replacement for your judgment.
+            </div>
+        `
+    },
+
+
+    "30 Day Challenge": {
+
+        icon: "🔥",
+
+        title: "30-Day YouTube Challenge",
+
+        content: `
+            <h3>🔥 30-Day Challenge</h3>
+
+            <p>
+            Complete one important action every day.
+            </p>
+
+            <div class="challenge-list">
+
+                <p>✅ Day 1 — Choose your niche</p>
+                <p>⬜ Day 2 — Create channel</p>
+                <p>⬜ Day 3 — Create branding</p>
+                <p>⬜ Day 4 — Research competitors</p>
+                <p>⬜ Day 5 — Create 10 video ideas</p>
+                <p>⬜ Day 6 — Write first script</p>
+                <p>⬜ Day 7 — Create first video</p>
+                <p>⬜ Day 8 — Create thumbnail</p>
+                <p>⬜ Day 9 — Upload video</p>
+                <p>⬜ Day 10 — Study analytics</p>
+                <p>⬜ Day 11 — Improve title</p>
+                <p>⬜ Day 12 — Improve thumbnail</p>
+                <p>⬜ Day 13 — Create next video</p>
+                <p>⬜ Day 14 — Upload</p>
+                <p>⬜ Day 15 — Study retention</p>
+                <p>⬜ Day 16 — Create Short</p>
+                <p>⬜ Day 17 — Create another Short</p>
+                <p>⬜ Day 18 — Research keywords</p>
+                <p>⬜ Day 19 — Create video</p>
+                <p>⬜ Day 20 — Upload</p>
+                <p>⬜ Day 21 — Analyze results</p>
+                <p>⬜ Day 22 — Improve hook</p>
+                <p>⬜ Day 23 — Create video</p>
+                <p>⬜ Day 24 — Upload</p>
+                <p>⬜ Day 25 — Improve thumbnail</p>
+                <p>⬜ Day 26 — Create video</p>
+                <p>⬜ Day 27 — Upload</p>
+                <p>⬜ Day 28 — Analyze channel</p>
+                <p>⬜ Day 29 — Plan next month</p>
+                <p>⬜ Day 30 — 🚀 Review your progress</p>
+
+            </div>
+        `
+    }
+};
+
+
+// ==========================================
+// OPEN LESSON
+// ==========================================
 
 function showMessage(title) {
 
-    const lessons = {
+    const lesson = lessons[title];
 
-        "Start From Zero":
-        "🚀 START FROM ZERO\n\n" +
-        "1. Create your YouTube channel\n" +
-        "2. Choose a profitable niche\n" +
-        "3. Create channel name\n" +
-        "4. Create logo & banner\n" +
-        "5. Upload your first video\n\n" +
-        "Your journey starts today!",
-
-
-        "Grow Your Channel":
-        "📈 GROW YOUR CHANNEL\n\n" +
-        "Focus on:\n\n" +
-        "• CTR\n" +
-        "• Watch Time\n" +
-        "• Audience Retention\n" +
-        "• Thumbnail\n" +
-        "• Title\n" +
-        "• SEO\n" +
-        "• Consistent Uploads",
-
-
-        "Monetization":
-        "💰 YOUTUBE MONETIZATION\n\n" +
-        "Learn about:\n\n" +
-        "• YouTube Partner Program\n" +
-        "• Ad Revenue\n" +
-        "• Memberships\n" +
-        "• Super Thanks\n" +
-        "• Sponsorships\n" +
-        "• Affiliate Marketing\n" +
-        "• Digital Products",
-
-
-        "Income Calculator":
-        "🧮 INCOME CALCULATOR\n\n" +
-        "Use the calculator to estimate\n" +
-        "your possible YouTube income\n" +
-        "based on views and RPM.",
-
-
-        "AI YouTube Tools":
-        "🤖 AI YOUTUBE TOOLS\n\n" +
-        "You will learn how to use AI for:\n\n" +
-        "• Video Ideas\n" +
-        "• Titles\n" +
-        "• Descriptions\n" +
-        "• Scripts\n" +
-        "• Thumbnail Prompts\n" +
-        "• Content Planning",
-
-
-        "30 Day Challenge":
-        "🔥 30-DAY CHALLENGE\n\n" +
-        "Day 1 → Create Channel\n" +
-        "Day 2 → Choose Niche\n" +
-        "Day 3 → Channel Branding\n" +
-        "Day 4 → First Video Idea\n" +
-        "Day 5 → Thumbnail\n" +
-        "Day 6 → Upload\n" +
-        "Day 7 → Analyze\n\n" +
-        "Continue until Day 30!"
-    };
-
-
-    if (lessons[title]) {
-
-        alert(lessons[title]);
-
-    } else {
-
-        alert(
-            "🚀 " +
-            title +
-            "\n\n" +
-            "This lesson will be available soon."
-        );
+    if (!lesson) {
+        alert("Lesson coming soon!");
+        return;
     }
+
+    const oldContent =
+        document.querySelector("main.container");
+
+    if (!oldContent) return;
+
+    oldContent.innerHTML = `
+
+        <button
+            class="back-button"
+            onclick="location.reload()">
+            ← Back to Dashboard
+        </button>
+
+        <div class="lesson-page">
+
+            <div class="lesson-icon">
+                ${lesson.icon}
+            </div>
+
+            <h2>
+                ${lesson.title}
+            </h2>
+
+            <div class="lesson-content">
+                ${lesson.content}
+            </div>
+
+        </div>
+    `;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 
-// ================================
+// ==========================================
 // INCOME CALCULATOR
-// ================================
+// ==========================================
 
 function calculateIncome() {
 
-    let views = prompt(
-        "Enter monthly views:"
-    );
+    const views =
+        Number(
+            document.getElementById("calcViews").value
+        );
 
-    if (views === null) return;
+    const rpm =
+        Number(
+            document.getElementById("calcRPM").value
+        );
 
-    views = Number(views);
+    const result =
+        document.getElementById("incomeResult");
 
-    if (isNaN(views) || views < 0) {
+    if (
+        isNaN(views) ||
+        isNaN(rpm) ||
+        views < 0 ||
+        rpm < 0
+    ) {
 
-        alert("Please enter a valid number.");
-
-        return;
-    }
-
-
-    let rpm = prompt(
-        "Enter RPM ($):",
-        "1"
-    );
-
-    if (rpm === null) return;
-
-    rpm = Number(rpm);
-
-    if (isNaN(rpm) || rpm < 0) {
-
-        alert("Please enter a valid RPM.");
+        result.innerHTML =
+            "⚠️ Please enter valid numbers.";
 
         return;
     }
-
 
     const income =
         (views / 1000) * rpm;
 
+    result.innerHTML = `
 
-    alert(
-        "💰 ESTIMATED YOUTUBE INCOME\n\n" +
-        "Monthly Views: " +
-        views.toLocaleString() +
-        "\n\nRPM: $" +
-        rpm.toFixed(2) +
-        "\n\nEstimated Revenue: $" +
-        income.toFixed(2)
-    );
+        <strong>
+        Estimated Revenue
+        </strong>
+
+        <br><br>
+
+        👁️ Views:
+        ${views.toLocaleString()}
+
+        <br>
+
+        💵 RPM:
+        $${rpm.toFixed(2)}
+
+        <br><br>
+
+        <strong>
+        💰 $${income.toFixed(2)}
+        </strong>
+    `;
 }
 
 
-// ================================
-// INCOME STREAM LESSONS
-// ================================
+// ==========================================
+// INCOME STREAMS
+// ==========================================
 
 function showIncome(title) {
 
     const incomeLessons = {
 
         "Ad Revenue":
-        "📺 AD REVENUE\n\n" +
-        "You can earn money from eligible\n" +
-        "advertisements shown on your videos.\n\n" +
-        "Revenue depends on views, audience,\n" +
-        "content and RPM.",
-
+        "📺 Ad Revenue\n\n" +
+        "Earn advertising revenue when your eligible " +
+        "content generates monetized views.",
 
         "Affiliate Marketing":
-        "🔗 AFFILIATE MARKETING\n\n" +
-        "Recommend useful products or services\n" +
-        "and earn a commission when viewers\n" +
-        "make qualifying purchases.",
-
+        "🔗 Affiliate Marketing\n\n" +
+        "Recommend useful products and earn commissions " +
+        "from qualifying purchases.",
 
         "Sponsorship":
-        "🤝 SPONSORSHIP\n\n" +
-        "Brands can pay creators to promote\n" +
-        "their products or services.\n\n" +
-        "Build audience + trust first.",
-
+        "🤝 Sponsorship\n\n" +
+        "Brands may pay creators to promote products " +
+        "or services.",
 
         "Digital Products":
-        "📚 DIGITAL PRODUCTS\n\n" +
-        "You can create:\n\n" +
-        "• E-books\n" +
-        "• Courses\n" +
-        "• Templates\n" +
-        "• Guides\n" +
-        "• Digital tools"
+        "📚 Digital Products\n\n" +
+        "Create and sell e-books, courses, templates, " +
+        "guides or digital tools."
     };
-
 
     if (incomeLessons[title]) {
 
@@ -304,9 +529,9 @@ function showIncome(title) {
 }
 
 
-// ================================
-// START APP
-// ================================
+// ==========================================
+// INITIALIZE
+// ==========================================
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -316,3 +541,4 @@ document.addEventListener(
 
     }
 );
+```
