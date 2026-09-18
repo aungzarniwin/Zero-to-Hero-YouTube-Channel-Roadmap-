@@ -4,21 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#111827">
-<title>Zero to Hero Creator OS</title>
+<title>Zero to Hero YouTube Creator OS</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family:Arial,"Noto Sans Myanmar",sans-serif;
-  background:#f4f6f8;
+  background:#f3f4f6;
   color:#172033;
-  line-height:1.55;
+  line-height:1.55
 }
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-
 :root{
   --dark:#111827;
   --dark2:#1f2937;
@@ -28,59 +26,43 @@ a{text-decoration:none;color:inherit}
   --yellow:#d97706;
   --purple:#7c3aed;
   --gray:#64748b;
-  --light:#f8fafc;
   --border:#e5e7eb;
   --white:#fff;
-  --shadow:0 8px 28px rgba(15,23,42,.08);
+  --shadow:0 8px 28px rgba(15,23,42,.08)
 }
-
 .header{
-  background:linear-gradient(135deg,#111827,#1f2937 55%,#374151);
-  color:white;
-  padding:22px 18px;
-  position:relative;
-  overflow:hidden;
-}
-.header:after{
-  content:"";
-  position:absolute;
-  width:220px;height:220px;
-  right:-80px;top:-100px;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
+  background:linear-gradient(135deg,#111827,#1f2937,#374151);
+  color:#fff;
+  padding:21px 15px
 }
 .header-inner{
   max-width:1250px;
-  margin:auto;
-  position:relative;
-  z-index:2;
+  margin:auto
 }
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:12px
 }
 .logo{
-  width:48px;height:48px;
+  width:49px;
+  height:49px;
   border-radius:14px;
   display:grid;
   place-items:center;
   background:linear-gradient(135deg,#ef4444,#f97316);
-  font-size:25px;
-  box-shadow:0 8px 20px rgba(0,0,0,.2);
+  font-size:25px
 }
 .brand h1{font-size:22px}
 .brand p{font-size:12px;color:#cbd5e1}
 .level{
-  margin-top:18px;
-  display:inline-flex;
-  padding:7px 12px;
-  border-radius:30px;
+  display:inline-block;
+  margin-top:16px;
+  padding:6px 11px;
+  border-radius:20px;
   background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.12);
-  font-size:12px;
+  font-size:11px
 }
-
 .nav{
   position:sticky;
   top:0;
@@ -88,407 +70,347 @@ a{text-decoration:none;color:inherit}
   background:#fff;
   border-bottom:1px solid var(--border);
   overflow-x:auto;
-  white-space:nowrap;
+  white-space:nowrap
 }
 .nav-inner{
   max-width:1250px;
   margin:auto;
   display:flex;
-  gap:5px;
-  padding:8px 12px;
+  gap:4px;
+  padding:7px 10px
 }
 .nav button{
   border:0;
   background:transparent;
-  padding:9px 12px;
+  padding:9px 11px;
   border-radius:9px;
-  color:#475569;
-  font-size:13px;
+  font-size:12px;
+  color:#475569
 }
-.nav button:hover,.nav button.active{
+.nav button.active,.nav button:hover{
   background:#111827;
-  color:white;
+  color:#fff
 }
-
 .container{
   max-width:1250px;
   margin:auto;
-  padding:20px 14px 60px;
+  padding:18px 13px 50px
 }
 .section{display:none}
 .section.active{display:block}
-
 .hero{
-  background:white;
+  background:#fff;
   border:1px solid var(--border);
   border-radius:18px;
-  padding:22px;
+  padding:21px;
   box-shadow:var(--shadow);
-  margin-bottom:18px;
+  margin-bottom:16px
 }
-.hero h2{font-size:25px;margin-bottom:5px}
-.hero p{color:var(--gray);font-size:14px}
+.hero h2{font-size:24px}
+.hero p{
+  color:var(--gray);
+  font-size:13px;
+  margin-top:5px
+}
 .hero-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:9px;
-  margin-top:17px;
+  gap:8px;
+  margin-top:15px
 }
-
 .btn{
   border:0;
-  border-radius:10px;
-  padding:10px 15px;
-  font-weight:700;
-  font-size:13px;
+  border-radius:9px;
+  padding:10px 14px;
+  font-size:12px;
+  font-weight:700
 }
-.btn-dark{background:#111827;color:white}
-.btn-red{background:#dc2626;color:white}
-.btn-green{background:#059669;color:white}
+.btn-dark{background:#111827;color:#fff}
+.btn-red{background:#dc2626;color:#fff}
+.btn-green{background:#059669;color:#fff}
 .btn-light{background:#eef2f7;color:#334155}
-
 .grid{
   display:grid;
-  gap:14px;
+  gap:13px
 }
 .stats{
   grid-template-columns:repeat(4,1fr);
-  margin-bottom:18px;
+  margin-bottom:15px
 }
-.card{
-  background:white;
+.card,.tool{
+  background:#fff;
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:17px;
-  box-shadow:var(--shadow);
+  border-radius:15px;
+  padding:16px;
+  box-shadow:var(--shadow)
 }
 .stat-label{
-  color:#64748b;
-  font-size:12px;
+  font-size:11px;
+  color:#64748b
 }
 .stat-value{
-  font-size:25px;
+  font-size:24px;
   font-weight:800;
-  margin:4px 0;
+  margin:3px 0
 }
 .stat-note{
-  font-size:11px;
-  color:#94a3b8;
+  font-size:10px;
+  color:#94a3b8
 }
-
-.two{grid-template-columns:1.3fr .7fr}
+.two{grid-template-columns:1.2fr .8fr}
 .three{grid-template-columns:repeat(3,1fr)}
 .four{grid-template-columns:repeat(4,1fr)}
-
-.card h3{
-  font-size:16px;
-  margin-bottom:6px;
-}
-.card h4{
-  font-size:14px;
-  margin-bottom:4px;
+.card h3,.tool h3{
+  font-size:15px;
+  margin-bottom:5px
 }
 .muted{
   color:#64748b;
-  font-size:13px;
+  font-size:12px
 }
 .small{
-  font-size:11px;
   color:#64748b;
+  font-size:10px
 }
-
 .mission{
   display:flex;
-  gap:11px;
-  align-items:flex-start;
-  padding:11px 0;
+  gap:9px;
+  padding:10px 0;
   border-bottom:1px solid #eef2f6;
+  font-size:12px
 }
 .mission:last-child{border-bottom:0}
 .mission input{
-  width:18px;height:18px;
-  accent-color:#059669;
-  margin-top:3px;
+  width:17px;
+  height:17px;
+  accent-color:#059669
 }
-
+.kpi{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:12px
+}
 .progress{
-  height:9px;
+  height:8px;
   background:#e5e7eb;
   border-radius:30px;
   overflow:hidden;
-  margin-top:9px;
+  margin-top:6px
 }
 .progress span{
   display:block;
   height:100%;
-  border-radius:30px;
   background:linear-gradient(90deg,#dc2626,#f97316);
+  border-radius:30px
 }
-
-.platform{
-  min-height:160px;
-  position:relative;
-  overflow:hidden;
-}
-.platform .emoji{font-size:28px}
-.platform p{margin:7px 0 12px}
-.platform button{
-  border:0;
-  background:#111827;
-  color:white;
-  border-radius:8px;
-  padding:8px 11px;
-  font-size:12px;
-}
-
-.tag{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:7px;
-  background:#f1f5f9;
-  color:#475569;
-  font-size:11px;
-  margin:3px;
-}
-
-.roadmap{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:10px;
-}
-.step{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:15px;
-  min-height:145px;
-}
-.step .num{
-  width:31px;height:31px;
-  border-radius:9px;
-  background:#111827;
-  color:white;
-  display:grid;
-  place-items:center;
-  font-weight:800;
-  margin-bottom:9px;
-}
-.step h3{font-size:14px}
-.step p{font-size:11px;color:#64748b;margin-top:5px}
-
 .lesson{
+  background:#fff;
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:15px;
-  background:white;
-  margin-bottom:10px;
+  border-radius:12px;
+  padding:13px;
+  margin-bottom:9px
 }
 .lesson-top{
   display:flex;
   justify-content:space-between;
-  gap:10px;
-}
-.lesson-title{
-  font-weight:800;
-  font-size:14px;
+  gap:10px
 }
 .lesson-number{
-  font-size:11px;
   color:#94a3b8;
+  font-size:10px
+}
+.lesson-title{
+  font-size:13px;
+  font-weight:800
+}
+.lesson-desc{
+  color:#64748b;
+  font-size:11px;
+  margin-top:3px
 }
 .lesson-body{
   display:none;
-  margin-top:13px;
   border-top:1px solid var(--border);
-  padding-top:13px;
+  margin-top:11px;
+  padding-top:11px
 }
 .lesson.open .lesson-body{display:block}
-.lesson p,.lesson li{
-  font-size:13px;
-  color:#475569;
-}
-.lesson ul{padding-left:20px;margin-top:7px}
-.lesson-section{
+.lesson-box{
   background:#f8fafc;
-  border-radius:10px;
-  padding:11px;
-  margin-top:9px;
+  padding:10px;
+  border-radius:9px;
+  margin-bottom:8px
 }
-.lesson-section strong{font-size:12px;color:#172033}
-
+.lesson-box strong{
+  font-size:11px
+}
+.lesson-box p,.lesson-box li{
+  font-size:11px;
+  color:#475569
+}
+.lesson-box ul{
+  padding-left:18px;
+  margin-top:5px
+}
+.tag{
+  display:inline-block;
+  padding:5px 8px;
+  background:#f1f5f9;
+  color:#475569;
+  border-radius:7px;
+  font-size:10px;
+  margin:3px
+}
 .form-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  gap:11px
 }
 .field label{
   display:block;
-  font-size:12px;
+  font-size:11px;
   font-weight:700;
-  margin-bottom:5px;
+  margin-bottom:5px
 }
 .field input,.field textarea,.field select{
   width:100%;
+  padding:9px 10px;
   border:1px solid #dbe1e8;
-  border-radius:9px;
-  padding:10px 11px;
+  border-radius:8px;
   outline:none;
-  background:white;
+  background:#fff
 }
-.field textarea{min-height:105px;resize:vertical}
-.field input:focus,.field textarea:focus,.field select:focus{
-  border-color:#64748b;
+.field textarea{
+  min-height:100px;
+  resize:vertical
 }
-
 .result{
-  margin-top:14px;
-  padding:15px;
   background:#f8fafc;
   border:1px solid var(--border);
-  border-radius:12px;
+  border-radius:11px;
+  padding:13px;
+  margin-top:12px
 }
-.result h4{margin-bottom:7px}
-
-.tool-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
+.result h4{
+  font-size:13px;
+  margin-bottom:6px
 }
-.tool-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:17px;
-  box-shadow:var(--shadow);
+.result li,.result p{
+  font-size:12px;
+  color:#475569
 }
-.tool-icon{font-size:26px;margin-bottom:7px}
-
 .checklist{
   display:grid;
-  gap:8px;
-  margin-top:10px;
+  gap:7px;
+  margin-top:9px
 }
-.check-item{
-  padding:10px;
+.check{
   background:#f8fafc;
-  border-radius:9px;
-  font-size:12px;
+  border-radius:8px;
+  padding:9px;
+  font-size:11px
 }
-
 .alert{
-  padding:13px;
-  border-radius:11px;
+  margin-top:10px;
+  padding:11px;
+  border-radius:9px;
   background:#fff7ed;
   border:1px solid #fed7aa;
   color:#9a3412;
-  font-size:12px;
-  margin-top:12px;
+  font-size:11px
 }
-
 .good{
-  padding:13px;
-  border-radius:11px;
+  margin-top:10px;
+  padding:11px;
+  border-radius:9px;
   background:#ecfdf5;
   border:1px solid #a7f3d0;
   color:#065f46;
-  font-size:12px;
-  margin-top:12px;
+  font-size:11px
 }
-
-.kpi{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:11px;
+.roadmap{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:9px
 }
-.kpi strong{font-size:13px}
-.kpi span{font-size:12px;color:#64748b}
-
+.step{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:13px;
+  min-height:135px
+}
+.step-num{
+  width:29px;
+  height:29px;
+  display:grid;
+  place-items:center;
+  background:#111827;
+  color:#fff;
+  border-radius:8px;
+  font-weight:800;
+  font-size:11px;
+  margin-bottom:8px
+}
+.step h3{font-size:13px}
+.step p{
+  font-size:10px;
+  color:#64748b;
+  margin-top:4px
+}
 .table-wrap{overflow-x:auto}
 table{
   width:100%;
   border-collapse:collapse;
-  font-size:12px;
+  font-size:11px
 }
 th,td{
-  padding:10px 8px;
-  border-bottom:1px solid var(--border);
   text-align:left;
+  padding:9px;
+  border-bottom:1px solid var(--border)
 }
 th{background:#f8fafc}
-
 .footer{
   text-align:center;
   color:#94a3b8;
-  font-size:11px;
-  padding:25px 10px;
+  font-size:10px;
+  padding:25px 10px
 }
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.65);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  z-index:100;
-}
-.modal.show{display:flex}
-.modal-box{
-  width:min(650px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:white;
-  border-radius:18px;
-  padding:20px;
-}
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-.close{
-  width:34px;height:34px;
-  border:0;
-  border-radius:9px;
-  background:#f1f5f9;
-}
-
 .toast{
   position:fixed;
-  bottom:20px;
   left:50%;
-  transform:translateX(-50%) translateY(100px);
+  bottom:20px;
+  transform:translate(-50%,100px);
   background:#111827;
-  color:white;
-  padding:11px 15px;
-  border-radius:10px;
-  font-size:12px;
-  z-index:200;
-  transition:.25s;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:9px;
+  font-size:11px;
+  z-index:100;
+  transition:.25s
 }
-.toast.show{transform:translateX(-50%) translateY(0)}
-
+.toast.show{
+  transform:translate(-50%,0)
+}
 @media(max-width:900px){
   .stats{grid-template-columns:repeat(2,1fr)}
   .two,.three,.four{grid-template-columns:1fr 1fr}
   .roadmap{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:600px){
-  .header{padding:18px 13px}
   .brand h1{font-size:18px}
-  .container{padding:13px 10px 45px}
-  .hero{padding:17px}
-  .hero h2{font-size:21px}
-  .stats,.two,.three,.four,.tool-grid,.form-grid{
-    grid-template-columns:1fr;
+  .container{padding:12px 9px 40px}
+  .hero{padding:16px}
+  .hero h2{font-size:20px}
+  .stats,.two,.three,.four,.form-grid{
+    grid-template-columns:1fr
   }
   .roadmap{grid-template-columns:1fr 1fr}
-  .nav-inner{padding:7px}
-  .nav button{font-size:11px;padding:8px 9px}
-  .card{padding:14px}
+  .nav button{
+    padding:8px 9px;
+    font-size:10px
+  }
 }
 </style>
 </head>
@@ -498,10 +420,10 @@ th{background:#f8fafc}
 <header class="header">
   <div class="header-inner">
     <div class="brand">
-      <div class="logo">🚀</div>
+      <div class="logo">▶️</div>
       <div>
-        <h1>Zero to Hero Creator OS</h1>
-        <p>YouTube • Facebook • TikTok • Creator Business</p>
+        <h1>Zero to Hero YouTube Creator OS</h1>
+        <p>YouTube Growth • Monetization • Creator Business</p>
       </div>
     </div>
     <div class="level" id="levelBadge">LEVEL 01 • ZERO</div>
@@ -512,12 +434,12 @@ th{background:#f8fafc}
   <div class="nav-inner">
     <button class="active" onclick="showSection('dashboard',this)">🏠 Dashboard</button>
     <button onclick="showSection('academy',this)">📚 Academy</button>
-    <button onclick="showSection('niche',this)">🎯 Niche</button>
+    <button onclick="showSection('strategy',this)">🎯 Strategy</button>
     <button onclick="showSection('roadmap',this)">🗺️ Roadmap</button>
-    <button onclick="showSection('platforms',this)">📱 Platforms</button>
-    <button onclick="showSection('recovery',this)">🚨 View Recovery</button>
     <button onclick="showSection('content',this)">💡 Content Lab</button>
     <button onclick="showSection('analytics',this)">📊 Analytics</button>
+    <button onclick="showSection('recovery',this)">🚨 View Recovery</button>
+    <button onclick="showSection('plan',this)">🗓️ 90 Day Plan</button>
     <button onclick="showSection('money',this)">💰 Money</button>
     <button onclick="showSection('coach',this)">🤖 AI Coach</button>
   </div>
@@ -528,127 +450,128 @@ th{background:#f8fafc}
 <!-- DASHBOARD -->
 <section id="dashboard" class="section active">
 
-  <div class="hero">
-    <h2>Creator Business ကို Zero ကနေ Hero အထိ တည်ဆောက်ပါ</h2>
-    <p>
-      Content တင်ရုံမဟုတ်ဘဲ Views → Audience → Monetization → Business
-      ဆိုတဲ့ System တစ်ခုလုံးကို တည်ဆောက်နိုင်အောင် လမ်းညွှန်ပေးမယ့် Creator OS
-    </p>
+<div class="hero">
+  <h2>🚀 YouTube Channel ကို Zero ကနေ Hero အထိ တည်ဆောက်ပါ</h2>
+  <p>
+    Video တင်ရုံမဟုတ်ဘဲ Niche → Content → Views → Audience →
+    Monetization → Creator Business ဆိုတဲ့ System တစ်ခုလုံးကို တည်ဆောက်ပါ
+  </p>
 
-    <div class="hero-actions">
-      <button class="btn btn-red" onclick="showSection('academy')">📚 သင်ခန်းစာစမယ်</button>
-      <button class="btn btn-dark" onclick="showSection('content')">💡 Content ရှာမယ်</button>
-      <button class="btn btn-light" onclick="showSection('recovery')">🚨 Views ကျနေတယ်</button>
-    </div>
+  <div class="hero-actions">
+    <button class="btn btn-red" onclick="showSection('academy')">📚 စတင်လေ့လာမယ်</button>
+    <button class="btn btn-dark" onclick="showSection('content')">💡 Content ရှာမယ်</button>
+    <button class="btn btn-light" onclick="showSection('recovery')">🚨 Views ကျနေတယ်</button>
+  </div>
+</div>
+
+<div class="grid stats">
+
+  <div class="card">
+    <div class="stat-label">TOTAL VIEWS</div>
+    <div class="stat-value" id="dashViews">0</div>
+    <div class="stat-note">စုစုပေါင်း Views</div>
   </div>
 
-  <div class="grid stats">
-    <div class="card">
-      <div class="stat-label">Total Views</div>
-      <div class="stat-value" id="dashViews">0</div>
-      <div class="stat-note">စုစုပေါင်း Views</div>
-    </div>
-    <div class="card">
-      <div class="stat-label">Followers</div>
-      <div class="stat-value" id="dashFollowers">0</div>
-      <div class="stat-note">Subscribers + Followers</div>
-    </div>
-    <div class="card">
-      <div class="stat-label">Published Content</div>
-      <div class="stat-value" id="dashContent">0</div>
-      <div class="stat-note">တင်ပြီး Content</div>
-    </div>
-    <div class="card">
-      <div class="stat-label">Monthly Income</div>
-      <div class="stat-value" id="dashIncome">$0</div>
-      <div class="stat-note">လစဉ်ဝင်ငွေ</div>
-    </div>
+  <div class="card">
+    <div class="stat-label">SUBSCRIBERS</div>
+    <div class="stat-value" id="dashSubs">0</div>
+    <div class="stat-note">Channel Subscribers</div>
   </div>
 
-  <div class="grid two">
-    <div class="card">
-      <h3>🎯 ဒီနေ့ Creator Mission</h3>
-      <p class="muted">နေ့တိုင်း အောက်ပါအချက်တွေကို ပြီးအောင်လုပ်ပါ</p>
-
-      <label class="mission">
-        <input type="checkbox" data-mission="research">
-        <span><b>Content Research</b><br><small>Audience လိုချင်တဲ့ Topic ၃ ခုရှာပါ</small></span>
-      </label>
-
-      <label class="mission">
-        <input type="checkbox" data-mission="content">
-        <span><b>Content Creation</b><br><small>အနည်းဆုံး Content ၁ ခု ပြင်ဆင်ပါ</small></span>
-      </label>
-
-      <label class="mission">
-        <input type="checkbox" data-mission="publish">
-        <span><b>Publish</b><br><small>သတ်မှတ်ထားတဲ့ Platform မှာ တင်ပါ</small></span>
-      </label>
-
-      <label class="mission">
-        <input type="checkbox" data-mission="analytics">
-        <span><b>Analytics Review</b><br><small>မနေ့က Content Performance ကိုကြည့်ပါ</small></span>
-      </label>
-    </div>
-
-    <div class="card">
-      <h3>❤️ Creator Health</h3>
-
-      <div class="kpi">
-        <strong>Content Quality</strong><span>80%</span>
-      </div>
-      <div class="progress"><span style="width:80%"></span></div>
-
-      <div class="kpi">
-        <strong>Consistency</strong><span>65%</span>
-      </div>
-      <div class="progress"><span style="width:65%"></span></div>
-
-      <div class="kpi">
-        <strong>Audience Engagement</strong><span>72%</span>
-      </div>
-      <div class="progress"><span style="width:72%"></span></div>
-
-      <div class="kpi">
-        <strong>Monetization Readiness</strong><span>45%</span>
-      </div>
-      <div class="progress"><span style="width:45%"></span></div>
-    </div>
+  <div class="card">
+    <div class="stat-label">VIDEOS</div>
+    <div class="stat-value" id="dashVideos">0</div>
+    <div class="stat-note">Published Videos</div>
   </div>
 
-  <div class="card" style="margin-top:14px">
-    <h3>📱 Platform Performance</h3>
-    <div class="grid three" style="margin-top:12px">
-
-      <div class="platform card">
-        <div class="emoji">▶️</div>
-        <h3>YouTube</h3>
-        <p class="muted">Long Video • Shorts • Live</p>
-        <span class="tag">Long-term</span>
-        <span class="tag">Search</span>
-        <button onclick="openPlatform('youtube')">Academy ဖွင့်မယ်</button>
-      </div>
-
-      <div class="platform card">
-        <div class="emoji">ⓕ</div>
-        <h3>Facebook</h3>
-        <p class="muted">Reels • Video • Page</p>
-        <span class="tag">Community</span>
-        <span class="tag">Reels</span>
-        <button onclick="openPlatform('facebook')">Academy ဖွင့်မယ်</button>
-      </div>
-
-      <div class="platform card">
-        <div class="emoji">♪</div>
-        <h3>TikTok</h3>
-        <p class="muted">Short Video • Trends</p>
-        <span class="tag">Discovery</span>
-        <span class="tag">Short-form</span>
-        <button onclick="openPlatform('tiktok')">Academy ဖွင့်မယ်</button>
-      </div>
-
-    </div>
+  <div class="card">
+    <div class="stat-label">MONTHLY INCOME</div>
+    <div class="stat-value" id="dashIncome">$0</div>
+    <div class="stat-note">လစဉ်ဝင်ငွေ</div>
   </div>
+
+</div>
+
+<div class="grid two">
+
+<div class="card">
+  <h3>🎯 Today's Creator Mission</h3>
+  <p class="muted">ဒီနေ့ မဖြစ်မနေ လုပ်ဆောင်ရမယ့် ၄ ချက်</p>
+
+  <label class="mission">
+    <input type="checkbox" data-mission="research">
+    <span><b>Research</b><br>Audience လိုချင်တဲ့ Topic ၃ ခုရှာပါ</span>
+  </label>
+
+  <label class="mission">
+    <input type="checkbox" data-mission="script">
+    <span><b>Script</b><br>Video တစ်ခုအတွက် Hook + Outline ရေးပါ</span>
+  </label>
+
+  <label class="mission">
+    <input type="checkbox" data-mission="publish">
+    <span><b>Publish</b><br>သတ်မှတ်ထားတဲ့ Content ကို တင်ပါ</span>
+  </label>
+
+  <label class="mission">
+    <input type="checkbox" data-mission="review">
+    <span><b>Review</b><br>အရင် Video Performance ကို ပြန်ကြည့်ပါ</span>
+  </label>
+</div>
+
+<div class="card">
+  <h3>📈 Channel Health</h3>
+
+  <div class="kpi">
+    <b>Content Quality</b><span>80%</span>
+  </div>
+  <div class="progress"><span style="width:80%"></span></div>
+
+  <div class="kpi">
+    <b>Consistency</b><span>70%</span>
+  </div>
+  <div class="progress"><span style="width:70%"></span></div>
+
+  <div class="kpi">
+    <b>Audience Engagement</b><span>65%</span>
+  </div>
+  <div class="progress"><span style="width:65%"></span></div>
+
+  <div class="kpi">
+    <b>Monetization Readiness</b><span>45%</span>
+  </div>
+  <div class="progress"><span style="width:45%"></span></div>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:14px">
+  <h3>🏆 Creator Milestones</h3>
+
+  <div class="grid four" style="margin-top:11px">
+
+    <div class="check">
+      <b>🌱 ZERO</b><br>
+      Channel Direction တည်ဆောက်
+    </div>
+
+    <div class="check">
+      <b>🔥 CREATOR</b><br>
+      Consistent Content ထုတ်လုပ်
+    </div>
+
+    <div class="check">
+      <b>📈 GROWTH</b><br>
+      Views + Audience တိုးတက်
+    </div>
+
+    <div class="check">
+      <b>💰 BUSINESS</b><br>
+      Multiple Income Streams
+    </div>
+
+  </div>
+</div>
 
 </section>
 
@@ -656,101 +579,81 @@ th{background:#f8fafc}
 <!-- ACADEMY -->
 <section id="academy" class="section">
 
-  <div class="hero">
-    <h2>📚 Creator Academy</h2>
-    <p>
-      Platform သုံးခုလုံးကို သီးခြားလေ့လာနိုင်ပြီး အခြေခံ Creator Skill တွေကို
-      တစ်နေရာတည်းမှာ လေ့လာနိုင်ပါမယ်
-    </p>
-  </div>
+<div class="hero">
+  <h2>📚 YouTube Academy</h2>
+  <p>
+    Beginner ကနေ Advanced Creator Business အထိ
+    လက်တွေ့လုပ်နိုင်အောင် Lesson System နဲ့ သင်ယူပါ
+  </p>
+</div>
 
-  <div class="grid three">
-
-    <div class="card">
-      <div style="font-size:30px">▶️</div>
-      <h3>YouTube Academy</h3>
-      <p class="muted">YouTube Channel ကို Zero ကနေ Business အထိ</p>
-      <button class="btn btn-dark" style="margin-top:12px" onclick="openPlatform('youtube')">သင်ခန်းစာကြည့်မယ်</button>
-    </div>
-
-    <div class="card">
-      <div style="font-size:30px">ⓕ</div>
-      <h3>Facebook Academy</h3>
-      <p class="muted">Page, Reels, Video နဲ့ Audience တည်ဆောက်ခြင်း</p>
-      <button class="btn btn-dark" style="margin-top:12px" onclick="openPlatform('facebook')">သင်ခန်းစာကြည့်မယ်</button>
-    </div>
-
-    <div class="card">
-      <div style="font-size:30px">♪</div>
-      <h3>TikTok Academy</h3>
-      <p class="muted">Short-form Content နဲ့ Discovery Growth</p>
-      <button class="btn btn-dark" style="margin-top:12px" onclick="openPlatform('tiktok')">သင်ခန်းစာကြည့်မယ်</button>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>🔥 Core Creator Skills</h3>
-    <p class="muted">Platform မရွေးဘဲ Creator တစ်ယောက်အနေနဲ့ သိထားရမယ့် အခြေခံ Skills</p>
-
-    <div id="coreLessons" style="margin-top:12px"></div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <h3 id="platformLessonTitle">📖 Platform Lessons</h3>
-    <div id="platformLessons" style="margin-top:12px"></div>
-  </div>
+<div id="lessonList"></div>
 
 </section>
 
 
-<!-- NICHE -->
-<section id="niche" class="section">
+<!-- STRATEGY -->
+<section id="strategy" class="section">
 
-  <div class="hero">
-    <h2>🎯 Find Your Creator Niche</h2>
-    <p>
-      ဘာ Content လုပ်ရမလဲ မသိသေးရင် Skill + Interest + Audience + Style ကို
-      သတ်မှတ်ပြီး ကိုယ့် Creator Direction ကို ရှာပါ
-    </p>
-  </div>
+<div class="hero">
+  <h2>🎯 Channel & Niche Strategy</h2>
+  <p>Channel ကို စတင်မယ့်သူအတွက် Direction ကို အရင်ဆုံးရှင်းအောင်လုပ်ပါ</p>
+</div>
 
-  <div class="card">
-    <div class="form-grid">
+<div class="card">
 
-      <div class="field">
-        <label>ကိုယ့်ရဲ့ Skill က ဘာလဲ</label>
-        <input id="nicheSkill" placeholder="ဥပမာ - Business, Music, Cooking">
-      </div>
+<div class="form-grid">
 
-      <div class="field">
-        <label>ကိုယ်စိတ်ဝင်စားတာက ဘာလဲ</label>
-        <input id="nicheInterest" placeholder="ဥပမာ - AI, Travel, Education">
-      </div>
+<div class="field">
+<label>ကိုယ့်ရဲ့ Skill</label>
+<input id="skill" placeholder="ဥပမာ Business, Music, Education">
+</div>
 
-      <div class="field">
-        <label>ဘယ်သူတွေကို Target လုပ်မလဲ</label>
-        <input id="nicheAudience" placeholder="ဥပမာ - SME Owners, Students">
-      </div>
+<div class="field">
+<label>စိတ်ဝင်စားတဲ့ Topic</label>
+<input id="interest" placeholder="ဥပမာ AI, Business, Music">
+</div>
 
-      <div class="field">
-        <label>Content Style</label>
-        <select id="nicheStyle">
-          <option>Education</option>
-          <option>Entertainment</option>
-          <option>Storytelling</option>
-          <option>Review</option>
-          <option>News / Information</option>
-          <option>Personal Brand</option>
-        </select>
-      </div>
+<div class="field">
+<label>Target Audience</label>
+<input id="audience" placeholder="ဥပမာ SME Owners">
+</div>
 
-    </div>
+<div class="field">
+<label>Channel Style</label>
+<select id="channelStyle">
+<option>Education</option>
+<option>Entertainment</option>
+<option>Storytelling</option>
+<option>Review</option>
+<option>News / Information</option>
+<option>Personal Brand</option>
+</select>
+</div>
 
-    <button class="btn btn-red" style="margin-top:14px" onclick="findNiche()">🎯 My Creator Direction ရှာမယ်</button>
+</div>
 
-    <div id="nicheResult"></div>
-  </div>
+<button class="btn btn-red" style="margin-top:13px" onclick="buildStrategy()">
+🎯 Channel Direction တည်ဆောက်မယ်
+</button>
+
+<div id="strategyResult"></div>
+
+</div>
+
+<div class="card" style="margin-top:14px">
+
+<h3>📌 Niche ရွေးတဲ့အခါ စစ်ရမယ့် 5 ချက်</h3>
+
+<div class="checklist">
+<div class="check">1. ကိုယ်က အကြောင်းအရာကို ရေရှည်ပြောနိုင်လား</div>
+<div class="check">2. Audience တကယ်ရှိလား</div>
+<div class="check">3. Content Idea များများထုတ်နိုင်လား</div>
+<div class="check">4. Audience Problem ကို ဖြေရှင်းနိုင်လား</div>
+<div class="check">5. နောက်ပိုင်း Income Model တည်ဆောက်နိုင်လား</div>
+</div>
+
+</div>
 
 </section>
 
@@ -758,318 +661,178 @@ th{background:#f8fafc}
 <!-- ROADMAP -->
 <section id="roadmap" class="section">
 
-  <div class="hero">
-    <h2>🗺️ Zero → Hero Roadmap</h2>
-    <p>Creator တစ်ယောက်ရဲ့ တိုးတက်မှုကို အဆင့်လိုက် လေ့လာပြီး လက်တွေ့လုပ်ဆောင်ပါ</p>
-  </div>
+<div class="hero">
+<h2>🗺️ YouTube Zero → Hero Roadmap</h2>
+<p>အဆင့်ကျော်မသွားဘဲ တစ်ဆင့်ချင်း တည်ဆောက်ပါ</p>
+</div>
 
-  <div class="roadmap">
+<div class="roadmap">
 
-    <div class="step">
-      <div class="num">01</div>
-      <h3>ZERO</h3>
-      <p>Niche, Audience, Platform, Content Basics</p>
-    </div>
+<div class="step">
+<div class="step-num">01</div>
+<h3>ZERO</h3>
+<p>Niche, Audience, Channel Foundation</p>
+</div>
 
-    <div class="step">
-      <div class="num">02</div>
-      <h3>CREATOR</h3>
-      <p>Content Creation, Hook, Script, Editing</p>
-    </div>
+<div class="step">
+<div class="step-num">02</div>
+<h3>CREATOR</h3>
+<p>Idea, Hook, Script, Editing</p>
+</div>
 
-    <div class="step">
-      <div class="num">03</div>
-      <h3>GROWTH</h3>
-      <p>Views, CTR, Retention, Engagement</p>
-    </div>
+<div class="step">
+<div class="step-num">03</div>
+<h3>GROWTH</h3>
+<p>CTR, Retention, Views, Audience</p>
+</div>
 
-    <div class="step">
-      <div class="num">04</div>
-      <h3>RECOVERY</h3>
-      <p>Views ကျတဲ့အခါ Diagnosis + Recovery</p>
-    </div>
+<div class="step">
+<div class="step-num">04</div>
+<h3>RECOVERY</h3>
+<p>Views ကျရင် Diagnosis + Testing</p>
+</div>
 
-    <div class="step">
-      <div class="num">05</div>
-      <h3>MONETIZE</h3>
-      <p>Ads, Affiliate, Sponsor, Products</p>
-    </div>
+<div class="step">
+<div class="step-num">05</div>
+<h3>MONETIZE</h3>
+<p>Ads + Affiliate + Sponsor + Products</p>
+</div>
 
-    <div class="step">
-      <div class="num">06</div>
-      <h3>SCALE</h3>
-      <p>System, Team, Multiple Channels, Business</p>
-    </div>
+<div class="step">
+<div class="step-num">06</div>
+<h3>SCALE</h3>
+<p>System + Team + Creator Business</p>
+</div>
 
-  </div>
+</div>
 
-  <div class="card" style="margin-top:15px">
-    <h3>📌 အကြံပြုလေ့လာမှုအစီအစဉ်</h3>
+<div class="card" style="margin-top:14px">
 
-    <div class="checklist">
-      <div class="check-item">01 → Niche & Audience ကိုသိအောင်လုပ်ပါ</div>
-      <div class="check-item">02 → Content Idea + Hook + Script လေ့လာပါ</div>
-      <div class="check-item">03 → Platform တစ်ခုကို အဓိကထားပြီး စတင်ပါ</div>
-      <div class="check-item">04 → Analytics ကြည့်ပြီး Content ကိုပြန်ပြင်ပါ</div>
-      <div class="check-item">05 → Views ကျတဲ့အခါ Random မလုပ်ဘဲ Diagnosis လုပ်ပါ</div>
-      <div class="check-item">06 → Monetization တစ်မျိုးတည်းမဟုတ်ဘဲ Income Streams တည်ဆောက်ပါ</div>
-      <div class="check-item">07 → အလုပ်လုပ်ပုံကို System တည်ဆောက်ပြီး Scale လုပ်ပါ</div>
-    </div>
-  </div>
+<h3>📍 Recommended Learning Order</h3>
 
-</section>
+<div class="checklist">
+<div class="check">01 → Channel Foundation</div>
+<div class="check">02 → Niche + Audience</div>
+<div class="check">03 → Content Strategy</div>
+<div class="check">04 → Hook + Script</div>
+<div class="check">05 → Title + Thumbnail</div>
+<div class="check">06 → Analytics</div>
+<div class="check">07 → Views Recovery</div>
+<div class="check">08 → Monetization</div>
+<div class="check">09 → Creator Business</div>
+</div>
 
-
-<!-- PLATFORMS -->
-<section id="platforms" class="section">
-
-  <div class="hero">
-    <h2>📱 Platform Academy</h2>
-    <p>Content တစ်ခုကို Platform တစ်ခုတည်းမှာပဲ အသုံးမချဘဲ ပြန်အသုံးချနိုင်အောင် သင်ယူပါ</p>
-  </div>
-
-  <div class="grid three">
-
-    <div class="card">
-      <h3>▶️ YouTube</h3>
-      <div class="checklist">
-        <div class="check-item">Channel Positioning</div>
-        <div class="check-item">Long-form Video</div>
-        <div class="check-item">YouTube Shorts</div>
-        <div class="check-item">Title + Thumbnail</div>
-        <div class="check-item">CTR + Retention</div>
-        <div class="check-item">Analytics</div>
-        <div class="check-item">Monetization</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>ⓕ Facebook</h3>
-      <div class="checklist">
-        <div class="check-item">Page Positioning</div>
-        <div class="check-item">Reels Strategy</div>
-        <div class="check-item">Video Content</div>
-        <div class="check-item">Community</div>
-        <div class="check-item">Engagement</div>
-        <div class="check-item">Analytics</div>
-        <div class="check-item">Monetization</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>♪ TikTok</h3>
-      <div class="checklist">
-        <div class="check-item">Niche Selection</div>
-        <div class="check-item">3-Second Hook</div>
-        <div class="check-item">Short-form Story</div>
-        <div class="check-item">Trends</div>
-        <div class="check-item">Retention</div>
-        <div class="check-item">Engagement</div>
-        <div class="check-item">Creator Income</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-top:15px">
-    <h3>♻️ One Content → Multiple Platforms</h3>
-    <p class="muted">
-      Master Content တစ်ခုကို platform တစ်ခုချင်းစီအတွက် Format ပြန်ပြောင်းပြီး
-      အသုံးချနိုင်ပါတယ်
-    </p>
-
-    <div class="grid four" style="margin-top:12px">
-      <div class="check-item">🎬 YouTube Long Video</div>
-      <div class="check-item">⚡ YouTube Short</div>
-      <div class="check-item">ⓕ Facebook Reel</div>
-      <div class="check-item">♪ TikTok Video</div>
-    </div>
-  </div>
+</div>
 
 </section>
 
 
-<!-- RECOVERY -->
-<section id="recovery" class="section">
-
-  <div class="hero">
-    <h2>🚨 View Recovery Center</h2>
-    <p>
-      Views ကျသွားတဲ့အခါ “Algorithm မကြိုက်တော့ဘူး” လို့ ချက်ချင်းမဆုံးဖြတ်ဘဲ
-      Data ကိုကြည့်ပြီး အကြောင်းရင်းရှာပါ
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="form-grid">
-
-      <div class="field">
-        <label>အရင် Average Views</label>
-        <input type="number" id="oldViews" placeholder="ဥပမာ 10000">
-      </div>
-
-      <div class="field">
-        <label>အခု Views</label>
-        <input type="number" id="newViews" placeholder="ဥပမာ 3500">
-      </div>
-
-      <div class="field">
-        <label>CTR %</label>
-        <input type="number" step="0.1" id="ctr" placeholder="ဥပမာ 4.5">
-      </div>
-
-      <div class="field">
-        <label>Average Retention %</label>
-        <input type="number" step="0.1" id="retention" placeholder="ဥပမာ 38">
-      </div>
-
-    </div>
-
-    <div class="field" style="margin-top:12px">
-      <label>မကြာသေးခင်က ဘာတွေပြောင်းလဲသွားလဲ</label>
-      <textarea id="viewChange" placeholder="ဥပမာ - Topic ပြောင်းထားတယ်၊ Thumbnail ပြောင်းထားတယ်၊ Upload နည်းသွားတယ်"></textarea>
-    </div>
-
-    <button class="btn btn-red" style="margin-top:12px" onclick="diagnoseViews()">🚨 Diagnose View Drop</button>
-
-    <div id="recoveryResult"></div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>🔎 View Drop Diagnosis Framework</h3>
-
-    <div class="grid two" style="margin-top:10px">
-
-      <div class="check-item">
-        <b>1. Topic Demand</b><br>
-        Audience က အဲဒီ Topic ကို အခုလက်ရှိ စိတ်ဝင်စားသေးလား
-      </div>
-
-      <div class="check-item">
-        <b>2. Packaging</b><br>
-        Title + Thumbnail က Click လုပ်ချင်စရာရှိလား
-      </div>
-
-      <div class="check-item">
-        <b>3. Hook</b><br>
-        ပထမပိုင်းမှာ Viewer ကို ဆက်ကြည့်ချင်အောင် ဖမ်းထားနိုင်လား
-      </div>
-
-      <div class="check-item">
-        <b>4. Retention</b><br>
-        လူတွေ ဘယ်အချိန်မှာ ထွက်သွားလဲ
-      </div>
-
-      <div class="check-item">
-        <b>5. Winning Content</b><br>
-        အရင်က အလုပ်ဖြစ်ခဲ့တဲ့ Topic / Format တွေဘာတွေလဲ
-      </div>
-
-      <div class="check-item">
-        <b>6. Testing</b><br>
-        Random ပြောင်းတာထက် Variable တစ်ခုချင်းစီ Test လုပ်ပါ
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-
-<!-- CONTENT LAB -->
+<!-- CONTENT -->
 <section id="content" class="section">
 
-  <div class="hero">
-    <h2>💡 Content Lab</h2>
-    <p>
-      Topic တစ်ခုကို အခြေခံပြီး Idea → Hook → Title → Script Direction
-      အထိ မြန်မြန်ဆန်ဆန် ထုတ်လုပ်ပါ
-    </p>
-  </div>
+<div class="hero">
+<h2>💡 YouTube Content Lab</h2>
+<p>Idea → Hook → Title → Script → Content အဖြစ် မြန်မြန်ပြောင်းပါ</p>
+</div>
 
-  <div class="grid two">
+<div class="grid two">
 
-    <div class="tool-card">
-      <div class="tool-icon">💡</div>
-      <h3>10 Content Ideas Generator</h3>
-      <p class="muted">Niche နဲ့ Audience ထည့်ပြီး Content Idea ရှာပါ</p>
+<div class="tool">
 
-      <div class="field" style="margin-top:12px">
-        <label>Niche / Topic</label>
-        <input id="ideaNiche" placeholder="ဥပမာ - Business">
-      </div>
+<h3>💡 10 Content Ideas</h3>
+<p class="muted">Niche + Audience ထည့်ပြီး Idea ရှာပါ</p>
 
-      <div class="field" style="margin-top:10px">
-        <label>Target Audience</label>
-        <input id="ideaAudience" placeholder="ဥပမာ - SME Owner">
-      </div>
+<div class="field" style="margin-top:11px">
+<label>Niche / Topic</label>
+<input id="ideaTopic" placeholder="ဥပမာ Business">
+</div>
 
-      <button class="btn btn-red" style="margin-top:12px" onclick="generateIdeas()">Generate Ideas</button>
+<div class="field" style="margin-top:9px">
+<label>Audience</label>
+<input id="ideaTarget" placeholder="ဥပမာ SME Owner">
+</div>
 
-      <div id="ideasResult"></div>
-    </div>
+<button class="btn btn-red" style="margin-top:11px" onclick="generateIdeas()">
+Generate Ideas
+</button>
 
+<div id="ideaResult"></div>
 
-    <div class="tool-card">
-      <div class="tool-icon">🎣</div>
-      <h3>Hook Generator</h3>
-      <p class="muted">Video အစပိုင်းမှာ Viewer ကို ဆက်ကြည့်အောင် Hook တည်ဆောက်ပါ</p>
-
-      <div class="field" style="margin-top:12px">
-        <label>Video Topic</label>
-        <input id="hookTopic" placeholder="ဥပမာ - Views မတက်တာ">
-      </div>
-
-      <button class="btn btn-dark" style="margin-top:12px" onclick="generateHooks()">Generate Hooks</button>
-
-      <div id="hooksResult"></div>
-    </div>
-
-  </div>
+</div>
 
 
-  <div class="tool-card" style="margin-top:14px">
-    <div class="tool-icon">✍️</div>
-    <h3>Script Studio</h3>
-    <p class="muted">Video Topic ထည့်ပြီး Script Structure တည်ဆောက်ပါ</p>
+<div class="tool">
 
-    <div class="form-grid" style="margin-top:12px">
-      <div class="field">
-        <label>Topic</label>
-        <input id="scriptTopic" placeholder="Video Topic">
-      </div>
+<h3>🎣 Hook Generator</h3>
+<p class="muted">Video အစပိုင်းအတွက် Hook ထုတ်ပါ</p>
 
-      <div class="field">
-        <label>Video Type</label>
-        <select id="scriptType">
-          <option>YouTube Long Video</option>
-          <option>YouTube Short</option>
-          <option>Facebook Reel</option>
-          <option>TikTok</option>
-        </select>
-      </div>
-    </div>
+<div class="field" style="margin-top:11px">
+<label>Video Topic</label>
+<input id="hookTopic" placeholder="ဥပမာ Views မတက်တာ">
+</div>
 
-    <button class="btn btn-green" style="margin-top:12px" onclick="generateScript()">Create Script Structure</button>
+<button class="btn btn-dark" style="margin-top:11px" onclick="generateHooks()">
+Generate Hooks
+</button>
 
-    <div id="scriptResult"></div>
-  </div>
+<div id="hookResult"></div>
+
+</div>
+
+</div>
 
 
-  <div class="tool-card" style="margin-top:14px">
-    <div class="tool-icon">♻️</div>
-    <h3>Content Repurposer</h3>
-    <p class="muted">Master Content တစ်ခုကို Platform အမျိုးမျိုးအတွက် ပြန်ပြင်ပါ</p>
+<div class="tool" style="margin-top:14px">
 
-    <div class="field" style="margin-top:12px">
-      <label>Master Content Idea</label>
-      <textarea id="repurposeTopic" placeholder="ဥပမာ - SME လုပ်ငန်းရှင်တွေ Sales တိုးအောင် ဘာလုပ်သင့်လဲ"></textarea>
-    </div>
+<h3>✍️ Script Studio</h3>
+<p class="muted">Topic တစ်ခုကို YouTube Script Structure အဖြစ်ပြောင်းပါ</p>
 
-    <button class="btn btn-dark" style="margin-top:12px" onclick="repurposeContent()">Repurpose Content</button>
+<div class="form-grid" style="margin-top:11px">
 
-    <div id="repurposeResult"></div>
-  </div>
+<div class="field">
+<label>Topic</label>
+<input id="scriptTopic" placeholder="Video Topic">
+</div>
+
+<div class="field">
+<label>Video Type</label>
+<select id="videoType">
+<option>Long Video</option>
+<option>Shorts</option>
+<option>Live</option>
+</select>
+</div>
+
+</div>
+
+<button class="btn btn-green" style="margin-top:11px" onclick="createScript()">
+Create Script
+</button>
+
+<div id="scriptResult"></div>
+
+</div>
+
+
+<div class="tool" style="margin-top:14px">
+
+<h3>🖼️ Thumbnail Strategy</h3>
+<p class="muted">
+Thumbnail ကို ကြည့်လိုက်တာနဲ့ Video ရဲ့ Promise ကို နားလည်စေဖို့ စဉ်းစားပါ
+</p>
+
+<div class="field" style="margin-top:10px">
+<label>Video Topic</label>
+<input id="thumbTopic" placeholder="ဥပမာ YouTube Views တက်အောင်လုပ်နည်း">
+</div>
+
+<button class="btn btn-dark" style="margin-top:11px" onclick="thumbnailIdeas()">
+Generate Thumbnail Concepts
+</button>
+
+<div id="thumbResult"></div>
+
+</div>
 
 </section>
 
@@ -1077,80 +840,271 @@ th{background:#f8fafc}
 <!-- ANALYTICS -->
 <section id="analytics" class="section">
 
-  <div class="hero">
-    <h2>📊 Creator Analytics Center</h2>
-    <p>
-      Number တွေကို ကြည့်ရုံမဟုတ်ဘဲ “ဘာကြောင့်ဒီလိုဖြစ်တာလဲ” ဆိုတာကို
-      စဉ်းစားပြီး နောက် Content ကို ဆုံးဖြတ်ပါ
-    </p>
-  </div>
+<div class="hero">
+<h2>📊 YouTube Analytics Center</h2>
+<p>
+Views တစ်ခုတည်းမကြည့်ဘဲ CTR + Retention + Engagement + Audience
+ကို အတူတူကြည့်ပါ
+</p>
+</div>
 
-  <div class="card">
-    <h3>🧮 Content Performance Calculator</h3>
+<div class="card">
 
-    <div class="form-grid" style="margin-top:12px">
+<h3>🧮 Video Performance Analyzer</h3>
 
-      <div class="field">
-        <label>Views</label>
-        <input type="number" id="aViews" placeholder="10000">
-      </div>
+<div class="form-grid" style="margin-top:11px">
 
-      <div class="field">
-        <label>Likes</label>
-        <input type="number" id="aLikes" placeholder="500">
-      </div>
+<div class="field">
+<label>Views</label>
+<input type="number" id="anViews" placeholder="10000">
+</div>
 
-      <div class="field">
-        <label>Comments</label>
-        <input type="number" id="aComments" placeholder="50">
-      </div>
+<div class="field">
+<label>CTR %</label>
+<input type="number" step="0.1" id="anCTR" placeholder="5">
+</div>
 
-      <div class="field">
-        <label>Shares</label>
-        <input type="number" id="aShares" placeholder="30">
-      </div>
+<div class="field">
+<label>Average Retention %</label>
+<input type="number" step="0.1" id="anRetention" placeholder="40">
+</div>
 
-    </div>
+<div class="field">
+<label>Likes + Comments + Shares</label>
+<input type="number" id="anEngagement" placeholder="500">
+</div>
 
-    <button class="btn btn-red" style="margin-top:12px" onclick="calculateAnalytics()">Analyze Performance</button>
+</div>
 
-    <div id="analyticsResult"></div>
-  </div>
+<button class="btn btn-red" style="margin-top:12px" onclick="analyzeVideo()">
+📊 Analyze Video
+</button>
+
+<div id="analyticsResult"></div>
+
+</div>
 
 
-  <div class="card" style="margin-top:14px">
-    <h3>📌 KPI တွေကို ဘယ်လိုဖတ်မလဲ</h3>
+<div class="card" style="margin-top:14px">
 
-    <div class="table-wrap" style="margin-top:10px">
-      <table>
-        <tr>
-          <th>KPI</th>
-          <th>ဘာကိုပြသလဲ</th>
-          <th>စစ်ဆေးရမယ့်အရာ</th>
-        </tr>
-        <tr>
-          <td>Views</td>
-          <td>Content ကို ဘယ်လောက်မြင်ရလဲ</td>
-          <td>Topic + Distribution</td>
-        </tr>
-        <tr>
-          <td>CTR</td>
-          <td>မြင်ပြီး Click လုပ်သူအချိုး</td>
-          <td>Title + Thumbnail</td>
-        </tr>
-        <tr>
-          <td>Retention</td>
-          <td>ဘယ်လောက်ကြာကြာ ကြည့်လဲ</td>
-          <td>Hook + Story + Value</td>
-        </tr>
-        <tr>
-          <td>Engagement</td>
-          <td>Audience တုံ့ပြန်မှု</td>
-          <td>Topic + CTA + Community</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+<h3>📌 KPI ကို ဘယ်လိုဖတ်မလဲ</h3>
+
+<div class="table-wrap" style="margin-top:9px">
+
+<table>
+
+<tr>
+<th>KPI</th>
+<th>အဓိပ္ပါယ်</th>
+<th>အဓိကစစ်ရမယ့်အရာ</th>
+</tr>
+
+<tr>
+<td>Views</td>
+<td>Video ရောက်ရှိမှု</td>
+<td>Topic + Distribution</td>
+</tr>
+
+<tr>
+<td>CTR</td>
+<td>Impression မြင်ပြီး Click လုပ်မှု</td>
+<td>Title + Thumbnail</td>
+</tr>
+
+<tr>
+<td>Retention</td>
+<td>Viewer ဘယ်လောက်ဆက်ကြည့်လဲ</td>
+<td>Hook + Story + Value</td>
+</tr>
+
+<tr>
+<td>Engagement</td>
+<td>Audience တုံ့ပြန်မှု</td>
+<td>Topic + CTA</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- RECOVERY -->
+<section id="recovery" class="section">
+
+<div class="hero">
+
+<h2>🚨 View Drop Recovery Center</h2>
+
+<p>
+Views ရုတ်တရက်ကျသွားရင် Algorithm ကိုပဲ အပြစ်မတင်ဘဲ
+Data → Diagnosis → Test → Review လုပ်ပါ
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="form-grid">
+
+<div class="field">
+<label>အရင် Average Views</label>
+<input type="number" id="oldViews" placeholder="10000">
+</div>
+
+<div class="field">
+<label>အခု Average Views</label>
+<input type="number" id="newViews" placeholder="4000">
+</div>
+
+<div class="field">
+<label>CTR %</label>
+<input type="number" step="0.1" id="recCTR" placeholder="4">
+</div>
+
+<div class="field">
+<label>Retention %</label>
+<input type="number" step="0.1" id="recRetention" placeholder="35">
+</div>
+
+</div>
+
+<div class="field" style="margin-top:11px">
+<label>မကြာသေးခင်က ဘာတွေပြောင်းလဲခဲ့လဲ</label>
+<textarea id="recChange" placeholder="Topic, upload frequency, thumbnail, video length စသည်"></textarea>
+</div>
+
+<button class="btn btn-red" style="margin-top:11px" onclick="recoverViews()">
+🚨 Diagnose + Recovery Plan
+</button>
+
+<div id="recoveryResult"></div>
+
+</div>
+
+
+<div class="card" style="margin-top:14px">
+
+<h3>🔎 View Drop Checklist</h3>
+
+<div class="grid two" style="margin-top:9px">
+
+<div class="check">
+<b>01 Topic Demand</b><br>
+Audience စိတ်ဝင်စားမှု ပြောင်းလဲသွားလား
+</div>
+
+<div class="check">
+<b>02 Title / Thumbnail</b><br>
+Click လုပ်ချင်စရာ Packaging ရှိလား
+</div>
+
+<div class="check">
+<b>03 Hook</b><br>
+ပထမပိုင်းမှာ Viewer ကို ဖမ်းထားနိုင်လား
+</div>
+
+<div class="check">
+<b>04 Retention</b><br>
+ဘယ်နေရာမှာ Viewer ထွက်သွားလဲ
+</div>
+
+<div class="check">
+<b>05 Audience Fit</b><br>
+အခု Content က ကိုယ့် Audience နဲ့ ကိုက်လား
+</div>
+
+<div class="check">
+<b>06 Winning Pattern</b><br>
+အရင် Top Videos တွေရဲ့ Pattern က ဘာလဲ
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 90 DAY -->
+<section id="plan" class="section">
+
+<div class="hero">
+<h2>🗓️ 30 / 60 / 90 Day YouTube Plan</h2>
+<p>90 ရက်ကို အဆင့် ၃ ဆင့်ခွဲပြီး Channel တည်ဆောက်ပါ</p>
+</div>
+
+<div class="grid three">
+
+<div class="card">
+
+<h3>🟢 Day 1–30</h3>
+<p class="muted">Foundation</p>
+
+<div class="checklist">
+<div class="check">Niche သတ်မှတ်</div>
+<div class="check">Audience သတ်မှတ်</div>
+<div class="check">Content Pillars 3–5 ခု</div>
+<div class="check">Idea Bank တည်ဆောက်</div>
+<div class="check">Publishing System စတင်</div>
+<div class="check">Analytics အခြေခံလေ့လာ</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>🟡 Day 31–60</h3>
+<p class="muted">Growth</p>
+
+<div class="checklist">
+<div class="check">Winning Topics ရှာ</div>
+<div class="check">Hook Test</div>
+<div class="check">Title Test</div>
+<div class="check">Thumbnail Test</div>
+<div class="check">Retention Review</div>
+<div class="check">Best Content ကို Series လုပ်</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>🔴 Day 61–90</h3>
+<p class="muted">Monetization & Business</p>
+
+<div class="checklist">
+<div class="check">Audience Trust တည်ဆောက်</div>
+<div class="check">Income Goal သတ်မှတ်</div>
+<div class="check">Affiliate စဉ်းစား</div>
+<div class="check">Sponsor Opportunity ရှာ</div>
+<div class="check">Digital Product / Service စဉ်းစား</div>
+<div class="check">Creator Business System တည်ဆောက်</div>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card" style="margin-top:14px">
+
+<h3>📅 Weekly Creator Review</h3>
+
+<div class="checklist">
+
+<div class="check">ဒီတစ်ပတ် ဘယ် Video က အကောင်းဆုံးဖြစ်လဲ</div>
+<div class="check">ဘာ Topic က Audience တုံ့ပြန်မှုကောင်းလဲ</div>
+<div class="check">ဘယ် Hook က အလုပ်ဖြစ်လဲ</div>
+<div class="check">ဘယ် Video မှာ Viewer Drop ဖြစ်လဲ</div>
+<div class="check">နောက်တစ်ပတ်မှာ ဘာကို Test လုပ်မလဲ</div>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1158,78 +1112,81 @@ th{background:#f8fafc}
 <!-- MONEY -->
 <section id="money" class="section">
 
-  <div class="hero">
-    <h2>💰 Creator Money Center</h2>
-    <p>
-      Creator Business မှာ Platform Income တစ်ခုတည်းကို မမှီခိုဘဲ
-      Income Stream အမျိုးမျိုး တည်ဆောက်ပါ
-    </p>
-  </div>
+<div class="hero">
+<h2>💰 YouTube Creator Money Center</h2>
+<p>
+YouTube Ads တစ်ခုတည်းကို မမှီခိုဘဲ Creator Business အဖြစ်
+Income Streams အမျိုးမျိုး တည်ဆောက်ပါ
+</p>
+</div>
 
-  <div class="card">
+<div class="card">
 
-    <div class="form-grid">
+<div class="form-grid">
 
-      <div class="field">
-        <label>Monthly Income Goal ($)</label>
-        <input type="number" id="incomeGoal" placeholder="1000">
-      </div>
+<div class="field">
+<label>Monthly Income Goal ($)</label>
+<input type="number" id="moneyGoal" placeholder="1000">
+</div>
 
-      <div class="field">
-        <label>Current Monthly Income ($)</label>
-        <input type="number" id="incomeCurrent" placeholder="100">
-      </div>
+<div class="field">
+<label>Current Monthly Income ($)</label>
+<input type="number" id="moneyCurrent" placeholder="100">
+</div>
 
-    </div>
+</div>
 
-    <button class="btn btn-green" style="margin-top:12px" onclick="calculateMoney()">Calculate Income Gap</button>
+<button class="btn btn-green" style="margin-top:12px" onclick="moneyPlan()">
+💰 Calculate
+</button>
 
-    <div id="moneyResult"></div>
-  </div>
+<div id="moneyResult"></div>
+
+</div>
 
 
-  <div class="grid three" style="margin-top:14px">
+<div class="grid four" style="margin-top:14px">
 
-    <div class="card">
-      <h3>▶️ Platform Income</h3>
-      <div class="checklist">
-        <div class="check-item">YouTube Ads</div>
-        <div class="check-item">Facebook Monetization</div>
-        <div class="check-item">TikTok Monetization</div>
-      </div>
-    </div>
+<div class="card">
+<h3>▶️ Ads</h3>
+<p class="muted">YouTube Platform Revenue</p>
+</div>
 
-    <div class="card">
-      <h3>🤝 Business Income</h3>
-      <div class="checklist">
-        <div class="check-item">Affiliate</div>
-        <div class="check-item">Sponsorship</div>
-        <div class="check-item">Brand Deals</div>
-      </div>
-    </div>
+<div class="card">
+<h3>🤝 Affiliate</h3>
+<p class="muted">Product / Service Recommendation</p>
+</div>
 
-    <div class="card">
-      <h3>📦 Owned Income</h3>
-      <div class="checklist">
-        <div class="check-item">Digital Products</div>
-        <div class="check-item">Courses</div>
-        <div class="check-item">Services</div>
-      </div>
-    </div>
+<div class="card">
+<h3>💼 Sponsor</h3>
+<p class="muted">Brand Collaboration</p>
+</div>
 
-  </div>
+<div class="card">
+<h3>📦 Owned Product</h3>
+<p class="muted">Course / Product / Service</p>
+</div>
 
-  <div class="card" style="margin-top:14px">
-    <h3>📈 Creator Business Formula</h3>
+</div>
 
-    <div class="result">
-      <b>Audience → Trust → Offer → Revenue → System → Scale</b>
-      <p class="muted" style="margin-top:6px">
-        Audience ရလာတာနဲ့ တန်းပြီးရောင်းဖို့ထက် Trust တည်ဆောက်ပြီး
-        ကိုယ့် Audience အတွက် တန်ဖိုးရှိတဲ့ Offer တစ်ခုဖန်တီးပါ
-      </p>
-    </div>
-  </div>
+
+<div class="card" style="margin-top:14px">
+
+<h3>📈 Creator Business Formula</h3>
+
+<div class="result">
+
+<b>Content → Views → Audience → Trust → Offer → Revenue → System → Scale</b>
+
+<p style="margin-top:7px">
+Views ရလာတာက Business ရဲ့ အဆုံးမဟုတ်ဘဲ
+Audience Trust ရလာတဲ့အခါ တန်ဖိုးရှိတဲ့ Offer တစ်ခုနဲ့
+Business အဖြစ် ဆက်တည်ဆောက်နိုင်ပါတယ်
+</p>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1237,62 +1194,63 @@ th{background:#f8fafc}
 <!-- AI COACH -->
 <section id="coach" class="section">
 
-  <div class="hero">
-    <h2>🤖 AI Creator Coach</h2>
-    <p>
-      ကိုယ့်ရဲ့ Creator Problem ကို ရေးထည့်ပြီး လက်တွေ့လုပ်ဆောင်ရမယ့်
-      Action Plan ကို ရယူပါ
-    </p>
-  </div>
+<div class="hero">
 
-  <div class="card">
+<h2>🤖 AI YouTube Coach</h2>
 
-    <div class="field">
-      <label>ဘာပြဿနာဖြစ်နေလဲ</label>
-      <textarea id="coachProblem" placeholder="ဥပမာ - ကျွန်တော့် YouTube Channel မှာ Views တွေ ရုတ်တရက်ကျသွားတယ်"></textarea>
-    </div>
+<p>
+Channel ရဲ့ Problem ကို ရေးထည့်ပြီး
+Diagnosis + Action Plan ရယူပါ
+</p>
 
-    <button class="btn btn-red" style="margin-top:12px" onclick="coachAnswer()">🤖 Analyze My Problem</button>
+</div>
 
-    <div id="coachResult"></div>
+<div class="card">
 
-  </div>
+<div class="field">
 
-  <div class="card" style="margin-top:14px">
-    <h3>🧠 AI Coach က ဘာတွေကူညီပေးမလဲ</h3>
+<label>မိမိ YouTube Problem</label>
 
-    <div class="grid three" style="margin-top:10px">
-      <div class="check-item">🚨 View Drop Diagnosis</div>
-      <div class="check-item">💡 Content Ideas</div>
-      <div class="check-item">🎣 Hook Ideas</div>
-      <div class="check-item">✍️ Script Direction</div>
-      <div class="check-item">📊 Analytics Analysis</div>
-      <div class="check-item">💰 Monetization Ideas</div>
-    </div>
-  </div>
+<textarea id="coachProblem"
+placeholder="ဥပမာ - Channel မှာ Views ရုတ်တရက်ကျသွားတယ်၊ Subscribers မတက်ဘူး၊ ဘာ Content လုပ်ရမလဲ မသိဘူး"></textarea>
+
+</div>
+
+<button class="btn btn-red" style="margin-top:11px" onclick="coach()">
+🤖 Analyze My Channel Problem
+</button>
+
+<div id="coachResult"></div>
+
+</div>
+
+
+<div class="card" style="margin-top:14px">
+
+<h3>🧠 AI Coach Framework</h3>
+
+<div class="grid three" style="margin-top:9px">
+
+<div class="check">🚨 View Drop Diagnosis</div>
+<div class="check">💡 Content Ideas</div>
+<div class="check">🎣 Hook Strategy</div>
+<div class="check">🖼️ Thumbnail Strategy</div>
+<div class="check">📊 Analytics Review</div>
+<div class="check">💰 Monetization Ideas</div>
+
+</div>
+
+</div>
 
 </section>
 
+
 <div class="footer">
-  Zero to Hero Creator OS • YouTube • Facebook • TikTok • Creator Business
+Zero to Hero YouTube Creator OS • Build • Grow • Monetize • Scale
 </div>
 
 </main>
 
-
-<!-- PLATFORM MODAL -->
-<div class="modal" id="platformModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <div>
-        <h2 id="modalTitle">Platform Academy</h2>
-        <p class="muted" id="modalSubtitle"></p>
-      </div>
-      <button class="close" onclick="closeModal()">✕</button>
-    </div>
-    <div id="modalBody" style="margin-top:15px"></div>
-  </div>
-</div>
 
 <div class="toast" id="toast">Saved</div>
 
@@ -1300,863 +1258,867 @@ th{background:#f8fafc}
 <script>
 "use strict";
 
-/* =========================
-   DATA
-========================= */
-
-const coreLessons = [
-  {
-    title:"Creator Mindset — Content တင်တာထက် System တည်ဆောက်ပါ",
-    concept:"Creator Business ဆိုတာ Video တင်ခြင်းတစ်ခုတည်းမဟုတ်ဘဲ Audience, Content, Analytics နဲ့ Income ကို System တစ်ခုအဖြစ် စီမံခြင်းဖြစ်ပါတယ်",
-    steps:[
-      "ကိုယ့်ရဲ့ Niche ကို သတ်မှတ်ပါ",
-      "Target Audience ကို သိအောင်လုပ်ပါ",
-      "Content Pillars 3–5 ခု သတ်မှတ်ပါ",
-      "Content Calendar တည်ဆောက်ပါ"
-    ],
-    example:"ဥပမာ Business Content လုပ်မယ်ဆိုရင် Sales, Management, Marketing, Leadership စတဲ့ Pillars တွေခွဲနိုင်ပါတယ်",
-    kpi:"တစ်ပတ်လျှင် သတ်မှတ်ထားတဲ့ Content အရေအတွက်ကို အနည်းဆုံး 80% ပြီးစီးစေပါ"
-  },
-  {
-    title:"Audience Research — လူတွေဘာကြည့်ချင်လဲ သိအောင်လုပ်ပါ",
-    concept:"Content Idea ကို ကိုယ်ကြိုက်တာနဲ့ပဲ မဆုံးဖြတ်ဘဲ Audience Problem, Question, Desire ကို အခြေခံပါ",
-    steps:[
-      "Audience ရဲ့ မေးခွန်းတွေ စုပါ",
-      "Comments တွေဖတ်ပါ",
-      "အရင်က အလုပ်ဖြစ်ခဲ့တဲ့ Content ကို စစ်ပါ",
-      "Competitor Content ကို လေ့လာပါ"
-    ],
-    example:"Audience က 'Sales မတက်ဘူး' လို့မေးနေတယ်ဆိုရင် Sales Problem ဖြေရှင်းတဲ့ Content Series တစ်ခုလုပ်နိုင်ပါတယ်",
-    kpi:"တစ်ပတ်လျှင် Audience Problem အနည်းဆုံး 20 ခု စုပါ"
-  },
-  {
-    title:"Content Pillars — Channel ကို Direction ရှိအောင်လုပ်ပါ",
-    concept:"Topic အမျိုးမျိုးကို Random တင်မယ့်အစား Channel ရဲ့ အဓိက Content Pillars သတ်မှတ်ထားရပါမယ်",
-    steps:[
-      "Main Topic 1 ခုသတ်မှတ်ပါ",
-      "Supporting Topics 3–5 ခုခွဲပါ",
-      "Pillar တစ်ခုစီအတွက် Idea Bank ပြုလုပ်ပါ"
-    ],
-    example:"Business Creator ဆိုရင် Sales, Marketing, Leadership, Money, AI for Business ဆိုပြီး ခွဲနိုင်ပါတယ်",
-    kpi:"Content အများစုသည် သတ်မှတ်ထားသော Pillars ထဲတွင် ပါဝင်ရမည်"
-  },
-  {
-    title:"Hook — ပထမစက္ကန့်တွေကို အရေးကြီးဆုံးအပိုင်းအဖြစ် သတ်မှတ်ပါ",
-    concept:"Viewer က ဆက်ကြည့်မလား Scroll လုပ်သွားမလားဆိုတာ Content အစပိုင်းက အရေးကြီးပါတယ်",
-    steps:[
-      "Problem Hook",
-      "Curiosity Hook",
-      "Result Hook",
-      "Contrarian Hook",
-      "Story Hook"
-    ],
-    example:"'Views မတက်လို့ Video ပိုတင်နေတာ ရပ်လိုက်ပါ — ပထမဆုံး ဒီ ၃ ချက်ကို စစ်ပါ'",
-    kpi:"Video အများစုအတွက် Hook Version 2–3 ခု ကြိုတင်ရေးပါ"
-  },
-  {
-    title:"Analytics — Data နဲ့ ဆုံးဖြတ်ပါ",
-    concept:"Views တစ်ခုတည်းကိုကြည့်ပြီး Content ကောင်း/မကောင်း ဆုံးဖြတ်တာမလုံလောက်ပါ",
-    steps:[
-      "Views ကြည့်ပါ",
-      "CTR ကြည့်ပါ",
-      "Retention ကြည့်ပါ",
-      "Engagement ကြည့်ပါ",
-      "Winning Content ရှာပါ"
-    ],
-    example:"Views နည်းပေမယ့် Retention ကောင်းရင် Packaging ကို ပြန်စမ်းသပ်နိုင်ပါတယ်",
-    kpi:"တစ်ပတ်လျှင် အနည်းဆုံး 1 ကြိမ် Analytics Review လုပ်ပါ"
-  },
-  {
-    title:"Consistency — Random Upload မဟုတ်ဘဲ Sustainable System",
-    concept:"နေ့တိုင်းတင်ဖို့ထက် ကိုယ်ဆက်လက်လုပ်နိုင်မယ့် Publishing System တစ်ခုတည်ဆောက်တာ ပိုအရေးကြီးပါတယ်",
-    steps:[
-      "Weekly Content Target သတ်မှတ်ပါ",
-      "Batch Production လုပ်ပါ",
-      "Content Calendar အသုံးပြုပါ",
-      "Review Day ထားပါ"
-    ],
-    example:"တစ်ပတ် 3 Videos + 5 Shorts ဆိုတဲ့ Sustainable System တစ်ခု တည်ဆောက်နိုင်ပါတယ်",
-    kpi:"သတ်မှတ်ထားတဲ့ Publishing Target ပြည့်မီမှု"
-  }
+const lessons=[
+{
+title:"YouTube Creator Mindset",
+desc:"Video တင်ရုံမဟုတ်ဘဲ Creator System တည်ဆောက်ခြင်း",
+concept:"YouTube Channel တစ်ခုကို အောင်မြင်အောင် တည်ဆောက်ဖို့ Content တစ်ခုချင်းစီထက် System တစ်ခုလုံးကို စီမံဖို့လိုပါတယ်",
+steps:[
+"Channel ရဲ့ Main Purpose သတ်မှတ်ပါ",
+"Target Audience သတ်မှတ်ပါ",
+"Content Pillars 3–5 ခုထားပါ",
+"Publishing Schedule တည်ဆောက်ပါ"
+],
+example:"Business Channel ဆိုရင် Sales, Marketing, Leadership, Management စတဲ့ Pillars တွေခွဲနိုင်ပါတယ်",
+kpi:"တစ်ပတ်အလိုက် သတ်မှတ်ထားတဲ့ Content Target ပြည့်မီမှု"
+},
+{
+title:"Niche & Audience",
+desc:"ဘယ်သူအတွက် ဘာ Content လုပ်မလဲ",
+concept:"Niche ဆိုတာ Topic တစ်ခုတည်းကိုပဲ ပြောရမယ်ဆိုတာမဟုတ်ဘဲ ကိုယ့် Audience အတွက် အဓိကတန်ဖိုးပေးမယ့် Content Direction ဖြစ်ပါတယ်",
+steps:[
+"Target Audience ကို သတ်မှတ်ပါ",
+"သူတို့ရဲ့ Problems စုပါ",
+"သူတို့ကြည့်ချင်တဲ့ Topics ရှာပါ",
+"ကိုယ်ရေရှည်လုပ်နိုင်တဲ့ Direction ရွေးပါ"
+],
+example:"SME Owner တွေအတွက် Business Education Channel တစ်ခုဆိုရင် Sales, Profit, Staff Management စတဲ့ Topics လုပ်နိုင်ပါတယ်",
+kpi:"တစ်ပတ်လျှင် Audience Problem 20 ခု စုဆောင်းခြင်း"
+},
+{
+title:"Content Strategy",
+desc:"Random Video မဟုတ်ဘဲ Content System",
+concept:"Content Strategy က ဘယ် Video ကို ဘယ်သူအတွက် ဘာရည်ရွယ်ချက်နဲ့ ထုတ်မလဲဆိုတာ သတ်မှတ်ပေးပါတယ်",
+steps:[
+"Content Pillars သတ်မှတ်ပါ",
+"Content Series တည်ဆောက်ပါ",
+"Evergreen + Trend Content ခွဲပါ",
+"Content Calendar ပြုလုပ်ပါ"
+],
+example:"တစ်ပတ်မှာ How-to 2 ခု + Case Study 1 ခု + Shorts 3 ခုလို စနစ်တကျစီမံနိုင်ပါတယ်",
+kpi:"Publishing Consistency + Content Performance"
+},
+{
+title:"Content Ideas",
+desc:"Audience လိုချင်တဲ့ Video Idea ရှာခြင်း",
+concept:"Idea က ကိုယ်ပြောချင်တာထက် Audience ရဲ့ Problem, Question, Desire ကို အခြေခံရင် ပိုအသုံးဝင်ပါတယ်",
+steps:[
+"Comments ဖတ်ပါ",
+"YouTube Search Suggestions လေ့လာပါ",
+"အရင် Top Videos တွေကို ပြန်စစ်ပါ",
+"Competitor Topics ကို Analyze လုပ်ပါ"
+],
+example:"Audience က Views မတက်ဘူးလို့ မေးနေတယ်ဆိုရင် View Recovery Series လုပ်နိုင်ပါတယ်",
+kpi:"တစ်ပတ်လျှင် Idea 20–30 ခု စုထားပါ"
+},
+{
+title:"Hook",
+desc:"Video အစပိုင်းမှာ Viewer ကို ဖမ်းခြင်း",
+concept:"Viewer က ဆက်ကြည့်မလားဆိုတာ ပထမပိုင်းမှာ သက်ရောက်မှုကြီးပါတယ်",
+steps:[
+"Problem Hook",
+"Curiosity Hook",
+"Result Hook",
+"Story Hook",
+"Direct Promise"
+],
+example:"Views မတက်ရင် Video ပိုတင်ဖို့မလိုသေးပါဘူး — ဒီ ၃ ချက်ကို အရင်စစ်ပါ",
+kpi:"Video တစ်ခုအတွက် Hook Version 2–3 ခု စဉ်းစားပါ"
+},
+{
+title:"Title & Thumbnail",
+desc:"Packaging က Click ကို သက်ရောက်စေပါတယ်",
+concept:"Video ကောင်းတာနဲ့ မလုံလောက်ဘဲ Viewer မြင်တဲ့အချိန်မှာ ဘာရမလဲကို နားလည်စေဖို့ Packaging လိုပါတယ်",
+steps:[
+"Clear Promise",
+"Curiosity",
+"Specific Outcome",
+"မလိုအပ်တဲ့ စာအများကြီးမထည့်ပါ"
+],
+example:"YouTube Views တက်အောင်လုပ်နည်း 10 ချက်ထက် 'Views ကျနေပြီလား — ဒီ 5 ချက်စစ်ပါ' လို Clear Problem ကို Focus လုပ်နိုင်ပါတယ်",
+kpi:"CTR ကို Video တစ်ခုချင်းစီအလိုက် Review လုပ်ပါ"
+},
+{
+title:"Retention",
+desc:"Viewer ကို Video ထဲမှာ ဆက်ရှိအောင်လုပ်ခြင်း",
+concept:"Viewer ဘယ်နေရာမှာ ထွက်သွားလဲဆိုတာ သိရင် Script, Hook, Editing နဲ့ Structure ကို ပြန်ပြင်နိုင်ပါတယ်",
+steps:[
+"Intro ကို တိုအောင်လုပ်ပါ",
+"Value ကို စောစောပေးပါ",
+"Pattern Interrupt အသုံးပြုပါ",
+"Repetition လျှော့ပါ"
+],
+example:"ပထမ 30 စက္ကန့်မှာ အကြောင်းအရာမစဘဲ Long Intro ပြောနေရင် Viewer Drop ဖြစ်နိုင်ပါတယ်",
+kpi:"Audience Retention Graph ကို Review လုပ်ပါ"
+},
+{
+title:"YouTube Analytics",
+desc:"Data နဲ့ Content ဆုံးဖြတ်ခြင်း",
+concept:"Views တစ်ခုတည်းမကြည့်ဘဲ CTR, Retention, Traffic Source, Audience စတာတွေကို တွဲကြည့်ရပါတယ်",
+steps:[
+"Top Videos ရှာပါ",
+"Low-performing Videos ရှာပါ",
+"Pattern Compare လုပ်ပါ",
+"နောက် Video မှာ Test လုပ်ပါ"
+],
+example:"Views ကောင်းတဲ့ Video 5 ခုမှာ တူညီတဲ့ Topic Pattern ရှိရင် အဲဒီ Pattern ကို Series အဖြစ် စမ်းနိုင်ပါတယ်",
+kpi:"Weekly Analytics Review"
+},
+{
+title:"View Drop Recovery",
+desc:"Views ကျသွားရင် ဘယ်လိုပြန်တက်အောင်လုပ်မလဲ",
+concept:"View Drop ဖြစ်တာနဲ့ Algorithm ကို အပြစ်တင်မယ့်အစား Topic, Packaging, Hook, Retention နဲ့ Audience Fit ကို စစ်ပါ",
+steps:[
+"အရင် Average Views နဲ့ နှိုင်းယှဉ်ပါ",
+"CTR စစ်ပါ",
+"Retention စစ်ပါ",
+"Winning Topics ပြန်ရှာပါ",
+"7-Day Test Plan လုပ်ပါ"
+],
+example:"CTR နိမ့်ရင် Title/Thumbnail Test, Retention နိမ့်ရင် Hook/Structure Test လုပ်နိုင်ပါတယ်",
+kpi:"7-Day Recovery Performance"
+},
+{
+title:"YouTube Monetization",
+desc:"Channel ကနေ Income တည်ဆောက်ခြင်း",
+concept:"Monetization ကို Ads တစ်ခုတည်းအဖြစ်မမြင်ဘဲ Creator Business ရဲ့ Income System အဖြစ် စဉ်းစားပါ",
+steps:[
+"Platform Eligibility ကို စစ်ပါ",
+"Ads Revenue ကို လေ့လာပါ",
+"Affiliate စဉ်းစားပါ",
+"Sponsor Opportunity ရှာပါ",
+"Product / Service တည်ဆောက်ပါ"
+],
+example:"Business Education Channel တစ်ခုက Course, Consulting, Affiliate နဲ့ Sponsor Income ကို တည်ဆောက်နိုင်ပါတယ်",
+kpi:"Monthly Revenue + Revenue Streams"
+},
+{
+title:"Creator Business",
+desc:"YouTuber ကနေ Business Owner အဖြစ် တိုးတက်ခြင်း",
+concept:"Audience ရလာတဲ့အခါ Content ကို Business Asset အဖြစ် ပြောင်းလဲနိုင်ပါတယ်",
+steps:[
+"Audience Problem ရှာပါ",
+"Offer တည်ဆောက်ပါ",
+"Trust တည်ဆောက်ပါ",
+"Revenue System တည်ဆောက်ပါ",
+"Scale လုပ်ပါ"
+],
+example:"Business Content Channel ကနေ Digital Course သို့မဟုတ် Consulting Service တည်ဆောက်နိုင်ပါတယ်",
+kpi:"Audience → Revenue Conversion"
+}
 ];
 
-const platformData = {
-  youtube:{
-    title:"▶️ YouTube Academy",
-    subtitle:"Long Video • Shorts • Live • Search • Creator Business",
-    lessons:[
-      ["YouTube Channel Foundation","Channel Name, Positioning, Banner, About နဲ့ Audience Promise ကို တည်ဆောက်ပါ"],
-      ["YouTube Content Strategy","Long-form, Shorts, Series နဲ့ Content Pillars ကို ခွဲခြားစီမံပါ"],
-      ["Title & Thumbnail","Click ဖြစ်စေဖို့ Packaging ကို Test လုပ်ပါ"],
-      ["Hook & Retention","အစပိုင်းမှာ Value + Curiosity + Clear Promise ထည့်ပါ"],
-      ["YouTube Analytics","CTR, Retention, Traffic Source, Returning Viewers ကို လေ့လာပါ"],
-      ["Views ကျတဲ့အခါ","Topic, Packaging, Retention နဲ့ Audience Fit ကို Diagnosis လုပ်ပါ"],
-      ["YouTube Shorts","Short-form Hook, Pace, Loop နဲ့ Viewer Satisfaction ကို လေ့လာပါ"],
-      ["Live Strategy","Live Content ကို Community Building နဲ့ Trust တည်ဆောက်ဖို့ အသုံးချပါ"],
-      ["Monetization","Platform Monetization နဲ့ အခြား Income Streams ကို သီးခြားစီ စီမံပါ"],
-      ["YouTube Creator Business","Audience ကို Product, Service, Affiliate, Sponsor စတဲ့ Business Model တွေနဲ့ ချိတ်ဆက်ပါ"]
-    ]
-  },
-  facebook:{
-    title:"ⓕ Facebook Academy",
-    subtitle:"Page • Reels • Video • Community • Creator Business",
-    lessons:[
-      ["Facebook Page Foundation","Page Positioning, Profile, Description နဲ့ Content Direction"],
-      ["Facebook Content Strategy","Video, Reels, Image, Text Content ကို အချိုးကျအသုံးချခြင်း"],
-      ["Reels Hook","Short-form Content အစပိုင်းကို မြန်မြန်နဲ့ ထိရောက်အောင်တည်ဆောက်ခြင်း"],
-      ["Community Building","Comment, Share, Conversation နဲ့ Community တည်ဆောက်ခြင်း"],
-      ["Facebook Analytics","Reach, Engagement, Watch Time စတဲ့ Data ကို လေ့လာခြင်း"],
-      ["Views ကျတဲ့အခါ","Topic, Audience, Packaging နဲ့ Distribution ကို စစ်ဆေးခြင်း"],
-      ["Content Repurposing","Master Content ကို Facebook Format အတွက် ပြန်ပြင်ခြင်း"],
-      ["Creator Brand","Page ကို Personal Brand / Business Brand အဖြစ် တည်ဆောက်ခြင်း"],
-      ["Monetization","လက်ရှိ Platform Eligibility ကို သီးခြားစစ်ဆေးပြီး Monetization Plan ချခြင်း"],
-      ["Facebook Creator Business","Audience + Trust + Offer နဲ့ Business တည်ဆောက်ခြင်း"]
-    ]
-  },
-  tiktok:{
-    title:"♪ TikTok Academy",
-    subtitle:"Short Video • Discovery • Trends • Retention",
-    lessons:[
-      ["TikTok Foundation","Niche, Audience နဲ့ Account Positioning"],
-      ["Short-form Content","တိုတောင်းတဲ့ Video ထဲမှာ Value တစ်ခုကို ထိထိရောက်ရောက်ပေးခြင်း"],
-      ["3-Second Hook","Viewer Scroll မလုပ်အောင် အစပိုင်းကို တည်ဆောက်ခြင်း"],
-      ["Retention","Fast Pace, Pattern Interrupt, Story Structure အသုံးပြုခြင်း"],
-      ["Trends","Trend ကို Copy မလုပ်ဘဲ ကိုယ့် Niche နဲ့ Adapt လုပ်ခြင်း"],
-      ["Engagement","Comment, Question, CTA နဲ့ Audience Interaction တိုးစေခြင်း"],
-      ["Views ကျတဲ့အခါ","Recent Content Pattern နဲ့ Audience Response ကို ပြန်စစ်ခြင်း"],
-      ["Content Series","တစ်ကြိမ်တည်းမဟုတ်ဘဲ Series အဖြစ် ပြန်လုပ်နိုင်တဲ့ Format တည်ဆောက်ခြင်း"],
-      ["Creator Income","လက်ရှိရရှိနိုင်သော Monetization နည်းလမ်းများကို စစ်ဆေးပြီး Plan ချခြင်း"],
-      ["TikTok Creator Business","Audience ကို Brand, Affiliate, Product, Service နဲ့ ချိတ်ဆက်ခြင်း"]
-    ]
-  }
+
+function data(){
+try{
+return JSON.parse(localStorage.getItem("yt_creator_os"))||{
+views:0,
+subs:0,
+videos:0,
+income:0,
+completed:[],
+missions:{}
 };
+}catch(e){
+return {
+views:0,
+subs:0,
+videos:0,
+income:0,
+completed:[],
+missions:{}
+};
+}
+}
 
+function save(d){
+localStorage.setItem("yt_creator_os",JSON.stringify(d));
+updateDashboard();
+}
 
-/* =========================
-   BASIC UI
-========================= */
+function esc(v){
+return String(v||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+function fmt(n){
+return Number(n||0).toLocaleString();
+}
+
+function toast(msg){
+const t=document.getElementById("toast");
+t.textContent=msg;
+t.classList.add("show");
+setTimeout(()=>t.classList.remove("show"),1800);
+}
 
 function showSection(id,btn){
-  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-  const section=document.getElementById(id);
-  if(section) section.classList.add("active");
+document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 
-  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
+document.querySelectorAll(".nav button")
+.forEach(x=>x.classList.remove("active"));
 
-  window.scrollTo({top:0,behavior:"smooth"});
+if(btn)btn.classList.add("active");
+
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function toast(message){
-  const el=document.getElementById("toast");
-  el.textContent=message;
-  el.classList.add("show");
-  setTimeout(()=>el.classList.remove("show"),1800);
-}
-
-function escapeHTML(value){
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-function formatNumber(n){
-  return Number(n||0).toLocaleString();
-}
-
-
-/* =========================
-   LOCAL STORAGE
-========================= */
-
-const STORE_KEY="zeroHeroCreatorOS_v2";
-
-function getData(){
-  try{
-    return JSON.parse(localStorage.getItem(STORE_KEY)) || {
-      views:0,
-      followers:0,
-      content:0,
-      income:0,
-      completedLessons:[],
-      missions:{}
-    };
-  }catch(e){
-    return {
-      views:0,
-      followers:0,
-      content:0,
-      income:0,
-      completedLessons:[],
-      missions:{}
-    };
-  }
-}
-
-function saveData(data){
-  localStorage.setItem(STORE_KEY,JSON.stringify(data));
-  updateDashboard();
-}
 
 function updateDashboard(){
-  const d=getData();
 
-  document.getElementById("dashViews").textContent=formatNumber(d.views);
-  document.getElementById("dashFollowers").textContent=formatNumber(d.followers);
-  document.getElementById("dashContent").textContent=formatNumber(d.content);
-  document.getElementById("dashIncome").textContent="$"+formatNumber(d.income);
+const d=data();
 
-  const completed=d.completedLessons.length;
-  let level="LEVEL 01 • ZERO";
+document.getElementById("dashViews").textContent=fmt(d.views);
+document.getElementById("dashSubs").textContent=fmt(d.subs);
+document.getElementById("dashVideos").textContent=fmt(d.videos);
+document.getElementById("dashIncome").textContent="$"+fmt(d.income);
 
-  if(completed>=3) level="LEVEL 02 • CREATOR";
-  if(completed>=7) level="LEVEL 03 • GROWTH";
-  if(completed>=12) level="LEVEL 04 • RECOVERY";
-  if(completed>=18) level="LEVEL 05 • MONETIZE";
-  if(completed>=25) level="LEVEL 06 • SCALE";
+let level="LEVEL 01 • ZERO";
 
-  document.getElementById("levelBadge").textContent=level;
+if(d.completed.length>=3)
+level="LEVEL 02 • CREATOR";
+
+if(d.completed.length>=6)
+level="LEVEL 03 • GROWTH";
+
+if(d.completed.length>=9)
+level="LEVEL 04 • RECOVERY";
+
+if(d.completed.length>=11)
+level="LEVEL 05 • MONETIZE";
+
+if(d.completed.length>=15)
+level="LEVEL 06 • SCALE";
+
+document.getElementById("levelBadge").textContent=level;
 }
 
 
-/* =========================
-   MISSIONS
-========================= */
+function renderLessons(){
+
+const d=data();
+
+document.getElementById("lessonList").innerHTML=
+lessons.map((l,i)=>{
+
+const key="lesson-"+i;
+const done=d.completed.includes(key);
+
+return `
+<div class="lesson" id="${key}">
+
+<div class="lesson-top">
+
+<div>
+<div class="lesson-number">
+LESSON ${String(i+1).padStart(2,"0")}
+</div>
+
+<div class="lesson-title">
+${esc(l.title)}
+</div>
+
+<div class="lesson-desc">
+${esc(l.desc)}
+</div>
+</div>
+
+<button
+class="btn ${done?"btn-green":"btn-light"}"
+onclick="openLesson('${key}')">
+${done?"✓ Done":"ဖွင့်မယ်"}
+</button>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="lesson-box">
+<strong>📌 Concept</strong>
+<p>${esc(l.concept)}</p>
+</div>
+
+<div class="lesson-box">
+<strong>🛠️ လက်တွေ့လုပ်ဆောင်ရန်</strong>
+<ul>
+${l.steps.map(x=>`<li>${esc(x)}</li>`).join("")}
+</ul>
+</div>
+
+<div class="lesson-box">
+<strong>💡 Practical Example</strong>
+<p>${esc(l.example)}</p>
+</div>
+
+<div class="lesson-box">
+<strong>📊 KPI</strong>
+<p>${esc(l.kpi)}</p>
+</div>
+
+<button
+class="btn ${done?"btn-light":"btn-green"}"
+onclick="completeLesson('${key}')">
+${done?"✓ Lesson Completed":"✓ ဒီ Lesson ပြီးပါပြီ"}
+</button>
+
+</div>
+</div>
+`;
+
+}).join("");
+}
+
+
+function openLesson(key){
+document.getElementById(key).classList.toggle("open");
+}
+
+
+function completeLesson(key){
+
+const d=data();
+
+if(!d.completed.includes(key)){
+d.completed.push(key);
+save(d);
+toast("Lesson Completed");
+}
+
+document.getElementById(key).classList.add("open");
+renderLessons();
+}
+
 
 function loadMissions(){
-  const d=getData();
 
-  document.querySelectorAll("[data-mission]").forEach(cb=>{
-    cb.checked=!!d.missions[cb.dataset.mission];
+const d=data();
 
-    cb.addEventListener("change",()=>{
-      const data=getData();
-      data.missions[cb.dataset.mission]=cb.checked;
-      saveData(data);
-      toast(cb.checked ? "Mission ပြီးပါပြီ" : "Mission ပြန်ဖြုတ်လိုက်ပါပြီ");
-    });
-  });
+document.querySelectorAll("[data-mission]").forEach(cb=>{
+
+cb.checked=!!d.missions[cb.dataset.mission];
+
+cb.addEventListener("change",()=>{
+
+const x=data();
+
+x.missions[cb.dataset.mission]=cb.checked;
+
+save(x);
+
+toast(cb.checked?"Mission ပြီးပါပြီ":"Mission ပြန်ဖြုတ်လိုက်ပါပြီ");
+
+});
+
+});
 }
 
 
-/* =========================
-   LESSON RENDER
-========================= */
+function buildStrategy(){
 
-function renderCoreLessons(){
-  const box=document.getElementById("coreLessons");
-  const data=getData();
+const skill=document.getElementById("skill").value.trim();
+const interest=document.getElementById("interest").value.trim();
+const audience=document.getElementById("audience").value.trim();
+const style=document.getElementById("channelStyle").value;
 
-  box.innerHTML=coreLessons.map((l,i)=>{
-    const key="core-"+i;
-    const done=data.completedLessons.includes(key);
-
-    return `
-      <div class="lesson" id="lesson-${key}">
-        <div class="lesson-top">
-          <div>
-            <div class="lesson-number">CORE LESSON ${String(i+1).padStart(2,"0")}</div>
-            <div class="lesson-title">${escapeHTML(l.title)}</div>
-          </div>
-          <button class="btn ${done?"btn-green":"btn-light"}"
-            onclick="toggleLesson('${key}',this)">
-            ${done?"✓ ပြီးပါပြီ":"ဖွင့်မယ်"}
-          </button>
-        </div>
-
-        <div class="lesson-body">
-          <div class="lesson-section">
-            <strong>📌 Concept</strong>
-            <p>${escapeHTML(l.concept)}</p>
-          </div>
-
-          <div class="lesson-section">
-            <strong>🛠️ လက်တွေ့လုပ်ဆောင်ရန်</strong>
-            <ul>${l.steps.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>
-          </div>
-
-          <div class="lesson-section">
-            <strong>💡 Practical Example</strong>
-            <p>${escapeHTML(l.example)}</p>
-          </div>
-
-          <div class="lesson-section">
-            <strong>📊 KPI</strong>
-            <p>${escapeHTML(l.kpi)}</p>
-          </div>
-
-          <button class="btn ${done?"btn-light":"btn-green"}"
-            style="margin-top:10px"
-            onclick="toggleLesson('${key}',this)">
-            ${done?"Completed":"✓ Lesson Complete"}
-          </button>
-        </div>
-      </div>
-    `;
-  }).join("");
+if(!skill||!interest||!audience){
+toast("အချက်အလက်အားလုံး ဖြည့်ပါ");
+return;
 }
 
-function renderPlatformLessons(platform){
-  const data=getData();
-  const p=platformData[platform];
+const pillars=[
+skill+" Basics",
+interest+" Tips",
+audience+" Problems",
+"How-to",
+"Real Examples"
+];
 
-  if(!p)return;
+document.getElementById("strategyResult").innerHTML=`
 
-  document.getElementById("platformLessonTitle").textContent=p.title;
-  document.getElementById("platformLessons").innerHTML=p.lessons.map((l,i)=>{
-    const key=platform+"-"+i;
-    const done=data.completedLessons.includes(key);
+<div class="result">
 
-    return `
-      <div class="lesson" id="lesson-${key}">
-        <div class="lesson-top">
-          <div>
-            <div class="lesson-number">LESSON ${String(i+1).padStart(2,"0")}</div>
-            <div class="lesson-title">${escapeHTML(l[0])}</div>
-            <div class="small">${escapeHTML(l[1])}</div>
-          </div>
+<h4>🎯 Your YouTube Direction</h4>
 
-          <button class="btn ${done?"btn-green":"btn-light"}"
-            onclick="toggleLesson('${key}',this)">
-            ${done?"✓":"ဖွင့်မယ်"}
-          </button>
-        </div>
+<p><b>Skill:</b> ${esc(skill)}</p>
+<p><b>Interest:</b> ${esc(interest)}</p>
+<p><b>Audience:</b> ${esc(audience)}</p>
+<p><b>Style:</b> ${esc(style)}</p>
 
-        <div class="lesson-body">
-          <div class="lesson-section">
-            <strong>🎯 ဒီ Lesson ရဲ့ ရည်ရွယ်ချက်</strong>
-            <p>${escapeHTML(l[1])}</p>
-          </div>
+<div style="margin-top:9px">
+<b>Content Pillars</b><br>
+${pillars.map(x=>`<span class="tag">${esc(x)}</span>`).join("")}
+</div>
 
-          <div class="lesson-section">
-            <strong>🧠 မှတ်ထားရမယ့်အချက်</strong>
-            <p>
-              ဒီ Topic ကို ကိုယ့် Channel / Page / Account ရဲ့ လက်တွေ့ Content တစ်ခုနဲ့
-              ချိတ်ပြီး လေ့ကျင့်ပါ
-            </p>
-          </div>
+<div class="good">
+<b>Next Step</b><br>
+ဒီ Direction ကို အခြေခံပြီး Content Idea 20 ခုထုတ်ပါ
+ပြီးရင် 7 ရက်အတွင်း အနည်းဆုံး Content အနည်းငယ်ကို Test လုပ်ပါ
+</div>
 
-          <div class="lesson-section">
-            <strong>✅ Assignment</strong>
-            <p>
-              ဒီ Lesson ကို လေ့လာပြီး ကိုယ့် Platform အတွက် Action တစ်ခု
-              အနည်းဆုံး လုပ်ဆောင်ပါ
-            </p>
-          </div>
-
-          <button class="btn ${done?"btn-light":"btn-green"}"
-            style="margin-top:10px"
-            onclick="toggleLesson('${key}',this)">
-            ${done?"✓ Completed":"Lesson ပြီးပြီ"}
-          </button>
-        </div>
-      </div>
-    `;
-  }).join("");
+</div>
+`;
 }
 
-function toggleLesson(key,button){
-  const lesson=document.getElementById("lesson-"+key);
-  const data=getData();
-
-  if(!data.completedLessons.includes(key)){
-    lesson.classList.toggle("open");
-    data.completedLessons.push(key);
-    saveData(data);
-
-    button.className="btn btn-green";
-    button.textContent="✓ ပြီးပါပြီ";
-
-    toast("Lesson Completed");
-  }else{
-    lesson.classList.toggle("open");
-  }
-}
-
-
-/* =========================
-   PLATFORM
-========================= */
-
-function openPlatform(platform){
-  renderPlatformLessons(platform);
-  showSection("academy");
-  setTimeout(()=>{
-    document.getElementById("platformLessonTitle").scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-  },100);
-}
-
-function openPlatformModal(platform){
-  const p=platformData[platform];
-  if(!p)return;
-
-  document.getElementById("modalTitle").textContent=p.title;
-  document.getElementById("modalSubtitle").textContent=p.subtitle;
-
-  document.getElementById("modalBody").innerHTML=`
-    <div class="checklist">
-      ${p.lessons.map((x,i)=>`
-        <div class="check-item">
-          <b>${i+1}. ${escapeHTML(x[0])}</b><br>
-          ${escapeHTML(x[1])}
-        </div>
-      `).join("")}
-    </div>
-  `;
-
-  document.getElementById("platformModal").classList.add("show");
-}
-
-function closeModal(){
-  document.getElementById("platformModal").classList.remove("show");
-}
-
-
-/* =========================
-   NICHE FINDER
-========================= */
-
-function findNiche(){
-  const skill=document.getElementById("nicheSkill").value.trim();
-  const interest=document.getElementById("nicheInterest").value.trim();
-  const audience=document.getElementById("nicheAudience").value.trim();
-  const style=document.getElementById("nicheStyle").value;
-
-  if(!skill || !interest || !audience){
-    toast("အချက်အလက်အားလုံး ဖြည့်ပါ");
-    return;
-  }
-
-  const pillars=[
-    skill+" Basics",
-    interest+" Tips",
-    audience+" Problems",
-    "How-to Content",
-    "Real Case Studies"
-  ];
-
-  document.getElementById("nicheResult").innerHTML=`
-    <div class="result">
-      <h4>🎯 Your Creator Direction</h4>
-      <p><b>Main Skill:</b> ${escapeHTML(skill)}</p>
-      <p><b>Interest:</b> ${escapeHTML(interest)}</p>
-      <p><b>Target:</b> ${escapeHTML(audience)}</p>
-      <p><b>Style:</b> ${escapeHTML(style)}</p>
-
-      <div style="margin-top:10px">
-        <b>Content Pillars</b><br>
-        ${pillars.map(x=>`<span class="tag">${escapeHTML(x)}</span>`).join("")}
-      </div>
-
-      <div class="good">
-        <b>အကြံပြု Strategy</b><br>
-        YouTube ကို Long-form + Shorts အတွက် အသုံးပြုပြီး
-        Facebook / TikTok ကို Discovery နဲ့ Audience Expansion အတွက်
-        အသုံးချနိုင်ပါတယ်
-      </div>
-
-      <div class="alert">
-        Niche ကို အရမ်းကျဉ်းအောင်မလုပ်ဘဲ Audience Problem တစ်ခုကို
-        ရှင်းလင်းစွာ ဖြေရှင်းနိုင်တဲ့ Direction တစ်ခုအဖြစ် သတ်မှတ်ပါ
-      </div>
-    </div>
-  `;
-}
-
-
-/* =========================
-   VIEW RECOVERY
-========================= */
-
-function diagnoseViews(){
-  const oldV=Number(document.getElementById("oldViews").value);
-  const newV=Number(document.getElementById("newViews").value);
-  const ctr=Number(document.getElementById("ctr").value);
-  const retention=Number(document.getElementById("retention").value);
-  const change=document.getElementById("viewChange").value.trim();
-
-  if(!oldV || !newV){
-    toast("Views နှစ်ခုလုံးထည့်ပါ");
-    return;
-  }
-
-  const drop=((oldV-newV)/oldV)*100;
-  let diagnosis=[];
-  let actions=[];
-
-  if(ctr>0 && ctr<4){
-    diagnosis.push("Packaging / Title / Thumbnail ကို စစ်သင့်ပါတယ်");
-    actions.push("Title + Thumbnail Version အသစ် 2 ခု Test လုပ်ပါ");
-  }
-
-  if(retention>0 && retention<35){
-    diagnosis.push("Viewer Retention နိမ့်နေပါတယ်");
-    actions.push("Hook ကို တိုအောင်လုပ်ပြီး Intro ကို ဖြတ်ပါ");
-  }
-
-  if(ctr>=4 && retention>=35){
-    diagnosis.push("CTR နဲ့ Retention တစ်ခုတည်းကြောင့် View Drop ဖြစ်တယ်လို့ မဆုံးဖြတ်သင့်သေးပါ");
-    actions.push("Topic Demand + Audience Fit + Traffic Source ကို ထပ်စစ်ပါ");
-  }
-
-  if(change){
-    actions.push("ပြောင်းလဲခဲ့တဲ့အချက်တွေကို တစ်ခုချင်းစီပြန်စစ်ပါ: "+change);
-  }
-
-  actions.push("အရင်က အလုပ်ဖြစ်ခဲ့တဲ့ Top Content 5 ခုကို ပြန်လေ့လာပါ");
-  actions.push("နောက် 7 ရက်ကို Random Topic မလုပ်ဘဲ Winning Pattern ကို Test လုပ်ပါ");
-
-  document.getElementById("recoveryResult").innerHTML=`
-    <div class="result">
-      <h4>🚨 Diagnosis Result</h4>
-      <p><b>View Change:</b> ${drop.toFixed(1)}%</p>
-
-      <div class="${drop>30?"alert":"good"}">
-        ${drop>30
-          ?"Views သိသိသာသာကျနေပါတယ် — ချက်ချင်း Random Changes မလုပ်ဘဲ Data နဲ့ Diagnosis လုပ်ပါ"
-          :"Views ပြောင်းလဲမှုရှိပေမယ့် Recovery Plan ကို Data အပေါ်အခြေခံပြီး ဆက်စစ်နိုင်ပါတယ်"}
-      </div>
-
-      <div class="lesson-section">
-        <strong>🔎 Possible Diagnosis</strong>
-        <ul>${diagnosis.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>
-      </div>
-
-      <div class="lesson-section">
-        <strong>🗓️ 7-Day Recovery Plan</strong>
-        <ul>${actions.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>
-      </div>
-    </div>
-  `;
-}
-
-
-/* =========================
-   CONTENT IDEAS
-========================= */
 
 function generateIdeas(){
-  const niche=document.getElementById("ideaNiche").value.trim();
-  const audience=document.getElementById("ideaAudience").value.trim();
 
-  if(!niche || !audience){
-    toast("Niche နဲ့ Audience ထည့်ပါ");
-    return;
-  }
+const topic=document.getElementById("ideaTopic").value.trim();
+const target=document.getElementById("ideaTarget").value.trim();
 
-  const templates=[
-    `${niche} မှာ Beginner တွေ အမြဲမှားနေတဲ့ အချက် ၅ ချက်`,
-    `${audience} အတွက် ${niche} ကို စတင်ဖို့ Step-by-Step Guide`,
-    `${niche} လုပ်တဲ့သူတိုင်း သိထားသင့်တဲ့ Rule ၇ ခု`,
-    `${niche} နဲ့ပတ်သက်ပြီး လူအများမှားယွင်းနေတဲ့ အယူအဆ ၅ ခု`,
-    `${niche} မှာ Result မရတာရဲ့ အဓိကအကြောင်းရင်း`,
-    `${audience} အတွက် အချိန်နည်းနည်းနဲ့ ${niche} လေ့လာနည်း`,
-    `${niche} မှာ တိုးတက်လာအောင် 30-Day Challenge`,
-    `${niche} Case Study — ဘယ်လို Result ရခဲ့လဲ`,
-    `${niche} အတွက် Free Tools ၁၀ ခု`,
-    `${niche} နဲ့ Income တည်ဆောက်နိုင်တဲ့ နည်းလမ်းများ`
-  ];
-
-  document.getElementById("ideasResult").innerHTML=`
-    <div class="result">
-      <h4>💡 Content Ideas</h4>
-      <ol style="padding-left:20px">
-        ${templates.map(x=>`<li style="margin:6px 0;font-size:13px">${escapeHTML(x)}</li>`).join("")}
-      </ol>
-    </div>
-  `;
+if(!topic||!target){
+toast("Niche နဲ့ Audience ထည့်ပါ");
+return;
 }
 
+const ideas=[
+`${topic} မှာ Beginner တွေ အမြဲမှားနေတဲ့ အချက် ၅ ချက်`,
+`${target} အတွက် ${topic} ကို စတင်ဖို့ Step-by-Step`,
+`${topic} မှာ Result မရတာရဲ့ အဓိကအကြောင်းရင်း`,
+`${topic} နဲ့ပတ်သက်ပြီး လူအများမှားနေတဲ့ အယူအဆ ၅ ခု`,
+`${target} အတွက် ${topic} ရဲ့ အရေးကြီးဆုံး Rule ၇ ခု`,
+`${topic} Case Study — ဘာကြောင့် ဒီ Result ရခဲ့တာလဲ`,
+`${topic} မှာ တိုးတက်အောင် 30-Day Challenge`,
+`${topic} အတွက် Free Tools ၁၀ ခု`,
+`${target} ရဲ့ အကြီးမားဆုံး ${topic} Problem ၅ ခု`,
+`${topic} ကနေ Income တည်ဆောက်နိုင်တဲ့ နည်းလမ်းများ`
+];
 
-/* =========================
-   HOOK GENERATOR
-========================= */
+document.getElementById("ideaResult").innerHTML=`
+
+<div class="result">
+
+<h4>💡 Content Ideas</h4>
+
+<ol style="padding-left:20px">
+${ideas.map(x=>`<li style="margin:6px 0">${esc(x)}</li>`).join("")}
+</ol>
+
+</div>
+`;
+}
+
 
 function generateHooks(){
-  const topic=document.getElementById("hookTopic").value.trim();
 
-  if(!topic){
-    toast("Topic ထည့်ပါ");
-    return;
-  }
+const topic=document.getElementById("hookTopic").value.trim();
 
-  const hooks=[
-    `“${topic}” လုပ်နေပေမယ့် Result မရဘူးဆိုရင် ဒီ Video ကို အဆုံးထိကြည့်ပါ`,
-    `လူအများ မသိသေးတဲ့ “${topic}” ရဲ့ အရေးကြီးဆုံးအချက် ၃ ချက်`,
-    `“${topic}” မှာ ဒီအမှားကိုလုပ်နေရင် ရပ်လိုက်ပါ`,
-    `ကျွန်တော် “${topic}” ကို စမ်းကြည့်ပြီး သိလာတဲ့ အချက်`,
-    `“${topic}” ကို Beginner တစ်ယောက်ဆိုရင် ဒီလိုစလုပ်ပါ`,
-    `Views မတက်တာ “${topic}” ကြောင့်လား — ဒီ ၃ ချက်စစ်ပါ`
-  ];
+if(!topic){
+toast("Topic ထည့်ပါ");
+return;
+}
 
-  document.getElementById("hooksResult").innerHTML=`
-    <div class="result">
-      <h4>🎣 Hook Ideas</h4>
-      <ol style="padding-left:20px">
-        ${hooks.map(x=>`<li style="margin:7px 0;font-size:13px">${escapeHTML(x)}</li>`).join("")}
-      </ol>
-    </div>
-  `;
+const hooks=[
+`${topic} လုပ်နေပေမယ့် Result မရဘူးဆိုရင် ဒီ Video ကို ကြည့်ပါ`,
+`${topic} မှာ လူအများမသိသေးတဲ့ အချက် ၃ ချက်`,
+`${topic} မှာ ဒီအမှားကိုလုပ်နေရင် ရပ်လိုက်ပါ`,
+`${topic} ကို Beginner တစ်ယောက်ဆိုရင် ဒီလိုစလုပ်ပါ`,
+`${topic} နဲ့ပတ်သက်ပြီး လူအများ မေးလေ့ရှိတဲ့ မေးခွန်းရဲ့ အဖြေ`,
+`Views မတက်တာ ${topic} ကြောင့်လား — ဒီအချက်တွေကို စစ်ပါ`
+];
+
+document.getElementById("hookResult").innerHTML=`
+
+<div class="result">
+
+<h4>🎣 Hook Ideas</h4>
+
+<ol style="padding-left:20px">
+${hooks.map(x=>`<li style="margin:6px 0">${esc(x)}</li>`).join("")}
+</ol>
+
+</div>
+`;
 }
 
 
-/* =========================
-   SCRIPT STUDIO
-========================= */
+function createScript(){
 
-function generateScript(){
-  const topic=document.getElementById("scriptTopic").value.trim();
-  const type=document.getElementById("scriptType").value;
+const topic=document.getElementById("scriptTopic").value.trim();
+const type=document.getElementById("videoType").value;
 
-  if(!topic){
-    toast("Topic ထည့်ပါ");
-    return;
-  }
+if(!topic){
+toast("Topic ထည့်ပါ");
+return;
+}
 
-  document.getElementById("scriptResult").innerHTML=`
-    <div class="result">
-      <h4>✍️ ${escapeHTML(type)} Script Structure</h4>
+document.getElementById("scriptResult").innerHTML=`
 
-      <div class="lesson-section">
-        <strong>1. HOOK</strong>
-        <p>“${escapeHTML(topic)}” နဲ့ပတ်သက်ပြီး Viewer ဆက်ကြည့်ချင်အောင်
-        Problem / Curiosity တစ်ခုနဲ့ စတင်ပါ</p>
-      </div>
+<div class="result">
 
-      <div class="lesson-section">
-        <strong>2. PROMISE</strong>
-        <p>ဒီ Video ကြည့်ပြီး ဘာရမလဲကို ရှင်းပြပါ</p>
-      </div>
+<h4>✍️ ${esc(type)} Script Structure</h4>
 
-      <div class="lesson-section">
-        <strong>3. VALUE</strong>
-        <p>အဓိက အချက် 3–5 ခုကို Example နဲ့ရှင်းပြပါ</p>
-      </div>
+<div class="lesson-box">
+<strong>01 — HOOK</strong>
+<p>
+${esc(topic)} နဲ့ပတ်သက်ပြီး Viewer ရဲ့ Problem သို့မဟုတ်
+Curiosity ကို အစမှာ ချက်ချင်းဖော်ပြပါ
+</p>
+</div>
 
-      <div class="lesson-section">
-        <strong>4. PROOF / STORY</strong>
-        <p>Case Study, Experience, Result သို့မဟုတ် Practical Example ထည့်ပါ</p>
-      </div>
+<div class="lesson-box">
+<strong>02 — PROMISE</strong>
+<p>
+ဒီ Video ပြီးသွားရင် Viewer ဘာရမလဲ ရှင်းပြပါ
+</p>
+</div>
 
-      <div class="lesson-section">
-        <strong>5. CTA</strong>
-        <p>Viewer အတွက် Next Action တစ်ခု သတ်မှတ်ပေးပါ</p>
-      </div>
-    </div>
-  `;
+<div class="lesson-box">
+<strong>03 — VALUE</strong>
+<p>
+အဓိကအချက် 3–5 ခုကို Example နဲ့ ရှင်းပြပါ
+</p>
+</div>
+
+<div class="lesson-box">
+<strong>04 — PROOF / STORY</strong>
+<p>
+Case Study, Experience သို့မဟုတ် Practical Example ထည့်ပါ
+</p>
+</div>
+
+<div class="lesson-box">
+<strong>05 — CTA</strong>
+<p>
+Viewer လုပ်ဆောင်ရမယ့် Next Action တစ်ခု သတ်မှတ်ပါ
+</p>
+</div>
+
+</div>
+`;
 }
 
 
-/* =========================
-   REPURPOSE
-========================= */
+function thumbnailIdeas(){
 
-function repurposeContent(){
-  const topic=document.getElementById("repurposeTopic").value.trim();
+const topic=document.getElementById("thumbTopic").value.trim();
 
-  if(!topic){
-    toast("Master Content ထည့်ပါ");
-    return;
-  }
+if(!topic){
+toast("Topic ထည့်ပါ");
+return;
+}
 
-  document.getElementById("repurposeResult").innerHTML=`
-    <div class="result">
+const ideas=[
+`Problem Focus — "${topic}" ကို မဖြေရှင်းနိုင်ရင် ဖြစ်မယ့် Problem`,
+`Result Focus — "${topic}" ပြီးရင် ရမယ့် Result`,
+`Number Focus — "${topic}" အတွက် အရေးကြီးဆုံး 3–5 ချက်`,
+`Before / After — မလုပ်ခင်နဲ့ လုပ်ပြီးနောက်`,
+`Curiosity — "${topic}" နဲ့ပတ်သက်ပြီး မေးခွန်းတစ်ခု`
+];
 
-      <div class="lesson-section">
-        <strong>▶️ YouTube Long Video</strong>
-        <p>${escapeHTML(topic)} ကို 5–15 မိနစ်အတွင်း Problem → Explanation → Example → Solution ပုံစံနဲ့ ပြုလုပ်ပါ</p>
-      </div>
+document.getElementById("thumbResult").innerHTML=`
 
-      <div class="lesson-section">
-        <strong>⚡ YouTube Short</strong>
-        <p>အရေးကြီးဆုံး Point တစ်ခုကို Hook + 1 Value + CTA နဲ့ 30–60 sec Format ပြောင်းပါ</p>
-      </div>
+<div class="result">
 
-      <div class="lesson-section">
-        <strong>ⓕ Facebook Reel</strong>
-        <p>Short Hook + Practical Tip + Comment CTA ပုံစံနဲ့ ပြန်တည်ဆောက်ပါ</p>
-      </div>
+<h4>🖼️ Thumbnail Concepts</h4>
 
-      <div class="lesson-section">
-        <strong>♪ TikTok</strong>
-        <p>ပထမပိုင်းမှာ Strong Hook ထည့်ပြီး Fast Pace နဲ့ Main Idea တစ်ခုတည်းကို Focus လုပ်ပါ</p>
-      </div>
+<ol style="padding-left:20px">
+${ideas.map(x=>`<li style="margin:6px 0">${esc(x)}</li>`).join("")}
+</ol>
 
-    </div>
-  `;
+<div class="alert">
+Thumbnail မှာ စာအများကြီးထည့်တာထက်
+Video ရဲ့ အဓိက Promise ကို မြန်မြန်နားလည်စေဖို့ Focus လုပ်ပါ
+</div>
+
+</div>
+`;
 }
 
 
-/* =========================
-   ANALYTICS
-========================= */
+function analyzeVideo(){
 
-function calculateAnalytics(){
-  const views=Number(document.getElementById("aViews").value);
-  const likes=Number(document.getElementById("aLikes").value);
-  const comments=Number(document.getElementById("aComments").value);
-  const shares=Number(document.getElementById("aShares").value);
+const views=Number(document.getElementById("anViews").value);
+const ctr=Number(document.getElementById("anCTR").value);
+const retention=Number(document.getElementById("anRetention").value);
+const engagement=Number(document.getElementById("anEngagement").value);
 
-  if(!views){
-    toast("Views ထည့်ပါ");
-    return;
-  }
+if(!views){
+toast("Views ထည့်ပါ");
+return;
+}
 
-  const engagement=((likes+comments+shares)/views)*100;
+const er=(engagement/views)*100;
 
-  let status="Data ကို ဆက်လေ့လာပါ";
-  if(engagement>=5)status="Audience Engagement ကောင်းနေပါတယ်";
-  else if(engagement>=2)status="Engagement တိုးတက်အောင် စမ်းသပ်နိုင်ပါတယ်";
-  else status="Topic + Hook + CTA ကို ပြန်စစ်ပါ";
+let advice=[];
 
-  document.getElementById("analyticsResult").innerHTML=`
-    <div class="result">
-      <h4>📊 Performance Result</h4>
-      <p><b>Engagement Rate:</b> ${engagement.toFixed(2)}%</p>
+if(ctr>0&&ctr<4)
+advice.push("CTR နိမ့်နေပါတယ် — Title + Thumbnail ကို ပြန်စစ်ပါ");
 
-      <div class="${engagement>=5?"good":"alert"}">
-        ${status}
-      </div>
+if(retention>0&&retention<35)
+advice.push("Retention နိမ့်နေပါတယ် — Hook + Intro + Video Structure ကို ပြန်စစ်ပါ");
 
-      <div class="checklist">
-        <div class="check-item">👍 Likes: ${formatNumber(likes)}</div>
-        <div class="check-item">💬 Comments: ${formatNumber(comments)}</div>
-        <div class="check-item">↗️ Shares: ${formatNumber(shares)}</div>
-      </div>
-    </div>
-  `;
+if(ctr>=4&&retention>=35)
+advice.push("CTR နဲ့ Retention တစ်ခုတည်းနဲ့ မဆုံးဖြတ်ဘဲ Topic Demand + Audience Fit ကို ထပ်စစ်ပါ");
+
+if(er<2)
+advice.push("Engagement နည်းနေပါတယ် — Topic Relevance + CTA ကို ပြန်စမ်းပါ");
+
+if(advice.length===0)
+advice.push("Data ကို အရင် Video တွေနဲ့ Compare လုပ်ပြီး Winning Pattern ရှာပါ");
+
+document.getElementById("analyticsResult").innerHTML=`
+
+<div class="result">
+
+<h4>📊 Analysis</h4>
+
+<p><b>Views:</b> ${fmt(views)}</p>
+<p><b>CTR:</b> ${ctr||0}%</p>
+<p><b>Retention:</b> ${retention||0}%</p>
+<p><b>Engagement Rate:</b> ${er.toFixed(2)}%</p>
+
+<div class="checklist">
+${advice.map(x=>`<div class="check">🔎 ${esc(x)}</div>`).join("")}
+</div>
+
+<div class="good">
+နောက် Video မှာ Variable တစ်ခုချင်းစီ Test လုပ်ပြီး
+Result ကို ပြန်တိုင်းတာပါ
+</div>
+
+</div>
+`;
 }
 
 
-/* =========================
-   MONEY
-========================= */
+function recoverViews(){
 
-function calculateMoney(){
-  const goal=Number(document.getElementById("incomeGoal").value);
-  const current=Number(document.getElementById("incomeCurrent").value);
+const oldV=Number(document.getElementById("oldViews").value);
+const newV=Number(document.getElementById("newViews").value);
+const ctr=Number(document.getElementById("recCTR").value);
+const retention=Number(document.getElementById("recRetention").value);
+const change=document.getElementById("recChange").value.trim();
 
-  if(!goal){
-    toast("Income Goal ထည့်ပါ");
-    return;
-  }
+if(!oldV||!newV){
+toast("Views နှစ်ခုလုံးထည့်ပါ");
+return;
+}
 
-  const gap=Math.max(goal-current,0);
-  const pct=Math.min((current/goal)*100,100);
+const drop=((oldV-newV)/oldV)*100;
 
-  document.getElementById("moneyResult").innerHTML=`
-    <div class="result">
-      <h4>💰 Income Plan</h4>
-      <p><b>Goal:</b> $${formatNumber(goal)}</p>
-      <p><b>Current:</b> $${formatNumber(current)}</p>
-      <p><b>Gap:</b> $${formatNumber(gap)}</p>
+let diagnosis=[];
+let actions=[];
 
-      <div class="progress">
-        <span style="width:${pct}%"></span>
-      </div>
+if(ctr&&ctr<4){
+diagnosis.push("CTR နိမ့်နေခြင်းကြောင့် Packaging ကို စစ်ပါ");
+actions.push("Title + Thumbnail Concept 2–3 ခု Test လုပ်ပါ");
+}
 
-      <p class="small" style="margin-top:7px">${pct.toFixed(1)}% Goal ရောက်နေပါပြီ</p>
+if(retention&&retention<35){
+diagnosis.push("Retention နိမ့်နေခြင်းကြောင့် Hook / Structure ကို စစ်ပါ");
+actions.push("Intro တိုအောင်လုပ်ပြီး Value ကို စောစောပေးပါ");
+}
 
-      <div class="lesson-section">
-        <strong>📌 အကြံပြုချက်</strong>
-        <p>
-          Gap ကို Platform Ads တစ်ခုတည်းနဲ့ ဖြည့်ဖို့ မစဉ်းစားဘဲ
-          Affiliate + Sponsor + Digital Product + Service စတဲ့ Income Stream
-          တွေကို အဆင့်လိုက် တည်ဆောက်ပါ
-        </p>
-      </div>
-    </div>
-  `;
+if(!diagnosis.length){
+diagnosis.push("Topic Demand + Audience Fit + Traffic Source ကို ထပ်စစ်ပါ");
+}
+
+actions.push("အရင် Top Videos 5 ခုကို ပြန် Analyze လုပ်ပါ");
+actions.push("အလုပ်ဖြစ်ခဲ့တဲ့ Topic Pattern ကို Series အဖြစ် Test လုပ်ပါ");
+actions.push("7 ရက်အတွင်း Result ကို ပြန် Review လုပ်ပါ");
+
+document.getElementById("recoveryResult").innerHTML=`
+
+<div class="result">
+
+<h4>🚨 View Recovery Diagnosis</h4>
+
+<p>
+<b>View Change:</b> ${drop.toFixed(1)}%
+</p>
+
+<div class="${drop>30?"alert":"good"}">
+${drop>30
+?"Views သိသိသာသာကျနေပါတယ် — Random Changes မလုပ်ဘဲ Diagnosis လုပ်ပါ"
+:"Views ပြောင်းလဲမှုရှိပါတယ် — Data နဲ့ ဆက်စစ်ပါ"}
+</div>
+
+${change
+?`<div class="lesson-box">
+<strong>Recent Change</strong>
+<p>${esc(change)}</p>
+</div>`
+:""}
+
+<div class="lesson-box">
+<strong>🔎 Diagnosis</strong>
+<ul>
+${diagnosis.map(x=>`<li>${esc(x)}</li>`).join("")}
+</ul>
+</div>
+
+<div class="lesson-box">
+<strong>🗓️ 7-Day Recovery Plan</strong>
+<ul>
+${actions.map(x=>`<li>${esc(x)}</li>`).join("")}
+</ul>
+</div>
+
+</div>
+`;
 }
 
 
-/* =========================
-   AI COACH
-========================= */
+function moneyPlan(){
 
-function coachAnswer(){
-  const problem=document.getElementById("coachProblem").value.trim();
+const goal=Number(document.getElementById("moneyGoal").value);
+const current=Number(document.getElementById("moneyCurrent").value);
 
-  if(!problem){
-    toast("Problem ရေးပါ");
-    return;
-  }
+if(!goal){
+toast("Income Goal ထည့်ပါ");
+return;
+}
 
-  const text=problem.toLowerCase();
-  let title="🤖 Creator Action Plan";
-  let body="";
+const gap=Math.max(goal-current,0);
+const pct=Math.min((current/goal)*100,100);
 
-  if(text.includes("view") || text.includes("views") || text.includes("ကြည့်")){
-    title="🚨 Views Problem Action Plan";
-    body=`
-      <ol style="padding-left:20px">
-        <li>အရင် Top Content 5 ခုကို ရှာပါ</li>
-        <li>အခု Content နဲ့ အရင် Content ရဲ့ Topic ကို နှိုင်းယှဉ်ပါ</li>
-        <li>Title + Thumbnail / Hook ကို စစ်ပါ</li>
-        <li>Retention နဲ့ Audience Drop-off ကို ကြည့်ပါ</li>
-        <li>နောက် 7 ရက်အတွက် Winning Pattern ကို Test လုပ်ပါ</li>
-      </ol>
-    `;
-  }else if(text.includes("money") || text.includes("income") || text.includes("ငွေ") || text.includes("ဝင်ငွေ")){
-    title="💰 Monetization Action Plan";
-    body=`
-      <ol style="padding-left:20px">
-        <li>လက်ရှိ Audience နဲ့ Niche ကို သတ်မှတ်ပါ</li>
-        <li>Platform Income ကို သီးခြားစီ စစ်ပါ</li>
-        <li>Affiliate / Sponsor Opportunity ရှာပါ</li>
-        <li>ကိုယ့် Audience ရဲ့ Problem ကို ဖြေရှင်းပေးမယ့် Product / Service တည်ဆောက်ပါ</li>
-        <li>Monthly Revenue Target တစ်ခု သတ်မှတ်ပါ</li>
-      </ol>
-    `;
-  }else{
-    title="🧠 Creator Problem Solving Framework";
-    body=`
-      <ol style="padding-left:20px">
-        <li><b>Define:</b> ပြဿနာကို တိတိကျကျ သတ်မှတ်ပါ</li>
-        <li><b>Measure:</b> Data နဲ့ တိုင်းတာပါ</li>
-        <li><b>Diagnose:</b> ဖြစ်နိုင်တဲ့အကြောင်းရင်းတွေ ခွဲပါ</li>
-        <li><b>Test:</b> Variable တစ်ခုချင်းစီ စမ်းပါ</li>
-        <li><b>Review:</b> Result ကို ပြန်ကြည့်ပါ</li>
-        <li><b>Scale:</b> အလုပ်ဖြစ်တဲ့ Pattern ကို ထပ်တိုးပါ</li>
-      </ol>
-    `;
-  }
+document.getElementById("moneyResult").innerHTML=`
 
-  document.getElementById("coachResult").innerHTML=`
-    <div class="result">
-      <h4>${title}</h4>
-      <p class="muted" style="margin-bottom:10px">
-        Problem: ${escapeHTML(problem)}
-      </p>
-      ${body}
-      <div class="good">
-        <b>အရေးကြီးဆုံး:</b>
-        Random Change မလုပ်ဘဲ Data → Diagnosis → Test → Review
-        ပုံစံနဲ့ ဆက်လုပ်ပါ
-      </div>
-    </div>
-  `;
+<div class="result">
+
+<h4>💰 Income Plan</h4>
+
+<p><b>Goal:</b> $${fmt(goal)}</p>
+<p><b>Current:</b> $${fmt(current)}</p>
+<p><b>Gap:</b> $${fmt(gap)}</p>
+
+<div class="progress">
+<span style="width:${pct}%"></span>
+</div>
+
+<p style="margin-top:6px">
+Goal Progress ${pct.toFixed(1)}%
+</p>
+
+<div class="lesson-box">
+<strong>📌 Next Step</strong>
+<p>
+Income Gap ကို Ads တစ်ခုတည်းနဲ့ ဖြည့်မယ့်အစား
+Affiliate + Sponsor + Product + Service စတဲ့
+Income Stream တွေကို အဆင့်လိုက် စီမံပါ
+</p>
+</div>
+
+</div>
+`;
 }
 
 
-/* =========================
-   INITIALIZE
-========================= */
+function coach(){
 
-renderCoreLessons();
-renderPlatformLessons("youtube");
+const problem=document.getElementById("coachProblem").value.trim();
+
+if(!problem){
+toast("Problem ရေးပါ");
+return;
+}
+
+const t=problem.toLowerCase();
+
+let title="";
+let body="";
+
+if(
+t.includes("view")||
+t.includes("views")||
+t.includes("ကြည့်")
+){
+
+title="🚨 Views Problem";
+
+body=`
+<ol style="padding-left:20px">
+<li>အရင် Top Videos 5 ခုရှာပါ</li>
+<li>အခု Video နဲ့ Topic Pattern ကို Compare လုပ်ပါ</li>
+<li>CTR ကို စစ်ပါ</li>
+<li>Retention Graph ကို စစ်ပါ</li>
+<li>Winning Pattern ကို 7 ရက် Test လုပ်ပါ</li>
+</ol>
+`;
+
+}else if(
+t.includes("subscriber")||
+t.includes("sub")||
+t.includes("subscribe")
+){
+
+title="👥 Subscriber Growth";
+
+body=`
+<ol style="padding-left:20px">
+<li>Audience အတွက် Clear Value Proposition ရှိပါစေ</li>
+<li>Series Content တည်ဆောက်ပါ</li>
+<li>Video တစ်ခုနဲ့တစ်ခု ဆက်စပ်အောင်လုပ်ပါ</li>
+<li>Relevant CTA အသုံးပြုပါ</li>
+<li>Returning Audience ကို Analytics မှာ စစ်ပါ</li>
+</ol>
+`;
+
+}else if(
+t.includes("money")||
+t.includes("income")||
+t.includes("ငွေ")||
+t.includes("ဝင်ငွေ")
+){
+
+title="💰 Monetization";
+
+body=`
+<ol style="padding-left:20px">
+<li>Channel Niche နဲ့ Audience ကို သတ်မှတ်ပါ</li>
+<li>လက်ရှိ YouTube Monetization Eligibility ကို စစ်ပါ</li>
+<li>Ads Revenue ကို လေ့လာပါ</li>
+<li>Affiliate / Sponsor Opportunity ရှာပါ</li>
+<li>ကိုယ့် Audience အတွက် Product / Service တည်ဆောက်ပါ</li>
+</ol>
+`;
+
+}else{
+
+title="🧠 YouTube Problem Solving";
+
+body=`
+<ol style="padding-left:20px">
+<li><b>Define</b> — Problem ကို တိတိကျကျ သတ်မှတ်ပါ</li>
+<li><b>Measure</b> — Data နဲ့ တိုင်းတာပါ</li>
+<li><b>Diagnose</b> — ဖြစ်နိုင်တဲ့ အကြောင်းရင်းခွဲပါ</li>
+<li><b>Test</b> — Variable တစ်ခုချင်းစီ စမ်းပါ</li>
+<li><b>Review</b> — Result ပြန်ကြည့်ပါ</li>
+<li><b>Scale</b> — အလုပ်ဖြစ်တဲ့ Pattern ကို တိုးချဲ့ပါ</li>
+</ol>
+`;
+}
+
+document.getElementById("coachResult").innerHTML=`
+
+<div class="result">
+
+<h4>${title}</h4>
+
+<p style="margin-bottom:9px">
+<b>Problem:</b> ${esc(problem)}
+</p>
+
+${body}
+
+<div class="good">
+<b>Creator Rule:</b>
+Data → Diagnosis → Test → Review → Scale
+</div>
+
+</div>
+`;
+}
+
+
+renderLessons();
 loadMissions();
 updateDashboard();
-
-document.getElementById("platformModal").addEventListener("click",function(e){
-  if(e.target===this)closeModal();
-});
 
 </script>
 
