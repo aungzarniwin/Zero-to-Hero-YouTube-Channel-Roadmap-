@@ -2,687 +2,550 @@
 <html lang="my">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
-<title>YouTube Money OS</title>
+<title>YouTube Money OS V2</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,"Noto Sans Myanmar",sans-serif;
+  background:#f4f6f8;
+  color:#172033;
+  min-height:100vh;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
 
 :root{
-  --bg:#f5f7fb;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#64748b;
-  --line:#e5e7eb;
   --dark:#111827;
   --dark2:#1f2937;
-  --gold:#f59e0b;
   --green:#16a34a;
+  --green2:#22c55e;
+  --orange:#f59e0b;
   --red:#dc2626;
   --purple:#7c3aed;
-  --orange:#ea580c;
-  --shadow:0 8px 25px rgba(15,23,42,.07);
-  --radius:18px;
-}
-
-html{scroll-behavior:smooth}
-
-body{
-  font-family:Arial,"Noto Sans Myanmar","Myanmar Text",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.55;
-}
-
-button,input,textarea,select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
+  --text:#172033;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --card:#fff;
 }
 
 .app{
   min-height:100vh;
+  display:flex;
 }
 
-header{
-  background:linear-gradient(135deg,#111827,#1e293b);
-  color:white;
-  padding:20px 18px 18px;
-  position:sticky;
+.sidebar{
+  width:255px;
+  background:var(--dark);
+  color:#fff;
+  position:fixed;
+  left:0;
   top:0;
-  z-index:50;
-  box-shadow:0 5px 20px rgba(0,0,0,.15);
-}
-
-.header-inner{
-  max-width:1250px;
-  margin:auto;
+  bottom:0;
+  overflow-y:auto;
+  z-index:1000;
+  padding:20px 14px;
 }
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
+  padding:8px 10px 22px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  margin-bottom:15px;
 }
-
-.logo{
-  width:45px;
-  height:45px;
-  border-radius:14px;
-  background:linear-gradient(135deg,#f59e0b,#f97316);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:23px;
-}
-
 .brand h1{
   font-size:20px;
-  line-height:1.2;
+  letter-spacing:.3px;
+}
+.brand p{
+  color:#9ca3af;
+  font-size:12px;
+  margin-top:6px;
+  line-height:1.5;
 }
 
-.brand p{
+.nav-title{
+  font-size:10px;
+  color:#6b7280;
+  padding:12px 10px 7px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
   color:#cbd5e1;
+  text-align:left;
+  padding:11px 12px;
+  border-radius:9px;
+  margin-bottom:3px;
+  font-size:14px;
+}
+.nav-btn:hover,
+.nav-btn.active{
+  background:#263244;
+  color:#fff;
+}
+
+.sidebar-footer{
+  margin-top:20px;
+  padding:13px;
+  background:#1f2937;
+  border-radius:12px;
+}
+.sidebar-footer strong{
+  display:block;
+  font-size:13px;
+}
+.sidebar-footer span{
+  display:block;
+  font-size:11px;
+  color:#9ca3af;
+  margin-top:4px;
+}
+
+.main{
+  margin-left:255px;
+  width:calc(100% - 255px);
+  min-height:100vh;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:900;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:15px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.topbar h2{
+  font-size:20px;
+}
+.topbar p{
+  color:var(--muted);
   font-size:12px;
   margin-top:3px;
 }
 
-.channel-bar{
-  max-width:1250px;
-  margin:15px auto 0;
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-
-.channel-select{
-  flex:1;
-  border:1px solid #475569;
-  background:#1e293b;
-  color:white;
-  border-radius:12px;
-  padding:11px 12px;
-  outline:none;
-}
-
-.open-btn{
+.mobile-menu{
+  display:none;
   border:0;
-  border-radius:12px;
-  background:#f59e0b;
-  color:#111827;
-  padding:11px 14px;
-  font-weight:700;
+  background:var(--dark);
+  color:#fff;
+  width:40px;
+  height:40px;
+  border-radius:9px;
+  font-size:20px;
 }
 
-nav{
-  max-width:1250px;
-  margin:15px auto 0;
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  padding-bottom:2px;
-  scrollbar-width:none;
-}
-
-nav::-webkit-scrollbar{
-  display:none;
-}
-
-.nav-btn{
-  white-space:nowrap;
-  border:1px solid #334155;
-  background:#1e293b;
-  color:#cbd5e1;
-  border-radius:11px;
-  padding:9px 12px;
-  font-size:13px;
-}
-
-.nav-btn.active{
-  background:#f59e0b;
-  color:#111827;
-  border-color:#f59e0b;
-  font-weight:700;
-}
-
-main{
-  max-width:1250px;
+.content{
+  padding:22px;
+  max-width:1500px;
   margin:auto;
-  padding:22px 16px 60px;
 }
 
-.section{
-  display:none;
-  animation:fade .2s ease;
-}
-
-.section.active{
-  display:block;
-}
-
-@keyframes fade{
-  from{opacity:.4;transform:translateY(3px)}
-  to{opacity:1;transform:none}
-}
-
-.page-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:12px;
-  margin-bottom:18px;
-}
-
-.page-title h2{
-  font-size:25px;
-}
-
-.page-title p{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  padding:6px 9px;
-  border-radius:999px;
-  background:#fff7ed;
-  color:#c2410c;
-  font-size:11px;
-  font-weight:700;
-  border:1px solid #fed7aa;
-}
+.page{display:none}
+.page.active{display:block}
 
 .grid{
   display:grid;
-  gap:14px;
+  gap:15px;
 }
-
-.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 
 .card{
   background:var(--card);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:17px;
-  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  box-shadow:0 3px 15px rgba(15,23,42,.04);
 }
 
 .card h3{
   font-size:16px;
-  margin-bottom:7px;
+  margin-bottom:8px;
 }
-
 .card h4{
   font-size:14px;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
-
-.card p{
-  font-size:13px;
-}
-
 .muted{
   color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
 }
 
-.metric{
+.stat{
   position:relative;
   overflow:hidden;
 }
-
-.metric-icon{
-  font-size:24px;
-  margin-bottom:10px;
-}
-
-.metric-label{
+.stat-label{
   color:var(--muted);
   font-size:12px;
 }
-
-.metric-value{
-  font-size:27px;
-  font-weight:800;
-  margin-top:2px;
+.stat-value{
+  font-size:26px;
+  font-weight:700;
+  margin-top:7px;
 }
-
-.metric-sub{
-  font-size:11px;
+.stat-note{
   color:var(--muted);
-  margin-top:4px;
+  font-size:11px;
+  margin-top:5px;
 }
 
-.progress{
-  height:9px;
-  border-radius:999px;
-  background:#e5e7eb;
-  overflow:hidden;
-  margin-top:10px;
-}
-
-.progress > span{
-  display:block;
-  height:100%;
-  width:0;
-  background:linear-gradient(90deg,#f59e0b,#f97316);
-  border-radius:999px;
-}
-
-.progress.green > span{
-  background:#16a34a;
-}
-
-.progress.purple > span{
-  background:#7c3aed;
-}
-
-.progress-text{
+.section-head{
   display:flex;
   justify-content:space-between;
-  font-size:11px;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:14px;
+}
+.section-head h2{
+  font-size:20px;
+}
+.section-head p{
+  font-size:12px;
   color:var(--muted);
-  margin-top:5px;
+  margin-top:4px;
 }
 
 .btn{
   border:0;
-  border-radius:11px;
+  border-radius:9px;
   padding:10px 14px;
-  font-weight:700;
   font-size:13px;
+  font-weight:600;
 }
+.btn-primary{background:var(--dark);color:#fff}
+.btn-green{background:var(--green);color:#fff}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-light{background:#eef2f7;color:#273449}
+.btn-danger{background:#fee2e2;color:#991b1b}
 
-.btn-primary{
-  background:#111827;
-  color:white;
+.btn:active{transform:scale(.98)}
+
+.input-group{
+  margin-bottom:12px;
 }
-
-.btn-gold{
-  background:#f59e0b;
-  color:#111827;
+.input-group label{
+  display:block;
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:6px;
 }
-
-.btn-green{
-  background:#16a34a;
-  color:white;
-}
-
-.btn-light{
-  background:#f1f5f9;
-  color:#334155;
-}
-
-.btn-danger{
-  background:#fee2e2;
-  color:#991b1b;
-}
-
-.btn-purple{
-  background:#7c3aed;
-  color:white;
-}
-
-.btn-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
-}
-
-input,textarea,select{
+.input,
+.textarea,
+.select{
   width:100%;
-  border:1px solid #dbe1ea;
-  background:white;
-  border-radius:11px;
-  padding:11px 12px;
+  border:1px solid #d9dee7;
+  background:#fff;
+  border-radius:9px;
+  padding:10px 11px;
   outline:none;
-  color:var(--text);
 }
-
-input:focus,textarea:focus,select:focus{
-  border-color:#f59e0b;
-  box-shadow:0 0 0 3px rgba(245,158,11,.12);
+.input:focus,
+.textarea:focus,
+.select:focus{
+  border-color:#64748b;
 }
-
-textarea{
-  min-height:115px;
+.textarea{
+  min-height:90px;
   resize:vertical;
 }
 
-label{
-  display:block;
-  font-size:12px;
-  font-weight:700;
-  margin:10px 0 6px;
-}
-
-.result{
-  margin-top:12px;
-  padding:13px;
-  border-radius:13px;
-  background:#f8fafc;
-  border:1px solid #e2e8f0;
-  font-size:13px;
-}
-
-.result strong{
-  color:#111827;
-}
-
-.alert{
-  padding:12px;
-  border-radius:12px;
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
   margin-top:10px;
-  font-size:12px;
 }
 
-.alert-gold{
-  background:#fffbeb;
-  border:1px solid #fde68a;
+.progress{
+  height:9px;
+  background:#edf0f3;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:10px;
 }
-
-.alert-green{
-  background:#f0fdf4;
-  border:1px solid #bbf7d0;
-}
-
-.alert-red{
-  background:#fef2f2;
-  border:1px solid #fecaca;
+.progress-bar{
+  height:100%;
+  background:var(--green);
+  width:0%;
+  transition:.3s;
 }
 
 .channel-card{
-  transition:.2s;
-}
-
-.channel-card.selected{
-  border:2px solid #f59e0b;
-}
-
-.channel-name{
-  font-weight:800;
-  font-size:17px;
-}
-
-.channel-handle{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:2px;
-}
-
-.channel-link{
-  display:inline-block;
-  color:#b45309;
-  font-size:12px;
-  margin-top:7px;
-  text-decoration:none;
-}
-
-.stat-row{
   display:flex;
   justify-content:space-between;
-  gap:10px;
-  padding:8px 0;
-  border-bottom:1px solid #f1f5f9;
-  font-size:12px;
-}
-
-.stat-row:last-child{
-  border-bottom:0;
-}
-
-.kpi-box{
-  background:#f8fafc;
-  border:1px solid #e2e8f0;
-  border-radius:13px;
-  padding:12px;
-}
-
-.kpi-box b{
-  display:block;
-  font-size:19px;
-  margin-top:3px;
-}
-
-.hook{
-  background:#fffdf7;
-  border:1px solid #fde68a;
-  border-radius:13px;
-  padding:13px;
-  margin-top:9px;
-}
-
-.hook-type{
-  color:#b45309;
-  font-size:10px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.5px;
-}
-
-.hook-text{
-  font-weight:700;
-  font-size:14px;
-  margin-top:4px;
-}
-
-.title-item{
-  background:#f8fafc;
-  border:1px solid #e2e8f0;
-  border-radius:12px;
-  padding:11px;
-  margin-top:8px;
-}
-
-.step{
-  display:flex;
-  gap:11px;
-  margin-top:12px;
-}
-
-.step-num{
-  min-width:31px;
-  height:31px;
-  border-radius:50%;
-  background:#111827;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800;
-  font-size:12px;
-}
-
-.step-content{
-  flex:1;
-}
-
-.step-content b{
-  font-size:13px;
-}
-
-.check-list{
-  list-style:none;
-}
-
-.check-list li{
-  padding:8px 0;
-  border-bottom:1px solid #f1f5f9;
-  font-size:12px;
-}
-
-.check-list li:last-child{
-  border-bottom:0;
-}
-
-.task{
-  display:flex;
-  gap:10px;
+  gap:15px;
   align-items:flex-start;
-  padding:10px 0;
-  border-bottom:1px solid #f1f5f9;
 }
-
-.task input{
-  width:auto;
-  margin-top:4px;
+.channel-name{
+  font-weight:700;
 }
-
-.task.done{
-  text-decoration:line-through;
-  color:#94a3b8;
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:99px;
+  font-size:10px;
+  background:#ecfdf3;
+  color:#15803d;
+  margin-top:6px;
 }
-
-.reference{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  background:#f8fafc;
-  border:1px solid #e2e8f0;
-  border-radius:12px;
-  padding:11px;
-  margin-top:8px;
-}
-
-.reference a{
-  color:#b45309;
+.channel-link{
+  color:#2563eb;
   font-size:12px;
   word-break:break-all;
 }
 
-.winner{
-  border-left:4px solid #f59e0b;
+.task{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+.task:last-child{border-bottom:0}
+.task input{width:17px;height:17px}
+
+.notice{
+  padding:13px;
+  border-radius:10px;
+  background:#f8fafc;
+  border-left:4px solid var(--green);
+  font-size:12px;
+  line-height:1.7;
 }
 
-.winner small{
-  color:var(--muted);
+.warning{
+  border-left-color:var(--orange);
+  background:#fffbeb;
 }
+
+.danger{
+  border-left-color:var(--red);
+  background:#fef2f2;
+}
+
+.reference-card{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px;
+  background:#fff;
+}
+.reference-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+.reference-title{
+  font-weight:700;
+  font-size:15px;
+}
+.reference-meta{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:4px;
+}
+.reference-url{
+  color:#2563eb;
+  font-size:11px;
+  word-break:break-all;
+  display:block;
+  margin-top:7px;
+}
+
+.video-item{
+  margin-top:12px;
+  padding:12px;
+  background:#f8fafc;
+  border:1px solid #e8edf3;
+  border-radius:10px;
+}
+.video-title{
+  font-size:13px;
+  font-weight:700;
+}
+.video-meta{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.upload-box{
+  border:2px dashed #cbd5e1;
+  border-radius:14px;
+  padding:20px;
+  text-align:center;
+  background:#f8fafc;
+}
+.upload-box input{
+  width:100%;
+  margin-top:10px;
+}
+.preview-wrap{
+  margin-top:14px;
+  display:none;
+}
+.preview-wrap img{
+  display:block;
+  max-width:100%;
+  max-height:420px;
+  margin:auto;
+  border-radius:12px;
+  border:1px solid var(--border);
+  object-fit:contain;
+  background:#111;
+}
+
+.analysis-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.analysis-item{
+  padding:12px;
+  border-radius:10px;
+  background:#f8fafc;
+  border:1px solid #e7ebf0;
+}
+.analysis-item strong{
+  display:block;
+  font-size:12px;
+  margin-bottom:4px;
+}
+.analysis-item span{
+  font-size:12px;
+  line-height:1.6;
+  color:#4b5563;
+}
+
+.concept{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  margin-top:10px;
+}
+.concept-number{
+  display:inline-flex;
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  background:var(--dark);
+  color:#fff;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  margin-bottom:7px;
+}
+.concept h4{
+  font-size:14px;
+}
+.concept p{
+  font-size:12px;
+  line-height:1.7;
+  color:#4b5563;
+  margin-top:5px;
+}
+
+.prompt-box{
+  white-space:pre-wrap;
+  background:#111827;
+  color:#e5e7eb;
+  border-radius:11px;
+  padding:14px;
+  font-size:12px;
+  line-height:1.7;
+  margin-top:10px;
+  overflow:auto;
+}
+
+.result{
+  margin-top:14px;
+}
+
+.kpi-list{
+  list-style:none;
+}
+.kpi-list li{
+  padding:9px 0;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+.kpi-list li:last-child{border-bottom:0}
 
 .empty{
-  padding:25px;
+  padding:30px 15px;
   text-align:center;
   color:var(--muted);
-  background:#f8fafc;
-  border-radius:13px;
-  border:1px dashed #cbd5e1;
-}
-
-.money-big{
-  font-size:36px;
-  font-weight:900;
-}
-
-.goal-card{
-  background:linear-gradient(135deg,#111827,#1e293b);
-  color:white;
-}
-
-.goal-card .muted{
-  color:#cbd5e1;
-}
-
-.goal-card .progress{
-  background:#334155;
-}
-
-.goal-card .progress > span{
-  background:#f59e0b;
-}
-
-.quote{
-  font-size:16px;
-  font-weight:800;
-  line-height:1.7;
-  padding:15px;
-  background:#fffbeb;
-  border-radius:14px;
-  border-left:4px solid #f59e0b;
-}
-
-.small{
-  font-size:11px!important;
-}
-
-.footer-note{
-  text-align:center;
-  color:#94a3b8;
-  font-size:11px;
-  margin-top:25px;
-}
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:22px;
-  transform:translate(-50%,20px);
-  background:#111827;
-  color:white;
-  padding:11px 15px;
+  font-size:13px;
+  border:1px dashed #d1d5db;
   border-radius:12px;
-  font-size:12px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  z-index:200;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
+.mobile-overlay{
+  display:none;
 }
 
-@media(max-width:850px){
-  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .g3{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:900px){
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+  .sidebar.open{
+    transform:translateX(0);
+  }
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+  .mobile-menu{
+    display:block;
+  }
+  .mobile-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:999;
+  }
+  .mobile-overlay.show{
+    display:block;
+  }
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-@media(max-width:600px){
-  header{
-    padding:15px 12px 12px;
+@media(max-width:650px){
+  .topbar{
+    padding:12px 14px;
   }
-
-  .brand h1{
-    font-size:17px;
-  }
-
-  main{
-    padding:18px 11px 50px;
-  }
-
-  .page-title h2{
-    font-size:21px;
-  }
-
-  .g2,.g3,.g4{
+  .topbar h2{font-size:17px}
+  .content{padding:14px}
+  .grid-2,
+  .grid-3,
+  .grid-4{
     grid-template-columns:1fr;
   }
-
-  .metric-value{
-    font-size:25px;
-  }
-
-  .channel-bar{
-    margin-top:11px;
-  }
-
-  .open-btn{
-    padding:10px;
-  }
-
-  .card{
-    padding:14px;
-    border-radius:15px;
+  .card{padding:14px}
+  .analysis-grid{grid-template-columns:1fr}
+  .channel-card,
+  .reference-top{
+    flex-direction:column;
   }
 }
 </style>
@@ -692,948 +555,712 @@ label{
 
 <div class="app">
 
-<header>
-  <div class="header-inner">
-
+  <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <div class="logo">▶</div>
-      <div>
-        <h1>YouTube Money OS</h1>
-        <p>Growth • Hook • Content • Analytics • Earn Money</p>
-      </div>
+      <h1>▶ YouTube Money OS</h1>
+      <p>Growth • Content • Thumbnail • Analytics • Earn Money</p>
     </div>
 
-    <div class="channel-bar">
-      <select id="channelSelect" class="channel-select" onchange="switchChannel(this.value)"></select>
-      <button class="open-btn" onclick="openChannel()">Open</button>
+    <div class="nav-title">Main</div>
+
+    <button class="nav-btn active" data-page="dashboard">📊 Dashboard</button>
+    <button class="nav-btn" data-page="channels">📺 My Channels</button>
+    <button class="nav-btn" data-page="growth">🚀 Growth System</button>
+    <button class="nav-btn" data-page="earn">💰 Earn Money</button>
+
+    <div class="nav-title">Creator Lab</div>
+
+    <button class="nav-btn" data-page="hook">🎯 Hook Lab</button>
+    <button class="nav-btn" data-page="thumbnail">🖼️ Thumbnail Lab</button>
+    <button class="nav-btn" data-page="content">✍️ Content Lab</button>
+    <button class="nav-btn" data-page="reference">🔎 Reference Library</button>
+
+    <div class="nav-title">Management</div>
+
+    <button class="nav-btn" data-page="analytics">📈 Analytics</button>
+    <button class="nav-btn" data-page="academy">🎓 Academy</button>
+    <button class="nav-btn" data-page="coach">🤖 AI Coach</button>
+
+    <div class="sidebar-footer">
+      <strong>YouTube Creator OS</strong>
+      <span>Build original content • Test • Measure • Improve</span>
     </div>
+  </aside>
 
-    <nav>
-      <button class="nav-btn active" onclick="showSection('dashboard',this)">🏠 Dashboard</button>
-      <button class="nav-btn" onclick="showSection('channels',this)">📺 My Channels</button>
-      <button class="nav-btn" onclick="showSection('growth',this)">📈 Growth</button>
-      <button class="nav-btn" onclick="showSection('money',this)">💰 Earn Money</button>
-      <button class="nav-btn" onclick="showSection('hook',this)">⚡ Hook Lab</button>
-      <button class="nav-btn" onclick="showSection('thumbnail',this)">🖼️ Thumbnail</button>
-      <button class="nav-btn" onclick="showSection('content',this)">🎬 Content Lab</button>
-      <button class="nav-btn" onclick="showSection('analytics',this)">📊 Analytics</button>
-      <button class="nav-btn" onclick="showSection('academy',this)">🎓 Academy</button>
-      <button class="nav-btn" onclick="showSection('coach',this)">🤖 AI Coach</button>
-    </nav>
+  <div class="mobile-overlay" id="overlay"></div>
 
-  </div>
-</header>
+  <main class="main">
 
-<main>
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="section active">
-
-  <div class="page-title">
-    <div>
-      <h2>Command Center</h2>
-      <p id="dashChannelText">Selected channel performance</p>
-    </div>
-    <span class="badge">LIVE WORKSPACE</span>
-  </div>
-
-  <div class="grid g4">
-
-    <div class="card metric">
-      <div class="metric-icon">👥</div>
-      <div class="metric-label">Subscribers</div>
-      <div class="metric-value" id="dSubs">0</div>
-      <div class="metric-sub">Target 1,000</div>
-      <div class="progress">
-        <span id="subProgress"></span>
-      </div>
-      <div class="progress-text">
-        <span>YPP milestone</span>
-        <span id="subPct">0%</span>
-      </div>
-    </div>
-
-    <div class="card metric">
-      <div class="metric-icon">⏱️</div>
-      <div class="metric-label">Public Watch Hours</div>
-      <div class="metric-value" id="dHours">0</div>
-      <div class="metric-sub">Target 4,000</div>
-      <div class="progress">
-        <span id="hourProgress"></span>
-      </div>
-      <div class="progress-text">
-        <span>12-month target</span>
-        <span id="hourPct">0%</span>
-      </div>
-    </div>
-
-    <div class="card metric">
-      <div class="metric-icon">👁️</div>
-      <div class="metric-label">Monthly Views</div>
-      <div class="metric-value" id="dViews">0</div>
-      <div class="metric-sub">Enter from YouTube Studio</div>
-    </div>
-
-    <div class="card metric">
-      <div class="metric-icon">💵</div>
-      <div class="metric-label">Monthly Income</div>
-      <div class="metric-value">$<span id="dIncome">0</span></div>
-      <div class="metric-sub">Your actual reported income</div>
-    </div>
-
-  </div>
-
-  <div class="grid g2" style="margin-top:14px">
-
-    <div class="card goal-card">
-      <h3>🎯 $500 → $1,000 Monthly Target</h3>
-      <p class="muted">Income target ကို system တစ်ခုအနေနဲ့ track လုပ်ပါ</p>
-
-      <div style="margin-top:15px">
-        <div class="muted small">Current monthly income</div>
-        <div class="money-big">$<span id="goalCurrent">0</span></div>
-      </div>
-
-      <div class="progress">
-        <span id="moneyProgress"></span>
-      </div>
-
-      <div class="progress-text">
-        <span class="muted">$1,000 target</span>
-        <span id="moneyPct" style="color:white">0%</span>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn btn-gold" onclick="showSectionById('money')">Open Money Plan</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>⚡ Today's Creator Actions</h3>
-      <p class="muted">နေ့စဉ်လုပ်ဆောင်ရမယ့် အရေးကြီးဆုံး ၅ ခု</p>
-
-      <div id="dailyTasks"></div>
-
-      <div class="btn-row">
-        <button class="btn btn-light" onclick="resetTasks()">Reset Today</button>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="grid g2" style="margin-top:14px">
-
-    <div class="card">
-      <h3>🛕 Buddha-တရားတော် Content Engine</h3>
-
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <b>Topic</b>
-          <p class="muted">လူတွေတကယ်ရင်ဆိုင်နေတဲ့ စိတ်ဖိစီးမှု၊ ဆုံးရှုံးမှု၊ မိသားစု၊ အလုပ်၊ ငွေကြေး စတဲ့ပြဿနာ</p>
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="mobile-menu" id="menuBtn">☰</button>
+        <div>
+          <h2 id="pageTitle">Dashboard</h2>
+          <p id="pageSub">YouTube income growth command center</p>
         </div>
       </div>
 
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <b>Hook</b>
-          <p class="muted">အစ 5–15 စက္ကန့်မှာ နားထောင်သူအတွက် ဘာကြောင့်ဆက်နားထောင်သင့်လဲ ရှင်းစေပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <b>Dhamma Value</b>
-          <p class="muted">အကြောင်းအရာကို တရားတော်အဓိပ္ပါယ်နဲ့ ဆက်စပ်ပြီး တန်ဖိုးရှိအောင် တင်ပြပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <b>Retention</b>
-          <p class="muted">အဓိကအချက်ကို အစမှာမကုန်အောင် အဆင့်လိုက်တင်ပြပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <b>Takeaway</b>
-          <p class="muted">နားထောင်ပြီးတဲ့အခါ ကိုယ်တိုင်အသုံးချနိုင်မယ့် အချက်တစ်ခုနဲ့ အဆုံးသတ်ပါ</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="card">
-      <h3>🔎 Current Channel Snapshot</h3>
-
-      <div class="stat-row">
-        <span>Channel</span>
-        <b id="snapName">-</b>
-      </div>
-
-      <div class="stat-row">
-        <span>Subscribers</span>
-        <b id="snapSubs">0</b>
-      </div>
-
-      <div class="stat-row">
-        <span>Monthly Views</span>
-        <b id="snapViews">0</b>
-      </div>
-
-      <div class="stat-row">
-        <span>CTR</span>
-        <b id="snapCTR">0%</b>
-      </div>
-
-      <div class="stat-row">
-        <span>Average Retention</span>
-        <b id="snapRetention">0%</b>
-      </div>
-
-      <div class="stat-row">
-        <span>Engagement</span>
-        <b id="snapEngagement">0%</b>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="showSectionById('analytics')">Analyze Channel</button>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CHANNELS -->
-<section id="channels" class="section">
-
-  <div class="page-title">
-    <div>
-      <h2>📺 My Channels</h2>
-      <p>Channel တစ်ခုချင်းစီကို သီးခြား Growth + Money Dashboard နဲ့ စီမံပါ</p>
-    </div>
-  </div>
-
-  <div id="channelList" class="grid g2"></div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>➕ Add New Channel</h3>
-
-    <div class="grid g2">
       <div>
-        <label>Channel Name</label>
-        <input id="newChannelName" placeholder="ဥပမာ - Buddha Dhamma Channel">
-      </div>
-
-      <div>
-        <label>Channel URL</label>
-        <input id="newChannelUrl" placeholder="https://youtube.com/...">
-      </div>
-
-      <div>
-        <label>Handle</label>
-        <input id="newChannelHandle" placeholder="@channel">
-      </div>
-
-      <div>
-        <label>Niche</label>
-        <input id="newChannelNiche" placeholder="Dhamma / Music / Education">
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-gold" onclick="addChannel()">Add Channel</button>
-    </div>
-  </div>
-
-</section>
-
-
-<!-- GROWTH -->
-<section id="growth" class="section">
-
-  <div class="page-title">
-    <div>
-      <h2>📈 Growth System</h2>
-      <p>View တစ်ပုဒ်တည်းကို မလိုက်ဘဲ repeatable system တစ်ခုတည်ဆောက်ပါ</p>
-    </div>
-  </div>
-
-  <div class="grid g4">
-
-    <div class="card">
-      <div class="metric-icon">🎯</div>
-      <h3>Phase 1</h3>
-      <p class="muted">Find Demand</p>
-      <ul class="check-list" style="margin-top:8px">
-        <li>✓ Audience problem</li>
-        <li>✓ Search intent</li>
-        <li>✓ Emotional need</li>
-        <li>✓ Topic clusters</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="metric-icon">🧲</div>
-      <h3>Phase 2</h3>
-      <p class="muted">Package</p>
-      <ul class="check-list" style="margin-top:8px">
-        <li>✓ Title</li>
-        <li>✓ Thumbnail</li>
-        <li>✓ Curiosity</li>
-        <li>✓ Clear promise</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="metric-icon">🔥</div>
-      <h3>Phase 3</h3>
-      <p class="muted">Retain</p>
-      <ul class="check-list" style="margin-top:8px">
-        <li>✓ Strong opening</li>
-        <li>✓ No long intro</li>
-        <li>✓ Pattern breaks</li>
-        <li>✓ Clear structure</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="metric-icon">📊</div>
-      <h3>Phase 4</h3>
-      <p class="muted">Scale</p>
-      <ul class="check-list" style="margin-top:8px">
-        <li>✓ Analyze winners</li>
-        <li>✓ Repeat angle</li>
-        <li>✓ Build series</li>
-        <li>✓ Playlist funnel</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="grid g2" style="margin-top:14px">
-
-    <div class="card">
-      <h3>🚀 30 Video Testing System</h3>
-      <p class="muted">Channel အသစ်မှာ topic တစ်မျိုးတည်းကို မကြာခဏတင်ပြီး စမ်းသပ်တာထက် topic cluster + packaging + hook ကို စနစ်တကျစမ်းပါ</p>
-
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <b>Videos 1–10</b>
-          <p class="muted">Topic demand ကို စမ်းပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <b>Videos 11–20</b>
-          <p class="muted">အလုပ်ဖြစ်တဲ့ topic angle တွေကို ပြန်တိုးချဲ့ပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <b>Videos 21–30</b>
-          <p class="muted">Winning format ကို series + playlist အဖြစ် scale လုပ်ပါ</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>🔄 Content Funnel</h3>
-
-      <div class="quote">
-        Shorts → Long Video → Playlist → Returning Viewer
-      </div>
-
-      <div class="alert alert-gold">
-        Shorts ကို subscriber discovery အတွက်အသုံးချပြီး Long-form ကို watch-time နဲ့ deeper audience relationship တည်ဆောက်ဖို့ သုံးပါ
-      </div>
-
-      <div class="alert alert-green">
-        Winning topic တစ်ခုတွေ့ရင် video တစ်ပုဒ်တည်းနဲ့မရပ်ဘဲ related series တည်ဆောက်ပါ
-      </div>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>📌 Growth Rule</h3>
-    <div class="quote" style="margin-top:10px">
-      Topic → Title + Thumbnail → Hook → Retention → Audience Fit → Repeat
-    </div>
-  </div>
-
-</section>
-
-
-<!-- MONEY -->
-<section id="money" class="section">
-
-  <div class="page-title">
-    <div>
-      <h2>💰 Earn Money Dashboard</h2>
-      <p>$500 → $1,000 monthly target ကို data နဲ့စီမံပါ</p>
-    </div>
-  </div>
-
-  <div class="grid g3">
-
-    <div class="card">
-      <div class="metric-label">Current Income</div>
-      <div class="metric-value">$<span id="mCurrent">0</span></div>
-    </div>
-
-    <div class="card">
-      <div class="metric-label">Target</div>
-      <div class="metric-value">$1,000</div>
-    </div>
-
-    <div class="card">
-      <div class="metric-label">Gap</div>
-      <div class="metric-value">$<span id="mGap">1,000</span></div>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>💵 Revenue Calculator</h3>
-    <p class="muted">RPM ကို ကိုယ်တိုင်ထည့်ပြီး rough estimate တွက်ပါ</p>
-
-    <div class="grid g3">
-
-      <div>
-        <label>Monthly Income Goal ($)</label>
-        <input id="calcGoal" type="number" value="1000">
-      </div>
-
-      <div>
-        <label>Estimated RPM ($)</label>
-        <input id="calcRPM" type="number" value="1" step="0.1">
-      </div>
-
-      <div>
-        <label>Current Monthly Views</label>
-        <input id="calcViews" type="number" value="0">
-      </div>
-
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-gold" onclick="calculateMoney()">Calculate</button>
-    </div>
-
-    <div id="moneyResult" class="result">
-      Goal နဲ့ RPM ထည့်ပြီး Calculate နှိပ်ပါ
-    </div>
-
-    <div class="alert alert-gold">
-      ဒီတွက်ချက်မှုက estimate သာဖြစ်ပြီး actual RPM, geography, content type, monetized playbacks စတဲ့အချက်တွေကြောင့် ဝင်ငွေက ပြောင်းလဲနိုင်ပါတယ်
-    </div>
-  </div>
-
-  <div class="grid g2" style="margin-top:14px">
-
-    <div class="card">
-      <h3>🧩 Revenue Streams</h3>
-
-      <div class="stat-row">
-        <span>1. YouTube Ads</span>
-        <b>Core</b>
-      </div>
-
-      <div class="stat-row">
-        <span>2. Affiliate</span>
-        <b>Optional</b>
-      </div>
-
-      <div class="stat-row">
-        <span>3. Sponsorship</span>
-        <b>Scale</b>
-      </div>
-
-      <div class="stat-row">
-        <span>4. Digital Product</span>
-        <b>Scale</b>
-      </div>
-
-      <div class="stat-row">
-        <span>5. Service</span>
-        <b>Scale</b>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>🛕 Buddha Channel Monetization</h3>
-
-      <ul class="check-list">
-        <li>✓ Original / authorized content workflow</li>
-        <li>✓ Strong narration / explanation</li>
-        <li>✓ Original thumbnail design</li>
-        <li>✓ Consistent long-form uploads</li>
-        <li>✓ Shorts discovery funnel</li>
-        <li>✓ Audience retention analysis</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>🟢 Current YPP Progress</h3>
-    <div id="yppStatus" class="result"></div>
-  </div>
-
-</section>
-
-
-<!-- HOOK -->
-<section id="hook" class="section">
-
-  <div class="page-title">
-    <div>
-      <h2>⚡ Hook Lab</h2>
-      <p>Video အစ 5–15 စက္ကန့်ကို အာရုံဖမ်းနိုင်အောင် တည်ဆောက်ပါ</p>
-    </div>
-    <span class="badge">5 HOOK TYPES</span>
-  </div>
-
-  <div class="card">
-    <h3>🛕 Dhamma Topic</h3>
-
-    <label>ဒီ Video ရဲ့ Topic</label>
-    <input id="hookTopic" placeholder="ဥပမာ - စိတ်ညစ်တဲ့အခါ စိတ်ကိုဘယ်လိုငြိမ်အောင်လုပ်မလဲ">
-
-    <label>Audience Problem</label>
-    <input id="hookProblem" placeholder="ဥပမာ - စိတ်ပူနေခြင်း၊ မေ့မရခြင်း၊ အလုပ်အဆင်မပြေခြင်း">
-
-    <label>Video Promise</label>
-    <input id="hookPromise" placeholder="ဥပမာ - တရားတော်ထဲက လက်တွေ့အသုံးချနိုင်တဲ့ နည်းလမ်း ၃ ခု">
-
-    <div class="btn-row">
-      <button class="btn btn-gold" onclick="generateHooks()">Generate 5 Hooks</button>
-    </div>
-  </div>
-
-  <div id="hookResults" class="grid g2" style="margin-top:14px"></div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>🎯 Hook Formula</h3>
-
-    <div class="grid g3">
-
-      <div class="kpi-box">
-        <small class="muted">Curiosity</small>
-        <b>“ဘာကြောင့်လဲ?”</b>
-        <p class="small muted">နားထောင်သူသိချင်အောင် မေးခွန်းဖန်တီးပါ</p>
-      </div>
-
-      <div class="kpi-box">
-        <small class="muted">Pain</small>
-        <b>“ဒီပြဿနာကို…”</b>
-        <p class="small muted">လူတွေကြုံနေရတဲ့ပြဿနာကို တိုက်ရိုက်ထိပါ</p>
-      </div>
-
-      <div class="kpi-box">
-        <small class="muted">Promise</small>
-        <b>“အဆုံးထိနားထောင်ပါ”</b>
-        <p class="small muted">Video က ဘာတန်ဖိုးပေးမလဲ ရှင်းပါ</p>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-
-<!-- THUMBNAIL -->
-<section id="thumbnail" class="section">
-
-  <div class="page-title">
-    <div>
-      <h2>🖼️ Thumbnail Lab</h2>
-      <p>Title နဲ့ Thumbnail ကို တစ်ခုတည်းသော Promise အဖြစ်တွဲပါ</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="grid g2">
-
-      <div>
-        <label>Video Topic</label>
-        <input id="thumbTopic" placeholder="ဥပမာ - စိတ်ပူခြင်းကို လွှတ်ချခြင်း">
-      </div>
-
-      <div>
-        <label>Main Emotion</label>
-        <select id="thumbEmotion">
-          <option value="ငြိမ်းချမ်းမှု">ငြိမ်းချမ်းမှု</option>
-          <option value="စိုးရိမ်မှု">စိုးရိမ်မှု</option>
-          <option value="မျှော်လင့်ချက်">မျှော်လင့်ချက်</option>
-          <option value="နောင်တ">နောင်တ</option>
-          <option value="အံ့အားသင့်မှု">အံ့အားသင့်မှု</option>
-          <option value="သတိပေးချက်">သတိပေးချက်</option>
+        <select class="select" id="channelSelect" style="min-width:210px">
         </select>
       </div>
+    </header>
 
-    </div>
+    <section class="content">
 
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="generateThumbnails()">Create 3 Concepts</button>
-    </div>
-  </div>
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
 
-  <div id="thumbResults" class="grid g3" style="margin-top:14px"></div>
+        <div class="section-head">
+          <div>
+            <h2>Welcome back 👋</h2>
+            <p id="dashChannel">Selected channel</p>
+          </div>
+        </div>
 
-  <div class="card" style="margin-top:14px">
-    <h3>✅ Thumbnail Rules</h3>
+        <div class="grid grid-4">
 
-    <ul class="check-list">
-      <li>✓ Main subject တစ်ခုကို အဓိကထားပါ</li>
-      <li>✓ Text ကို တိုတောင်းပြီး ဖတ်လွယ်အောင်ထားပါ</li>
-      <li>✓ Title နဲ့ Thumbnail က တူညီတဲ့ promise ကို support လုပ်ပါ</li>
-      <li>✓ Emotion + curiosity ရှိအောင် စဉ်းစားပါ</li>
-      <li>✓ ရှုပ်ထွေးတဲ့ elements များမထည့်ပါနဲ့</li>
-      <li>✓ Video ထဲမှာ မရှိတဲ့အရာကို thumbnail နဲ့ မလိမ်ပါနဲ့</li>
-    </ul>
-  </div>
+          <div class="card stat">
+            <div class="stat-label">Subscribers</div>
+            <div class="stat-value" id="dSubs">0</div>
+            <div class="stat-note">Update from YouTube Studio</div>
+          </div>
 
-</section>
+          <div class="card stat">
+            <div class="stat-label">Public Watch Hours</div>
+            <div class="stat-value" id="dHours">0</div>
+            <div class="stat-note">Valid public watch hours</div>
+          </div>
 
+          <div class="card stat">
+            <div class="stat-label">Monthly Views</div>
+            <div class="stat-value" id="dViews">0</div>
+            <div class="stat-note">Current tracking value</div>
+          </div>
 
-<!-- CONTENT LAB -->
-<section id="content" class="section">
+          <div class="card stat">
+            <div class="stat-label">Monthly Income</div>
+            <div class="stat-value">$<span id="dIncome">0</span></div>
+            <div class="stat-note">Estimated / entered</div>
+          </div>
 
-  <div class="page-title">
-    <div>
-      <h2>🎬 Content Lab</h2>
-      <p>Topic တစ်ခုကနေ Title + Hook + Structure အထိ တစ်ခါတည်းတည်ဆောက်ပါ</p>
-    </div>
-  </div>
+        </div>
 
-  <div class="card">
-    <div class="grid g2">
+        <br>
 
-      <div>
-        <label>Channel Niche</label>
-        <input id="contentNiche" value="Buddha Dhamma / တရားတော်">
+        <div class="grid grid-2">
+
+          <div class="card">
+            <h3>💰 $500–$1,000 Monthly Target</h3>
+            <p class="muted">Income target ကို views တစ်ခုတည်းနဲ့ မကြည့်ဘဲ Ads + Affiliate + Sponsorship + Product + Service ဆိုပြီး ခွဲစဉ်းစားပါ</p>
+
+            <div class="progress">
+              <div class="progress-bar" id="targetProgress"></div>
+            </div>
+
+            <p style="margin-top:8px;font-size:12px">
+              Progress: <strong id="targetText">0%</strong>
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>🔥 Today's Creator Actions</h3>
+
+            <div class="task">
+              <input type="checkbox" class="taskCheck" data-index="0">
+              <span>1 strong video idea ရွေးပါ</span>
+            </div>
+
+            <div class="task">
+              <input type="checkbox" class="taskCheck" data-index="1">
+              <span>Title 5 ခု စမ်းပါ</span>
+            </div>
+
+            <div class="task">
+              <input type="checkbox" class="taskCheck" data-index="2">
+              <span>Thumbnail concept 3 ခု ပြုလုပ်ပါ</span>
+            </div>
+
+            <div class="task">
+              <input type="checkbox" class="taskCheck" data-index="3">
+              <span>First 30 seconds hook ပြင်ပါ</span>
+            </div>
+
+            <div class="task">
+              <input type="checkbox" class="taskCheck" data-index="4">
+              <span>Analytics ကို review လုပ်ပါ</span>
+            </div>
+          </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+          <h3>🎯 YouTube Money System</h3>
+
+          <div class="grid grid-3" style="margin-top:12px">
+
+            <div class="notice">
+              <strong>1. Packaging</strong><br>
+              Topic → Title → Thumbnail
+            </div>
+
+            <div class="notice">
+              <strong>2. Viewer Experience</strong><br>
+              Hook → Retention → Satisfaction
+            </div>
+
+            <div class="notice">
+              <strong>3. Business</strong><br>
+              Audience → Trust → Monetization
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
-      <div>
-        <label>Target Audience</label>
-        <input id="contentAudience" placeholder="ဥပမာ - စိတ်ဖိစီးနေသူများ">
+
+      <!-- CHANNELS -->
+      <div class="page" id="page-channels">
+
+        <div class="section-head">
+          <div>
+            <h2>📺 My Channels</h2>
+            <p>ကိုယ့် Channel တွေကို track လုပ်ရန်</p>
+          </div>
+          <button class="btn btn-primary" id="showAddChannel">+ Add Channel</button>
+        </div>
+
+        <div class="card" id="addChannelBox" style="display:none">
+          <h3>Add My Channel</h3>
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Channel Name</label>
+              <input class="input" id="newChannelName" placeholder="ဥပမာ Buddha Dhamma Channel">
+            </div>
+
+            <div class="input-group">
+              <label>Channel URL</label>
+              <input class="input" id="newChannelUrl" placeholder="https://youtube.com/...">
+            </div>
+
+            <div class="input-group">
+              <label>Niche</label>
+              <input class="input" id="newChannelNiche" placeholder="Buddha Dhamma / AI Music">
+            </div>
+
+          </div>
+
+          <button class="btn btn-green" id="addChannelBtn">Save Channel</button>
+        </div>
+
+        <br>
+
+        <div class="grid grid-2" id="channelsList"></div>
+
       </div>
 
-      <div>
-        <label>Core Topic</label>
-        <input id="contentTopic" placeholder="ဥပမာ - မေ့မရတဲ့အတိတ်ကို လွှတ်ချခြင်း">
+
+      <!-- GROWTH -->
+      <div class="page" id="page-growth">
+
+        <div class="section-head">
+          <div>
+            <h2>🚀 Growth System</h2>
+            <p>Repeatable YouTube testing framework</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+
+          <div class="card">
+            <h3>Phase 1 — Find Demand</h3>
+            <p class="muted">Audience တကယ်စိတ်ဝင်စားတဲ့ topic ကိုရှာပါ</p>
+            <ul class="kpi-list">
+              <li>• Search demand</li>
+              <li>• Competitor/reference research</li>
+              <li>• Comments & questions</li>
+              <li>• Existing winning topics</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Phase 2 — Packaging</h3>
+            <p class="muted">Viewer မနှိပ်မိခင် အရင်ဆုံးမြင်ရတဲ့အရာ</p>
+            <ul class="kpi-list">
+              <li>• Strong title</li>
+              <li>• Clear thumbnail</li>
+              <li>• One main idea</li>
+              <li>• Honest curiosity</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Phase 3 — Retention</h3>
+            <p class="muted">Click ပြီးနောက် ဆက်ကြည့်စေဖို့</p>
+            <ul class="kpi-list">
+              <li>• First 5–30 seconds</li>
+              <li>• Remove unnecessary intro</li>
+              <li>• Deliver promise</li>
+              <li>• Pattern interrupts</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Phase 4 — Scale</h3>
+            <p class="muted">အလုပ်ဖြစ်တဲ့ topic ကို series အဖြစ်ချဲ့ပါ</p>
+            <ul class="kpi-list">
+              <li>• Winning topic series</li>
+              <li>• Playlist</li>
+              <li>• Related videos</li>
+              <li>• Returning viewers</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+          <h3>30 Video Testing System</h3>
+          <div class="notice" style="margin-top:10px">
+            Video 1–10 = Topic testing<br>
+            Video 11–20 = Packaging + Hook testing<br>
+            Video 21–30 = Winning pattern ကို refine လုပ်ခြင်း
+          </div>
+
+          <br>
+
+          <div class="notice warning">
+            Views တစ်ခုတည်းကို မဆုံးဖြတ်ပါနဲ့ — impressions, CTR, watch time, retention, returning viewers စတာတွေကို အတူကြည့်ပါ
+          </div>
+        </div>
+
       </div>
 
-      <div>
-        <label>Video Type</label>
-        <select id="contentType">
-          <option>Long-form</option>
-          <option>Shorts</option>
-        </select>
+
+      <!-- EARN -->
+      <div class="page" id="page-earn">
+
+        <div class="section-head">
+          <div>
+            <h2>💰 Earn Money</h2>
+            <p>Revenue planning & monetization</p>
+          </div>
+        </div>
+
+        <div class="grid grid-4">
+
+          <div class="card stat">
+            <div class="stat-label">Target</div>
+            <div class="stat-value">$500</div>
+            <div class="stat-note">Minimum target</div>
+          </div>
+
+          <div class="card stat">
+            <div class="stat-label">Stretch Target</div>
+            <div class="stat-value">$1,000</div>
+            <div class="stat-note">Monthly target</div>
+          </div>
+
+          <div class="card stat">
+            <div class="stat-label">Current</div>
+            <div class="stat-value">$<span id="earnCurrent">0</span></div>
+            <div class="stat-note">Entered income</div>
+          </div>
+
+          <div class="card stat">
+            <div class="stat-label">Gap to $500</div>
+            <div class="stat-value">$<span id="earnGap">500</span></div>
+            <div class="stat-note">Planning gap</div>
+          </div>
+
+        </div>
+
+        <br>
+
+        <div class="grid grid-2">
+
+          <div class="card">
+            <h3>Revenue Calculator</h3>
+
+            <div class="input-group">
+              <label>Monthly Views</label>
+              <input class="input" type="number" id="calcViews" value="100000">
+            </div>
+
+            <div class="input-group">
+              <label>RPM ($ per 1,000 views)</label>
+              <input class="input" type="number" id="calcRpm" value="1" step="0.01">
+            </div>
+
+            <button class="btn btn-green" id="calcRevenue">Calculate</button>
+
+            <div class="notice" style="margin-top:12px">
+              Estimated Ad Revenue: <strong>$<span id="calcResult">100</span></strong>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Revenue Streams</h3>
+
+            <ul class="kpi-list">
+              <li><strong>Ads</strong> — YPP ad revenue</li>
+              <li><strong>Affiliate</strong> — relevant product/service referrals</li>
+              <li><strong>Sponsorship</strong> — brand partnerships</li>
+              <li><strong>Digital Product</strong> — templates, guides, courses</li>
+              <li><strong>Service</strong> — consulting / creative services</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+          <h3>YouTube Monetization Progress</h3>
+
+          <div class="notice" style="margin-top:10px">
+            Full ad-revenue YPP eligibility currently includes 1,000 subscribers plus either 4,000 valid public watch hours in the last 12 months or 10 million valid public Shorts views in the last 90 days, subject to YouTube's other requirements
+          </div>
+
+          <div class="notice warning" style="margin-top:10px">
+            Monetization eligibility and available features can change, so always verify the current requirements in YouTube Studio / official YouTube documentation
+          </div>
+        </div>
+
       </div>
 
-    </div>
 
-    <div class="btn-row">
-      <button class="btn btn-gold" onclick="generateContent()">Build Video Plan</button>
-    </div>
-  </div>
+      <!-- HOOK -->
+      <div class="page" id="page-hook">
 
-  <div id="contentResult" style="margin-top:14px"></div>
+        <div class="section-head">
+          <div>
+            <h2>🎯 Hook Lab</h2>
+            <p>First seconds ကို ပိုအားကောင်းအောင်</p>
+          </div>
+        </div>
 
-</section>
+        <div class="card">
 
+          <div class="grid grid-2">
 
-<!-- ANALYTICS -->
-<section id="analytics" class="section">
+            <div class="input-group">
+              <label>Video Topic</label>
+              <input class="input" id="hookTopic" placeholder="ဥပမာ စိတ်အေးချမ်းစေမယ့် တရားတော်">
+            </div>
 
-  <div class="page-title">
-    <div>
-      <h2>📊 Analytics Lab</h2>
-      <p>YouTube Studio မှာမြင်ရတဲ့ KPI တွေကို ဒီမှာ Diagnose လုပ်ပါ</p>
-    </div>
-  </div>
+            <div class="input-group">
+              <label>Audience Problem</label>
+              <input class="input" id="hookProblem" placeholder="စိတ်ပူပန်မှု / အိပ်မပျော်မှု">
+            </div>
 
-  <div class="card">
-    <h3>Enter Current Analytics</h3>
+          </div>
 
-    <div class="grid g4">
+          <div class="input-group">
+            <label>Video Promise</label>
+            <input class="input" id="hookPromise" placeholder="ဒီ video ကြည့်ပြီး ဘာရမလဲ">
+          </div>
 
-      <div>
-        <label>Views</label>
-        <input id="aViews" type="number" value="0">
+          <button class="btn btn-primary" id="generateHooks">Generate Hooks</button>
+
+          <div class="result" id="hookResult"></div>
+
+        </div>
+
       </div>
 
-      <div>
-        <label>CTR %</label>
-        <input id="aCTR" type="number" value="0" step="0.1">
+
+      <!-- THUMBNAIL -->
+      <div class="page" id="page-thumbnail">
+
+        <div class="section-head">
+          <div>
+            <h2>🖼️ Thumbnail Lab</h2>
+            <p>Original thumbnail concept ပြုလုပ်ရန်</p>
+          </div>
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Topic</label>
+              <input class="input" id="thumbTopic" placeholder="Video topic">
+            </div>
+
+            <div class="input-group">
+              <label>Emotion</label>
+              <select class="select" id="thumbEmotion">
+                <option>Curiosity</option>
+                <option>Peace</option>
+                <option>Surprise</option>
+                <option>Urgency</option>
+                <option>Inspiration</option>
+                <option>Concern</option>
+              </select>
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" id="generateThumb">Generate Concepts</button>
+
+          <div id="thumbResult" class="result"></div>
+
+        </div>
+
       </div>
 
-      <div>
-        <label>Average Retention %</label>
-        <input id="aRetention" type="number" value="0" step="0.1">
+
+      <!-- CONTENT -->
+      <div class="page" id="page-content">
+
+        <div class="section-head">
+          <div>
+            <h2>✍️ Content Lab</h2>
+            <p>Title → Hook → Structure → Prompt</p>
+          </div>
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Niche</label>
+              <input class="input" id="contentNiche" placeholder="Buddha Dhamma / AI Music">
+            </div>
+
+            <div class="input-group">
+              <label>Audience</label>
+              <input class="input" id="contentAudience" placeholder="Myanmar audience">
+            </div>
+
+          </div>
+
+          <div class="input-group">
+            <label>Topic</label>
+            <input class="input" id="contentTopic" placeholder="Video topic">
+          </div>
+
+          <div class="input-group">
+            <label>Video Type</label>
+            <select class="select" id="contentType">
+              <option>Long-form</option>
+              <option>Shorts</option>
+              <option>Live</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" id="generateContent">Generate Content Plan</button>
+
+          <div id="contentResult" class="result"></div>
+
+        </div>
+
       </div>
 
-      <div>
-        <label>Engagement %</label>
-        <input id="aEngagement" type="number" value="0" step="0.1">
+
+      <!-- REFERENCE LIBRARY -->
+      <div class="page" id="page-reference">
+
+        <div class="section-head">
+          <div>
+            <h2>🔎 Reference Library</h2>
+            <p>တခြား Channel တွေကို research လုပ်ပြီး ကိုယ့် Content ကိုတိုးတက်အောင် အသုံးပြုရန်</p>
+          </div>
+
+          <button class="btn btn-primary" id="showReferenceForm">+ Add Reference</button>
+        </div>
+
+        <div class="notice warning">
+          Reference Channel ကို <strong>copy</strong> လုပ်ရန်မဟုတ်ပါ — Topic, Packaging, Hook, Structure စတဲ့ pattern တွေကို လေ့လာပြီး ကိုယ့်အတွက် Original Content ပြန်တည်ဆောက်ရန် အသုံးပြုပါ
+        </div>
+
+        <br>
+
+        <div class="card" id="referenceForm" style="display:none">
+
+          <h3>Add Reference Channel</h3>
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Reference Channel Name</label>
+              <input class="input" id="refName" placeholder="ဥပမာ Buddha Dhamma Channel">
+            </div>
+
+            <div class="input-group">
+              <label>Channel URL</label>
+              <input class="input" id="refUrl" placeholder="https://youtube.com/channel/...">
+            </div>
+
+            <div class="input-group">
+              <label>Niche</label>
+              <input class="input" id="refNiche" placeholder="Buddha Dhamma / Music">
+            </div>
+
+            <div class="input-group">
+              <label>Why do you reference this channel?</label>
+              <input class="input" id="refWhy" placeholder="Thumbnail / Topic / Hook / Editing">
+            </div>
+
+          </div>
+
+          <div class="input-group">
+            <label>Notes</label>
+            <textarea class="textarea" id="refNotes" placeholder="လေ့လာချင်တဲ့အချက်များ"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-green" id="saveReference">Save Reference</button>
+            <button class="btn btn-light" id="cancelReference">Cancel</button>
+          </div>
+
+        </div>
+
+        <br>
+
+        <div id="referenceList"></div>
+
+        <div id="noReference" class="empty">
+          Reference Channel မရှိသေးပါ<br><br>
+          တခြား Channel link တွေထည့်ပြီး research library တည်ဆောက်နိုင်ပါတယ်
+        </div>
+
       </div>
 
-    </div>
 
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="saveAnalytics()">Save Analytics</button>
-      <button class="btn btn-gold" onclick="analyzeChannel()">Diagnose</button>
-    </div>
+      <!-- ANALYTICS -->
+      <div class="page" id="page-analytics">
 
-    <div id="analyticsResult"></div>
-  </div>
+        <div class="section-head">
+          <div>
+            <h2>📈 Analytics</h2>
+            <p>Numbers → Diagnosis → Next Test</p>
+          </div>
+        </div>
 
-  <div class="grid g3" style="margin-top:14px">
+        <div class="card">
 
-    <div class="card">
-      <h3>🧲 CTR</h3>
-      <p class="muted">Title + Thumbnail က လူတွေကို click လုပ်စေသလား</p>
-      <div class="alert alert-gold">CTR တစ်ခုတည်းကို မကြည့်ဘဲ impressions နဲ့ context တွဲကြည့်ပါ</div>
-    </div>
+          <div class="grid grid-4">
 
-    <div class="card">
-      <h3>⏱️ Retention</h3>
-      <p class="muted">Video ကို click ပြီးနောက် ဘယ်လောက်ကြာဆက်ကြည့်သလဲ</p>
-      <div class="alert alert-green">အစပိုင်း drop များရင် Hook / Intro ကို ပြန်စစ်ပါ</div>
-    </div>
+            <div class="input-group">
+              <label>Views</label>
+              <input class="input" id="aViews" type="number">
+            </div>
 
-    <div class="card">
-      <h3>💬 Engagement</h3>
-      <p class="muted">Like, comment, share စတဲ့ audience response</p>
-      <div class="alert alert-gold">Audience response က topic fit ကိုနားလည်ဖို့ signal တစ်ခုဖြစ်ပါတယ်</div>
-    </div>
+            <div class="input-group">
+              <label>CTR %</label>
+              <input class="input" id="aCtr" type="number" step=".1">
+            </div>
 
-  </div>
+            <div class="input-group">
+              <label>Retention %</label>
+              <input class="input" id="aRetention" type="number" step=".1">
+            </div>
 
-</section>
+            <div class="input-group">
+              <label>Engagement %</label>
+              <input class="input" id="aEngagement" type="number" step=".1">
+            </div>
 
+          </div>
 
-<!-- ACADEMY -->
-<section id="academy" class="section">
+          <button class="btn btn-primary" id="saveAnalytics">Save Analytics</button>
 
-  <div class="page-title">
-    <div>
-      <h2>🎓 Creator Academy</h2>
-      <p>YouTube Growth + Monetization ကို အဆင့်လိုက်လေ့လာရန်</p>
-    </div>
-  </div>
+          <div class="result" id="analyticsResult"></div>
 
-  <div class="grid g2">
+        </div>
 
-    <div class="card">
-      <h3>Lesson 01 — Niche & Audience</h3>
-      <p class="muted">Channel က ဘယ်သူ့အတွက်လဲဆိုတာ အရင်ဆုံးရှင်းပါ</p>
+        <br>
 
-      <div class="alert alert-gold">
-        <b>Practice</b><br>
-        “ငါ့ Channel ကို ဘယ်လိုလူက ဘာအတွက်လာကြည့်တာလဲ?” ကို စာကြောင်းတစ်ကြောင်းနဲ့ ရေးပါ
+        <div class="card">
+          <h3>Analytics Thinking</h3>
+
+          <div class="grid grid-3" style="margin-top:12px">
+
+            <div class="notice">
+              <strong>Low CTR</strong><br>
+              Packaging — title / thumbnail ကို စမ်းပါ
+            </div>
+
+            <div class="notice warning">
+              <strong>Low Retention</strong><br>
+              Hook / pacing / structure ကို စမ်းပါ
+            </div>
+
+            <div class="notice">
+              <strong>Good Retention + Low Impressions</strong><br>
+              Topic / audience fit ကို ပြန်စစ်ပါ
+            </div>
+
+          </div>
+        </div>
+
       </div>
-    </div>
 
-    <div class="card">
-      <h3>Lesson 02 — Topic Demand</h3>
-      <p class="muted">Topic က creator ကြိုက်တာမဟုတ်ဘဲ audience လိုအပ်တာနဲ့လည်း ကိုက်ညီဖို့လိုပါတယ်</p>
 
-      <div class="alert alert-gold">
-        Problem → Emotion → Question → Topic
+      <!-- ACADEMY -->
+      <div class="page" id="page-academy">
+
+        <div class="section-head">
+          <div>
+            <h2>🎓 YouTube Creator Academy</h2>
+            <p>Money-making creator skill system</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2" id="academyList"></div>
+
       </div>
-    </div>
 
-    <div class="card">
-      <h3>Lesson 03 — Title</h3>
-      <p class="muted">Title မှာ video ရဲ့ core promise ကို တိုတောင်းစွာပြပါ</p>
 
-      <div class="alert alert-green">
-        Clear + Specific + Curiosity
+      <!-- COACH -->
+      <div class="page" id="page-coach">
+
+        <div class="section-head">
+          <div>
+            <h2>🤖 AI Creator Coach</h2>
+            <p>Problem ကိုရေးပါ — action plan ထုတ်ပါ</p>
+          </div>
+        </div>
+
+        <div class="card">
+
+          <div class="input-group">
+            <label>Your YouTube Problem</label>
+            <textarea class="textarea" id="coachProblem" placeholder="ဥပမာ Views မတက်ဘူး၊ Subscriber တိုးမလာဘူး၊ CTR နည်းတယ်"></textarea>
+          </div>
+
+          <button class="btn btn-purple" id="coachBtn">Analyze Problem</button>
+
+          <div id="coachResult" class="result"></div>
+
+        </div>
+
       </div>
-    </div>
 
-    <div class="card">
-      <h3>Lesson 04 — Thumbnail</h3>
-      <p class="muted">Thumbnail ကို Title နဲ့ ပြိုင်ဘက်မဖြစ်စေဘဲ Title ကို support လုပ်စေပါ</p>
+    </section>
 
-      <div class="alert alert-green">
-        One subject + One emotion + Short text
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 05 — Hook</h3>
-      <p class="muted">ပထမပိုင်းမှာ viewer အတွက် “ဘာရမလဲ” ဆိုတာ ချက်ချင်းနားလည်စေပါ</p>
-
-      <div class="alert alert-gold">
-        Problem → Curiosity → Promise → Start
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 06 — Retention</h3>
-      <p class="muted">Long intro၊ ထပ်ခါထပ်ခါပြောခြင်း၊ အဓိကအချက်နောက်ကျခြင်းတွေကို လျှော့ပါ</p>
-
-      <div class="alert alert-green">
-        Hook → Value → Example → Next Question → Value
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 07 — Shorts → Long-form</h3>
-      <p class="muted">Shorts မှာတွေ့လာတဲ့ audience ကို related long-form content ဆီ ချိတ်ဆက်ပါ</p>
-
-      <div class="alert alert-gold">
-        One topic cluster → Multiple formats
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 08 — Winning Videos</h3>
-      <p class="muted">Video တစ်ပုဒ်အောင်မြင်တာကို “ဘာကြောင့်?” လို့ ပြန်ခွဲစိတ်ပါ</p>
-
-      <div class="alert alert-green">
-        Topic + Packaging + Hook + Retention + Audience Fit
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 09 — Watch Hours</h3>
-      <p class="muted">Long-form video တွေရဲ့ watch time ကို စနစ်တကျတိုးတက်အောင်လုပ်ပါ</p>
-
-      <div class="alert alert-gold">
-        Qualified public watch hours ကို YPP requirement နဲ့ သီးခြား track လုပ်ပါ
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 10 — Monetization</h3>
-      <p class="muted">Ads တစ်ခုတည်းမဟုတ်ဘဲ revenue streams အမျိုးမျိုးကို စဉ်းစားပါ</p>
-
-      <div class="alert alert-green">
-        Ads + Affiliate + Sponsor + Product + Service
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 11 — Dhamma Content Quality</h3>
-      <p class="muted">တရားတော် Content မှာ ယုံကြည်စိတ်ချရမှုနဲ့ မူရင်းတန်ဖိုးကို ဦးစားပေးပါ</p>
-
-      <div class="alert alert-gold">
-        Source / Permission / Original explanation / Respectful presentation
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Lesson 12 — Scale</h3>
-      <p class="muted">Winning format ရလာတဲ့အခါ series, playlist, recurring topics တည်ဆောက်ပါ</p>
-
-      <div class="alert alert-green">
-        Test → Measure → Improve → Repeat → Scale
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- COACH -->
-<section id="coach" class="section">
-
-  <div class="page-title">
-    <div>
-      <h2>🤖 AI Creator Coach</h2>
-      <p>ပြဿနာတစ်ခုထည့်ပြီး Diagnose → Test → Review System နဲ့ဖြေရှင်းပါ</p>
-    </div>
-  </div>
-
-  <div class="card">
-
-    <label>Your Problem</label>
-
-    <textarea id="coachProblem" placeholder="ဥပမာ - Video တင်တာများပေမယ့် views မတက်ဘူး၊ subscribers မတိုးဘူး"></textarea>
-
-    <div class="btn-row">
-      <button class="btn btn-purple" onclick="coach()">Ask Creator Coach</button>
-    </div>
-
-    <div id="coachResult"></div>
-
-  </div>
-
-  <div class="grid g3" style="margin-top:14px">
-
-    <div class="card">
-      <h3>1️⃣ Define</h3>
-      <p class="muted">Problem ကို တိတိကျကျသတ်မှတ်ပါ</p>
-    </div>
-
-    <div class="card">
-      <h3>2️⃣ Measure</h3>
-      <p class="muted">CTR, Retention, Views, Engagement ကိုကြည့်ပါ</p>
-    </div>
-
-    <div class="card">
-      <h3>3️⃣ Diagnose</h3>
-      <p class="muted">Topic / Packaging / Hook / Retention ခွဲပါ</p>
-    </div>
-
-    <div class="card">
-      <h3>4️⃣ Test</h3>
-      <p class="muted">တစ်ကြိမ်မှာ variable တစ်ခုကို အဓိကစမ်းပါ</p>
-    </div>
-
-    <div class="card">
-      <h3>5️⃣ Review</h3>
-      <p class="muted">Data ပြန်ကြည့်ပြီး အလုပ်ဖြစ်တာရှာပါ</p>
-    </div>
-
-    <div class="card">
-      <h3>6️⃣ Scale</h3>
-      <p class="muted">Winning pattern ကို series အဖြစ်တိုးချဲ့ပါ</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<div class="footer-note">
-  YouTube Money OS • Growth system for creators • No income guarantee
-</div>
-
-</main>
-
-<div id="toast" class="toast"></div>
-
+  </main>
 </div>
 
 
 <script>
 "use strict";
 
-/* =========================
-   DATA
-========================= */
+/* =========================================================
+   YOUTUBE MONEY OS V2
+   ========================================================= */
 
-const STORAGE_KEY = "youtube_money_os_v1";
+const STORAGE_KEY = "youtube_money_os_v2";
 
 const DEFAULT_DATA = {
   selected:"ch2",
@@ -1654,8 +1281,7 @@ const DEFAULT_DATA = {
         ctr:0,
         retention:0,
         engagement:0
-      },
-      winningVideos:[]
+      }
     },
 
     {
@@ -1673,10 +1299,11 @@ const DEFAULT_DATA = {
         ctr:0,
         retention:0,
         engagement:0
-      },
-      winningVideos:[]
+      }
     }
   ],
+
+  references:[],
 
   tasks:[
     false,
@@ -1687,91 +1314,49 @@ const DEFAULT_DATA = {
   ]
 };
 
-let data = loadData();
 
+/* ---------- HELPERS ---------- */
 
-/* =========================
-   STORAGE
-========================= */
+function clone(obj){
+  return JSON.parse(JSON.stringify(obj));
+}
 
 function loadData(){
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
 
     if(!raw){
-      return structuredClone(DEFAULT_DATA);
+      return clone(DEFAULT_DATA);
     }
 
-    const saved = JSON.parse(raw);
+    const parsed = JSON.parse(raw);
 
-    if(!saved.channels || !Array.isArray(saved.channels)){
-      return structuredClone(DEFAULT_DATA);
-    }
+    return {
+      ...clone(DEFAULT_DATA),
+      ...parsed,
+      channels:Array.isArray(parsed.channels) ? parsed.channels : clone(DEFAULT_DATA.channels),
+      references:Array.isArray(parsed.references) ? parsed.references : [],
+      tasks:Array.isArray(parsed.tasks) ? parsed.tasks : clone(DEFAULT_DATA.tasks)
+    };
 
-    saved.selected = saved.selected || saved.channels[0].id;
-    saved.tasks = Array.isArray(saved.tasks)
-      ? saved.tasks
-      : [false,false,false,false,false];
-
-    saved.channels.forEach(ch=>{
-      ch.analytics = ch.analytics || {
-        views:0,
-        ctr:0,
-        retention:0,
-        engagement:0
-      };
-
-      ch.winningVideos = ch.winningVideos || [];
-    });
-
-    return saved;
-
-  }catch(e){
-    return structuredClone(DEFAULT_DATA);
+  }catch(error){
+    console.warn("Storage load error",error);
+    return clone(DEFAULT_DATA);
   }
 }
+
+let data = loadData();
 
 function saveData(){
   try{
     localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
-  }catch(e){}
-}
-
-
-/* =========================
-   HELPERS
-========================= */
-
-function active(){
-  return data.channels.find(c=>c.id===data.selected) || data.channels[0];
-}
-
-function fmt(n){
-  n = Number(n)||0;
-
-  if(n>=1000000000){
-    return (n/1000000000).toFixed(1)+"B";
+  }catch(error){
+    console.warn("Storage save error",error);
   }
-
-  if(n>=1000000){
-    return (n/1000000).toFixed(1)+"M";
-  }
-
-  if(n>=1000){
-    return (n/1000).toFixed(1)+"K";
-  }
-
-  return Math.round(n).toLocaleString();
 }
 
-function pct(value,target){
-  value = Number(value)||0;
-  target = Number(target)||1;
-  return Math.min(100,Math.max(0,(value/target)*100));
-}
-
-function esc(str){
-  return String(str||"")
+function escapeHtml(value){
+  return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -1779,181 +1364,202 @@ function esc(str){
     .replace(/'/g,"&#039;");
 }
 
-function toast(message){
-  const el=document.getElementById("toast");
-  el.textContent=message;
-  el.classList.add("show");
+function num(value){
+  const n = Number(value);
+  return Number.isFinite(n) ? n : 0;
+}
 
-  setTimeout(()=>{
-    el.classList.remove("show");
-  },2200);
+function money(value){
+  return num(value).toFixed(2).replace(/\.00$/,"");
+}
+
+function getSelectedChannel(){
+  return data.channels.find(c => c.id === data.selected) || data.channels[0] || null;
+}
+
+function makeId(prefix){
+  return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* ---------- PAGE NAVIGATION ---------- */
 
-function showSection(id,btn){
-  document.querySelectorAll(".section").forEach(s=>{
-    s.classList.remove("active");
+const pageTitles = {
+  dashboard:["Dashboard","YouTube income growth command center"],
+  channels:["My Channels","Track your own channels"],
+  growth:["Growth System","Repeatable YouTube testing framework"],
+  earn:["Earn Money","Revenue planning & monetization"],
+  hook:["Hook Lab","First seconds optimization"],
+  thumbnail:["Thumbnail Lab","Original thumbnail concepts"],
+  content:["Content Lab","Title → Hook → Structure → Prompt"],
+  reference:["Reference Library","Research winning patterns"],
+  analytics:["Analytics","Numbers → Diagnosis → Next Test"],
+  academy:["Creator Academy","YouTube creator skill system"],
+  coach:["AI Creator Coach","Problem → Action Plan"]
+};
+
+function openPage(name){
+
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
   });
 
-  document.getElementById(id).classList.add("active");
+  const target = document.getElementById("page-" + name);
 
-  document.querySelectorAll(".nav-btn").forEach(b=>{
-    b.classList.remove("active");
-  });
-
-  if(btn){
-    btn.classList.add("active");
+  if(target){
+    target.classList.add("active");
   }
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page === name);
   });
+
+  const info = pageTitles[name] || pageTitles.dashboard;
+
+  document.getElementById("pageTitle").textContent = info[0];
+  document.getElementById("pageSub").textContent = info[1];
+
+  closeMobileMenu();
+
+  if(name === "dashboard") renderDashboard();
+  if(name === "channels") renderChannels();
+  if(name === "reference") renderReferences();
+  if(name === "analytics") renderAnalytics();
+  if(name === "academy") renderAcademy();
+  if(name === "earn") renderEarn();
 }
 
-function showSectionById(id){
-  const btn=[...document.querySelectorAll(".nav-btn")]
-    .find(b=>b.getAttribute("onclick")?.includes("'"+id+"'"));
 
-  showSection(id,btn);
+/* ---------- MOBILE ---------- */
+
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+document.getElementById("menuBtn").addEventListener("click",()=>{
+  sidebar.classList.add("open");
+  overlay.classList.add("show");
+});
+
+overlay.addEventListener("click",closeMobileMenu);
+
+function closeMobileMenu(){
+  sidebar.classList.remove("open");
+  overlay.classList.remove("show");
 }
 
 
-/* =========================
-   CHANNELS
-========================= */
+/* ---------- NAV ---------- */
 
-function renderChannels(){
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    openPage(btn.dataset.page);
+  });
+});
 
-  const select=document.getElementById("channelSelect");
-  const list=document.getElementById("channelList");
 
-  select.innerHTML=data.channels.map(ch=>`
-    <option value="${esc(ch.id)}" ${ch.id===data.selected?"selected":""}>
-      ${esc(ch.name)}
-    </option>
-  `).join("");
+/* ---------- CHANNEL SELECT ---------- */
 
-  list.innerHTML=data.channels.map(ch=>{
+function renderChannelSelect(){
 
-    const subP=pct(ch.subs,1000);
-    const hourP=pct(ch.hours,4000);
+  const select = document.getElementById("channelSelect");
 
+  select.innerHTML = data.channels.map(channel=>{
     return `
-      <div class="card channel-card ${ch.id===data.selected?"selected":""}">
-
-        <div class="channel-name">${esc(ch.name)}</div>
-        <div class="channel-handle">${esc(ch.handle)}</div>
-
-        <a class="channel-link"
-           href="${esc(ch.url)}"
-           target="_blank"
-           rel="noopener">
-           Open YouTube Channel ↗
-        </a>
-
-        <div class="stat-row" style="margin-top:12px">
-          <span>Subscribers</span>
-          <b>${fmt(ch.subs)}</b>
-        </div>
-
-        <div class="progress">
-          <span style="width:${subP}%"></span>
-        </div>
-
-        <div class="progress-text">
-          <span>1,000 subscribers</span>
-          <span>${subP.toFixed(1)}%</span>
-        </div>
-
-        <div class="stat-row">
-          <span>Public Watch Hours</span>
-          <b>${fmt(ch.hours)}</b>
-        </div>
-
-        <div class="progress">
-          <span style="width:${hourP}%"></span>
-        </div>
-
-        <div class="progress-text">
-          <span>4,000 hours</span>
-          <span>${hourP.toFixed(1)}%</span>
-        </div>
-
-        <div class="stat-row">
-          <span>Monthly Views</span>
-          <b>${fmt(ch.views)}</b>
-        </div>
-
-        <div class="stat-row">
-          <span>Monthly Income</span>
-          <b>$${Number(ch.income||0).toFixed(2)}</b>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn btn-gold"
-            onclick="switchChannel('${esc(ch.id)}')">
-            ${ch.id===data.selected?"Selected":"Select"}
-          </button>
-
-          <button class="btn btn-light"
-            onclick="editChannelMetrics('${esc(ch.id)}')">
-            Update Metrics
-          </button>
-        </div>
-
-      </div>
+      <option value="${escapeHtml(channel.id)}">
+        ${escapeHtml(channel.name)}
+      </option>
     `;
   }).join("");
+
+  if(data.selected && data.channels.some(c=>c.id === data.selected)){
+    select.value = data.selected;
+  }
 }
 
-function switchChannel(id){
-
-  const found=data.channels.find(c=>c.id===id);
-
-  if(!found){
-    return;
-  }
-
-  data.selected=id;
+document.getElementById("channelSelect").addEventListener("change",e=>{
+  data.selected = e.target.value;
   saveData();
   renderAll();
+});
 
-  toast("Channel ပြောင်းပြီးပါပြီ");
-}
 
-function openChannel(){
-  const ch=active();
+/* ---------- DASHBOARD ---------- */
 
-  if(ch && ch.url){
-    window.open(ch.url,"_blank","noopener");
-  }
-}
+function renderDashboard(){
 
-function addChannel(){
+  const channel = getSelectedChannel();
 
-  const name=document.getElementById("newChannelName").value.trim();
-  const url=document.getElementById("newChannelUrl").value.trim();
-  const handle=document.getElementById("newChannelHandle").value.trim();
-  const niche=document.getElementById("newChannelNiche").value.trim();
-
-  if(!name){
-    toast("Channel Name ထည့်ပါ");
+  if(!channel){
     return;
   }
 
-  const id="ch_"+Date.now();
+  document.getElementById("dashChannel").textContent =
+    channel.name + " • " + channel.niche;
 
-  data.channels.push({
-    id,
-    name,
-    handle,
-    url,
-    niche:niche||"General",
+  document.getElementById("dSubs").textContent =
+    num(channel.subs).toLocaleString();
+
+  document.getElementById("dHours").textContent =
+    num(channel.hours).toLocaleString();
+
+  document.getElementById("dViews").textContent =
+    num(channel.views).toLocaleString();
+
+  document.getElementById("dIncome").textContent =
+    money(channel.income);
+
+  const progress = Math.min(100,(num(channel.income) / 500) * 100);
+
+  document.getElementById("targetProgress").style.width =
+    progress + "%";
+
+  document.getElementById("targetText").textContent =
+    Math.round(progress) + "%";
+
+  document.querySelectorAll(".taskCheck").forEach(check=>{
+    const index = Number(check.dataset.index);
+    check.checked = Boolean(data.tasks[index]);
+  });
+}
+
+
+/* ---------- TASKS ---------- */
+
+document.querySelectorAll(".taskCheck").forEach(check=>{
+  check.addEventListener("change",e=>{
+    const index = Number(e.target.dataset.index);
+
+    data.tasks[index] = e.target.checked;
+
+    saveData();
+  });
+});
+
+
+/* ---------- CHANNELS ---------- */
+
+document.getElementById("showAddChannel").addEventListener("click",()=>{
+  const box = document.getElementById("addChannelBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+});
+
+document.getElementById("addChannelBtn").addEventListener("click",()=>{
+
+  const name = document.getElementById("newChannelName").value.trim();
+  const url = document.getElementById("newChannelUrl").value.trim();
+  const niche = document.getElementById("newChannelNiche").value.trim();
+
+  if(!name){
+    alert("Channel Name ထည့်ပါ");
+    return;
+  }
+
+  const channel = {
+    id:makeId("ch_"),
+    name:name,
+    handle:"",
+    url:url,
+    niche:niche || "YouTube",
     subs:0,
     hours:0,
     views:0,
@@ -1963,850 +1569,1454 @@ function addChannel(){
       ctr:0,
       retention:0,
       engagement:0
-    },
-    winningVideos:[]
-  });
-
-  data.selected=id;
-
-  saveData();
-
-  document.getElementById("newChannelName").value="";
-  document.getElementById("newChannelUrl").value="";
-  document.getElementById("newChannelHandle").value="";
-  document.getElementById("newChannelNiche").value="";
-
-  renderAll();
-
-  toast("Channel အသစ်ထည့်ပြီးပါပြီ");
-}
-
-function editChannelMetrics(id){
-
-  const ch=data.channels.find(c=>c.id===id);
-
-  if(!ch){
-    return;
-  }
-
-  const subs=prompt("Subscribers",ch.subs||0);
-  if(subs===null)return;
-
-  const hours=prompt("Public Watch Hours",ch.hours||0);
-  if(hours===null)return;
-
-  const views=prompt("Monthly Views",ch.views||0);
-  if(views===null)return;
-
-  const income=prompt("Monthly Income ($)",ch.income||0);
-  if(income===null)return;
-
-  ch.subs=Number(subs)||0;
-  ch.hours=Number(hours)||0;
-  ch.views=Number(views)||0;
-  ch.income=Number(income)||0;
-
-  saveData();
-  renderAll();
-
-  toast("Metrics updated");
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-function updateDashboard(){
-
-  const ch=active();
-
-  if(!ch)return;
-
-  document.getElementById("dashChannelText").textContent =
-    ch.name+" • "+(ch.niche||"Creator Channel");
-
-  document.getElementById("dSubs").textContent=fmt(ch.subs);
-  document.getElementById("dHours").textContent=fmt(ch.hours);
-  document.getElementById("dViews").textContent=fmt(ch.views);
-  document.getElementById("dIncome").textContent=
-    Number(ch.income||0).toFixed(2);
-
-  const subP=pct(ch.subs,1000);
-  const hourP=pct(ch.hours,4000);
-  const moneyP=pct(ch.income,1000);
-
-  document.getElementById("subProgress").style.width=subP+"%";
-  document.getElementById("hourProgress").style.width=hourP+"%";
-  document.getElementById("moneyProgress").style.width=moneyP+"%";
-
-  document.getElementById("subPct").textContent=subP.toFixed(1)+"%";
-  document.getElementById("hourPct").textContent=hourP.toFixed(1)+"%";
-  document.getElementById("moneyPct").textContent=moneyP.toFixed(1)+"%";
-
-  document.getElementById("goalCurrent").textContent=
-    Number(ch.income||0).toFixed(2);
-
-  document.getElementById("snapName").textContent=ch.name;
-  document.getElementById("snapSubs").textContent=fmt(ch.subs);
-  document.getElementById("snapViews").textContent=fmt(ch.views);
-  document.getElementById("snapCTR").textContent=
-    Number(ch.analytics.ctr||0).toFixed(1)+"%";
-  document.getElementById("snapRetention").textContent=
-    Number(ch.analytics.retention||0).toFixed(1)+"%";
-  document.getElementById("snapEngagement").textContent=
-    Number(ch.analytics.engagement||0).toFixed(1)+"%";
-
-  renderTasks();
-}
-
-
-/* =========================
-   DAILY TASKS
-========================= */
-
-const TASK_TEXT=[
-  "Winning topic တစ်ခုကို Research လုပ်ပါ",
-  "Title + Thumbnail combination ၃ ခု စမ်းပါ",
-  "Video အစ 15 စက္ကန့် Hook ကိုရေးပါ",
-  "Shorts ၁ ပုဒ်ကနေ Long Video ဆီ Funnel ချိတ်ပါ",
-  "YouTube Studio Analytics ကို ပြန်စစ်ပါ"
-];
-
-function renderTasks(){
-
-  const box=document.getElementById("dailyTasks");
-
-  box.innerHTML=TASK_TEXT.map((t,i)=>`
-    <div class="task ${data.tasks[i]?"done":""}">
-      <input
-        type="checkbox"
-        ${data.tasks[i]?"checked":""}
-        onchange="toggleTask(${i},this.checked)">
-      <div>${t}</div>
-    </div>
-  `).join("");
-}
-
-function toggleTask(i,value){
-  data.tasks[i]=value;
-  saveData();
-  renderTasks();
-}
-
-function resetTasks(){
-  data.tasks=[false,false,false,false,false];
-  saveData();
-  renderTasks();
-  toast("Today's tasks reset");
-}
-
-
-/* =========================
-   MONEY
-========================= */
-
-function updateMoney(){
-
-  const ch=active();
-  const current=Number(ch.income)||0;
-  const gap=Math.max(0,1000-current);
-
-  document.getElementById("mCurrent").textContent=current.toFixed(2);
-  document.getElementById("mGap").textContent=gap.toFixed(2);
-
-  const result=document.getElementById("moneyResult");
-
-  if(result){
-    result.innerHTML=
-      `Current income <strong>$${current.toFixed(2)}</strong> •
-       $1,000 target အထိ gap <strong>$${gap.toFixed(2)}</strong>`;
-  }
-
-  updateYPP();
-}
-
-function calculateMoney(){
-
-  const goal=Number(document.getElementById("calcGoal").value)||0;
-  const rpm=Number(document.getElementById("calcRPM").value)||0;
-  const currentViews=Number(document.getElementById("calcViews").value)||0;
-
-  if(goal<=0 || rpm<=0){
-    document.getElementById("moneyResult").innerHTML=
-      `<div class="alert alert-red">Goal နဲ့ RPM ကို 0 ထက်ကြီးအောင်ထည့်ပါ</div>`;
-    return;
-  }
-
-  const requiredViews=(goal/rpm)*1000;
-  const currentEstimate=(currentViews/1000)*rpm;
-  const gap=Math.max(0,goal-currentEstimate);
-  const extraViews=(gap/rpm)*1000;
-
-  document.getElementById("moneyResult").innerHTML=`
-    <div>
-      <div class="stat-row">
-        <span>Goal</span>
-        <strong>$${goal.toFixed(2)}</strong>
-      </div>
-
-      <div class="stat-row">
-        <span>Estimated RPM</span>
-        <strong>$${rpm.toFixed(2)}</strong>
-      </div>
-
-      <div class="stat-row">
-        <span>Estimated views needed</span>
-        <strong>${fmt(requiredViews)}</strong>
-      </div>
-
-      <div class="stat-row">
-        <span>Current views estimate</span>
-        <strong>$${currentEstimate.toFixed(2)}</strong>
-      </div>
-
-      <div class="stat-row">
-        <span>Additional estimated views</span>
-        <strong>${fmt(extraViews)}</strong>
-      </div>
-    </div>
-  `;
-
-  toast("Revenue estimate calculated");
-}
-
-function updateYPP(){
-
-  const ch=active();
-
-  const subP=pct(ch.subs,1000);
-  const hourP=pct(ch.hours,4000);
-
-  document.getElementById("yppStatus").innerHTML=`
-    <div class="stat-row">
-      <span>Subscribers</span>
-      <strong>${fmt(ch.subs)} / 1,000 (${subP.toFixed(1)}%)</strong>
-    </div>
-
-    <div class="stat-row">
-      <span>Public Watch Hours</span>
-      <strong>${fmt(ch.hours)} / 4,000 (${hourP.toFixed(1)}%)</strong>
-    </div>
-
-    <div class="alert alert-gold">
-      လက်ရှိ full YPP ads revenue eligibility အတွက်
-      1,000 subscribers + 4,000 valid public watch hours
-      (နောက်ဆုံး 12 လ) သို့မဟုတ် 1,000 subscribers +
-      10M valid public Shorts views (90 ရက်) စတဲ့ requirement တွေထဲက
-      သက်ဆိုင်ရာလမ်းကြောင်းကို ဖြည့်ဆည်းရပါတယ်
-    </div>
-
-    <div class="alert alert-red">
-      Shorts Feed watch hours တွေကို 4,000 public watch hours ထဲ မတွက်ပါ
-    </div>
-
-    <div class="alert alert-green">
-      YouTube က 2027-02-01 မှာ threshold အသစ်တွေ ပြောင်းလဲမယ်လို့
-      ကြေညာထားတာကြောင့် YPP requirement ကို လျှောက်မယ့်အချိန်မှာ
-      official YouTube information ကို ပြန်စစ်ပါ
-    </div>
-  `;
-}
-
-
-/* =========================
-   HOOK GENERATOR
-========================= */
-
-function generateHooks(){
-
-  const topic=
-    document.getElementById("hookTopic").value.trim() ||
-    "စိတ်မချမ်းသာခြင်း";
-
-  const problem=
-    document.getElementById("hookProblem").value.trim() ||
-    "စိတ်ပူပန်ခြင်း";
-
-  const promise=
-    document.getElementById("hookPromise").value.trim() ||
-    "တရားတော်ထဲက လက်တွေ့အသုံးချနိုင်တဲ့ အချက်များ";
-
-  const hooks=[
-
-    {
-      type:"Curiosity Hook",
-      text:`${topic} ကြောင့် စိတ်မငြိမ်ဖြစ်နေတယ်ဆိုရင် အကြောင်းရင်းကို ဒီတရားတော်အဆုံးမှာ ပိုနားလည်လာနိုင်ပါတယ်`
-    },
-
-    {
-      type:"Pain Point Hook",
-      text:`${problem} ကို နေ့တိုင်းရင်ဆိုင်နေရပေမယ့် ဘယ်လိုလွှတ်ချရမလဲ မသိသေးဘူးဆိုရင် ဒီတရားတော်ကို အဆုံးထိနားထောင်ကြည့်ပါ`
-    },
-
-    {
-      type:"Question Hook",
-      text:`${topic} ကို ဘာကြောင့် ဒီလောက်ထိ မလွှတ်ချနိုင်တာလဲ — ဒီမေးခွန်းကို တရားတော်အမြင်နဲ့ အတူတူစဉ်းစားကြည့်ရအောင်`
-    },
-
-    {
-      type:"Story Hook",
-      text:`လူတော်တော်များများက ${problem} ဖြစ်တဲ့အခါ ပြဿနာကိုပဲကြည့်တတ်ကြပါတယ် — ဒါပေမယ့် တရားတော်က အခြားတစ်နေရာကို ပြန်ကြည့်စေပါတယ်`
-    },
-
-    {
-      type:"Dhamma Insight Hook",
-      text:`${promise} ကို နားလည်ဖို့ အရေးကြီးဆုံးအချက်တစ်ခုက ကိုယ့်စိတ်ကို ကိုယ်ဘယ်လိုမြင်သလဲဆိုတာပါ`
     }
-
-  ];
-
-  document.getElementById("hookResults").innerHTML=hooks.map(h=>`
-    <div class="card hook">
-      <div class="hook-type">${h.type}</div>
-      <div class="hook-text">${esc(h.text)}</div>
-      <div class="btn-row">
-        <button class="btn btn-light"
-          onclick="copyText(${JSON.stringify(h.text)})">
-          Copy
-        </button>
-      </div>
-    </div>
-  `).join("");
-
-  toast("5 Hooks generated");
-}
-
-
-/* =========================
-   THUMBNAIL
-========================= */
-
-function generateThumbnails(){
-
-  const topic=
-    document.getElementById("thumbTopic").value.trim() ||
-    "စိတ်ပူခြင်း";
-
-  const emotion=
-    document.getElementById("thumbEmotion").value;
-
-  const concepts=[
-
-    {
-      name:"Concept A — Emotion",
-      text:"စိတ်ကို ငြိမ်အောင်",
-      visual:"တရားနာနေသူ + ငြိမ်းချမ်းတဲ့ background + မျက်နှာ expression ကို အဓိကထား"
-    },
-
-    {
-      name:"Concept B — Question",
-      text:"ဘာကြောင့် မေ့မရတာလဲ?",
-      visual:"အတွေးများနေတဲ့ silhouette + တစ်ဖက်မှာ တရားနာနေတဲ့ peaceful scene"
-    },
-
-    {
-      name:"Concept C — Promise",
-      text:"ဒီတရားကို နားထောင်ပါ",
-      visual:"ဆရာတော် / တရားနာပရိသတ်ကို respectful focal composition နဲ့ပြ"
-    }
-
-  ];
-
-  document.getElementById("thumbResults").innerHTML=concepts.map(c=>`
-    <div class="card">
-      <span class="badge">${c.name}</span>
-      <h3 style="margin-top:10px">${esc(c.text)}</h3>
-      <p class="muted">${esc(c.visual)}</p>
-
-      <div class="alert alert-gold">
-        Emotion: <b>${esc(emotion)}</b>
-      </div>
-
-      <div class="alert alert-green">
-        Topic: ${esc(topic)}
-      </div>
-    </div>
-  `).join("");
-
-  toast("Thumbnail concepts created");
-}
-
-
-/* =========================
-   CONTENT LAB
-========================= */
-
-function generateContent(){
-
-  const niche=
-    document.getElementById("contentNiche").value.trim() ||
-    "Buddha Dhamma";
-
-  const audience=
-    document.getElementById("contentAudience").value.trim() ||
-    "စိတ်ငြိမ်းချမ်းမှုရှာနေသူများ";
-
-  const topic=
-    document.getElementById("contentTopic").value.trim() ||
-    "စိတ်ပူပန်ခြင်း";
-
-  const type=document.getElementById("contentType").value;
-
-  const titles=[
-    `${topic} ကြောင့် စိတ်မချမ်းသာရင် ဒီအချက်ကို နားထောင်ကြည့်ပါ`,
-    `${topic} ကို လွှတ်ချဖို့ တရားတော်ထဲက အရေးကြီးတဲ့ အချက်`,
-    `စိတ်ပူနေတဲ့အချိန် ဒီတရားတော်ကို ဘာကြောင့်နားထောင်သင့်လဲ`,
-    `${topic} အကြောင်းကို ဗုဒ္ဓတရားတော်အမြင်နဲ့ နားလည်ကြည့်ပါ`,
-    `စိတ်ငြိမ်ချမ်းချင်သူတိုင်း သိထားသင့်တဲ့ တရားတော်`
-  ];
-
-  const hook=
-    `${audience} အများစုရင်ဆိုင်နေရတဲ့ ${topic} ပြဿနာကို ဒီ Video မှာ တရားတော်အမြင်နဲ့ တစ်ဆင့်ချင်းစဉ်းစားကြည့်ပါမယ်`;
-
-  let structure="";
-
-  if(type==="Long-form"){
-    structure=`
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <b>0:00–0:15 Hook</b>
-          <p class="muted">${esc(hook)}</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <b>0:15–1:00 Context</b>
-          <p class="muted">လူတွေကြုံနေရတဲ့ ${esc(topic)} ကို ရိုးရိုးရှင်းရှင်း ဖော်ပြပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <b>Main Dhamma</b>
-          <p class="muted">တရားတော်အဓိပ္ပါယ်၊ အကြောင်းရင်းနဲ့ လက်တွေ့အသုံးချနိုင်မှုကို တစ်ဆင့်ချင်းတင်ပြပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <b>Practical Takeaway</b>
-          <p class="muted">နားထောင်ပြီးနောက် ကိုယ်တိုင်လုပ်ဆောင်နိုင်မယ့် အချက် ၁–၃ ခု</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <b>Ending</b>
-          <p class="muted">အဓိက message ကို တစ်ကြိမ်ပြန်ချုပ်ပြီး နောက်ထပ် related video ဆီ ပို့ပါ</p>
-        </div>
-      </div>
-    `;
-  }else{
-    structure=`
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <b>0–3 sec</b>
-          <p class="muted">ပြဿနာကို တိုက်ရိုက်ပြောပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <b>3–10 sec</b>
-          <p class="muted">Curiosity + Dhamma insight ထည့်ပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <b>10–30 sec</b>
-          <p class="muted">အဓိကအချက်ကို မြန်မြန်ပေးပါ</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <b>Ending</b>
-          <p class="muted">Related long-form video ဆီ audience ကို ဆက်ပို့ပါ</p>
-        </div>
-      </div>
-    `;
-  }
-
-  document.getElementById("contentResult").innerHTML=`
-    <div class="card">
-      <h3>🎬 ${esc(niche)} Video Plan</h3>
-
-      <div class="alert alert-gold">
-        Target Audience: <b>${esc(audience)}</b>
-      </div>
-
-      <h4 style="margin-top:15px">🔥 Recommended Titles</h4>
-
-      ${titles.map((t,i)=>`
-        <div class="title-item">
-          <b>${i+1}. ${esc(t)}</b>
-        </div>
-      `).join("")}
-
-      <h4 style="margin-top:17px">⚡ Opening Hook</h4>
-
-      <div class="hook">
-        <div class="hook-text">${esc(hook)}</div>
-        <div class="btn-row">
-          <button class="btn btn-light"
-            onclick="copyText(${JSON.stringify(hook)})">
-            Copy Hook
-          </button>
-        </div>
-      </div>
-
-      <h4 style="margin-top:17px">🧱 Structure</h4>
-
-      ${structure}
-
-      <h4 style="margin-top:17px">🤖 AI Prompt</h4>
-
-      <div class="result">
-        Create a respectful ${esc(niche)} YouTube video for
-        ${esc(audience)} about ${esc(topic)}.
-        Start with a strong 5–15 second hook, avoid a long intro,
-        explain the core value clearly, maintain retention with
-        structured sections, and finish with a useful takeaway
-        and a natural CTA. Do not invent religious quotations or
-        attribute statements to a teacher without a reliable source
-      </div>
-
-      <div class="btn-row">
-        <button class="btn btn-primary"
-          onclick="copyText(${JSON.stringify(hook)})">
-          Copy Hook
-        </button>
-      </div>
-
-    </div>
-  `;
-
-  toast("Video plan created");
-}
-
-
-/* =========================
-   ANALYTICS
-========================= */
-
-function loadAnalyticsInputs(){
-
-  const ch=active();
-
-  document.getElementById("aViews").value=
-    ch.analytics.views||ch.views||0;
-
-  document.getElementById("aCTR").value=
-    ch.analytics.ctr||0;
-
-  document.getElementById("aRetention").value=
-    ch.analytics.retention||0;
-
-  document.getElementById("aEngagement").value=
-    ch.analytics.engagement||0;
-}
-
-function saveAnalytics(){
-
-  const ch=active();
-
-  const views=Number(document.getElementById("aViews").value)||0;
-  const ctr=Number(document.getElementById("aCTR").value)||0;
-  const retention=Number(document.getElementById("aRetention").value)||0;
-  const engagement=Number(document.getElementById("aEngagement").value)||0;
-
-  ch.analytics={
-    views,
-    ctr,
-    retention,
-    engagement
   };
 
-  ch.views=views;
+  data.channels.push(channel);
+  data.selected = channel.id;
+
+  saveData();
+
+  document.getElementById("newChannelName").value = "";
+  document.getElementById("newChannelUrl").value = "";
+  document.getElementById("newChannelNiche").value = "";
+
+  document.getElementById("addChannelBox").style.display = "none";
+
+  renderAll();
+
+  alert("Channel ထည့်ပြီးပါပြီ");
+});
+
+
+function renderChannels(){
+
+  const list = document.getElementById("channelsList");
+
+  if(!data.channels.length){
+    list.innerHTML = `<div class="empty">Channel မရှိသေးပါ</div>`;
+    return;
+  }
+
+  list.innerHTML = data.channels.map(channel=>{
+
+    return `
+      <div class="card">
+        <div class="channel-card">
+
+          <div>
+            <div class="channel-name">
+              ${escapeHtml(channel.name)}
+            </div>
+
+            <span class="badge">
+              ${escapeHtml(channel.niche)}
+            </span>
+
+            <div class="channel-link">
+              ${escapeHtml(channel.url || "URL မထည့်ရသေးပါ")}
+            </div>
+
+            <div class="muted" style="margin-top:8px">
+              Subs: ${num(channel.subs).toLocaleString()}
+              • Hours: ${num(channel.hours).toLocaleString()}
+              • Views: ${num(channel.views).toLocaleString()}
+              • Income: $${money(channel.income)}
+            </div>
+          </div>
+
+          <div class="actions">
+            ${
+              channel.url
+              ?
+              `<a class="btn btn-light" target="_blank" rel="noopener" href="${escapeHtml(channel.url)}">Open</a>`
+              :
+              ""
+            }
+
+            <button class="btn btn-light" onclick="updateChannel('${channel.id}')">
+              Update
+            </button>
+
+            <button class="btn btn-danger" onclick="deleteChannel('${channel.id}')">
+              Delete
+            </button>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function updateChannel(id){
+
+  const channel = data.channels.find(c=>c.id === id);
+
+  if(!channel){
+    return;
+  }
+
+  const subs = prompt("Subscribers",channel.subs);
+  if(subs === null) return;
+
+  const hours = prompt("Public Watch Hours",channel.hours);
+  if(hours === null) return;
+
+  const views = prompt("Monthly Views",channel.views);
+  if(views === null) return;
+
+  const income = prompt("Monthly Income ($)",channel.income);
+  if(income === null) return;
+
+  channel.subs = num(subs);
+  channel.hours = num(hours);
+  channel.views = num(views);
+  channel.income = num(income);
 
   saveData();
   renderAll();
-
-  toast("Analytics saved");
-}
-
-function analyzeChannel(){
-
-  const ch=active();
-  const a=ch.analytics;
-
-  let diagnosis=[];
-  let actions=[];
-
-  if(a.ctr<=0){
-    diagnosis.push("CTR data မထည့်ရသေးပါ");
-    actions.push("YouTube Studio Reach မှာ impressions + CTR ကို စစ်ပါ");
-  }else if(a.ctr<4){
-    diagnosis.push("Packaging ကို ပြန်စစ်သင့်တဲ့ signal ရှိပါတယ်");
-    actions.push("Title + Thumbnail ကို တစ်ခုတည်းသော promise နဲ့ ပြန်တည်ဆောက်ပါ");
-  }else{
-    diagnosis.push("Packaging signal ကို retention နဲ့ တွဲကြည့်ပါ");
-  }
-
-  if(a.retention<=0){
-    diagnosis.push("Retention data မထည့်ရသေးပါ");
-    actions.push("Audience retention graph ရဲ့ ပထမပိုင်း drop ကို စစ်ပါ");
-  }else if(a.retention<30){
-    diagnosis.push("အစပိုင်း retention အားနည်းနိုင်ပါတယ်");
-    actions.push("Intro လျှော့ပြီး ပထမ 15 စက္ကန့်မှာ core promise ထည့်ပါ");
-  }else{
-    diagnosis.push("Retention data ကို title/thumbnail performance နဲ့တွဲကြည့်ပါ");
-  }
-
-  if(a.engagement<=0){
-    actions.push("Like/comment/share signal ကို track လုပ်ပါ");
-  }else{
-    diagnosis.push("Engagement signal ရှိပါတယ်");
-  }
-
-  document.getElementById("analyticsResult").innerHTML=`
-    <div class="grid g2" style="margin-top:14px">
-
-      <div class="result">
-        <h4>🔎 Diagnosis</h4>
-        ${diagnosis.map(x=>`<div class="stat-row"><span>•</span><b>${esc(x)}</b></div>`).join("")}
-      </div>
-
-      <div class="result">
-        <h4>🛠️ Next Tests</h4>
-        ${actions.map(x=>`<div class="stat-row"><span>→</span><b>${esc(x)}</b></div>`).join("")}
-      </div>
-
-    </div>
-
-    <div class="alert alert-gold">
-      Rule: CTR ကို impressions နဲ့ context တွဲကြည့်ပြီး
-      retention ကို video opening နဲ့ content structure နဲ့တွဲစစ်ပါ
-    </div>
-  `;
-
-  toast("Channel diagnosed");
 }
 
 
-/* =========================
-   COPY
-========================= */
+function deleteChannel(id){
 
-async function copyText(text){
+  if(data.channels.length <= 1){
+    alert("အနည်းဆုံး Channel တစ်ခုတော့ထားရပါမယ်");
+    return;
+  }
 
-  try{
-    await navigator.clipboard.writeText(text);
-    toast("Copied");
-  }catch(e){
-    const ta=document.createElement("textarea");
-    ta.value=text;
-    document.body.appendChild(ta);
-    ta.select();
+  const channel = data.channels.find(c=>c.id === id);
 
-    try{
-      document.execCommand("copy");
-      toast("Copied");
-    }catch(err){
-      toast("Copy မလုပ်နိုင်ပါ");
+  if(!channel){
+    return;
+  }
+
+  if(!confirm(channel.name + " ကို ဖျက်မှာ သေချာပါသလား")){
+    return;
+  }
+
+  data.channels = data.channels.filter(c=>c.id !== id);
+
+  if(data.selected === id){
+    data.selected = data.channels[0].id;
+  }
+
+  saveData();
+  renderAll();
+}
+
+
+/* ---------- EARN ---------- */
+
+function renderEarn(){
+
+  const channel = getSelectedChannel();
+
+  if(!channel){
+    return;
+  }
+
+  const current = num(channel.income);
+
+  document.getElementById("earnCurrent").textContent = money(current);
+  document.getElementById("earnGap").textContent =
+    money(Math.max(0,500-current));
+}
+
+document.getElementById("calcRevenue").addEventListener("click",()=>{
+
+  const views = num(document.getElementById("calcViews").value);
+  const rpm = num(document.getElementById("calcRpm").value);
+
+  const result = (views / 1000) * rpm;
+
+  document.getElementById("calcResult").textContent =
+    money(result);
+});
+
+
+/* ---------- HOOK LAB ---------- */
+
+document.getElementById("generateHooks").addEventListener("click",()=>{
+
+  const topic = document.getElementById("hookTopic").value.trim() || "ဒီအကြောင်းအရာ";
+  const problem = document.getElementById("hookProblem").value.trim() || "လက်ရှိပြဿနာ";
+  const promise = document.getElementById("hookPromise").value.trim() || "အသုံးဝင်တဲ့အချက်တွေ";
+
+  const hooks = [
+
+    {
+      title:"Curiosity",
+      text:`"${topic}" နဲ့ပတ်သက်ပြီး လူအများမသိသေးတဲ့ အချက်တစ်ခုရှိပါတယ်`
+    },
+
+    {
+      title:"Pain Point",
+      text:`${problem} ကြောင့် အခက်အခဲဖြစ်နေတယ်ဆိုရင် ဒီ video ကို အဆုံးထိကြည့်ပါ`
+    },
+
+    {
+      title:"Question",
+      text:`${topic} ကို ဒီလိုလုပ်ရင် တကယ်ဘာဖြစ်မလဲ`
+    },
+
+    {
+      title:"Story",
+      text:`ဒီနေ့ ${topic} နဲ့ပတ်သက်တဲ့ ဖြစ်ရပ်တစ်ခုကနေ စပြီး ပြောပြပါမယ်`
+    },
+
+    {
+      title:"Promise",
+      text:`ဒီ video အဆုံးမှာ ${promise} ကို ရှင်းရှင်းလင်းလင်း သိသွားပါလိမ့်မယ်`
     }
 
-    ta.remove();
+  ];
+
+  document.getElementById("hookResult").innerHTML =
+    hooks.map((h,i)=>`
+      <div class="concept">
+        <span class="concept-number">${i+1}</span>
+        <h4>${escapeHtml(h.title)}</h4>
+        <p>${escapeHtml(h.text)}</p>
+      </div>
+    `).join("");
+});
+
+
+/* ---------- THUMBNAIL LAB ---------- */
+
+document.getElementById("generateThumb").addEventListener("click",()=>{
+
+  const topic =
+    document.getElementById("thumbTopic").value.trim() ||
+    "Your Topic";
+
+  const emotion =
+    document.getElementById("thumbEmotion").value;
+
+  const concepts = [
+
+    {
+      title:"Single Focus",
+      body:`Subject တစ်ခုတည်းကို အဓိကထားပြီး ${emotion} feeling ပေးပါ။ Text ကို 2–5 words အတွင်းထားပါ`
+    },
+
+    {
+      title:"Contrast",
+      body:`Subject ကို background ကနေ ထင်ရှားအောင် ခွဲထုတ်ပြီး ${emotion} ကို visual contrast နဲ့ပြပါ`
+    },
+
+    {
+      title:"Story Question",
+      body:`Viewer ရဲ့ စိတ်ထဲမှာ "ဘာဖြစ်တာလဲ" ဆိုတဲ့ မေးခွန်းပေါ်လာစေမယ့် visual situation တစ်ခုတည်ဆောက်ပါ`
+    }
+
+  ];
+
+  document.getElementById("thumbResult").innerHTML = `
+
+    ${concepts.map((c,i)=>`
+      <div class="concept">
+        <span class="concept-number">${i+1}</span>
+        <h4>${escapeHtml(c.title)}</h4>
+        <p><strong>Topic:</strong> ${escapeHtml(topic)}</p>
+        <p>${escapeHtml(c.body)}</p>
+      </div>
+    `).join("")}
+
+    <div class="notice warning" style="margin-top:12px">
+      Thumbnail မှာ element များလွန်းတာ၊ စာသားရှည်လွန်းတာ၊ Title နဲ့ thumbnail တစ်ခုတည်းကို ထပ်ပြောနေတာကို ရှောင်ပါ
+    </div>
+
+  `;
+});
+
+
+/* ---------- CONTENT LAB ---------- */
+
+document.getElementById("generateContent").addEventListener("click",()=>{
+
+  const niche =
+    document.getElementById("contentNiche").value.trim() ||
+    "YouTube";
+
+  const audience =
+    document.getElementById("contentAudience").value.trim() ||
+    "Myanmar viewers";
+
+  const topic =
+    document.getElementById("contentTopic").value.trim() ||
+    "Your Topic";
+
+  const type =
+    document.getElementById("contentType").value;
+
+  const titles = [
+    `${topic} ကို လူအများမသိသေးတဲ့ အချက်များ`,
+    `${topic} အကြောင်း ဒီအချက်တွေ သိထားသင့်တယ်`,
+    `${topic} ကို နားလည်ဖို့ လိုအပ်တဲ့ အချက် ${5} ခု`,
+    `${topic} နဲ့ပတ်သက်ပြီး မလုပ်သင့်တဲ့အရာများ`,
+    `${topic} ကို ဒီလိုကြည့်ရင် ပိုနားလည်လာမယ်`
+  ];
+
+  const prompt =
+`Create an original ${type} YouTube video for the ${niche} niche.
+
+Target audience:
+${audience}
+
+Topic:
+${topic}
+
+Requirements:
+- Strong opening hook
+- Clear viewer promise
+- Useful original information
+- Simple structure
+- Natural pacing
+- No copied script
+- No misleading claims
+- Strong ending and next-video transition`;
+
+  document.getElementById("contentResult").innerHTML = `
+
+    <div class="card" style="padding:14px;background:#f8fafc">
+      <h3>5 Title Ideas</h3>
+      <ul class="kpi-list">
+        ${titles.map(t=>`<li>• ${escapeHtml(t)}</li>`).join("")}
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:10px">
+      <h3>Opening Hook</h3>
+      <p class="muted">
+        "ဒီ video မှာ ${escapeHtml(topic)} ကို အလွယ်တကူနားလည်နိုင်အောင် အဓိကအချက်တွေကို တစ်ဆင့်ချင်းရှင်းပြပါမယ်"
+      </p>
+    </div>
+
+    <div class="card" style="margin-top:10px">
+      <h3>Structure</h3>
+      <ul class="kpi-list">
+        <li>1. Hook</li>
+        <li>2. Viewer Promise</li>
+        <li>3. Main Problem</li>
+        <li>4. Key Information</li>
+        <li>5. Examples</li>
+        <li>6. Practical Takeaway</li>
+        <li>7. Next Video CTA</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:10px">
+      <h3>AI Prompt</h3>
+      <div class="prompt-box">${escapeHtml(prompt)}</div>
+      <button class="btn btn-light" style="margin-top:8px" onclick="copyText(${JSON.stringify(prompt)})">
+        Copy Prompt
+      </button>
+    </div>
+
+  `;
+});
+
+
+/* =========================================================
+   REFERENCE LIBRARY
+   ========================================================= */
+
+document.getElementById("showReferenceForm").addEventListener("click",()=>{
+  const box = document.getElementById("referenceForm");
+
+  box.style.display =
+    box.style.display === "none" ? "block" : "none";
+});
+
+document.getElementById("cancelReference").addEventListener("click",()=>{
+  document.getElementById("referenceForm").style.display = "none";
+});
+
+
+document.getElementById("saveReference").addEventListener("click",()=>{
+
+  const name = document.getElementById("refName").value.trim();
+  const url = document.getElementById("refUrl").value.trim();
+  const niche = document.getElementById("refNiche").value.trim();
+  const why = document.getElementById("refWhy").value.trim();
+  const notes = document.getElementById("refNotes").value.trim();
+
+  if(!name){
+    alert("Reference Channel Name ထည့်ပါ");
+    return;
   }
+
+  if(!url){
+    alert("Channel URL ထည့်ပါ");
+    return;
+  }
+
+  const reference = {
+    id:makeId("ref_"),
+    name:name,
+    url:url,
+    niche:niche || "YouTube",
+    why:why || "Research",
+    notes:notes,
+    videos:[]
+  };
+
+  data.references.push(reference);
+
+  saveData();
+
+  document.getElementById("refName").value = "";
+  document.getElementById("refUrl").value = "";
+  document.getElementById("refNiche").value = "";
+  document.getElementById("refWhy").value = "";
+  document.getElementById("refNotes").value = "";
+
+  document.getElementById("referenceForm").style.display = "none";
+
+  renderReferences();
+
+  alert("Reference Channel ထည့်ပြီးပါပြီ");
+});
+
+
+function renderReferences(){
+
+  const list = document.getElementById("referenceList");
+  const empty = document.getElementById("noReference");
+
+  if(!data.references.length){
+    list.innerHTML = "";
+    empty.style.display = "block";
+    return;
+  }
+
+  empty.style.display = "none";
+
+  list.innerHTML = `
+
+    <div class="grid grid-2">
+
+      ${data.references.map(ref=>`
+
+        <div class="reference-card">
+
+          <div class="reference-top">
+
+            <div>
+              <div class="reference-title">
+                ${escapeHtml(ref.name)}
+              </div>
+
+              <div class="reference-meta">
+                ${escapeHtml(ref.niche)}
+              </div>
+
+              <a
+                class="reference-url"
+                href="${escapeHtml(ref.url)}"
+                target="_blank"
+                rel="noopener"
+              >
+                ${escapeHtml(ref.url)}
+              </a>
+            </div>
+
+          </div>
+
+          <div class="notice" style="margin-top:10px">
+            <strong>Why Reference?</strong><br>
+            ${escapeHtml(ref.why)}
+          </div>
+
+          ${
+            ref.notes
+            ?
+            `<p class="muted" style="margin-top:9px">${escapeHtml(ref.notes)}</p>`
+            :
+            ""
+          }
+
+          <div class="actions">
+
+            <a
+              class="btn btn-light"
+              href="${escapeHtml(ref.url)}"
+              target="_blank"
+              rel="noopener"
+            >
+              Open Channel
+            </a>
+
+            <button
+              class="btn btn-green"
+              onclick="addWinningVideo('${ref.id}')"
+            >
+              + Winning Video
+            </button>
+
+            <button
+              class="btn btn-purple"
+              onclick="analyzeReference('${ref.id}')"
+            >
+              Analyze Pattern
+            </button>
+
+            <button
+              class="btn btn-danger"
+              onclick="deleteReference('${ref.id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+          <div id="videos-${ref.id}">
+            ${
+              renderReferenceVideos(ref)
+            }
+          </div>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+  `;
 }
 
 
-/* =========================
-   AI COACH
-========================= */
+function renderReferenceVideos(ref){
 
-function coach(){
+  if(!Array.isArray(ref.videos) || !ref.videos.length){
+    return `
+      <div class="muted" style="margin-top:12px">
+        Winning Video မထည့်ရသေးပါ
+      </div>
+    `;
+  }
 
-  const problem=
+  return ref.videos.map(video=>`
+
+    <div class="video-item">
+
+      <div class="video-title">
+        ${escapeHtml(video.title)}
+      </div>
+
+      <div class="video-meta">
+        Views: ${num(video.views).toLocaleString()}
+      </div>
+
+      ${
+        video.url
+        ?
+        `<a
+          class="reference-url"
+          href="${escapeHtml(video.url)}"
+          target="_blank"
+          rel="noopener"
+        >
+          Open Video
+        </a>`
+        :
+        ""
+      }
+
+      <div style="margin-top:8px;font-size:11px;line-height:1.7">
+
+        <strong>Thumbnail:</strong>
+        ${escapeHtml(video.thumbnailObservation || "မမှတ်ထားရသေးပါ")}
+        <br>
+
+        <strong>Hook:</strong>
+        ${escapeHtml(video.hookObservation || "မမှတ်ထားရသေးပါ")}
+        <br>
+
+        <strong>Structure:</strong>
+        ${escapeHtml(video.structure || "မမှတ်ထားရသေးပါ")}
+        <br>
+
+        <strong>Adapt:</strong>
+        ${escapeHtml(video.adapt || "မမှတ်ထားရသေးပါ")}
+
+      </div>
+
+      <div class="actions">
+        <button
+          class="btn btn-light"
+          onclick="uploadReferenceThumbnail('${ref.id}','${video.id}')"
+        >
+          🖼️ Upload Thumbnail
+        </button>
+
+        <button
+          class="btn btn-danger"
+          onclick="deleteWinningVideo('${ref.id}','${video.id}')"
+        >
+          Delete Video
+        </button>
+      </div>
+
+      ${
+        video.thumbnailData
+        ?
+        `
+        <div style="margin-top:10px">
+          <img
+            src="${video.thumbnailData}"
+            alt="Reference thumbnail"
+            style="width:100%;max-height:220px;object-fit:contain;background:#111;border-radius:9px"
+          >
+
+          <button
+            class="btn btn-purple"
+            style="margin-top:8px"
+            onclick="openReferenceThumbnailLab('${ref.id}','${video.id}')"
+          >
+            ✨ Improve This Thumbnail
+          </button>
+        </div>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  `).join("");
+}
+
+
+function addWinningVideo(refId){
+
+  const ref = data.references.find(r=>r.id === refId);
+
+  if(!ref){
+    return;
+  }
+
+  const title = prompt("Winning Video Title");
+  if(title === null || !title.trim()){
+    return;
+  }
+
+  const url = prompt("Video URL");
+  if(url === null){
+    return;
+  }
+
+  const views = prompt("Views");
+  if(views === null){
+    return;
+  }
+
+  const thumbnailObservation =
+    prompt("Thumbnail မှာ ဘာကောင်းလဲ") || "";
+
+  const hookObservation =
+    prompt("Hook မှာ ဘာကောင်းလဲ") || "";
+
+  const structure =
+    prompt("Content Structure ဘယ်လိုလဲ") || "";
+
+  const adapt =
+    prompt("ကိုယ့် Channel အတွက် ဘာကို Adapt လုပ်မလဲ") || "";
+
+  ref.videos.push({
+    id:makeId("vid_"),
+    title:title.trim(),
+    url:url.trim(),
+    views:num(views),
+    thumbnailObservation,
+    hookObservation,
+    structure,
+    adapt,
+    thumbnailData:""
+  });
+
+  saveData();
+  renderReferences();
+}
+
+
+function deleteWinningVideo(refId,videoId){
+
+  const ref = data.references.find(r=>r.id === refId);
+
+  if(!ref){
+    return;
+  }
+
+  if(!confirm("Winning Video ကို ဖျက်မှာ သေချာပါသလား")){
+    return;
+  }
+
+  ref.videos = ref.videos.filter(v=>v.id !== videoId);
+
+  saveData();
+  renderReferences();
+}
+
+
+function deleteReference(refId){
+
+  const ref = data.references.find(r=>r.id === refId);
+
+  if(!ref){
+    return;
+  }
+
+  if(!confirm(ref.name + " ကို Reference Library မှ ဖျက်မှာ သေချာပါသလား")){
+    return;
+  }
+
+  data.references =
+    data.references.filter(r=>r.id !== refId);
+
+  saveData();
+  renderReferences();
+}
+
+
+/* =========================================================
+   REFERENCE THUMBNAIL UPLOAD
+   ========================================================= */
+
+let thumbnailInput = null;
+
+function uploadReferenceThumbnail(refId,videoId){
+
+  if(thumbnailInput){
+    thumbnailInput.remove();
+  }
+
+  thumbnailInput = document.createElement("input");
+
+  thumbnailInput.type = "file";
+  thumbnailInput.accept = "image/*";
+  thumbnailInput.style.display = "none";
+
+  document.body.appendChild(thumbnailInput);
+
+  thumbnailInput.addEventListener("change",event=>{
+
+    const file = event.target.files && event.target.files[0];
+
+    if(!file){
+      return;
+    }
+
+    if(!file.type.startsWith("image/")){
+      alert("Image file တစ်ခုရွေးပါ");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+      const ref = data.references.find(r=>r.id === refId);
+
+      if(!ref){
+        return;
+      }
+
+      const video = ref.videos.find(v=>v.id === videoId);
+
+      if(!video){
+        return;
+      }
+
+      /*
+        Resize image before saving.
+        This reduces localStorage size.
+      */
+
+      resizeImage(
+        reader.result,
+        1280,
+        720,
+        function(resizedData){
+
+          video.thumbnailData = resizedData;
+
+          saveData();
+          renderReferences();
+
+          alert("Thumbnail upload ပြီးပါပြီ");
+        }
+      );
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+  thumbnailInput.click();
+}
+
+
+function resizeImage(dataUrl,maxWidth,maxHeight,callback){
+
+  const img = new Image();
+
+  img.onload = function(){
+
+    let width = img.width;
+    let height = img.height;
+
+    const scale =
+      Math.min(
+        1,
+        maxWidth / width,
+        maxHeight / height
+      );
+
+    width = Math.round(width * scale);
+    height = Math.round(height * scale);
+
+    const canvas = document.createElement("canvas");
+
+    canvas.width = width;
+    canvas.height = height;
+
+    const ctx = canvas.getContext("2d");
+
+    if(!ctx){
+      callback(dataUrl);
+      return;
+    }
+
+    ctx.drawImage(img,0,0,width,height);
+
+    callback(
+      canvas.toDataURL("image/jpeg",.82)
+    );
+  };
+
+  img.onerror = function(){
+    callback(dataUrl);
+  };
+
+  img.src = dataUrl;
+}
+
+
+/* =========================================================
+   REFERENCE THUMBNAIL LAB
+   ========================================================= */
+
+function openReferenceThumbnailLab(refId,videoId){
+
+  const ref = data.references.find(r=>r.id === refId);
+
+  if(!ref){
+    return;
+  }
+
+  const video = ref.videos.find(v=>v.id === videoId);
+
+  if(!video || !video.thumbnailData){
+    alert("Thumbnail မရှိသေးပါ");
+    return;
+  }
+
+  openPage("reference");
+
+  const list = document.getElementById("referenceList");
+
+  const lab = document.createElement("div");
+
+  lab.className = "card";
+
+  lab.style.marginTop = "18px";
+
+  lab.id = "activeThumbnailLab";
+
+  lab.innerHTML = `
+
+    <div class="section-head">
+
+      <div>
+        <h2>✨ Reference Thumbnail Improvement Lab</h2>
+        <p>${escapeHtml(video.title)}</p>
+      </div>
+
+      <button class="btn btn-light" id="closeThumbLab">
+        Close
+      </button>
+
+    </div>
+
+    <div class="grid grid-2">
+
+      <div>
+
+        <h3>Reference Thumbnail</h3>
+
+        <div class="preview-wrap" style="display:block">
+          <img
+            id="referenceLabImage"
+            src="${video.thumbnailData}"
+            alt="Reference Thumbnail"
+          >
+        </div>
+
+      </div>
+
+      <div>
+
+        <h3>Basic Visual Analysis</h3>
+
+        <div id="imageAnalysis">
+          Image ကို analyze လုပ်နေပါတယ်...
+        </div>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="card" style="background:#f8fafc">
+
+      <h3>🎯 Improvement Direction</h3>
+
+      <div class="analysis-grid">
+
+        <div class="analysis-item">
+          <strong>Focus</strong>
+          <span>အဓိက Subject တစ်ခုကို ပိုရှင်းအောင်ထားပါ</span>
+        </div>
+
+        <div class="analysis-item">
+          <strong>Text</strong>
+          <span>စာသားကို တိုပြီး Mobile မှာဖတ်လို့ရအောင်ထားပါ</span>
+        </div>
+
+        <div class="analysis-item">
+          <strong>Contrast</strong>
+          <span>Subject နဲ့ background ကြား visual separation တိုးပါ</span>
+        </div>
+
+        <div class="analysis-item">
+          <strong>Curiosity</strong>
+          <span>Viewer ကို မေးခွန်းတစ်ခုဖြစ်စေမယ့် visual idea ထည့်ပါ</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+
+      <h3>🚀 3 Original Thumbnail Concepts</h3>
+
+      <div id="improvedConcepts"></div>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+
+      <h3>🤖 AI Thumbnail Prompt</h3>
+
+      <div class="prompt-box" id="referencePrompt"></div>
+
+      <button class="btn btn-purple" id="copyReferencePrompt" style="margin-top:9px">
+        Copy Prompt
+      </button>
+
+    </div>
+
+    <div class="notice warning" style="margin-top:14px">
+      ဒီ Reference thumbnail ကို exact copy မလုပ်ပါနဲ့ — layout principle, visual hierarchy, emotion နဲ့ packaging idea ကို လေ့လာပြီး Original thumbnail ပြန်ဖန်တီးပါ
+    </div>
+
+  `;
+
+  list.prepend(lab);
+
+  document.getElementById("closeThumbLab").addEventListener("click",()=>{
+    lab.remove();
+  });
+
+  analyzeUploadedThumbnail(video.thumbnailData,video);
+
+}
+
+
+function analyzeUploadedThumbnail(dataUrl,video){
+
+  const img = new Image();
+
+  img.onload = function(){
+
+    const width = img.width;
+    const height = img.height;
+
+    const ratio = width / height;
+
+    let ratioText = "Standard landscape";
+
+    if(ratio < 1.5){
+      ratioText = "Aspect ratio က YouTube thumbnail အတွက် ပြန်စစ်သင့်ပါတယ်";
+    }else if(ratio > 2){
+      ratioText = "အလွန်ကျယ်နေပါတယ် — standard thumbnail composition ကို စဉ်းစားပါ";
+    }
+
+    let sizeText =
+      width >= 1280 && height >= 720
+      ?
+      "Resolution က လုံလောက်တဲ့အဆင့်မှာရှိပါတယ်"
+      :
+      "Resolution ပိုမြင့်တဲ့ source သုံးဖို့ စဉ်းစားပါ";
+
+    document.getElementById("imageAnalysis").innerHTML = `
+
+      <div class="analysis-grid">
+
+        <div class="analysis-item">
+          <strong>Image Size</strong>
+          <span>${width} × ${height}</span>
+        </div>
+
+        <div class="analysis-item">
+          <strong>Ratio</strong>
+          <span>${ratio.toFixed(2)} — ${ratioText}</span>
+        </div>
+
+        <div class="analysis-item">
+          <strong>Resolution</strong>
+          <span>${sizeText}</span>
+        </div>
+
+        <div class="analysis-item">
+          <strong>Reference Learning</strong>
+          <span>Thumbnail ကို mobile size နဲ့ကြည့်ပြီး Subject / Text / Contrast ကို အဓိကစစ်ပါ</span>
+        </div>
+
+      </div>
+
+    `;
+
+    const topic =
+      video.title || "Reference Video";
+
+    const concepts = [
+
+      {
+        title:"Concept 1 — Clean & Strong",
+        text:"Subject တစ်ခုကို အဓိကထား၊ စာသား 2–4 words၊ background ကို ရိုးရှင်းထားပြီး mobile မှာ ချက်ချင်းနားလည်စေမယ့် composition"
+      },
+
+      {
+        title:"Concept 2 — Curiosity",
+        text:"Reference ထဲက visual idea ကို မကူးဘဲ topic ရဲ့ unanswered question တစ်ခုကို visual အနေနဲ့ ဖော်ပြပါ"
+      },
+
+      {
+        title:"Concept 3 — Emotional Contrast",
+        text:"Subject ရဲ့ emotion ကို ပိုရှင်းအောင်ပြပြီး background နဲ့ contrast တိုးကာ viewer attention ကို main subject ဆီ ပို့ပါ"
+      }
+
+    ];
+
+    document.getElementById("improvedConcepts").innerHTML =
+      concepts.map((c,i)=>`
+
+        <div class="concept">
+
+          <span class="concept-number">${i+1}</span>
+
+          <h4>${escapeHtml(c.title)}</h4>
+
+          <p>
+            <strong>Topic:</strong>
+            ${escapeHtml(topic)}
+          </p>
+
+          <p>
+            ${escapeHtml(c.text)}
+          </p>
+
+        </div>
+
+      `).join("");
+
+    const prompt =
+`Create an original YouTube thumbnail inspired by the visual principles of a successful reference thumbnail.
+
+Reference video topic:
+${topic}
+
+Important:
+Do NOT copy the original thumbnail.
+Do NOT reproduce the exact composition, text, characters, logos, or visual arrangement.
+
+Create a fresh original design with:
+
+- 16:9 YouTube thumbnail
+- One clear main subject
+- Strong visual hierarchy
+- High mobile readability
+- Short bold text, maximum 2–5 words
+- Strong subject/background separation
+- Clear emotional expression
+- Clean composition
+- Curiosity without misleading clickbait
+- Professional creator-level design
+- Original visual elements
+- No unnecessary clutter
+
+Goal:
+Make the viewer understand the topic within one second while creating genuine curiosity to click.`;
+
+    document.getElementById("referencePrompt").textContent = prompt;
+
+    document.getElementById("copyReferencePrompt").onclick = ()=>{
+      copyText(prompt);
+    };
+
+  };
+
+  img.onerror = function(){
+
+    document.getElementById("imageAnalysis").innerHTML = `
+      <div class="notice danger">
+        Thumbnail ကို analyze မလုပ်နိုင်ပါ
+      </div>
+    `;
+  };
+
+  img.src = dataUrl;
+}
+
+
+/* ---------- ANALYTICS ---------- */
+
+function renderAnalytics(){
+
+  const channel = getSelectedChannel();
+
+  if(!channel){
+    return;
+  }
+
+  document.getElementById("aViews").value =
+    num(channel.analytics.views);
+
+  document.getElementById("aCtr").value =
+    num(channel.analytics.ctr);
+
+  document.getElementById("aRetention").value =
+    num(channel.analytics.retention);
+
+  document.getElementById("aEngagement").value =
+    num(channel.analytics.engagement);
+
+  showAnalyticsDiagnosis(channel);
+}
+
+
+document.getElementById("saveAnalytics").addEventListener("click",()=>{
+
+  const channel = getSelectedChannel();
+
+  if(!channel){
+    return;
+  }
+
+  channel.analytics.views =
+    num(document.getElementById("aViews").value);
+
+  channel.analytics.ctr =
+    num(document.getElementById("aCtr").value);
+
+  channel.analytics.retention =
+    num(document.getElementById("aRetention").value);
+
+  channel.analytics.engagement =
+    num(document.getElementById("aEngagement").value);
+
+  channel.views = channel.analytics.views;
+
+  saveData();
+
+  showAnalyticsDiagnosis(channel);
+
+  renderDashboard();
+
+  alert("Analytics save ပြီးပါပြီ");
+});
+
+
+function showAnalyticsDiagnosis(channel){
+
+  const a = channel.analytics;
+
+  let messages = [];
+
+  if(a.ctr > 0 && a.ctr < 4){
+    messages.push("CTR နည်းနေပါက Title + Thumbnail packaging ကို test လုပ်ပါ");
+  }
+
+  if(a.retention > 0 && a.retention < 35){
+    messages.push("Retention နည်းနေပါက Intro / Hook / pacing ကို ပြန်စစ်ပါ");
+  }
+
+  if(a.engagement > 0 && a.engagement < 2){
+    messages.push("Engagement နည်းနေပါက audience question / CTA / topic relevance ကို စမ်းပါ");
+  }
+
+  if(!messages.length){
+    messages.push("Data အရ လက်ရှိ metric တွေကို ဆက်စောင့်ကြည့်ပြီး နောက်ထပ် test တစ်ခု သတ်မှတ်ပါ");
+  }
+
+  document.getElementById("analyticsResult").innerHTML = `
+    <div class="notice">
+      <strong>Next Test Plan</strong><br>
+      ${messages.map(m=>"• "+escapeHtml(m)).join("<br>")}
+    </div>
+  `;
+}
+
+
+/* ---------- ACADEMY ---------- */
+
+const lessons = [
+
+  ["01","Niche Strategy","ဘယ် Audience ကို ဘာ Value ပေးမလဲ သတ်မှတ်ခြင်း"],
+  ["02","Topic Research","Demand ရှိတဲ့ topic တွေရှာခြင်း"],
+  ["03","Title Engineering","Click ဖြစ်စေမယ့် title structure"],
+  ["04","Thumbnail Psychology","Visual hierarchy နဲ့ attention"],
+  ["05","Hook Mastery","First 30 seconds"],
+  ["06","Retention","Viewer ဆက်ကြည့်အောင် structure ချခြင်း"],
+  ["07","Shorts System","Short-form discovery"],
+  ["08","Long-form System","Watch time တည်ဆောက်ခြင်း"],
+  ["09","Reference Research","Winning channel တွေကို analysis လုပ်ခြင်း"],
+  ["10","Analytics","CTR / Retention / Watch Time"],
+  ["11","Monetization","Revenue streams"],
+  ["12","Scale","Winning format ကို series အဖြစ်ချဲ့ခြင်း"]
+
+];
+
+
+function renderAcademy(){
+
+  const list = document.getElementById("academyList");
+
+  list.innerHTML = lessons.map(item=>`
+
+    <div class="card">
+
+      <div style="font-size:11px;color:#6b7280">
+        LESSON ${item[0]}
+      </div>
+
+      <h3 style="margin-top:5px">
+        ${escapeHtml(item[1])}
+      </h3>
+
+      <p class="muted">
+        ${escapeHtml(item[2])}
+      </p>
+
+      <div class="actions">
+        <button class="btn btn-light" onclick="academyLesson('${item[0]}')">
+          Open Lesson
+        </button>
+      </div>
+
+    </div>
+
+  `).join("");
+}
+
+
+function academyLesson(id){
+
+  const lesson = lessons.find(x=>x[0] === id);
+
+  if(!lesson){
+    return;
+  }
+
+  alert(
+    "Lesson " + lesson[0] +
+    "\n\n" +
+    lesson[1] +
+    "\n\n" +
+    lesson[2]
+  );
+}
+
+
+/* ---------- AI COACH ---------- */
+
+document.getElementById("coachBtn").addEventListener("click",()=>{
+
+  const problem =
     document.getElementById("coachProblem").value.trim();
 
   if(!problem){
-    toast("Problem ထည့်ပါ");
+    alert("Problem ကိုရေးပါ");
     return;
   }
 
-  const lower=problem.toLowerCase();
+  const text = problem.toLowerCase();
 
-  let focus="General Growth";
-  let diagnosis="";
-  let actions=[];
+  let plan = [];
 
   if(
-    lower.includes("view") ||
-    lower.includes("views") ||
-    problem.includes("ကြည့်")
+    text.includes("view") ||
+    text.includes("views") ||
+    text.includes("မတက်")
   ){
-    focus="Views / Topic Demand";
-
-    diagnosis=
-      "Views နည်းတာကို တစ်ချက်တည်းနဲ့မဆုံးဖြတ်ဘဲ Topic Demand + Packaging + Distribution ကို ခွဲစစ်ပါ";
-
-    actions=[
-      "နောက်ဆုံး 10 videos ထဲက views ကောင်းတဲ့ topic 3 ခုရွေးပါ",
-      "အဲဒီ topic တွေမှာ common audience problem ရှာပါ",
-      "Winning topic တစ်ခုကို angle မတူတဲ့ videos 3 ခုလုပ်ပါ",
-      "Title + Thumbnail concept 3 မျိုးစီ စမ်းပါ"
-    ];
-
-  }else if(
-    lower.includes("subscriber") ||
-    problem.includes("subscriber") ||
-    problem.includes("စာရင်းဝင်")
-  ){
-    focus="Subscriber Growth";
-
-    diagnosis=
-      "Subscriber မတိုးရင် video တစ်ပုဒ်ချင်းစီက ဘယ်လို viewer ကို channel ဆီ ပြန်လာစေသလဲ စစ်ပါ";
-
-    actions=[
-      "Series format တည်ဆောက်ပါ",
-      "Related videos ကို playlist ချိတ်ပါ",
-      "Video ending မှာ next related video ကို သဘာဝကျကျညွှန်ပါ",
-      "Shorts ကနေ long-form ဆီ audience flow တည်ဆောက်ပါ"
-    ];
-
-  }else if(
-    lower.includes("ctr") ||
-    problem.includes("CTR") ||
-    problem.includes("thumbnail") ||
-    problem.includes("Thumbnail")
-  ){
-    focus="CTR / Packaging";
-
-    diagnosis=
-      "CTR နည်းတာဆိုရင် Title + Thumbnail promise ကို ပိုရှင်းအောင်ပြန်စမ်းသင့်ပါတယ်";
-
-    actions=[
-      "Thumbnail text ကို တိုတောင်းအောင်လုပ်ပါ",
-      "Main subject တစ်ခုတည်းကို focal point ထားပါ",
-      "Title နဲ့ thumbnail ကို complementary ဖြစ်အောင်လုပ်ပါ",
-      "Misleading clickbait မသုံးပါနဲ့"
-    ];
-
-  }else if(
-    lower.includes("retention") ||
-    problem.includes("Retention") ||
-    problem.includes("အစပိုင်း")
-  ){
-    focus="Retention / Hook";
-
-    diagnosis=
-      "Viewer အစပိုင်းမှာထွက်သွားရင် Hook, intro length, promise delivery ကို စစ်ပါ";
-
-    actions=[
-      "Logo intro ရှည်ရှည်မလုပ်ပါနဲ့",
-      "ပထမ 5–15 စက္ကန့်မှာ topic + promise ပြပါ",
-      "အဓိကအချက်ကို အလွန်နောက်မကျစေပါနဲ့",
-      "Retention graph မှာ drop point တွေကို video section နဲ့တိုက်စစ်ပါ"
-    ];
-
-  }else if(
-    problem.includes("ငွေ") ||
-    lower.includes("money") ||
-    lower.includes("income")
-  ){
-    focus="Monetization";
-
-    diagnosis=
-      "ဝင်ငွေတိုးဖို့ views တစ်ခုတည်းမဟုတ်ဘဲ RPM, monetized views နဲ့ revenue streams ကို ခွဲစဉ်းစားပါ";
-
-    actions=[
-      "$500 နဲ့ $1,000 ကို သီးခြား target ထားပါ",
-      "ကိုယ့် actual RPM ကို လအလိုက် track လုပ်ပါ",
-      "YouTube Ads အပြင် သင့်တော်တဲ့ revenue stream တွေကို စဉ်းစားပါ",
-      "Winning content ကို series အဖြစ် scale လုပ်ပါ"
-    ];
-
-  }else{
-    diagnosis=
-      "Problem ကို metric တစ်ခုချင်းစီခွဲပြီး Topic → Packaging → Hook → Retention → Audience Fit အစီအစဉ်နဲ့ စစ်ပါ";
-
-    actions=[
-      "နောက်ဆုံး 10 videos data စုပါ",
-      "Winning video 3 ခုရွေးပါ",
-      "CTR + Retention + Engagement ကို နှိုင်းယှဉ်ပါ",
-      "နောက် 3 videos မှာ variable တစ်ခုစီကို test လုပ်ပါ"
+    plan = [
+      "Topic demand ကို ပြန်စစ်ပါ",
+      "Reference Library ထဲက winning topics 10 ခုစုပါ",
+      "Title 5 variations စမ်းပါ",
+      "Thumbnail concept 3 ခုစမ်းပါ",
+      "First 30 seconds ကို ပိုတိုပြီး direct ဖြစ်အောင်ပြင်ပါ",
+      "48–72 hours အတွင်း Analytics ကိုပြန်စစ်ပါ"
     ];
   }
 
-  document.getElementById("coachResult").innerHTML=`
-    <div class="result">
-      <h3>🤖 ${esc(focus)}</h3>
+  else if(
+    text.includes("ctr")
+  ){
+    plan = [
+      "Title နဲ့ Thumbnail promise ကိုစစ်ပါ",
+      "Thumbnail text ကို 2–5 words အတွင်းထားပါ",
+      "Main subject တစ်ခုတည်းကို ဦးစားပေးပါ",
+      "Reference Thumbnail Lab သုံးပြီး visual hierarchy စစ်ပါ",
+      "နောက် upload မှာ packaging test တစ်ခုလုပ်ပါ"
+    ];
+  }
 
-      <div class="quote" style="margin-top:10px">
-        ${esc(diagnosis)}
-      </div>
+  else if(
+    text.includes("subscriber") ||
+    text.includes("sub")
+  ){
+    plan = [
+      "Viewer တစ်ယောက်က နောက် video ကိုဘာကြောင့်ကြည့်မလဲ စဉ်းစားပါ",
+      "Related videos ကို playlist ချိတ်ပါ",
+      "Series format တည်ဆောက်ပါ",
+      "Video အဆုံးမှာ natural next-video CTA သုံးပါ",
+      "Returning viewers ကို Analytics မှာစောင့်ကြည့်ပါ"
+    ];
+  }
 
-      <h4 style="margin-top:15px">Next Action Plan</h4>
+  else{
+    plan = [
+      "Problem ကို metric တစ်ခုနဲ့သတ်မှတ်ပါ",
+      "Reference Library ထဲက similar channels 3–5 ခုလေ့လာပါ",
+      "Topic → Title → Thumbnail → Hook ကို တစ်ခုချင်း test လုပ်ပါ",
+      "Result ကို Analytics မှာမှတ်တမ်းတင်ပါ",
+      "အလုပ်ဖြစ်တဲ့ pattern ကို နောက် video မှာပြန်အသုံးချပါ"
+    ];
+  }
 
-      ${actions.map((a,i)=>`
-        <div class="step">
-          <div class="step-num">${i+1}</div>
-          <div class="step-content">
-            <b>${esc(a)}</b>
-          </div>
-        </div>
-      `).join("")}
+  document.getElementById("coachResult").innerHTML = `
 
-      <div class="alert alert-gold">
-        Test → Measure → Review → Repeat
-      </div>
+    <div class="card" style="background:#f8fafc">
+
+      <h3>🎯 Action Plan</h3>
+
+      <ul class="kpi-list">
+
+        ${plan.map((item,i=>`
+          <li>
+            <strong>${i+1}.</strong>
+            ${escapeHtml(item)}
+          </li>
+        `)).join("")}
+
+      </ul>
+
     </div>
-  `;
 
-  toast("Creator Coach analysis ready");
+  `;
+});
+
+
+/* ---------- COPY ---------- */
+
+function copyText(text){
+
+  if(!text){
+    return;
+  }
+
+  if(
+    navigator.clipboard &&
+    typeof navigator.clipboard.writeText === "function"
+  ){
+
+    navigator.clipboard.writeText(text)
+      .then(()=>{
+        alert("Copy ပြီးပါပြီ");
+      })
+      .catch(()=>{
+        fallbackCopy(text);
+      });
+
+  }else{
+    fallbackCopy(text);
+  }
 }
 
 
-/* =========================
-   RENDER ALL
-========================= */
+function fallbackCopy(text){
+
+  const area = document.createElement("textarea");
+
+  area.value = text;
+
+  area.style.position = "fixed";
+  area.style.left = "-9999px";
+
+  document.body.appendChild(area);
+
+  area.focus();
+  area.select();
+
+  try{
+    document.execCommand("copy");
+    alert("Copy ပြီးပါပြီ");
+  }catch(error){
+    alert("Copy မလုပ်နိုင်ပါ — text ကို manually copy လုပ်ပါ");
+  }
+
+  area.remove();
+}
+
+
+/* ---------- INITIALIZE ---------- */
 
 function renderAll(){
 
+  renderChannelSelect();
+  renderDashboard();
   renderChannels();
-  updateDashboard();
-  updateMoney();
-  loadAnalyticsInputs();
-
+  renderReferences();
+  renderAnalytics();
+  renderEarn();
+  renderAcademy();
 }
 
-
-/* =========================
-   INIT
-========================= */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-  renderAll();
-
-  generateHooks();
-
-  generateThumbnails();
-
-});
+renderAll();
 
 </script>
 
