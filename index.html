@@ -3,369 +3,597 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Zero to Hero - YouTube Money Academy</title>
+<meta name="theme-color" content="#111827">
+<title>Zero to Hero Creator OS</title>
 
 <style>
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
+    font-family:Arial,"Noto Sans Myanmar",sans-serif;
     background:#f4f6f8;
-    color:#222;
+    color:#172033;
 }
 
-header{
-    background:linear-gradient(135deg,#ff0000,#b80000);
-    color:white;
-    text-align:center;
-    padding:24px 15px;
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
 }
 
-header h1{
-    margin:0;
-    font-size:28px;
-}
-
-header p{
-    margin:8px 0 0;
+button{
+    border:0;
+    cursor:pointer;
 }
 
 .app{
-    max-width:1100px;
+    max-width:1180px;
     margin:auto;
-    padding:20px;
+    padding:16px;
 }
 
-.hero,
-.dashboard-card,
-.overall,
-.course-card,
-.lesson-page,
-.challenge,
-.tool-card{
-    background:white;
+/* HEADER */
+
+header{
+    background:
+    radial-gradient(circle at top right,rgba(255,255,255,.18),transparent 35%),
+    linear-gradient(135deg,#111827,#1f2937);
+    color:#fff;
+    padding:25px 18px;
+}
+
+.header-inner{
+    max-width:1180px;
+    margin:auto;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.brand h1{
+    font-size:28px;
+}
+
+.brand p{
+    margin-top:5px;
+    color:#d1d5db;
+}
+
+.level-pill{
+    background:#fff;
+    color:#111827;
+    padding:10px 14px;
+    border-radius:999px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+/* NAV */
+
+.nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.nav-inner{
+    max-width:1180px;
+    margin:auto;
+    padding:8px 16px;
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+}
+
+.nav button{
+    flex:0 0 auto;
+    background:#f3f4f6;
+    color:#374151;
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.nav button.active,
+.nav button:hover{
+    background:#111827;
+    color:#fff;
+}
+
+/* GENERAL */
+
+.section{
+    margin-top:22px;
+}
+
+.section-title{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.section-subtitle{
+    color:#6b7280;
+    margin-bottom:14px;
+}
+
+.card{
+    background:#fff;
     border-radius:18px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    padding:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
-.hero{
-    padding:25px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
 }
 
-.stats{
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.grid-4{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
+    gap:12px;
+}
+
+/* HERO */
+
+.hero{
     margin-top:20px;
+    padding:26px;
+    border-radius:22px;
+    color:#fff;
+    background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.2),transparent 30%),
+    linear-gradient(135deg,#111827,#374151);
 }
 
-.stat{
-    background:#fafafa;
-    padding:18px;
-    border-radius:14px;
-    text-align:center;
+.hero h2{
+    font-size:30px;
+    margin-bottom:8px;
 }
 
-.stat h3{
-    margin:0;
-    font-size:25px;
+.hero p{
+    color:#d1d5db;
+    line-height:1.6;
 }
 
-.stat p{
-    color:#666;
-    margin-bottom:0;
-}
-
-.buttons{
+.hero-actions{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
     margin-top:20px;
 }
 
-button{
-    border:0;
-    padding:12px 18px;
-    border-radius:10px;
-    cursor:pointer;
+/* BUTTONS */
+
+.btn{
+    padding:12px 16px;
+    border-radius:11px;
     font-weight:bold;
     font-size:14px;
 }
 
-button:hover{
-    opacity:.88;
+.btn-dark{
+    background:#111827;
+    color:#fff;
 }
 
-button:disabled{
-    cursor:not-allowed;
+.btn-white{
+    background:#fff;
+    color:#111827;
 }
 
-.red{
-    background:#ff0000;
-    color:white;
+.btn-green{
+    background:#059669;
+    color:#fff;
 }
 
-.green{
-    background:#16a085;
-    color:white;
+.btn-orange{
+    background:#ea580c;
+    color:#fff;
 }
 
-.blue{
-    background:#1976d2;
-    color:white;
+.btn-purple{
+    background:#7c3aed;
+    color:#fff;
 }
 
-.dark{
-    background:#222;
-    color:white;
+.btn-blue{
+    background:#2563eb;
+    color:#fff;
 }
 
-.section{
-    margin-top:25px;
+.btn-red{
+    background:#dc2626;
+    color:#fff;
 }
 
-.section-title{
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:12px;
+/* STATS */
+
+.stat{
+    background:#fff;
+    padding:18px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
 }
 
-.dashboard{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+.stat-icon{
+    font-size:25px;
 }
 
-.dashboard-card{
+.stat-value{
+    font-size:25px;
+    font-weight:800;
+    margin-top:7px;
+}
+
+.stat-label{
+    color:#6b7280;
+    margin-top:4px;
+    font-size:13px;
+}
+
+/* PLATFORM */
+
+.platform-card{
     padding:20px;
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    border:1px solid #eee;
 }
 
-.dashboard-card h3{
-    margin-top:0;
+.platform-icon{
+    font-size:38px;
 }
+
+.platform-card h3{
+    margin:8px 0 5px;
+    font-size:20px;
+}
+
+.platform-card p{
+    color:#6b7280;
+    line-height:1.5;
+}
+
+.platform-number{
+    font-size:24px;
+    font-weight:800;
+    margin-top:12px;
+}
+
+/* PROGRESS */
 
 .progress{
-    height:12px;
-    background:#e5e5e5;
-    border-radius:20px;
+    height:11px;
+    background:#e5e7eb;
+    border-radius:999px;
     overflow:hidden;
-    margin:12px 0;
+    margin:11px 0;
 }
 
 .progress-bar{
     height:100%;
     width:0%;
-    background:#ff0000;
-    transition:.3s;
+    background:#111827;
+    transition:.4s;
 }
 
-.overall{
-    padding:20px;
-    margin-top:15px;
+.progress-bar.green{
+    background:#059669;
 }
 
-.achievements{
+.progress-bar.orange{
+    background:#ea580c;
+}
+
+.progress-bar.purple{
+    background:#7c3aed;
+}
+
+.progress-bar.red{
+    background:#dc2626;
+}
+
+/* MISSIONS */
+
+.mission{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 0;
+    border-bottom:1px solid #eee;
+}
+
+.mission:last-child{
+    border-bottom:0;
+}
+
+.mission input{
+    width:19px;
+    height:19px;
+}
+
+/* ROADMAP */
+
+.roadmap{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:12px;
 }
 
-.badge{
-    background:#e8e8e8;
+.level-card{
+    background:#fff;
+    border-radius:17px;
     padding:18px;
-    border-radius:14px;
-    text-align:center;
-    opacity:.5;
+    border:1px solid #e5e7eb;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.level-number{
+    font-size:12px;
     font-weight:bold;
+    color:#6b7280;
+}
+
+.level-card h3{
+    margin:7px 0;
+}
+
+.level-card p{
+    color:#6b7280;
+    line-height:1.5;
+}
+
+/* NICHE */
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    padding:12px;
+    font-size:15px;
+    background:#fff;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.result-box{
+    background:#f9fafb;
+    border-radius:14px;
+    padding:18px;
+    margin-top:15px;
+    line-height:1.7;
+    border:1px solid #e5e7eb;
+}
+
+/* DIAGNOSIS */
+
+.diagnosis{
+    border-left:5px solid #dc2626;
+    background:#fff7f7;
+    padding:16px;
+    border-radius:12px;
+    margin-top:12px;
+}
+
+.diagnosis h4{
+    margin-bottom:6px;
+}
+
+.action{
+    background:#f0fdf4;
+    border-left:5px solid #059669;
+    padding:16px;
+    border-radius:12px;
+    margin-top:12px;
+}
+
+/* CONTENT LAB */
+
+.idea{
+    padding:14px;
+    background:#f9fafb;
+    border-radius:12px;
+    margin-bottom:10px;
+    border:1px solid #eee;
+}
+
+.idea strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.tag{
+    display:inline-block;
+    background:#eef2ff;
+    color:#4338ca;
+    padding:5px 8px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:bold;
+    margin-top:7px;
+}
+
+/* MONEY */
+
+.money-card{
+    background:#111827;
+    color:#fff;
+    border-radius:20px;
+    padding:22px;
+}
+
+.money-card p{
+    color:#d1d5db;
+}
+
+.money-value{
+    font-size:30px;
+    font-weight:800;
+    margin:8px 0 15px;
+}
+
+/* ACHIEVEMENT */
+
+.badge{
+    text-align:center;
+    padding:17px 10px;
+    background:#f3f4f6;
+    border-radius:15px;
+    opacity:.5;
 }
 
 .badge.unlocked{
     opacity:1;
-    background:#fff0b3;
+    background:#fff7d6;
 }
 
-.courses{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
+/* HIDDEN */
+
+.page{
+    display:none;
 }
 
-.course-card{
-    padding:25px;
+.page.active{
+    display:block;
 }
 
-.course-icon{
-    font-size:42px;
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    z-index:500;
 }
 
-.course-card h3{
-    font-size:23px;
-    margin:10px 0;
+.modal.show{
+    display:flex;
 }
 
-.course-card p{
-    color:#666;
-    line-height:1.5;
+.modal-box{
+    width:100%;
+    max-width:650px;
+    max-height:90vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:20px;
+    padding:22px;
 }
 
-.course-progress-text{
-    font-weight:bold;
-}
-
-.lesson-list{
-    margin-top:20px;
-}
-
-.lesson-item{
-    background:#f8f8f8;
-    border-radius:14px;
-    padding:18px;
-    margin-bottom:12px;
+.modal-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:15px;
-}
-
-.lesson-item.locked{
-    opacity:.55;
-}
-
-.lesson-number{
-    color:#777;
-    font-size:13px;
-}
-
-.lesson-name{
-    font-weight:bold;
-    margin-top:5px;
-}
-
-.lesson-page{
-    padding:25px;
-}
-
-.lesson-content{
-    line-height:1.8;
-    margin-top:20px;
-}
-
-.lesson-content h3{
-    color:#d00000;
-}
-
-.complete-btn{
-    width:100%;
-    margin-top:25px;
-    background:#16a085;
-    color:white;
-    font-size:17px;
-    padding:15px;
-}
-
-.back-btn{
+    gap:10px;
     margin-bottom:15px;
-    background:#222;
-    color:white;
 }
 
-.tools{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.tool-card{
-    padding:20px;
-}
-
-.challenge{
-    padding:20px;
-}
-
-.challenge-item{
-    padding:12px 5px;
-    border-bottom:1px solid #eee;
-}
-
-.calculator{
-    background:#f7f7f7;
-    padding:20px;
-    border-radius:14px;
-    margin-top:20px;
-}
-
-input[type="number"],
-.tool-input{
-    width:100%;
-    padding:12px;
-    margin:8px 0 15px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:16px;
-}
-
-.result{
-    margin-top:15px;
-    font-size:20px;
+.close{
+    background:#f3f4f6;
+    padding:8px 12px;
+    border-radius:9px;
     font-weight:bold;
 }
 
-.ai-result{
-    margin-top:15px;
-    padding:18px;
-    background:#f7f7f7;
-    border-radius:12px;
-    line-height:1.7;
-}
+/* MOBILE */
 
-.copy-btn{
-    margin-top:10px;
-}
+@media(max-width:850px){
 
-@media(max-width:800px){
-
-    .stats,
-    .achievements{
+    .grid-4{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .courses,
-    .dashboard,
-    .tools{
+    .grid-3,
+    .roadmap{
         grid-template-columns:1fr;
     }
+
 }
 
-@media(max-width:500px){
+@media(max-width:650px){
 
     .app{
         padding:12px;
     }
 
-    .stats{
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .brand{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .hero{
+        padding:21px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .grid-4{
         gap:8px;
     }
 
     .stat{
-        padding:12px 5px;
+        padding:13px 10px;
     }
 
-    .stat h3{
+    .stat-value{
         font-size:20px;
     }
 
-    .lesson-item{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    button{
-        width:auto;
+    .nav-inner{
+        padding-left:10px;
+        padding-right:10px;
     }
 }
 </style>
@@ -374,58 +602,91 @@ input[type="number"],
 <body>
 
 <header>
-    <h1>🚀 Zero to Hero</h1>
-    <p>YouTube Money Academy</p>
+    <div class="header-inner">
+        <div class="brand">
+            <div>
+                <h1>🚀 Zero to Hero Creator OS</h1>
+                <p>YouTube • Facebook • TikTok • Creator Business</p>
+            </div>
+
+            <div class="level-pill" id="levelPill">
+                LEVEL 1 • BEGINNER
+            </div>
+        </div>
+    </div>
 </header>
 
-<div class="app" id="app">
+<nav class="nav">
+    <div class="nav-inner">
 
-    <!-- DASHBOARD -->
+        <button class="active" onclick="showPage('dashboard',this)">
+            🏠 Dashboard
+        </button>
+
+        <button onclick="showPage('niche',this)">
+            🎯 Find My Niche
+        </button>
+
+        <button onclick="showPage('roadmap',this)">
+            🗺️ Zero → Hero
+        </button>
+
+        <button onclick="showPage('platforms',this)">
+            📱 Platforms
+        </button>
+
+        <button onclick="showPage('recovery',this)">
+            🚨 View Recovery
+        </button>
+
+        <button onclick="showPage('content',this)">
+            💡 Content Lab
+        </button>
+
+        <button onclick="showPage('coach',this)">
+            🤖 AI Coach
+        </button>
+
+        <button onclick="showPage('money',this)">
+            💰 Money
+        </button>
+
+    </div>
+</nav>
+
+<div class="app">
+
+<!-- =====================================================
+DASHBOARD
+===================================================== -->
+
+<div id="dashboard" class="page active">
 
     <section class="hero">
 
-        <h2>📊 YouTube Creator Dashboard</h2>
+        <h2>Build Your Creator Business</h2>
 
         <p>
-            Build your YouTube channel from Zero to Hero.
+            Start from zero. Choose the right niche, create content,
+            grow your audience, monetize your platforms and build
+            multiple income streams.
         </p>
 
-        <div class="stats">
+        <div class="hero-actions">
 
-            <div class="stat">
-                <h3 id="subscriberCount">0</h3>
-                <p>Subscribers</p>
-            </div>
-
-            <div class="stat">
-                <h3 id="watchHours">0</h3>
-                <p>Watch Hours</p>
-            </div>
-
-            <div class="stat">
-                <h3 id="monthlyIncome">$0</h3>
-                <p>Monthly Income</p>
-            </div>
-
-            <div class="stat">
-                <h3 id="lessonProgress">0%</h3>
-                <p>Lesson Progress</p>
-            </div>
-
-        </div>
-
-        <div class="buttons">
-
-            <button class="red" onclick="updateSubscribers()">
-                👥 Update Subscribers
+            <button class="btn btn-white"
+                    onclick="showPage('niche')">
+                🎯 Find My Niche
             </button>
 
-            <button class="blue" onclick="updateWatchHours()">
-                ⏱ Update Watch Hours
+            <button class="btn btn-green"
+                    onclick="showPage('content')">
+                💡 Create Content
             </button>
 
-            <button class="green" onclick="updateIncome()">
-                💰 Update Income
+            <button class="btn btn-orange"
+                    onclick="showPage('recovery')">
+                🚨 Fix Low Views
             </button>
 
         </div>
@@ -433,62 +694,36 @@ input[type="number"],
     </section>
 
 
-    <!-- PROFESSIONAL DASHBOARD -->
-
     <section class="section">
 
         <div class="section-title">
-            🎯 Professional Dashboard
+            📊 Creator Command Center
         </div>
 
-        <div class="dashboard">
+        <div class="grid-4">
 
-            <div class="dashboard-card">
-                <h3>👥 Subscribers</h3>
-                <strong id="dashSubscribers">0 / 1,000</strong>
-
-                <div class="progress">
-                    <div id="subscriberGoalBar" class="progress-bar"></div>
-                </div>
+            <div class="stat">
+                <div class="stat-icon">👁️</div>
+                <div class="stat-value" id="totalViews">0</div>
+                <div class="stat-label">Total Views</div>
             </div>
 
-            <div class="dashboard-card">
-                <h3>⏱ Watch Hours</h3>
-                <strong id="dashWatchHours">0 / 4,000</strong>
-
-                <div class="progress">
-                    <div id="watchGoalBar" class="progress-bar"></div>
-                </div>
+            <div class="stat">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value" id="totalFollowers">0</div>
+                <div class="stat-label">Followers</div>
             </div>
 
-            <div class="dashboard-card">
-                <h3>💰 Monthly Income</h3>
-                <strong id="dashIncome">$0 / $1,000</strong>
-
-                <div class="progress">
-                    <div id="incomeGoalBar" class="progress-bar"></div>
-                </div>
+            <div class="stat">
+                <div class="stat-icon">🎬</div>
+                <div class="stat-value" id="contentCount">0</div>
+                <div class="stat-label">Published Content</div>
             </div>
 
-            <div class="dashboard-card">
-                <h3>📚 Lessons</h3>
-                <strong id="dashLessons">0 / 10</strong>
-
-                <div class="progress">
-                    <div id="lessonGoalBar" class="progress-bar"></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="overall">
-
-            <h3>🔥 Overall Creator Progress</h3>
-
-            <strong id="overallProgressText">0%</strong>
-
-            <div class="progress">
-                <div id="overallProgressBar" class="progress-bar"></div>
+            <div class="stat">
+                <div class="stat-icon">💰</div>
+                <div class="stat-value" id="monthlyIncome">$0</div>
+                <div class="stat-label">Monthly Income</div>
             </div>
 
         </div>
@@ -496,154 +731,89 @@ input[type="number"],
     </section>
 
 
-    <!-- ACHIEVEMENTS -->
-
     <section class="section">
 
-        <div class="section-title">
-            🏆 Achievements
-        </div>
+        <div class="grid">
 
-        <div class="achievements">
+            <div class="card">
 
-            <div id="achievementSubscriber" class="badge">
-                👥<br>1K Subscribers
+                <h3>🔥 Today's Creator Mission</h3>
+
+                <div class="mission">
+                    <input type="checkbox" class="mission-check">
+                    <span>Find 3 content ideas</span>
+                </div>
+
+                <div class="mission">
+                    <input type="checkbox" class="mission-check">
+                    <span>Write 1 strong Hook</span>
+                </div>
+
+                <div class="mission">
+                    <input type="checkbox" class="mission-check">
+                    <span>Create 1 Short / Reel / TikTok</span>
+                </div>
+
+                <div class="mission">
+                    <input type="checkbox" class="mission-check">
+                    <span>Publish consistently</span>
+                </div>
+
+                <div class="mission">
+                    <input type="checkbox" class="mission-check">
+                    <span>Check yesterday's analytics</span>
+                </div>
+
             </div>
 
-            <div id="achievementWatch" class="badge">
-                ⏱<br>4K Watch Hours
-            </div>
 
-            <div id="achievementLesson" class="badge">
-                📚<br>10 Lessons
-            </div>
+            <div class="card">
 
-            <div id="achievementChallenge" class="badge">
-                🔥<br>30-Day Challenge
-            </div>
+                <h3>🧠 Creator Health</h3>
 
-        </div>
-
-    </section>
-
-
-    <!-- COURSES -->
-
-    <section class="section">
-
-        <div class="section-title">
-            📚 Academy Courses
-        </div>
-
-        <p>
-            Learn step-by-step and unlock lessons as you progress.
-        </p>
-
-        <div class="courses">
-
-            <div class="course-card">
-
-                <div class="course-icon">🌱</div>
-
-                <h3>YouTube Beginner</h3>
-
-                <p>
-                    Learn the basics and build your YouTube foundation.
+                <p style="margin-top:12px">
+                    Content Quality
                 </p>
 
-                <div id="courseProgressBeginner">
-                    0 / 2 Lessons
-                </div>
-
                 <div class="progress">
-                    <div id="courseBarBeginner" class="progress-bar"></div>
+                    <div class="progress-bar green"
+                         style="width:72%">
+                    </div>
                 </div>
-
-                <button
-                    class="red"
-                    onclick="showCourse('beginner')">
-                    Start Course →
-                </button>
-
-            </div>
-
-
-            <div class="course-card">
-
-                <div class="course-icon">📈</div>
-
-                <h3>Channel Growth</h3>
 
                 <p>
-                    Learn how to increase views, subscribers and channel growth.
+                    Consistency
                 </p>
 
-                <div id="courseProgressGrowth">
-                    0 / 2 Lessons
-                </div>
-
                 <div class="progress">
-                    <div id="courseBarGrowth" class="progress-bar"></div>
+                    <div class="progress-bar orange"
+                         style="width:58%">
+                    </div>
                 </div>
-
-                <button
-                    class="red"
-                    onclick="showCourse('growth')">
-                    Start Course →
-                </button>
-
-            </div>
-
-
-            <div class="course-card">
-
-                <div class="course-icon">💵</div>
-
-                <h3>YouTube Monetization</h3>
 
                 <p>
-                    Understand YouTube monetization and revenue streams.
+                    Audience Engagement
                 </p>
 
-                <div id="courseProgressMonetization">
-                    0 / 3 Lessons
-                </div>
-
                 <div class="progress">
-                    <div id="courseBarMonetization" class="progress-bar"></div>
+                    <div class="progress-bar purple"
+                         style="width:64%">
+                    </div>
                 </div>
-
-                <button
-                    class="red"
-                    onclick="showCourse('monetization')">
-                    Start Course →
-                </button>
-
-            </div>
-
-
-            <div class="course-card">
-
-                <div class="course-icon">🚀</div>
-
-                <h3>YouTube Income</h3>
 
                 <p>
-                    Learn how to build multiple YouTube income streams.
+                    Monetization Readiness
                 </p>
 
-                <div id="courseProgressIncome">
-                    0 / 3 Lessons
-                </div>
-
                 <div class="progress">
-                    <div id="courseBarIncome" class="progress-bar"></div>
+                    <div class="progress-bar red"
+                         style="width:31%">
+                    </div>
                 </div>
 
-                <button
-                    class="red"
-                    onclick="showCourse('income')">
-                    Start Course →
+                <button class="btn btn-dark"
+                        onclick="openCoach('Analyze my creator health')">
+                    🤖 Analyze My Channel
                 </button>
 
             </div>
@@ -653,47 +823,89 @@ input[type="number"],
     </section>
 
 
-    <!-- CREATOR TOOLS -->
-
     <section class="section">
 
         <div class="section-title">
-            🛠 Creator Tools
+            📱 Platform Performance
         </div>
 
-        <div class="tools">
+        <div class="grid-3">
 
-            <div class="tool-card">
-                <h3>📖 Start From Zero</h3>
-                <p>Learn how to start a YouTube channel.</p>
+            <div class="platform-card">
 
-                <button
-                    class="blue"
-                    onclick="showTool('start')">
-                    Open
-                </button>
+                <div class="platform-icon">▶️</div>
+
+                <h3>YouTube</h3>
+
+                <p>
+                    Long-form + Shorts + Live
+                </p>
+
+                <div class="platform-number"
+                     id="ytViews">
+                    0
+                </div>
+
+                <small>Total Views</small>
+
+                <div class="progress">
+                    <div class="progress-bar red"
+                         style="width:22%">
+                    </div>
+                </div>
+
             </div>
 
-            <div class="tool-card">
-                <h3>🤖 AI YouTube Tools</h3>
-                <p>Use AI for ideas, titles and scripts.</p>
 
-                <button
-                    class="blue"
-                    onclick="showTool('ai')">
-                    Open
-                </button>
+            <div class="platform-card">
+
+                <div class="platform-icon">🔵</div>
+
+                <h3>Facebook</h3>
+
+                <p>
+                    Reels + Video + Page Growth
+                </p>
+
+                <div class="platform-number"
+                     id="fbViews">
+                    0
+                </div>
+
+                <small>Total Views</small>
+
+                <div class="progress">
+                    <div class="progress-bar"
+                         style="width:14%">
+                    </div>
+                </div>
+
             </div>
 
-            <div class="tool-card">
-                <h3>🔥 30 Day Challenge</h3>
-                <p>Complete one YouTube task every day.</p>
 
-                <button
-                    class="blue"
-                    onclick="showTool('challenge')">
-                    Open
-                </button>
+            <div class="platform-card">
+
+                <div class="platform-icon">🎵</div>
+
+                <h3>TikTok</h3>
+
+                <p>
+                    Short-form + Trends + Live
+                </p>
+
+                <div class="platform-number"
+                     id="ttViews">
+                    0
+                </div>
+
+                <small>Total Views</small>
+
+                <div class="progress">
+                    <div class="progress-bar purple"
+                         style="width:18%">
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -701,25 +913,34 @@ input[type="number"],
     </section>
 
 
-    <!-- CHALLENGE -->
-
     <section class="section">
 
-        <div class="section-title">
-            🔥 30-Day Challenge Progress
-        </div>
+        <div class="card">
 
-        <div class="challenge">
+            <h3>🏆 Creator Milestones</h3>
 
-            <strong id="challengeProgressText">
-                0 / 30 Days
-            </strong>
+            <div class="grid-4" style="margin-top:15px">
 
-            <div class="progress">
-                <div
-                    id="challengeProgressBar"
-                    class="progress-bar">
+                <div id="badge1" class="badge">
+                    👶<br><br>
+                    First 100 Views
                 </div>
+
+                <div id="badge2" class="badge">
+                    🔥<br><br>
+                    1,000 Views
+                </div>
+
+                <div id="badge3" class="badge">
+                    🚀<br><br>
+                    10K Views
+                </div>
+
+                <div id="badge4" class="badge">
+                    💰<br><br>
+                    First $100
+                </div>
+
             </div>
 
         </div>
@@ -729,7 +950,1636 @@ input[type="number"],
 </div>
 
 
-<script src="app.js?v=12" defer></script>
+<!-- =====================================================
+NICHE FINDER
+===================================================== -->
+
+<div id="niche" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+            🎯 Find My Niche
+        </div>
+
+        <p class="section-subtitle">
+            Don't start by copying another creator. Start with
+            your skills, interests, audience and monetization path.
+        </p>
+
+        <div class="card">
+
+            <div class="form-group">
+                <label>What are you good at?</label>
+                <input id="skillInput"
+                       placeholder="Example: Sales, Business, Music, Teaching">
+            </div>
+
+            <div class="form-group">
+                <label>What do you enjoy?</label>
+                <input id="interestInput"
+                       placeholder="Example: Business education">
+            </div>
+
+            <div class="form-group">
+                <label>Who do you want to help?</label>
+                <input id="audienceInput"
+                       placeholder="Example: Small business owners">
+            </div>
+
+            <div class="form-group">
+                <label>Content Style</label>
+                <select id="styleInput">
+                    <option>Face + Voice</option>
+                    <option>Faceless</option>
+                    <option>Voice Only</option>
+                    <option>AI Assisted</option>
+                </select>
+            </div>
+
+            <button class="btn btn-dark"
+                    onclick="findNiche()">
+                🔎 Analyze My Niche
+            </button>
+
+            <div id="nicheResult" class="result-box"
+                 style="display:none">
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+ROADMAP
+===================================================== -->
+
+<div id="roadmap" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+            🗺️ Zero → Hero Roadmap
+        </div>
+
+        <p class="section-subtitle">
+            Follow the path instead of trying everything at once.
+        </p>
+
+        <div class="roadmap">
+
+            <div class="level-card">
+                <div class="level-number">LEVEL 01</div>
+                <h3>🌱 ZERO</h3>
+                <p>
+                    Niche, account setup, branding, audience and
+                    content foundation.
+                </p>
+            </div>
+
+            <div class="level-card">
+                <div class="level-number">LEVEL 02</div>
+                <h3>🎬 CREATOR</h3>
+                <p>
+                    Ideas, hooks, scripts, filming, editing and
+                    publishing.
+                </p>
+            </div>
+
+            <div class="level-card">
+                <div class="level-number">LEVEL 03</div>
+                <h3>📈 GROWTH</h3>
+                <p>
+                    Views, retention, CTR, engagement and audience
+                    growth.
+                </p>
+            </div>
+
+            <div class="level-card">
+                <div class="level-number">LEVEL 04</div>
+                <h3>🚨 RECOVERY</h3>
+                <p>
+                    Diagnose low views and create a recovery plan.
+                </p>
+            </div>
+
+            <div class="level-card">
+                <div class="level-number">LEVEL 05</div>
+                <h3>💰 MONETIZE</h3>
+                <p>
+                    Ads, affiliate, sponsorship, products and
+                    services.
+                </p>
+            </div>
+
+            <div class="level-card">
+                <div class="level-number">LEVEL 06</div>
+                <h3>🚀 SCALE</h3>
+                <p>
+                    Multiple platforms, channels, team, systems
+                    and creator business.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="card">
+
+            <h3>📚 Recommended Learning Order</h3>
+
+            <div class="mission">
+                <span>1️⃣</span>
+                <strong>Choose your Niche</strong>
+            </div>
+
+            <div class="mission">
+                <span>2️⃣</span>
+                <strong>Build your Creator Profile</strong>
+            </div>
+
+            <div class="mission">
+                <span>3️⃣</span>
+                <strong>Create your First 30 Content Ideas</strong>
+            </div>
+
+            <div class="mission">
+                <span>4️⃣</span>
+                <strong>Learn Hooks + Retention</strong>
+            </div>
+
+            <div class="mission">
+                <span>5️⃣</span>
+                <strong>Publish on YouTube + Facebook + TikTok</strong>
+            </div>
+
+            <div class="mission">
+                <span>6️⃣</span>
+                <strong>Study Analytics and Improve</strong>
+            </div>
+
+            <div class="mission">
+                <span>7️⃣</span>
+                <strong>Build Multiple Income Streams</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+PLATFORMS
+===================================================== -->
+
+<div id="platforms" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+            📱 Platform Academy
+        </div>
+
+        <p class="section-subtitle">
+            One Creator Business. Three major platforms.
+        </p>
+
+        <div class="grid-3">
+
+            <div class="platform-card">
+
+                <div class="platform-icon">▶️</div>
+
+                <h3>YouTube Academy</h3>
+
+                <p>
+                    Long videos, Shorts, Live, thumbnails,
+                    titles, CTR, retention, SEO and monetization.
+                </p>
+
+                <button class="btn btn-red"
+                        style="margin-top:14px"
+                        onclick="platformInfo('YouTube')">
+                    Open YouTube
+                </button>
+
+            </div>
+
+
+            <div class="platform-card">
+
+                <div class="platform-icon">🔵</div>
+
+                <h3>Facebook Academy</h3>
+
+                <p>
+                    Page, Reels, video, audience growth,
+                    engagement and monetization.
+                </p>
+
+                <button class="btn btn-blue"
+                        style="margin-top:14px"
+                        onclick="platformInfo('Facebook')">
+                    Open Facebook
+                </button>
+
+            </div>
+
+
+            <div class="platform-card">
+
+                <div class="platform-icon">🎵</div>
+
+                <h3>TikTok Academy</h3>
+
+                <p>
+                    Short-form content, hooks, retention,
+                    trends, engagement and monetization.
+                </p>
+
+                <button class="btn btn-purple"
+                        style="margin-top:14px"
+                        onclick="platformInfo('TikTok')">
+                    Open TikTok
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="card">
+
+            <h3>♻️ One Content → Multiple Platforms</h3>
+
+            <p style="margin-top:8px;color:#6b7280">
+                Build one strong master idea, then adapt it to
+                different platform formats.
+            </p>
+
+            <div class="grid-4" style="margin-top:18px">
+
+                <div class="stat">
+                    <div class="stat-icon">▶️</div>
+                    <strong>YouTube Long</strong>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">▶️</div>
+                    <strong>YouTube Short</strong>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">🔵</div>
+                    <strong>Facebook Reel</strong>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">🎵</div>
+                    <strong>TikTok</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+VIEW RECOVERY
+===================================================== -->
+
+<div id="recovery" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+            🚨 View Recovery Center
+        </div>
+
+        <p class="section-subtitle">
+            Views dropping does not automatically mean the channel
+            is finished. Diagnose the content first.
+        </p>
+
+        <div class="card">
+
+            <div class="grid">
+
+                <div class="form-group">
+
+                    <label>Previous Average Views</label>
+
+                    <input type="number"
+                           id="oldViews"
+                           placeholder="Example: 10000">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Current Views</label>
+
+                    <input type="number"
+                           id="newViews"
+                           placeholder="Example: 800">
+
+                </div>
+
+            </div>
+
+            <div class="grid">
+
+                <div class="form-group">
+
+                    <label>CTR %</label>
+
+                    <input type="number"
+                           id="ctrInput"
+                           placeholder="Example: 4.5">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Average Retention %</label>
+
+                    <input type="number"
+                           id="retentionInput"
+                           placeholder="Example: 32">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>What changed?</label>
+
+                <textarea id="changeInput"
+                          placeholder="Example: New topic, new thumbnail, less posting, different video style..."></textarea>
+
+            </div>
+
+            <button class="btn btn-orange"
+                    onclick="diagnoseViews()">
+                🔍 Diagnose View Drop
+            </button>
+
+            <div id="diagnosisResult"></div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="card">
+
+            <h3>📈 View Recovery Framework</h3>
+
+            <div class="mission">
+                <span>1️⃣</span>
+                <span>Check Topic Demand</span>
+            </div>
+
+            <div class="mission">
+                <span>2️⃣</span>
+                <span>Check Hook / First Seconds</span>
+            </div>
+
+            <div class="mission">
+                <span>3️⃣</span>
+                <span>Check CTR / Packaging</span>
+            </div>
+
+            <div class="mission">
+                <span>4️⃣</span>
+                <span>Check Retention</span>
+            </div>
+
+            <div class="mission">
+                <span>5️⃣</span>
+                <span>Compare With Previous Winners</span>
+            </div>
+
+            <div class="mission">
+                <span>6️⃣</span>
+                <span>Create a New Test Instead of Randomly Changing Everything</span>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+CONTENT LAB
+===================================================== -->
+
+<div id="content" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+            💡 Content Lab
+        </div>
+
+        <p class="section-subtitle">
+            Turn one niche into a repeatable content system.
+        </p>
+
+        <div class="card">
+
+            <div class="form-group">
+
+                <label>Your Niche / Topic</label>
+
+                <input id="contentTopic"
+                       placeholder="Example: Business for Myanmar SMEs">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Target Audience</label>
+
+                <input id="contentAudience"
+                       placeholder="Example: Small business owners">
+
+            </div>
+
+            <button class="btn btn-dark"
+                    onclick="generateIdeas()">
+                ✨ Generate 10 Content Ideas
+            </button>
+
+            <div id="ideaResult"
+                 style="margin-top:18px">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="card">
+
+            <h3>✍️ Hook Generator</h3>
+
+            <div class="form-group"
+                 style="margin-top:15px">
+
+                <input id="hookTopic"
+                       placeholder="Enter your video topic">
+
+            </div>
+
+            <button class="btn btn-purple"
+                    onclick="generateHooks()">
+                ⚡ Generate Hooks
+            </button>
+
+            <div id="hookResult"></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+AI COACH
+===================================================== -->
+
+<div id="coach" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+            🤖 AI Creator Coach
+        </div>
+
+        <p class="section-subtitle">
+            Ask about views, content, growth, audience or money.
+        </p>
+
+        <div class="card">
+
+            <div class="form-group">
+
+                <label>Your Problem</label>
+
+                <textarea id="coachQuestion"
+                          placeholder="Example: My Shorts are getting only 200 views. What should I do?"></textarea>
+
+            </div>
+
+            <button class="btn btn-dark"
+                    onclick="coachAnswer()">
+                🤖 Analyze Problem
+            </button>
+
+            <div id="coachResult"
+                 class="result-box"
+                 style="display:none">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="grid-3">
+
+            <div class="card">
+                <h3>👁️ Low Views</h3>
+                <p style="margin-top:8px;color:#6b7280">
+                    Diagnose topic, hook, packaging and retention.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📈 Growth</h3>
+                <p style="margin-top:8px;color:#6b7280">
+                    Build repeatable content and audience systems.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>💰 Money</h3>
+                <p style="margin-top:8px;color:#6b7280">
+                    Build multiple creator income streams.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+MONEY
+===================================================== -->
+
+<div id="money" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+            💰 Creator Money Center
+        </div>
+
+        <p class="section-subtitle">
+            Don't depend on one income stream.
+        </p>
+
+        <div class="grid">
+
+            <div class="money-card">
+
+                <p>Monthly Income Goal</p>
+
+                <div class="money-value"
+                     id="moneyGoalDisplay">
+                    $1,000
+                </div>
+
+                <input id="moneyGoal"
+                       type="number"
+                       value="1000"
+                       style="color:#111827">
+
+                <button class="btn btn-white"
+                        style="margin-top:8px"
+                        onclick="updateMoneyGoal()">
+                    Update Goal
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>💎 Income Streams</h3>
+
+                <div class="mission">
+                    <span>▶️</span>
+                    <span>YouTube Ads</span>
+                </div>
+
+                <div class="mission">
+                    <span>🔵</span>
+                    <span>Facebook Monetization</span>
+                </div>
+
+                <div class="mission">
+                    <span>🎵</span>
+                    <span>TikTok Monetization</span>
+                </div>
+
+                <div class="mission">
+                    <span>🔗</span>
+                    <span>Affiliate Marketing</span>
+                </div>
+
+                <div class="mission">
+                    <span>🤝</span>
+                    <span>Sponsorship</span>
+                </div>
+
+                <div class="mission">
+                    <span>📦</span>
+                    <span>Digital Products / Services</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="card">
+
+            <h3>📊 Income Progress</h3>
+
+            <div class="progress"
+                 style="margin-top:18px">
+
+                <div id="incomeProgress"
+                     class="progress-bar green">
+                </div>
+
+            </div>
+
+            <p id="incomeProgressText">
+                $0 / $1,000
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+MODAL
+===================================================== -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3 id="modalTitle">
+                Creator Tool
+            </h3>
+
+            <button class="close"
+                    onclick="closeModal()">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+DATA
+===================================================== */
+
+let creatorData = {
+    views: 0,
+    followers: 0,
+    content: 0,
+    income: 0,
+    moneyGoal: 1000,
+    ytViews: 0,
+    fbViews: 0,
+    ttViews: 0
+};
+
+
+/* =====================================================
+LOCAL STORAGE
+===================================================== */
+
+function saveData(){
+
+    localStorage.setItem(
+        "zeroHeroCreatorData",
+        JSON.stringify(creatorData)
+    );
+
+}
+
+
+function loadData(){
+
+    const saved =
+        localStorage.getItem("zeroHeroCreatorData");
+
+    if(saved){
+
+        try{
+
+            creatorData =
+                Object.assign(
+                    creatorData,
+                    JSON.parse(saved)
+                );
+
+        }catch(e){
+
+            console.log("Data reset");
+
+        }
+
+    }
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+PAGE NAVIGATION
+===================================================== */
+
+function showPage(pageId,button){
+
+    document.querySelectorAll(".page")
+        .forEach(page=>{
+            page.classList.remove("active");
+        });
+
+    const page =
+        document.getElementById(pageId);
+
+    if(page){
+        page.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav button")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+DASHBOARD
+===================================================== */
+
+function updateDashboard(){
+
+    document.getElementById("totalViews")
+        .textContent =
+        creatorData.views.toLocaleString();
+
+    document.getElementById("totalFollowers")
+        .textContent =
+        creatorData.followers.toLocaleString();
+
+    document.getElementById("contentCount")
+        .textContent =
+        creatorData.content.toLocaleString();
+
+    document.getElementById("monthlyIncome")
+        .textContent =
+        "$" + creatorData.income.toLocaleString();
+
+    document.getElementById("ytViews")
+        .textContent =
+        creatorData.ytViews.toLocaleString();
+
+    document.getElementById("fbViews")
+        .textContent =
+        creatorData.fbViews.toLocaleString();
+
+    document.getElementById("ttViews")
+        .textContent =
+        creatorData.ttViews.toLocaleString();
+
+    document.getElementById("moneyGoalDisplay")
+        .textContent =
+        "$" + creatorData.moneyGoal.toLocaleString();
+
+    const incomePercent =
+        Math.min(
+            100,
+            (creatorData.income /
+            Math.max(1,creatorData.moneyGoal))*100
+        );
+
+    document.getElementById("incomeProgress")
+        .style.width =
+        incomePercent + "%";
+
+    document.getElementById("incomeProgressText")
+        .textContent =
+        "$" +
+        creatorData.income.toLocaleString() +
+        " / $" +
+        creatorData.moneyGoal.toLocaleString();
+
+    updateLevel();
+
+    updateBadges();
+
+    saveData();
+
+}
+
+
+/* =====================================================
+LEVEL SYSTEM
+===================================================== */
+
+function updateLevel(){
+
+    let level = "LEVEL 1 • BEGINNER";
+
+    if(creatorData.views >= 100000){
+
+        level = "LEVEL 6 • SCALE";
+
+    }else if(creatorData.income >= 1000){
+
+        level = "LEVEL 5 • MONETIZED";
+
+    }else if(creatorData.views >= 10000){
+
+        level = "LEVEL 4 • GROWTH";
+
+    }else if(creatorData.views >= 1000){
+
+        level = "LEVEL 3 • CREATOR";
+
+    }else if(creatorData.content >= 1){
+
+        level = "LEVEL 2 • STARTED";
+
+    }
+
+    document.getElementById("levelPill")
+        .textContent = level;
+
+}
+
+
+/* =====================================================
+BADGES
+===================================================== */
+
+function updateBadges(){
+
+    if(creatorData.views >= 100){
+
+        document.getElementById("badge1")
+            .classList.add("unlocked");
+
+    }
+
+    if(creatorData.views >= 1000){
+
+        document.getElementById("badge2")
+            .classList.add("unlocked");
+
+    }
+
+    if(creatorData.views >= 10000){
+
+        document.getElementById("badge3")
+            .classList.add("unlocked");
+
+    }
+
+    if(creatorData.income >= 100){
+
+        document.getElementById("badge4")
+            .classList.add("unlocked");
+
+    }
+
+}
+
+
+/* =====================================================
+NICHE FINDER
+===================================================== */
+
+function findNiche(){
+
+    const skill =
+        document.getElementById("skillInput").value.trim();
+
+    const interest =
+        document.getElementById("interestInput").value.trim();
+
+    const audience =
+        document.getElementById("audienceInput").value.trim();
+
+    const style =
+        document.getElementById("styleInput").value;
+
+    const result =
+        document.getElementById("nicheResult");
+
+    if(!skill || !interest || !audience){
+
+        result.style.display="block";
+
+        result.innerHTML =
+        "⚠️ <strong>အချက်အလက် ၃ ခုလုံးထည့်ပါ</strong><br><br>" +
+        "ကိုယ်ကျွမ်းကျင်တာ၊ ဝါသနာနဲ့ Target Audience ကို ထည့်ပြီးမှ Niche Analysis လုပ်ပါ";
+
+        return;
+
+    }
+
+    result.style.display="block";
+
+    result.innerHTML = `
+
+        <h3>🎯 Your Creator Direction</h3>
+
+        <p>
+        <strong>Core Skill:</strong> ${escapeHTML(skill)}
+        </p>
+
+        <p>
+        <strong>Interest:</strong> ${escapeHTML(interest)}
+        </p>
+
+        <p>
+        <strong>Target Audience:</strong> ${escapeHTML(audience)}
+        </p>
+
+        <p>
+        <strong>Content Style:</strong> ${escapeHTML(style)}
+        </p>
+
+        <br>
+
+        <h4>💡 Recommended Content Pillars</h4>
+
+        <p>
+        1. Educational / Problem Solving<br>
+        2. Practical Tips / How-To<br>
+        3. Case Study / Storytelling<br>
+        4. Mistakes / Lessons<br>
+        5. Results / Transformation
+        </p>
+
+        <br>
+
+        <h4>📱 Platform Strategy</h4>
+
+        <p>
+        YouTube = Deep Content<br>
+        Facebook = Reach + Community<br>
+        TikTok = Short-form Discovery
+        </p>
+
+        <br>
+
+        <h4>💰 Possible Monetization</h4>
+
+        <p>
+        Ads + Affiliate + Sponsorship + Digital Products +
+        Services
+        </p>
+
+    `;
+
+}
+
+
+/* =====================================================
+VIEW DIAGNOSIS
+===================================================== */
+
+function diagnoseViews(){
+
+    const oldViews =
+        Number(document.getElementById("oldViews").value);
+
+    const newViews =
+        Number(document.getElementById("newViews").value);
+
+    const ctr =
+        Number(document.getElementById("ctrInput").value);
+
+    const retention =
+        Number(document.getElementById("retentionInput").value);
+
+    const change =
+        document.getElementById("changeInput").value.trim();
+
+    const result =
+        document.getElementById("diagnosisResult");
+
+    if(!oldViews || !newViews){
+
+        result.innerHTML =
+        `<div class="diagnosis">
+        ⚠️ Previous Views နဲ့ Current Views ထည့်ပါ
+        </div>`;
+
+        return;
+
+    }
+
+    const drop =
+        Math.max(
+            0,
+            ((oldViews-newViews)/oldViews)*100
+        );
+
+    let html = `
+
+        <div class="diagnosis">
+
+            <h4>🚨 View Drop Analysis</h4>
+
+            <p>
+            Previous: <strong>
+            ${oldViews.toLocaleString()}
+            </strong>
+            </p>
+
+            <p>
+            Current: <strong>
+            ${newViews.toLocaleString()}
+            </strong>
+            </p>
+
+            <p>
+            Estimated Drop:
+            <strong>${drop.toFixed(1)}%</strong>
+            </p>
+
+        </div>
+
+    `;
+
+
+    if(ctr && ctr < 3){
+
+        html += `
+
+        <div class="diagnosis">
+
+            <h4>🔴 Possible Packaging Problem</h4>
+
+            <p>
+            CTR နည်းနေတဲ့အတွက် Title / Thumbnail /
+            Topic Packaging ကို ပြန်စစ်ပါ
+            </p>
+
+            <strong>Action:</strong>
+            Create 3 new title ideas + 3 thumbnail concepts
+
+        </div>
+
+        `;
+
+    }
+
+
+    if(retention && retention < 35){
+
+        html += `
+
+        <div class="diagnosis">
+
+            <h4>🔴 Possible Retention Problem</h4>
+
+            <p>
+            Audience က Video ကို အစပိုင်းမှာ ဆက်မကြည့်နိုင်တာ
+            ဖြစ်နိုင်ပါတယ်
+            </p>
+
+            <strong>Action:</strong>
+            Hook ကို ပိုတိုပြီး အဓိကအချက်ကို အစပိုင်းမှာ ပြပါ
+
+        </div>
+
+        `;
+
+    }
+
+
+    if(change){
+
+        html += `
+
+        <div class="action">
+
+            <h4>🟢 Change Review</h4>
+
+            <p>
+            ${escapeHTML(change)}
+            </p>
+
+            <p style="margin-top:8px">
+            အပြောင်းအလဲတစ်ခုတည်းကိုကြည့်ပြီး Algorithm
+            ပြဿနာလို့ မဆုံးဖြတ်ပါနဲ့။ Topic + Packaging +
+            Retention + Audience Response ကို နှိုင်းယှဉ်ပါ
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+
+    html += `
+
+        <div class="action">
+
+            <h4>🚀 7-Day Recovery Plan</h4>
+
+            <p>
+            Day 1 — Analyze your last 10 videos<br>
+            Day 2 — Identify 3 winning topics<br>
+            Day 3 — Create 5 stronger hooks<br>
+            Day 4 — Publish a test video<br>
+            Day 5 — Repurpose into Short / Reel / TikTok<br>
+            Day 6 — Study retention + engagement<br>
+            Day 7 — Create the next improved version
+            </p>
+
+        </div>
+
+    `;
+
+    result.innerHTML = html;
+
+}
+
+
+/* =====================================================
+CONTENT IDEAS
+===================================================== */
+
+function generateIdeas(){
+
+    const topic =
+        document.getElementById("contentTopic").value.trim();
+
+    const audience =
+        document.getElementById("contentAudience").value.trim();
+
+    const result =
+        document.getElementById("ideaResult");
+
+    if(!topic){
+
+        result.innerHTML =
+        `<div class="result-box">
+        Topic ထည့်ပါ
+        </div>`;
+
+        return;
+
+    }
+
+    const templates = [
+
+        `The biggest mistake ${audience || "beginners"} make about ${topic}`,
+
+        `5 things you must know before starting ${topic}`,
+
+        `How to improve your ${topic} in 30 days`,
+
+        `I tested this ${topic} strategy — here is what happened`,
+
+        `Stop doing this if you want better results in ${topic}`,
+
+        `Beginner's complete guide to ${topic}`,
+
+        `3 secrets experienced people know about ${topic}`,
+
+        `Why your ${topic} is not growing`,
+
+        `Step-by-step ${topic} strategy`,
+
+        `What I would do if I had to start ${topic} from zero`
+
+    ];
+
+    let html = "";
+
+    templates.forEach((idea,index)=>{
+
+        html += `
+
+        <div class="idea">
+
+            <strong>${index+1}. ${escapeHTML(idea)}</strong>
+
+            <span class="tag">
+                Hook + Problem + Solution
+            </span>
+
+        </div>
+
+        `;
+
+    });
+
+    result.innerHTML = html;
+
+    creatorData.content += 1;
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+HOOK GENERATOR
+===================================================== */
+
+function generateHooks(){
+
+    const topic =
+        document.getElementById("hookTopic").value.trim();
+
+    const result =
+        document.getElementById("hookResult");
+
+    if(!topic){
+
+        result.innerHTML =
+        `<div class="result-box">
+        Video Topic ထည့်ပါ
+        </div>`;
+
+        return;
+
+    }
+
+    const hooks = [
+
+        `ဒီအချက်ကို မသိရင် ${topic} မှာ အချိန်အများကြီး ဆုံးရှုံးနိုင်ပါတယ်`,
+
+        `${topic} လုပ်တဲ့သူတိုင်း ဒီအမှားကို အနည်းဆုံးတစ်ကြိမ် လုပ်ဖူးပါတယ်`,
+
+        `0 ကနေ ${topic} စမယ်ဆိုရင် ဒီ 3 ချက်ကို အရင်သိထားပါ`,
+
+        `လူအများစု ${topic} အကြောင်း မှားယွင်းနားလည်ထားတဲ့အချက်`,
+
+        `ဒီ Strategy တစ်ခုတည်းကြောင့် ${topic} မှာ Result ကွာသွားနိုင်ပါတယ်`
+
+    ];
+
+    result.innerHTML = `
+
+        <div class="result-box">
+
+            <h4>⚡ Hook Ideas</h4>
+
+            <br>
+
+            ${hooks.map((h,i)=>
+                `<p style="margin-bottom:10px">
+                <strong>${i+1}.</strong>
+                ${escapeHTML(h)}
+                </p>`
+            ).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+AI COACH
+===================================================== */
+
+function coachAnswer(){
+
+    const question =
+        document.getElementById("coachQuestion")
+        .value.trim();
+
+    const result =
+        document.getElementById("coachResult");
+
+    if(!question){
+
+        result.style.display="block";
+
+        result.innerHTML =
+        "မေးခွန်းထည့်ပါ";
+
+        return;
+
+    }
+
+    const q =
+        question.toLowerCase();
+
+    let answer = "";
+
+    if(
+        q.includes("view") ||
+        q.includes("views") ||
+        q.includes("မတက်")
+    ){
+
+        answer = `
+
+        <h3>🚨 View Growth Diagnosis</h3>
+
+        <p>
+        View တက်ဖို့ Video တင်ရုံနဲ့ မလုံလောက်ပါဘူး။
+        အဓိကအားဖြင့် Topic + Hook + Packaging +
+        Retention + Audience Response ကို စစ်ရပါမယ်
+        </p>
+
+        <br>
+
+        <strong>လုပ်ရန်</strong>
+
+        <p>
+        1. အရင် View ကောင်းတဲ့ Video 10 ခုရှာပါ<br>
+        2. Common Topic ကိုရှာပါ<br>
+        3. Hook အသစ် 5 ခုရေးပါ<br>
+        4. Title / Thumbnail ပြန်စမ်းပါ<br>
+        5. Short + Reel + TikTok အဖြစ် Repurpose လုပ်ပါ<br>
+        6. Result ကို 7 ရက်စာ Track လုပ်ပါ
+        </p>
+
+        `;
+
+    }else if(
+        q.includes("money") ||
+        q.includes("income") ||
+        q.includes("ငွေ")
+    ){
+
+        answer = `
+
+        <h3>💰 Creator Income Strategy</h3>
+
+        <p>
+        Ads တစ်ခုတည်းကို မမှီခိုဘဲ Income Stream
+        အများကြီး တည်ဆောက်ပါ
+        </p>
+
+        <p>
+        Ads → Affiliate → Sponsorship →
+        Digital Product → Service → Membership
+        </p>
+
+        `;
+
+    }else{
+
+        answer = `
+
+        <h3>🤖 Creator Coach</h3>
+
+        <p>
+        သင့် Problem ကို ဖြေရှင်းဖို့
+        <strong>Problem → Data → Diagnosis → Test → Improve</strong>
+        ပုံစံနဲ့သွားပါ
+        </p>
+
+        <br>
+
+        <strong>Next Action</strong>
+
+        <p>
+        ဒီနေ့ Content Idea 3 ခုရွေးပါ။
+        Hook 3 ခုရေးပါ။
+        Platform တစ်ခုထက်ပိုပြီး Adapt လုပ်ပါ။
+        ပြီးရင် Views, Retention, Engagement ကို Track လုပ်ပါ
+        </p>
+
+        `;
+
+    }
+
+    result.style.display="block";
+
+    result.innerHTML = answer;
+
+}
+
+
+/* =====================================================
+QUICK COACH
+===================================================== */
+
+function openCoach(text){
+
+    showPage("coach");
+
+    document.getElementById("coachQuestion")
+        .value = text;
+
+    coachAnswer();
+
+}
+
+
+/* =====================================================
+PLATFORM INFO
+===================================================== */
+
+function platformInfo(platform){
+
+    let content = "";
+
+    if(platform === "YouTube"){
+
+        content = `
+        <p><strong>Focus:</strong> Long-form + Shorts + Live</p>
+        <br>
+        <p>Study Topic Demand, Hook, CTR, Retention,
+        Watch Time, Search and Audience Satisfaction.</p>
+        `;
+
+    }else if(platform === "Facebook"){
+
+        content = `
+        <p><strong>Focus:</strong> Reels + Video + Community</p>
+        <br>
+        <p>Study Reach, Shares, Comments, Watch Behavior,
+        Page Growth and Monetization eligibility.</p>
+        `;
+
+    }else{
+
+        content = `
+        <p><strong>Focus:</strong> Short-form Discovery</p>
+        <br>
+        <p>Study Hook, Retention, Completion, Engagement,
+        Topic relevance and audience behavior.</p>
+        `;
+
+    }
+
+    openModal(
+        platform + " Creator Strategy",
+        content
+    );
+
+}
+
+
+/* =====================================================
+MONEY
+===================================================== */
+
+function updateMoneyGoal(){
+
+    const goal =
+        Number(document.getElementById("moneyGoal").value);
+
+    if(goal > 0){
+
+        creatorData.moneyGoal = goal;
+
+        updateDashboard();
+
+    }
+
+}
+
+
+/* =====================================================
+MODAL
+===================================================== */
+
+function openModal(title,content){
+
+    document.getElementById("modalTitle")
+        .textContent = title;
+
+    document.getElementById("modalContent")
+        .innerHTML = content;
+
+    document.getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+SECURITY / TEXT
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+MISSION STORAGE
+===================================================== */
+
+document.querySelectorAll(".mission-check")
+.forEach((check,index)=>{
+
+    const key =
+        "creatorMission_" + index;
+
+    check.checked =
+        localStorage.getItem(key) === "1";
+
+    check.addEventListener("change",()=>{
+
+        localStorage.setItem(
+            key,
+            check.checked ? "1" : "0"
+        );
+
+    });
+
+});
+
+
+/* =====================================================
+START
+===================================================== */
+
+loadData();
+
+</script>
 
 </body>
 </html>
