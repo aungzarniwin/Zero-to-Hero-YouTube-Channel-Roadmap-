@@ -2,368 +2,853 @@
 <html lang="my">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#090d16">
-<title>Aung YouTube Growth Intelligence V5.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<title>Aung YouTube Growth Intelligence V5.2</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#090d16;
-  --panel:#111827;
-  --panel2:#151f31;
-  --line:#263247;
-  --text:#f4f7fb;
-  --muted:#94a3b8;
-  --accent:#ef4444;
-  --accent2:#f97316;
-  --green:#22c55e;
-  --yellow:#eab308;
-  --blue:#3b82f6;
-  --purple:#8b5cf6;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0
 }
-html{scroll-behavior:smooth}
+
+html{
+  scroll-behavior:smooth
+}
+
 body{
-  font-family:Arial,"Noto Sans Myanmar",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
+  font-family:Arial,"Noto Sans Myanmar","Myanmar Text",sans-serif;
+  background:#f1f5f9;
+  color:#0f172a;
+  line-height:1.55
 }
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.app{display:flex;min-height:100vh}
+
+button,input,select,textarea{
+  font:inherit
+}
+
+button{
+  cursor:pointer
+}
+
+.app{
+  min-height:100vh
+}
+
 .sidebar{
-  width:260px;
-  background:#0b111d;
-  border-right:1px solid var(--line);
   position:fixed;
-  top:0;bottom:0;left:0;
+  left:0;
+  top:0;
+  bottom:0;
+  width:270px;
+  background:#0f172a;
+  color:#fff;
+  z-index:1000;
   overflow-y:auto;
-  z-index:50;
+  transition:.25s
 }
+
 .brand{
-  padding:22px 18px;
-  border-bottom:1px solid var(--line);
+  padding:22px 20px 18px;
+  border-bottom:1px solid rgba(255,255,255,.08)
 }
-.brand h1{font-size:19px;line-height:1.3}
-.brand p{font-size:11px;color:var(--muted);margin-top:6px}
-.nav{padding:12px}
+
+.brand h1{
+  font-size:20px;
+  letter-spacing:.3px
+}
+
+.brand p{
+  margin-top:4px;
+  color:#94a3b8;
+  font-size:12px
+}
+
+.profile-mini{
+  margin:15px;
+  padding:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px
+}
+
+.profile-mini strong{
+  display:block;
+  font-size:14px
+}
+
+.profile-mini span{
+  color:#94a3b8;
+  font-size:12px
+}
+
+.nav{
+  padding:10px
+}
+
+.nav-section{
+  color:#64748b;
+  font-size:10px;
+  font-weight:800;
+  text-transform:uppercase;
+  padding:14px 10px 7px;
+  letter-spacing:1px
+}
+
 .nav button{
   width:100%;
   border:0;
   background:transparent;
-  color:#b8c3d4;
-  padding:12px 13px;
-  border-radius:10px;
+  color:#cbd5e1;
   text-align:left;
-  margin-bottom:4px;
+  padding:11px 12px;
+  border-radius:10px;
+  margin-bottom:3px;
+  font-size:13px;
+  transition:.2s
 }
-.nav button:hover,.nav button.active{
-  background:#172033;
+
+.nav button:hover{
+  background:rgba(255,255,255,.07);
+  color:#fff
+}
+
+.nav button.active{
+  background:#1e293b;
   color:#fff;
+  box-shadow:inset 3px 0 0 #38bdf8
 }
-.nav .danger{color:#fca5a5}
+
 .main{
-  margin-left:260px;
-  width:calc(100% - 260px);
+  margin-left:270px;
+  min-height:100vh
 }
+
 .topbar{
   position:sticky;
   top:0;
-  z-index:30;
-  background:rgba(9,13,22,.92);
+  z-index:900;
+  height:68px;
+  background:rgba(255,255,255,.94);
   backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-  padding:13px 20px;
+  border-bottom:1px solid #e2e8f0;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:10px;
+  justify-content:space-between;
+  padding:0 24px
 }
-.mobile-menu{display:none}
+
+.top-left{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+.menu-btn{
+  display:none;
+  width:40px;
+  height:40px;
+  border:1px solid #e2e8f0;
+  background:#fff;
+  border-radius:10px
+}
+
+.top-title{
+  font-weight:800;
+  font-size:16px
+}
+
+.top-sub{
+  color:#64748b;
+  font-size:11px;
+  margin-top:2px
+}
+
 .status{
   display:flex;
   align-items:center;
   gap:8px;
-  color:var(--muted);
-  font-size:12px;
+  padding:8px 11px;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  background:#fff;
+  font-size:11px;
+  color:#475569
 }
+
 .dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--green);
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#94a3b8
 }
-.content{padding:24px;max-width:1500px;margin:auto}
-.page{display:none}
-.page.active{display:block}
-h2{font-size:25px;margin-bottom:6px}
-.sub{color:var(--muted);font-size:13px;margin-bottom:20px}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-bottom:18px;
+
+.dot.ok{
+  background:#22c55e
 }
-.grid2{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-  margin-bottom:18px;
+
+.dot.warn{
+  background:#f59e0b
 }
-.card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:17px;
+
+.content{
+  padding:24px;
+  max-width:1600px;
+  margin:auto
 }
-.card h3{
-  font-size:15px;
-  margin-bottom:13px;
+
+.page{
+  display:none
 }
-.metric-label{font-size:12px;color:var(--muted)}
-.metric{
-  font-size:26px;
-  font-weight:800;
-  margin-top:7px;
+
+.page.active{
+  display:block
 }
-.metric.green{color:var(--green)}
-.metric.red{color:#fb7185}
-.metric.orange{color:#fb923c}
-.metric.blue{color:#60a5fa}
-.metric.purple{color:#a78bfa}
-.section-title{
-  font-size:17px;
-  font-weight:800;
-  margin:25px 0 12px;
-}
-.input-group{margin-bottom:13px}
-.input-group label{
-  display:block;
-  color:#cbd5e1;
-  font-size:12px;
-  margin-bottom:6px;
-}
-input,textarea,select{
-  width:100%;
-  background:#0b1220;
+
+.hero{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
   color:#fff;
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:11px 12px;
-  outline:none;
+  border-radius:20px;
+  padding:25px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden
 }
-input:focus,textarea:focus,select:focus{
-  border-color:#64748b;
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  right:-100px;
+  top:-100px;
+  border-radius:50%;
+  background:rgba(56,189,248,.08)
 }
-textarea{min-height:100px;resize:vertical}
-.row{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+
+.hero h2{
+  font-size:25px;
+  position:relative;
+  z-index:1
 }
-.row3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+
+.hero p{
+  color:#cbd5e1;
+  margin-top:6px;
+  font-size:13px;
+  position:relative;
+  z-index:1
 }
+
+.hero-actions{
+  margin-top:18px;
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:1
+}
+
 .btn{
   border:0;
-  border-radius:9px;
-  padding:11px 15px;
-  font-weight:700;
-  color:#fff;
-  background:#334155;
-}
-.btn:hover{filter:brightness(1.12)}
-.btn.primary{background:var(--accent)}
-.btn.green{background:#15803d}
-.btn.blue{background:#1d4ed8}
-.btn.purple{background:#6d28d9}
-.btn.orange{background:#c2410c}
-.btn.full{width:100%}
-.btn.small{padding:7px 10px;font-size:12px}
-.actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.notice{
-  border:1px solid #374151;
-  background:#0d1524;
-  border-radius:11px;
-  padding:13px;
-  color:#cbd5e1;
-  font-size:12px;
-  line-height:1.6;
-  margin-bottom:15px;
-}
-.notice.warn{
-  border-color:#854d0e;
-  background:#1c1608;
-}
-.notice.good{
-  border-color:#166534;
-  background:#07170d;
-}
-.table-wrap{overflow:auto}
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:700px;
-}
-th,td{
-  padding:11px 9px;
-  border-bottom:1px solid var(--line);
-  text-align:left;
-  font-size:12px;
-}
-th{color:#94a3b8;font-weight:700}
-td{color:#e2e8f0}
-.badge{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:20px;
-  font-size:10px;
-  font-weight:800;
-}
-.badge.green{background:#052e16;color:#86efac}
-.badge.red{background:#450a0a;color:#fca5a5}
-.badge.yellow{background:#422006;color:#fde68a}
-.badge.blue{background:#172554;color:#93c5fd}
-.badge.purple{background:#2e1065;color:#c4b5fd}
-.video-list{display:grid;gap:10px}
-.video{
-  display:grid;
-  grid-template-columns:120px 1fr;
-  gap:12px;
-  background:#0d1524;
-  border:1px solid var(--line);
-  border-radius:11px;
-  padding:10px;
-}
-.video img{
-  width:120px;
-  height:68px;
-  object-fit:cover;
-  border-radius:7px;
-}
-.video-title{
-  font-size:13px;
-  font-weight:700;
-  line-height:1.4;
-}
-.video-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  color:var(--muted);
-  font-size:11px;
-  margin-top:7px;
-}
-.progress{
-  height:8px;
-  background:#1e293b;
   border-radius:10px;
-  overflow:hidden;
-  margin-top:8px;
+  padding:10px 14px;
+  font-weight:700;
+  font-size:12px
 }
-.progress span{
-  display:block;
-  height:100%;
-  background:var(--accent);
+
+.btn-primary{
+  background:#38bdf8;
+  color:#082f49
 }
-.empty{
-  padding:30px;
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed var(--line);
-  border-radius:12px;
+
+.btn-secondary{
+  background:#e2e8f0;
+  color:#0f172a
 }
-.kpi{
+
+.btn-dark{
+  background:#1e293b;
+  color:#fff;
+  border:1px solid #334155
+}
+
+.btn-danger{
+  background:#fee2e2;
+  color:#991b1b
+}
+
+.btn-success{
+  background:#dcfce7;
+  color:#166534
+}
+
+.btn-warning{
+  background:#fef3c7;
+  color:#92400e
+}
+
+.btn-small{
+  padding:7px 10px;
+  font-size:11px
+}
+
+.grid{
+  display:grid;
+  gap:16px
+}
+
+.grid-2{
+  grid-template-columns:repeat(2,minmax(0,1fr))
+}
+
+.grid-3{
+  grid-template-columns:repeat(3,minmax(0,1fr))
+}
+
+.grid-4{
+  grid-template-columns:repeat(4,minmax(0,1fr))
+}
+
+.card{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 4px 16px rgba(15,23,42,.04)
+}
+
+.card-title{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:10px 0;
-  border-bottom:1px solid var(--line);
-  font-size:12px;
+  gap:10px;
+  margin-bottom:13px
 }
-.kpi:last-child{border-bottom:0}
-.score{
-  font-size:35px;
-  font-weight:900;
+
+.card-title h3{
+  font-size:14px
 }
-.title-result{
-  padding:12px;
-  background:#0d1524;
-  border:1px solid var(--line);
-  border-radius:10px;
-  margin-bottom:8px;
-}
-.title-result strong{font-size:13px}
-.title-score{
-  float:right;
-  font-weight:900;
-}
-.thumb-preview{
-  width:100%;
-  max-height:300px;
-  object-fit:contain;
-  background:#05080e;
-  border-radius:10px;
-  margin-top:10px;
-}
-.loader{
-  display:inline-block;
-  width:15px;height:15px;
-  border:2px solid #64748b;
-  border-top-color:#fff;
-  border-radius:50%;
-  animation:spin .8s linear infinite;
-  vertical-align:middle;
-  margin-right:7px;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-hr{
-  border:0;
-  border-top:1px solid var(--line);
-  margin:18px 0;
-}
-.footer{
-  color:#64748b;
-  text-align:center;
-  padding:25px;
+
+.card-title span{
   font-size:11px;
+  color:#64748b
 }
-.hide{display:none!important}
+
+.metric{
+  min-height:122px
+}
+
+.metric .label{
+  font-size:11px;
+  color:#64748b
+}
+
+.metric .value{
+  font-size:27px;
+  font-weight:800;
+  margin-top:7px
+}
+
+.metric .sub{
+  color:#64748b;
+  font-size:11px;
+  margin-top:4px
+}
+
+.kpi-good{
+  color:#15803d
+}
+
+.kpi-warn{
+  color:#b45309
+}
+
+.kpi-bad{
+  color:#b91c1c
+}
+
+.kpi-neutral{
+  color:#334155
+}
+
+.section{
+  margin-top:20px
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:12px;
+  margin-bottom:12px
+}
+
+.section-head h2{
+  font-size:18px
+}
+
+.section-head p{
+  font-size:11px;
+  color:#64748b
+}
+
+.input-group{
+  margin-bottom:12px
+}
+
+.input-group label{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  color:#475569;
+  margin-bottom:5px
+}
+
+input,select,textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:10px 11px;
+  background:#fff;
+  color:#0f172a;
+  outline:none
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 3px rgba(56,189,248,.12)
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical
+}
+
+.form-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px
+}
+
+.notice{
+  padding:13px 14px;
+  border-radius:12px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  color:#475569;
+  font-size:12px;
+  margin-bottom:14px
+}
+
+.notice strong{
+  color:#0f172a
+}
+
+.notice.warning{
+  background:#fffbeb;
+  border-color:#fde68a;
+  color:#92400e
+}
+
+.notice.success{
+  background:#f0fdf4;
+  border-color:#bbf7d0;
+  color:#166534
+}
+
+.notice.danger{
+  background:#fef2f2;
+  border-color:#fecaca;
+  color:#991b1b
+}
+
+.table-wrap{
+  overflow:auto;
+  border:1px solid #e2e8f0;
+  border-radius:12px
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:760px
+}
+
+th,td{
+  padding:10px 11px;
+  border-bottom:1px solid #e2e8f0;
+  text-align:left;
+  font-size:11px;
+  vertical-align:middle
+}
+
+th{
+  background:#f8fafc;
+  color:#475569;
+  font-weight:800
+}
+
+tr:last-child td{
+  border-bottom:0
+}
+
+.thumb{
+  width:92px;
+  height:52px;
+  object-fit:cover;
+  border-radius:8px;
+  background:#e2e8f0
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:800;
+  white-space:nowrap
+}
+
+.badge.green{
+  background:#dcfce7;
+  color:#166534
+}
+
+.badge.red{
+  background:#fee2e2;
+  color:#991b1b
+}
+
+.badge.yellow{
+  background:#fef3c7;
+  color:#92400e
+}
+
+.badge.blue{
+  background:#e0f2fe;
+  color:#075985
+}
+
+.badge.gray{
+  background:#f1f5f9;
+  color:#475569
+}
+
+.progress{
+  height:9px;
+  background:#e2e8f0;
+  border-radius:999px;
+  overflow:hidden
+}
+
+.progress > div{
+  height:100%;
+  background:#38bdf8;
+  border-radius:999px
+}
+
+.small{
+  font-size:11px;
+  color:#64748b
+}
+
+.muted{
+  color:#64748b
+}
+
+.empty{
+  padding:28px 15px;
+  text-align:center;
+  color:#64748b;
+  font-size:12px
+}
+
+.action-card{
+  border:1px solid #e2e8f0;
+  border-radius:13px;
+  padding:14px;
+  background:#fff
+}
+
+.action-card h4{
+  font-size:13px;
+  margin-bottom:4px
+}
+
+.action-card p{
+  font-size:11px;
+  color:#64748b
+}
+
+.action-card .priority{
+  margin-bottom:8px
+}
+
+.matrix{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  min-height:380px
+}
+
+.quad{
+  padding:18px;
+  border-radius:15px;
+  border:1px solid #e2e8f0;
+  position:relative;
+  min-height:175px
+}
+
+.quad h4{
+  font-size:13px
+}
+
+.quad p{
+  margin-top:5px;
+  font-size:10px;
+  color:#64748b
+}
+
+.quad-list{
+  margin-top:12px
+}
+
+.quad-item{
+  padding:7px 0;
+  border-bottom:1px solid rgba(148,163,184,.2);
+  font-size:10px
+}
+
+.quad-item:last-child{
+  border-bottom:0
+}
+
+.q-scale{
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  color:#94a3b8;
+  margin-top:8px
+}
+
+.chart{
+  width:100%;
+  height:180px;
+  display:flex;
+  align-items:end;
+  gap:7px;
+  padding:10px 4px 0
+}
+
+.bar-wrap{
+  flex:1;
+  height:100%;
+  display:flex;
+  align-items:end;
+  justify-content:center;
+  min-width:0
+}
+
+.bar{
+  width:70%;
+  max-width:35px;
+  min-height:3px;
+  background:#38bdf8;
+  border-radius:6px 6px 0 0
+}
+
+.bar-label{
+  font-size:8px;
+  color:#64748b;
+  margin-top:4px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  max-width:45px
+}
+
+.score-ring{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  border:10px solid #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  position:relative
+}
+
+.score-ring strong{
+  font-size:25px
+}
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:9px
+}
+
+.list-item{
+  padding:12px;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  background:#fff
+}
+
+.list-item h4{
+  font-size:12px
+}
+
+.list-item p{
+  font-size:10px;
+  color:#64748b;
+  margin-top:3px
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:16px
+}
+
+.link{
+  color:#0284c7;
+  text-decoration:none
+}
+
+.link:hover{
+  text-decoration:underline
+}
+
+.video-title{
+  max-width:340px
+}
+
+.setting-row{
+  padding:14px 0;
+  border-bottom:1px solid #e2e8f0
+}
+
+.setting-row:last-child{
+  border-bottom:0
+}
+
+.setting-row h4{
+  font-size:13px
+}
+
+.setting-row p{
+  font-size:11px;
+  color:#64748b;
+  margin-top:3px;
+  margin-bottom:10px
+}
+
+.footer{
+  text-align:center;
+  color:#94a3b8;
+  font-size:10px;
+  padding:30px 0 10px
+}
+
+.overlay{
+  display:none
+}
 
 @media(max-width:1000px){
-  .grid{grid-template-columns:repeat(2,1fr)}
+  .grid-4{
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+
+  .grid-3{
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+
+  .two-col{
+    grid-template-columns:1fr
+  }
 }
+
 @media(max-width:760px){
   .sidebar{
-    transform:translateX(-100%);
-    transition:.25s;
+    transform:translateX(-100%)
   }
-  .sidebar.open{transform:translateX(0)}
+
+  .sidebar.open{
+    transform:translateX(0)
+  }
+
   .main{
-    margin-left:0;
-    width:100%;
+    margin-left:0
   }
-  .mobile-menu{
-    display:block;
-    background:#172033;
-    border:0;
-    color:#fff;
-    border-radius:8px;
-    padding:8px 11px;
+
+  .menu-btn{
+    display:block
   }
-  .content{padding:15px}
-  .topbar{padding:10px 13px}
-  .grid,.grid2,.row,.row3{
+
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.45);
+    z-index:950
+  }
+
+  .overlay.show{
+    display:block
+  }
+
+  .topbar{
+    padding:0 14px
+  }
+
+  .content{
+    padding:14px
+  }
+
+  .top-title{
+    font-size:14px
+  }
+
+  .status{
+    display:none
+  }
+
+  .hero{
+    padding:20px;
+    border-radius:16px
+  }
+
+  .hero h2{
+    font-size:21px
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4{
+    grid-template-columns:1fr
+  }
+
+  .metric{
+    min-height:105px
+  }
+
+  .metric .value{
+    font-size:24px
+  }
+
+  .matrix{
     grid-template-columns:1fr;
+    min-height:0
   }
-  .metric{font-size:23px}
-  .video{grid-template-columns:90px 1fr}
-  .video img{width:90px;height:52px}
+
+  .quad{
+    min-height:145px
+  }
 }
 </style>
 </head>
@@ -372,176 +857,2636 @@ hr{
 
 <div class="app">
 
-<aside class="sidebar" id="sidebar">
-  <div class="brand">
-    <h1>▶ Aung YouTube<br>Growth Intelligence</h1>
-    <p>V5.1 • Creator Growth System</p>
-  </div>
+  <aside class="sidebar" id="sidebar">
 
-  <nav class="nav">
-    <button class="active" onclick="showPage('dashboard',this)">📊 Dashboard</button>
-    <button onclick="showPage('channel',this)">📺 Channel Intel</button>
-    <button onclick="showPage('videos',this)">🎬 Video Intelligence</button>
-    <button onclick="showPage('opportunities',this)">🔥 Opportunities</button>
-    <button onclick="showPage('topics',this)">💡 Topic Research</button>
-    <button onclick="showPage('titles',this)">🏷️ Title Lab</button>
-    <button onclick="showPage('thumbnails',this)">🖼️ Thumbnail Intel</button>
-    <button onclick="showPage('recovery',this)">🛠️ Video Recovery</button>
-    <button onclick="showPage('next10',this)">🚀 Next 10 Videos</button>
-    <button onclick="showPage('sprint',this)">⚡ 7-Day Sprint</button>
-    <button onclick="showPage('patterns',this)">🧠 Reference Patterns</button>
-    <button onclick="showPage('money',this)">💰 Money Engine</button>
-    <button onclick="showPage('tests',this)">🧪 A/B Test Tracker</button>
-    <button onclick="showPage('academy',this)">🎓 Growth Academy</button>
-    <button onclick="showPage('settings',this)">⚙️ Settings</button>
-  </nav>
-</aside>
-
-<main class="main">
-
-<header class="topbar">
-  <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
-  <div>
-    <strong id="topChannel">Buddha-တရားတော် Channel</strong>
-  </div>
-  <div class="status">
-    <span class="dot"></span>
-    V5.1 Live Intelligence
-  </div>
-</header>
-
-<div class="content">
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="page active">
-  <h2>Creator Command Center</h2>
-  <p class="sub">YouTube public data ကိုအသုံးပြုပြီး channel growth opportunity တွေကိုရှာဖွေမယ်</p>
-
-  <div class="notice good">
-    <strong>Growth principle</strong><br>
-    Data → Diagnosis → Test → Measure → Improve
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="metric-label">Subscribers</div>
-      <div class="metric green" id="dSubs">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Total Views</div>
-      <div class="metric blue" id="dViews">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Public Videos</div>
-      <div class="metric purple" id="dVideos">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Analyzed Videos</div>
-      <div class="metric orange" id="dAnalyzed">0</div>
-    </div>
-  </div>
-
-  <div class="grid2">
-    <div class="card">
-      <h3>🎯 Current Channel</h3>
-      <div class="kpi"><span>Channel</span><strong id="dChannel">—</strong></div>
-      <div class="kpi"><span>Category</span><strong id="dNiche">—</strong></div>
-      <div class="kpi"><span>Last Sync</span><strong id="dSync">—</strong></div>
-      <br>
-      <button class="btn primary full" onclick="showPageById('channel')">Analyze Channel</button>
+    <div class="brand">
+      <h1>AUNG YOUTUBE INTELLIGENCE</h1>
+      <p>Growth Intelligence V5.2</p>
     </div>
 
-    <div class="card">
-      <h3>🔥 Immediate Opportunities</h3>
-      <div id="dashboardOpp"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>🏆 Recent Top Videos</h3>
-    <div id="dashboardTopVideos" class="video-list"></div>
-  </div>
-</section>
-
-<!-- CHANNEL -->
-<section id="channel" class="page">
-  <h2>Channel Intelligence</h2>
-  <p class="sub">Public YouTube channel data ကို live analyze လုပ်ရန်</p>
-
-  <div class="card">
-    <div class="input-group">
-      <label>YouTube Channel URL / @Handle / Channel ID</label>
-      <input id="channelUrl" placeholder="https://youtube.com/@yourchannel">
+    <div class="profile-mini">
+      <strong id="sideCreator">Aung Zar Ni Win</strong>
+      <span>Creator Growth System</span>
     </div>
 
-    <div class="actions">
-      <button class="btn primary" onclick="analyzeChannel()">🔍 Analyze Channel</button>
-      <button class="btn blue" onclick="loadSavedChannel()">↻ Load Saved</button>
-    </div>
+    <nav class="nav">
 
-    <div id="channelStatus" style="margin-top:12px"></div>
-  </div>
+      <div class="nav-section">Command Center</div>
 
-  <div class="grid" style="margin-top:18px">
-    <div class="card">
-      <div class="metric-label">Subscribers</div>
-      <div class="metric green" id="cSubs">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Total Views</div>
-      <div class="metric blue" id="cViews">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Public Videos</div>
-      <div class="metric purple" id="cVideos">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Channel ID</div>
-      <div class="metric" style="font-size:12px" id="cId">—</div>
-    </div>
-  </div>
+      <button class="nav-btn active" data-page="dashboard">⌂ Dashboard</button>
+      <button class="nav-btn" data-page="channelIntel">◉ Channel Intel</button>
+      <button class="nav-btn" data-page="videoIntel">▣ Video Intelligence</button>
+      <button class="nav-btn" data-page="opportunities">⚡ Opportunities</button>
+      <button class="nav-btn" data-page="analytics">◌ Analytics Snapshot</button>
 
-  <div class="grid2">
-    <div class="card">
-      <h3>Channel Profile</h3>
-      <div id="channelProfile"></div>
-    </div>
-    <div class="card">
-      <h3>Channel Growth Diagnosis</h3>
-      <div id="channelDiagnosis"></div>
-    </div>
-  </div>
+      <div class="nav-section">Growth Lab</div>
 
-  <div class="card">
-    <h3>🎬 Latest Videos</h3>
-    <div id="channelVideos" class="video-list"></div>
-  </div>
-</section>
+      <button class="nav-btn" data-page="topicResearch">⌕ Topic Research</button>
+      <button class="nav-btn" data-page="titleLab">T Title Lab</button>
+      <button class="nav-btn" data-page="thumbnailIntel">▣ Thumbnail Intel</button>
+      <button class="nav-btn" data-page="videoRecovery">↻ Video Recovery</button>
+      <button class="nav-btn" data-page="next10">➜ Next 10 Videos</button>
+      <button class="nav-btn" data-page="sprint">7 7-Day Growth Sprint</button>
 
-<!-- VIDEOS -->
-<section id="videos" class="page">
-  <h2>Video Intelligence</h2>
-  <p class="sub">သင့် channel ရဲ့ public video performance ကိုနှိုင်းယှဉ်စစ်ဆေးမယ်</p>
+      <div class="nav-section">Testing & Money</div>
 
-  <div class="card">
-    <div class="row">
-      <div class="input-group">
-        <label>Minimum Views</label>
-        <input id="minViews" type="number" value="0">
+      <button class="nav-btn" data-page="patterns">◇ Reference Patterns</button>
+      <button class="nav-btn" data-page="abtest">A/B Test Tracker</button>
+      <button class="nav-btn" data-page="money">₿ Money Engine</button>
+
+      <div class="nav-section">Learning</div>
+
+      <button class="nav-btn" data-page="academy">▤ Growth Academy</button>
+
+      <div class="nav-section">System</div>
+
+      <button class="nav-btn" data-page="settings">⚙ Settings</button>
+
+    </nav>
+
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div class="top-left">
+
+        <button class="menu-btn" id="menuBtn">☰</button>
+
+        <div>
+          <div class="top-title" id="pageTitle">Dashboard</div>
+          <div class="top-sub">YouTube Growth Intelligence V5.2</div>
+        </div>
+
       </div>
-      <div class="input-group">
-        <label>Sort</label>
-        <select id="videoSort" onchange="renderVideos()">
-          <option value="views">Views</option>
-          <option value="likes">Likes</option>
-          <option value="comments">Comments</option>
-          <option value="date">Newest</option>
-        </select>
-      </div>
-    </div>
-  </div>
 
-  <div class="card" style="margin-top:15px">
+      <div class="status">
+        <span class="dot" id="apiDot"></span>
+        <span id="apiStatus">API Not Connected</span>
+      </div>
+
+    </header>
+
+    <section class="content">
+
+      <!-- DASHBOARD -->
+
+      <div class="page active" id="page-dashboard">
+
+        <div class="hero">
+
+          <h2 id="dashboardWelcome">Welcome back, Aung Zar Ni Win</h2>
+
+          <p>
+            Channel data → Diagnosis → Priority → Action
+          </p>
+
+          <div class="hero-actions">
+
+            <button class="btn btn-primary" onclick="goPage('channelIntel')">
+              Analyze Channel
+            </button>
+
+            <button class="btn btn-dark" onclick="goPage('opportunities')">
+              Find Opportunities
+            </button>
+
+            <button class="btn btn-dark" onclick="goPage('next10')">
+              Build Next 10 Videos
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="grid grid-4">
+
+          <div class="card metric">
+            <div class="label">Subscribers</div>
+            <div class="value" id="dashSubs">—</div>
+            <div class="sub">Public channel data</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Total Views</div>
+            <div class="value" id="dashViews">—</div>
+            <div class="sub">Channel lifetime</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Public Videos</div>
+            <div class="value" id="dashVideos">—</div>
+            <div class="sub">Detected by API</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Opportunity Score</div>
+            <div class="value" id="dashOpportunity">—</div>
+            <div class="sub">Based on current data</div>
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="two-col">
+
+            <div class="card">
+
+              <div class="card-title">
+                <h3>Today's Priority Engine</h3>
+                <span id="priorityDate"></span>
+              </div>
+
+              <div id="dailyPriority" class="list">
+                <div class="empty">
+                  Analyze your channel first to generate priorities
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card">
+
+              <div class="card-title">
+                <h3>Channel Health</h3>
+                <span>V5.2</span>
+              </div>
+
+              <div class="score-ring">
+                <strong id="healthScore">—</strong>
+              </div>
+
+              <div style="text-align:center;margin-top:12px">
+                <strong id="healthLabel">Waiting for data</strong>
+                <p class="small" id="healthText">
+                  Connect API and analyze channel
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="grid grid-3">
+
+            <div class="card">
+
+              <div class="card-title">
+                <h3>Public Data</h3>
+              </div>
+
+              <div class="list">
+                <div class="list-item">
+                  <h4>Views</h4>
+                  <p id="dashAvgViews">Average views/video —</p>
+                </div>
+
+                <div class="list-item">
+                  <h4>Engagement</h4>
+                  <p id="dashEngagement">Public engagement —</p>
+                </div>
+
+                <div class="list-item">
+                  <h4>Upload Activity</h4>
+                  <p id="dashUploadActivity">Not enough data</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card">
+
+              <div class="card-title">
+                <h3>Studio Metrics</h3>
+              </div>
+
+              <div class="notice warning">
+                CTR, retention, returning viewers and revenue are private Studio metrics
+              </div>
+
+              <button class="btn btn-secondary btn-small"
+                      onclick="goPage('analytics')">
+                Enter Studio Snapshot
+              </button>
+
+            </div>
+
+            <div class="card">
+
+              <div class="card-title">
+                <h3>Fast Actions</h3>
+              </div>
+
+              <div class="list">
+                <button class="btn btn-secondary" onclick="goPage('titleLab')">
+                  Improve Titles
+                </button>
+
+                <button class="btn btn-secondary" onclick="goPage('thumbnailIntel')">
+                  Improve Thumbnails
+                </button>
+
+                <button class="btn btn-secondary" onclick="goPage('videoRecovery')">
+                  Recover Weak Videos
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- CHANNEL INTEL -->
+
+      <div class="page" id="page-channelIntel">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Channel Intelligence</h2>
+            <p>Public YouTube Data API analysis</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="analyzeChannel()">
+            Analyze Channel
+          </button>
+
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Channel URL / @Handle / Channel ID</label>
+              <input id="channelInput"
+                     value="https://youtube.com/channel/UCH4D6qoBuA0QmaHP21ijKPA"
+                     placeholder="https://youtube.com/@channel">
+            </div>
+
+            <div class="input-group">
+              <label>Analysis Depth</label>
+              <select id="analysisLimit">
+                <option value="20">Latest 20 videos</option>
+                <option value="30" selected>Latest 30 videos</option>
+                <option value="50">Latest 50 videos</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="analyzeChannel()">
+              Run Intelligence Scan
+            </button>
+            <button class="btn btn-secondary" onclick="goPage('settings')">
+              API Settings
+            </button>
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="grid grid-4">
+
+            <div class="card metric">
+              <div class="label">Channel</div>
+              <div class="value" style="font-size:18px" id="channelName">—</div>
+              <div class="sub" id="channelHandle">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Subscribers</div>
+              <div class="value" id="channelSubs">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Lifetime Views</div>
+              <div class="value" id="channelViews">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Videos</div>
+              <div class="value" id="channelVideoCount">—</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div class="card-title">
+              <h3>Channel Diagnosis</h3>
+              <span id="channelIdText">—</span>
+            </div>
+
+            <div id="channelDiagnosis" class="list">
+              <div class="empty">
+                No channel analysis yet
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div class="card-title">
+              <h3>Latest Videos</h3>
+              <span id="latestCount">0</span>
+            </div>
+
+            <div id="channelVideoTable"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- VIDEO INTELLIGENCE -->
+
+      <div class="page" id="page-videoIntel">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Video Intelligence</h2>
+            <p>Winning videos, weak videos and content signals</p>
+          </div>
+
+          <select id="videoSort" style="width:180px" onchange="renderVideoIntel()">
+            <option value="views">Sort by Views</option>
+            <option value="engagement">Sort by Engagement</option>
+            <option value="likes">Sort by Likes</option>
+            <option value="comments">Sort by Comments</option>
+            <option value="date">Sort by Date</option>
+          </select>
+
+        </div>
+
+        <div class="grid grid-4">
+
+          <div class="card metric">
+            <div class="label">Average Views</div>
+            <div class="value" id="viAvgViews">—</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Winner Videos</div>
+            <div class="value kpi-good" id="viWinners">—</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Weak Videos</div>
+            <div class="value kpi-bad" id="viWeak">—</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Avg Engagement</div>
+            <div class="value" id="viEngagement">—</div>
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div class="card-title">
+              <h3>Video Diagnosis</h3>
+              <span>Public data + optional Studio metrics</span>
+            </div>
+
+            <div id="videoIntelTable"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- OPPORTUNITIES -->
+
+      <div class="page" id="page-opportunities">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Growth Opportunities</h2>
+            <p>Find where the next improvement should happen</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="renderOpportunities()">
+            Refresh Opportunities
+          </button>
+
+        </div>
+
+        <div class="grid grid-3">
+
+          <div class="card metric">
+            <div class="label">Content Opportunity Score</div>
+            <div class="value" id="oppScore">—</div>
+            <div class="sub">0–100 internal score</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Scale Candidates</div>
+            <div class="value kpi-good" id="oppScale">—</div>
+          </div>
+
+          <div class="card metric">
+            <div class="label">Recovery Candidates</div>
+            <div class="value kpi-warn" id="oppRecovery">—</div>
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="grid grid-2">
+
+            <div class="card">
+
+              <div class="card-title">
+                <h3>Top Opportunities</h3>
+              </div>
+
+              <div id="opportunityList" class="list"></div>
+
+            </div>
+
+            <div class="card">
+
+              <div class="card-title">
+                <h3>Content Pattern Signals</h3>
+              </div>
+
+              <div id="patternSignals" class="list"></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ANALYTICS -->
+
+      <div class="page" id="page-analytics">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Analytics Snapshot</h2>
+            <p>Enter private YouTube Studio metrics manually</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="saveStudioMetrics()">
+            Save Snapshot
+          </button>
+
+        </div>
+
+        <div class="notice warning">
+          <strong>Important:</strong>
+          YouTube Data API key က public channel/video data အတွက်ဖြစ်ပြီး
+          CTR, retention, returning viewers, revenue စတဲ့ private Studio Analytics ကို
+          API key တစ်ခုတည်းနဲ့ မဖတ်နိုင်ပါ
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-3">
+
+            <div class="input-group">
+              <label>Average CTR %</label>
+              <input type="number" step="0.1" id="studioCTR" placeholder="ဥပမာ 6.8">
+            </div>
+
+            <div class="input-group">
+              <label>Average Retention %</label>
+              <input type="number" step="0.1" id="studioRetention" placeholder="ဥပမာ 42">
+            </div>
+
+            <div class="input-group">
+              <label>Returning Viewers %</label>
+              <input type="number" step="0.1" id="studioReturning" placeholder="ဥပမာ 28">
+            </div>
+
+            <div class="input-group">
+              <label>Average View Duration (minutes)</label>
+              <input type="number" step="0.1" id="studioAVD" placeholder="ဥပမာ 4.2">
+            </div>
+
+            <div class="input-group">
+              <label>Watch Time (hours)</label>
+              <input type="number" step="0.1" id="studioWatch" placeholder="ဥပမာ 1200">
+            </div>
+
+            <div class="input-group">
+              <label>Estimated Revenue ($)</label>
+              <input type="number" step="0.01" id="studioRevenue" placeholder="ဥပမာ 125">
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="saveStudioMetrics()">
+              Save Studio Snapshot
+            </button>
+
+            <button class="btn btn-secondary" onclick="clearStudioMetrics()">
+              Clear
+            </button>
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="grid grid-4">
+
+            <div class="card metric">
+              <div class="label">CTR</div>
+              <div class="value" id="anCTR">—</div>
+              <div class="sub" id="anCTRText">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Retention</div>
+              <div class="value" id="anRetention">—</div>
+              <div class="sub" id="anRetentionText">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Returning Viewers</div>
+              <div class="value" id="anReturning">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Revenue</div>
+              <div class="value" id="anRevenue">—</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div class="card-title">
+              <h3>CTR × Retention Matrix</h3>
+              <span>Packaging vs Content experience</span>
+            </div>
+
+            <div id="analyticsMatrix" class="matrix"></div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div class="card-title">
+              <h3>Studio Diagnosis</h3>
+            </div>
+
+            <div id="studioDiagnosis" class="list"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TOPIC RESEARCH -->
+
+      <div class="page" id="page-topicResearch">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Topic Research</h2>
+            <p>Build topics from your channel's content patterns</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Topic / Audience Problem</label>
+              <input id="topicInput"
+                     placeholder="ဥပမာ စိတ်ငြိမ်အောင် တရားနားထောင်ချင်သူ">
+            </div>
+
+            <div class="input-group">
+              <label>Video Format</label>
+              <select id="topicFormat">
+                <option>Long-form</option>
+                <option>Shorts</option>
+                <option>Live</option>
+                <option>Series</option>
+              </select>
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="generateTopics()">
+            Generate Opportunities
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <div id="topicResults" class="grid grid-3"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TITLE LAB -->
+
+      <div class="page" id="page-titleLab">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Title Lab</h2>
+            <p>Generate and score titles before publishing</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Video Topic</label>
+              <input id="titleTopic"
+                     placeholder="ဥပမာ မနက်ခင်းတရားနားထောင်ခြင်းရဲ့ အကျိုးကျေးဇူး">
+            </div>
+
+            <div class="input-group">
+              <label>Audience Intent</label>
+              <select id="titleIntent">
+                <option>Curiosity</option>
+                <option>Problem Solving</option>
+                <option>Emotional</option>
+                <option>Search</option>
+                <option>Authority</option>
+              </select>
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="generateTitles()">
+            Generate Title Set
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <div id="titleResults" class="list"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- THUMBNAIL -->
+
+      <div class="page" id="page-thumbnailIntel">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Thumbnail Intelligence</h2>
+            <p>Technical checks + packaging direction</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="input-group">
+            <label>Upload Thumbnail</label>
+            <input type="file" id="thumbFile" accept="image/*">
+          </div>
+
+          <div id="thumbPreview" style="margin-top:12px"></div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="grid grid-3">
+
+            <div class="card metric">
+              <div class="label">Resolution</div>
+              <div class="value" style="font-size:18px" id="thumbResolution">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Aspect Ratio</div>
+              <div class="value" id="thumbRatio">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Readiness</div>
+              <div class="value" id="thumbReadiness">—</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div class="card-title">
+              <h3>Thumbnail Improvement Checklist</h3>
+            </div>
+
+            <div id="thumbChecklist" class="list"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- VIDEO RECOVERY -->
+
+      <div class="page" id="page-videoRecovery">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Video Recovery Planner</h2>
+            <p>Turn weak existing videos into testable assets</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="input-group">
+            <label>Select Video</label>
+            <select id="recoveryVideo"></select>
+          </div>
+
+          <button class="btn btn-primary" onclick="buildRecoveryPlan()">
+            Build Recovery Plan
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <div id="recoveryPlan" class="grid grid-2"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- NEXT 10 -->
+
+      <div class="page" id="page-next10">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Next 10 Videos Planner</h2>
+            <p>Build a repeatable content pipeline</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="generateNext10()">
+            Generate 10 Videos
+          </button>
+
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Core Audience</label>
+              <input id="nextAudience"
+                     value="Myanmar YouTube audience">
+            </div>
+
+            <div class="input-group">
+              <label>Primary Goal</label>
+              <select id="nextGoal">
+                <option>More Views</option>
+                <option>More Watch Time</option>
+                <option>More Subscribers</option>
+                <option>More Revenue</option>
+              </select>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div id="next10Results" class="grid grid-2"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SPRINT -->
+
+      <div class="page" id="page-sprint">
+
+        <div class="section-head">
+
+          <div>
+            <h2>7-Day Growth Sprint</h2>
+            <p>One action focus per day</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="generateSprint()">
+            Build Sprint
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <div id="sprintResults" class="list"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PATTERNS -->
+
+      <div class="page" id="page-patterns">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Reference Patterns</h2>
+            <p>Capture repeatable patterns from successful content</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-2">
+
+            <div class="input-group">
+              <label>Pattern Name</label>
+              <input id="patternName"
+                     placeholder="ဥပမာ Strong emotional opening">
+            </div>
+
+            <div class="input-group">
+              <label>Category</label>
+              <select id="patternCategory">
+                <option>Title</option>
+                <option>Thumbnail</option>
+                <option>Hook</option>
+                <option>Topic</option>
+                <option>Structure</option>
+                <option>CTA</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="input-group">
+            <label>What worked?</label>
+            <textarea id="patternNotes"
+                      placeholder="ဘာကြောင့်အလုပ်ဖြစ်တယ်လို့ယူဆသလဲ"></textarea>
+          </div>
+
+          <button class="btn btn-primary" onclick="addPattern()">
+            Save Pattern
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <div id="patternList" class="grid grid-2"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- A/B TEST -->
+
+      <div class="page" id="page-abtest">
+
+        <div class="section-head">
+
+          <div>
+            <h2>A/B Test Tracker</h2>
+            <p>Track title and thumbnail experiments</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-3">
+
+            <div class="input-group">
+              <label>Test Type</label>
+              <select id="testType">
+                <option>Title</option>
+                <option>Thumbnail</option>
+                <option>Title + Thumbnail</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label>Video</label>
+              <input id="testVideo" placeholder="Video name">
+            </div>
+
+            <div class="input-group">
+              <label>Variant A</label>
+              <input id="variantA" placeholder="Version A">
+            </div>
+
+            <div class="input-group">
+              <label>Variant B</label>
+              <input id="variantB" placeholder="Version B">
+            </div>
+
+            <div class="input-group">
+              <label>Metric</label>
+              <select id="testMetric">
+                <option>CTR</option>
+                <option>Views</option>
+                <option>Retention</option>
+                <option>Watch Time</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label>Result</label>
+              <select id="testResult">
+                <option>Running</option>
+                <option>A</option>
+                <option>B</option>
+                <option>Inconclusive</option>
+              </select>
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="addTest()">
+            Add Test
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div id="testTable"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- MONEY -->
+
+      <div class="page" id="page-money">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Money Engine</h2>
+            <p>Revenue target planning, not guaranteed income prediction</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="grid grid-3">
+
+            <div class="input-group">
+              <label>Monthly Revenue Target ($)</label>
+              <input type="number" id="moneyTarget" value="500">
+            </div>
+
+            <div class="input-group">
+              <label>Current Monthly Revenue ($)</label>
+              <input type="number" id="moneyCurrent" value="100">
+            </div>
+
+            <div class="input-group">
+              <label>RPM ($)</label>
+              <input type="number" step="0.01" id="moneyRPM" value="0.70">
+            </div>
+
+            <div class="input-group">
+              <label>Average Views / Video</label>
+              <input type="number" id="moneyAvgViews" value="10000">
+            </div>
+
+            <div class="input-group">
+              <label>Videos / Month</label>
+              <input type="number" id="moneyVideos" value="20">
+            </div>
+
+            <div class="input-group">
+              <label>Other Monthly Income ($)</label>
+              <input type="number" id="moneyOther" value="0">
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="calculateMoney()">
+            Calculate Plan
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <div class="grid grid-4">
+
+            <div class="card metric">
+              <div class="label">Revenue Gap</div>
+              <div class="value" id="moneyGap">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Required Monthly Views</div>
+              <div class="value" id="moneyViewsRequired">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Projected Revenue</div>
+              <div class="value" id="moneyProjected">—</div>
+            </div>
+
+            <div class="card metric">
+              <div class="label">Views / Video Needed</div>
+              <div class="value" id="moneyViewsVideo">—</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <div class="card">
+
+            <div class="notice">
+              RPM ကအမြဲတမ်းတူညီမနေတဲ့အတွက် ဒီ calculator ကို planning model အဖြစ်သုံးပါ
+              actual revenue guarantee မဟုတ်ပါ
+            </div>
+
+            <div id="moneyPlan" class="list"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACADEMY -->
+
+      <div class="page" id="page-academy">
+
+        <div class="hero">
+
+          <h2>Growth Academy</h2>
+
+          <p>
+            YouTube growth ကို data နဲ့စီမံဖို့ practical operating principles
+          </p>
+
+        </div>
+
+        <div class="grid grid-2">
+
+          <div class="card">
+            <div class="card-title">
+              <h3>01 — Packaging</h3>
+            </div>
+            <p class="small">
+              Title + thumbnail က click ရဖို့အတွက်သာမက
+              video ရဲ့ actual promise နဲ့ကိုက်ညီရပါမယ်
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>02 — Retention</h3>
+            </div>
+            <p class="small">
+              Intro အရှည်ကြီးမထားဘဲ viewer ရဲ့ အဓိကအကျိုးကျေးဇူးကို
+              အစပိုင်းမှာမြန်မြန်ပေးပါ
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>03 — Content Pattern</h3>
+            </div>
+            <p class="small">
+              Winner video တစ်ခုကို တစ်ခါတည်း copy မလုပ်ဘဲ
+              အလုပ်ဖြစ်တဲ့ pattern ကို ခွဲပြီး series အဖြစ်တိုးချဲ့ပါ
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>04 — Testing</h3>
+            </div>
+            <p class="small">
+              Title, thumbnail, topic, opening hook တို့ကို
+              hypothesis တစ်ခုချင်းစီနဲ့ test လုပ်ပါ
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>05 — Diagnosis</h3>
+            </div>
+            <p class="small">
+              Views နည်းတာတစ်ခုတည်းနဲ့ video မကောင်းဘူးလို့မဆုံးဖြတ်ဘဲ
+              packaging နဲ့ viewer response ကိုခွဲကြည့်ပါ
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>06 — Iteration</h3>
+            </div>
+            <p class="small">
+              Publish → Measure → Diagnose → Improve → Repeat
+              ဆိုတဲ့ loop ကို channel operating system အဖြစ်သုံးပါ
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SETTINGS -->
+
+      <div class="page" id="page-settings">
+
+        <div class="section-head">
+
+          <div>
+            <h2>Settings</h2>
+            <p>API, creator profile and data management</p>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="setting-row">
+
+            <h4>YouTube Data API v3</h4>
+
+            <p>
+              Public channel/video data analysis အတွက် API key ထည့်ပါ
+            </p>
+
+            <div class="input-group">
+              <label>API Key</label>
+              <input type="password"
+                     id="apiKeyInput"
+                     placeholder="AIza...">
+            </div>
+
+            <div class="form-actions">
+
+              <button class="btn btn-primary" onclick="saveApiKey()">
+                Save API Key
+              </button>
+
+              <button class="btn btn-secondary" onclick="testApiKey()">
+                Test API Key
+              </button>
+
+              <button class="btn btn-danger" onclick="removeApiKey()">
+                Remove
+              </button>
+
+            </div>
+
+            <div id="apiMessage" style="margin-top:10px"></div>
+
+          </div>
+
+          <div class="setting-row">
+
+            <h4>Creator Profile</h4>
+
+            <p>
+              Dashboard မှာပြမယ့် creator name
+            </p>
+
+            <div class="input-group">
+              <label>Creator Name</label>
+              <input id="creatorNameInput" value="Aung Zar Ni Win">
+            </div>
+
+            <button class="btn btn-primary" onclick="saveCreator()">
+              Save Profile
+            </button>
+
+          </div>
+
+          <div class="setting-row">
+
+            <h4>Default Channel</h4>
+
+            <p>
+              Main channel URL
+            </p>
+
+            <div class="input-group">
+              <label>Channel URL</label>
+              <input id="defaultChannelInput"
+                     value="https://youtube.com/channel/UCH4D6qoBuA0QmaHP21ijKPA">
+            </div>
+
+            <button class="btn btn-primary" onclick="saveDefaultChannel()">
+              Save Channel
+            </button>
+
+          </div>
+
+          <div class="setting-row">
+
+            <h4>Data Backup</h4>
+
+            <p>
+              Local app data ကို JSON အဖြစ် backup / restore လုပ်နိုင်ပါတယ်
+            </p>
+
+            <div class="form-actions">
+
+              <button class="btn btn-secondary" onclick="exportData()">
+                Export JSON
+              </button>
+
+              <label class="btn btn-secondary" style="display:inline-block">
+                Import JSON
+                <input type="file"
+                       id="importFile"
+                       accept=".json"
+                       style="display:none">
+              </label>
+
+              <button class="btn btn-danger" onclick="resetAllData()">
+                Reset All Data
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="setting-row">
+
+            <h4>Private YouTube Studio Analytics</h4>
+
+            <p>
+              CTR, retention, revenue, returning viewers စတဲ့ private metrics တွေကို
+              နောက်ပိုင်း OAuth 2.0 + backend connector နဲ့ချိတ်နိုင်ပါတယ်
+            </p>
+
+            <div class="notice warning">
+              GitHub Pages frontend ထဲမှာ API key ကိုထားခြင်းက secret storage မဟုတ်ပါ
+              API restriction ထားပြီး အသုံးပြုပါ
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer">
+        Aung YouTube Growth Intelligence V5.2 · Built for data-driven creator operations
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script>
+"use strict";
+
+/* =========================================================
+   AUNG YOUTUBE GROWTH INTELLIGENCE V5.2
+   ========================================================= */
+
+const STORAGE_KEY = "aung_youtube_growth_intelligence_v52";
+
+const DEFAULT_STATE = {
+  creator: "Aung Zar Ni Win",
+
+  defaultChannel: {
+    name: "Buddha-တရားတော် Channel",
+    url: "https://youtube.com/channel/UCH4D6qoBuA0QmaHP21ijKPA",
+    id: "UCH4D6qoBuA0QmaHP21ijKPA"
+  },
+
+  apiKey: "",
+
+  channel: null,
+
+  videos: [],
+
+  studio: {
+    ctr: "",
+    retention: "",
+    returning: "",
+    avd: "",
+    watch: "",
+    revenue: ""
+  },
+
+  patterns: [],
+
+  tests: [],
+
+  topics: [],
+
+  titles: [],
+
+  next10: [],
+
+  sprint: []
+};
+
+let state = loadState();
+
+
+/* =========================================================
+   BASIC HELPERS
+   ========================================================= */
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function formatNumber(value){
+  const n = Number(value || 0);
+
+  if(n >= 1000000000){
+    return (n / 1000000000).toFixed(1) + "B";
+  }
+
+  if(n >= 1000000){
+    return (n / 1000000).toFixed(1) + "M";
+  }
+
+  if(n >= 1000){
+    return (n / 1000).toFixed(1) + "K";
+  }
+
+  return Math.round(n).toLocaleString();
+}
+
+function formatMoney(value){
+  return "$" + Number(value || 0).toFixed(2);
+}
+
+function saveState(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function loadState(){
+
+  try{
+
+    const raw = localStorage.getItem(STORAGE_KEY);
+
+    if(!raw){
+      return JSON.parse(JSON.stringify(DEFAULT_STATE));
+    }
+
+    const parsed = JSON.parse(raw);
+
+    return Object.assign(
+      JSON.parse(JSON.stringify(DEFAULT_STATE)),
+      parsed
+    );
+
+  }catch(error){
+
+    return JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+  }
+
+}
+
+function clamp(value,min,max){
+  return Math.max(min,Math.min(max,value));
+}
+
+function todayText(){
+  return new Date().toLocaleDateString("en-US",{
+    month:"short",
+    day:"numeric",
+    year:"numeric"
+  });
+}
+
+function daysSince(date){
+  const d = new Date(date);
+  if(Number.isNaN(d.getTime())) return 9999;
+
+  return Math.max(
+    0,
+    Math.floor((Date.now() - d.getTime()) / 86400000)
+  );
+}
+
+function average(arr){
+
+  const nums = arr
+    .map(Number)
+    .filter(n => Number.isFinite(n));
+
+  if(!nums.length) return 0;
+
+  return nums.reduce((a,b)=>a+b,0) / nums.length;
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+   ========================================================= */
+
+const pageTitles = {
+  dashboard:"Dashboard",
+  channelIntel:"Channel Intelligence",
+  videoIntel:"Video Intelligence",
+  opportunities:"Growth Opportunities",
+  analytics:"Analytics Snapshot",
+  topicResearch:"Topic Research",
+  titleLab:"Title Lab",
+  thumbnailIntel:"Thumbnail Intelligence",
+  videoRecovery:"Video Recovery",
+  next10:"Next 10 Videos",
+  sprint:"7-Day Growth Sprint",
+  patterns:"Reference Patterns",
+  abtest:"A/B Test Tracker",
+  money:"Money Engine",
+  academy:"Growth Academy",
+  settings:"Settings"
+};
+
+function goPage(page){
+
+  document.querySelectorAll(".page").forEach(el=>{
+    el.classList.remove("active");
+  });
+
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  const target = $("page-" + page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  const nav = document.querySelector(
+    '.nav-btn[data-page="' + page + '"]'
+  );
+
+  if(nav){
+    nav.classList.add("active");
+  }
+
+  $("pageTitle").textContent = pageTitles[page] || "Dashboard";
+
+  closeSidebar();
+
+  if(page === "dashboard"){
+    renderDashboard();
+  }
+
+  if(page === "channelIntel"){
+    renderChannel();
+  }
+
+  if(page === "videoIntel"){
+    renderVideoIntel();
+  }
+
+  if(page === "opportunities"){
+    renderOpportunities();
+  }
+
+  if(page === "analytics"){
+    loadStudioForm();
+    renderAnalytics();
+  }
+
+  if(page === "videoRecovery"){
+    renderRecoverySelect();
+  }
+
+  if(page === "patterns"){
+    renderPatterns();
+  }
+
+  if(page === "abtest"){
+    renderTests();
+  }
+
+  if(page === "money"){
+    calculateMoney();
+  }
+
+}
+
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+    goPage(btn.dataset.page);
+  });
+
+});
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+   ========================================================= */
+
+function openSidebar(){
+
+  $("sidebar").classList.add("open");
+  $("overlay").classList.add("show");
+
+}
+
+function closeSidebar(){
+
+  $("sidebar").classList.remove("open");
+  $("overlay").classList.remove("show");
+
+}
+
+$("menuBtn").addEventListener("click",openSidebar);
+$("overlay").addEventListener("click",closeSidebar);
+
+
+/* =========================================================
+   API HELPERS
+   ========================================================= */
+
+async function ytFetch(endpoint,params={}){
+
+  if(!state.apiKey){
+    throw new Error("YouTube API key မထည့်ရသေးပါ");
+  }
+
+  const url = new URL(
+    "https://www.googleapis.com/youtube/v3/" + endpoint
+  );
+
+  Object.entries(params).forEach(([key,value])=>{
+    url.searchParams.set(key,value);
+  });
+
+  url.searchParams.set("key",state.apiKey);
+
+  const response = await fetch(url.toString());
+
+  let data = {};
+
+  try{
+    data = await response.json();
+  }catch(error){
+    data = {};
+  }
+
+  if(!response.ok){
+
+    const reason =
+      data?.error?.errors?.[0]?.reason ||
+      data?.error?.message ||
+      "YouTube API error";
+
+    throw new Error(reason);
+  }
+
+  return data;
+}
+
+
+/* =========================================================
+   API KEY
+   ========================================================= */
+
+function saveApiKey(){
+
+  const key = $("apiKeyInput").value.trim();
+
+  if(!key){
+
+    showApiMessage(
+      "API key ထည့်ပေးပါ",
+      "danger"
+    );
+
+    return;
+  }
+
+  state.apiKey = key;
+
+  saveState();
+
+  updateApiStatus();
+
+  showApiMessage(
+    "API key သိမ်းပြီးပါပြီ",
+    "success"
+  );
+
+}
+
+function removeApiKey(){
+
+  state.apiKey = "";
+
+  saveState();
+
+  $("apiKeyInput").value = "";
+
+  updateApiStatus();
+
+  showApiMessage(
+    "API key ဖယ်ရှားပြီးပါပြီ",
+    "success"
+  );
+
+}
+
+async function testApiKey(){
+
+  if(!$("apiKeyInput").value.trim() && !state.apiKey){
+
+    showApiMessage(
+      "API key ထည့်ပြီးမှ Test လုပ်ပါ",
+      "danger"
+    );
+
+    return;
+  }
+
+  if($("apiKeyInput").value.trim()){
+    state.apiKey = $("apiKeyInput").value.trim();
+    saveState();
+  }
+
+  showApiMessage(
+    "API key စမ်းသပ်နေပါတယ်...",
+    "warning"
+  );
+
+  try{
+
+    await ytFetch("channels",{
+      part:"snippet,statistics",
+      id:"UC_x5XG1OV2P6uZZ5FSM9Ttw"
+    });
+
+    updateApiStatus();
+
+    showApiMessage(
+      "API key အလုပ်လုပ်ပါတယ်",
+      "success"
+    );
+
+  }catch(error){
+
+    updateApiStatus();
+
+    showApiMessage(
+      "API Test မအောင်မြင်ပါ: " + error.message,
+      "danger"
+    );
+
+  }
+
+}
+
+function showApiMessage(message,type){
+
+  const box = $("apiMessage");
+
+  if(!box) return;
+
+  box.innerHTML =
+    '<div class="notice ' + type + '">' +
+    escapeHtml(message) +
+    '</div>';
+
+}
+
+function updateApiStatus(){
+
+  const dot = $("apiDot");
+  const text = $("apiStatus");
+
+  if(!dot || !text) return;
+
+  if(state.apiKey){
+
+    dot.classList.add("ok");
+    dot.classList.remove("warn");
+
+    text.textContent = "API Connected";
+
+  }else{
+
+    dot.classList.remove("ok");
+    dot.classList.add("warn");
+
+    text.textContent = "API Not Connected";
+
+  }
+
+}
+
+
+/* =========================================================
+   CHANNEL RESOLUTION
+   ========================================================= */
+
+async function resolveChannelId(input){
+
+  const value = String(input || "").trim();
+
+  if(!value){
+    throw new Error("Channel URL ထည့်ပါ");
+  }
+
+  if(/^UC[a-zA-Z0-9_-]{20,}$/.test(value)){
+    return value;
+  }
+
+  const directMatch = value.match(
+    /youtube\.com\/channel\/(UC[a-zA-Z0-9_-]+)/i
+  );
+
+  if(directMatch){
+    return directMatch[1];
+  }
+
+  const handleMatch = value.match(
+    /youtube\.com\/@([^/?]+)/i
+  );
+
+  if(handleMatch){
+
+    const data = await ytFetch("channels",{
+      part:"id,snippet,statistics",
+      forHandle:"@" + handleMatch[1]
+    });
+
+    if(data.items && data.items.length){
+      return data.items[0].id;
+    }
+
+    throw new Error("Channel handle မတွေ့ပါ");
+  }
+
+  const search = await ytFetch("search",{
+    part:"snippet",
+    q:value,
+    type:"channel",
+    maxResults:"5"
+  });
+
+  if(search.items && search.items.length){
+    return search.items[0].snippet.channelId;
+  }
+
+  throw new Error("Channel မတွေ့ပါ");
+}
+
+
+/* =========================================================
+   CHANNEL API
+   ========================================================= */
+
+async function getChannel(channelId){
+
+  const data = await ytFetch("channels",{
+    part:"snippet,statistics,contentDetails",
+    id:channelId
+  });
+
+  if(!data.items || !data.items.length){
+    throw new Error("Channel not found");
+  }
+
+  return data.items[0];
+}
+
+async function getUploads(playlistId,limit){
+
+  const items = [];
+
+  let pageToken = "";
+
+  while(items.length < limit){
+
+    const params = {
+      part:"snippet,contentDetails",
+      playlistId:playlistId,
+      maxResults:String(
+        Math.min(50,limit-items.length)
+      )
+    };
+
+    if(pageToken){
+      params.pageToken = pageToken;
+    }
+
+    const data = await ytFetch(
+      "playlistItems",
+      params
+    );
+
+    if(data.items){
+      items.push(...data.items);
+    }
+
+    pageToken = data.nextPageToken || "";
+
+    if(!pageToken){
+      break;
+    }
+  }
+
+  return items.slice(0,limit);
+}
+
+async function getVideos(ids){
+
+  if(!ids.length){
+    return [];
+  }
+
+  const chunks = [];
+
+  for(let i=0;i<ids.length;i+=50){
+    chunks.push(ids.slice(i,i+50));
+  }
+
+  const all = [];
+
+  for(const chunk of chunks){
+
+    const data = await ytFetch("videos",{
+      part:"snippet,statistics,contentDetails",
+      id:chunk.join(",")
+    });
+
+    if(data.items){
+      all.push(...data.items);
+    }
+
+  }
+
+  return all;
+}
+
+
+/* =========================================================
+   ANALYZE CHANNEL
+   ========================================================= */
+
+async function analyzeChannel(){
+
+  const input = $("channelInput").value.trim();
+
+  if(!state.apiKey){
+
+    alert("Settings ထဲမှာ YouTube API Key ထည့်ပြီး Save လုပ်ပါ");
+
+    goPage("settings");
+
+    return;
+  }
+
+  if(!input){
+
+    alert("Channel URL ထည့်ပါ");
+
+    return;
+  }
+
+  const button = document.querySelector(
+    '#page-channelIntel .btn-primary'
+  );
+
+  const originalText = button
+    ? button.textContent
+    : "";
+
+  if(button){
+    button.disabled = true;
+    button.textContent = "Analyzing...";
+  }
+
+  try{
+
+    const channelId = await resolveChannelId(input);
+
+    const channel = await getChannel(channelId);
+
+    const limit = Number(
+      $("analysisLimit").value || 30
+    );
+
+    const uploadsId =
+      channel.contentDetails?.relatedPlaylists?.uploads;
+
+    let uploadItems = [];
+
+    if(uploadsId){
+      uploadItems = await getUploads(
+        uploadsId,
+        limit
+      );
+    }
+
+    const ids = uploadItems
+      .map(item=>item.contentDetails?.videoId)
+      .filter(Boolean);
+
+    const videos = await getVideos(ids);
+
+    const normalized = videos.map(normalizeVideo);
+
+    state.channel = {
+      id:channel.id,
+      name:channel.snippet?.title || "",
+      description:channel.snippet?.description || "",
+      published:channel.snippet?.publishedAt || "",
+      thumbnail:
+        channel.snippet?.thumbnails?.high?.url ||
+        channel.snippet?.thumbnails?.default?.url ||
+        "",
+      subscribers:Number(
+        channel.statistics?.subscriberCount || 0
+      ),
+      views:Number(
+        channel.statistics?.viewCount || 0
+      ),
+      videoCount:Number(
+        channel.statistics?.videoCount || 0
+      )
+    };
+
+    state.defaultChannel.id = channel.id;
+    state.defaultChannel.name = state.channel.name;
+    state.defaultChannel.url =
+      "https://youtube.com/channel/" + channel.id;
+
+    state.videos = normalized;
+
+    saveState();
+
+    renderAll();
+
+    alert(
+      "Channel analysis ပြီးပါပြီ\n\n" +
+      state.channel.name +
+      "\n" +
+      formatNumber(state.channel.subscribers) +
+      " subscribers\n" +
+      formatNumber(state.channel.views) +
+      " views"
+    );
+
+  }catch(error){
+
+    alert(
+      "Channel Analyze မအောင်မြင်ပါ\n\n" +
+      error.message +
+      "\n\nAPI key restriction, quota, channel URL ကိုစစ်ပါ"
+    );
+
+  }finally{
+
+    if(button){
+
+      button.disabled = false;
+      button.textContent = originalText;
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   VIDEO NORMALIZATION
+   ========================================================= */
+
+function normalizeVideo(video){
+
+  const views = Number(
+    video.statistics?.viewCount || 0
+  );
+
+  const likes = Number(
+    video.statistics?.likeCount || 0
+  );
+
+  const comments = Number(
+    video.statistics?.commentCount || 0
+  );
+
+  const engagement =
+    views > 0
+      ? ((likes + comments) / views) * 100
+      : 0;
+
+  return {
+    id:video.id,
+    title:video.snippet?.title || "",
+    published:video.snippet?.publishedAt || "",
+    thumbnail:
+      video.snippet?.thumbnails?.medium?.url ||
+      video.snippet?.thumbnails?.default?.url ||
+      "",
+    views,
+    likes,
+    comments,
+    engagement,
+    duration:video.contentDetails?.duration || ""
+  };
+
+}
+
+
+/* =========================================================
+   VIDEO DIAGNOSIS
+   ========================================================= */
+
+function publicDiagnosis(video,avgViews){
+
+  const viewRatio =
+    avgViews > 0
+      ? video.views / avgViews
+      : 0;
+
+  if(viewRatio >= 1.5 && video.engagement >= 3){
+    return {
+      label:"SCALE",
+      class:"green",
+      reason:"Views နဲ့ public engagement နှစ်ခုလုံးက channel average ထက်ကောင်း"
+    };
+  }
+
+  if(viewRatio >= 1.5){
+    return {
+      label:"WINNER",
+      class:"green",
+      reason:"Views performance က channel average ထက်သိသိသာသာမြင့်"
+    };
+  }
+
+  if(viewRatio < .5 && video.engagement >= 3){
+    return {
+      label:"PACKAGING TEST",
+      class:"yellow",
+      reason:"Engagement ကရှိပေမယ့် views နည်းနေတဲ့အတွက် packaging ကိုစမ်းသပ်သင့်"
+    };
+  }
+
+  if(viewRatio < .5 && video.engagement < 1){
+    return {
+      label:"REWORK",
+      class:"red",
+      reason:"Views နည်းပြီး public engagement လည်းနည်း"
+    };
+  }
+
+  if(video.engagement >= 3){
+    return {
+      label:"PROMISING",
+      class:"blue",
+      reason:"Audience interaction signal ကောင်း"
+    };
+  }
+
+  return {
+    label:"TEST",
+    class:"gray",
+    reason:"နောက်ထပ် data စောင့်ကြည့်ပြီး test လုပ်ရန်"
+  };
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+function renderDashboard(){
+
+  $("dashboardWelcome").textContent =
+    "Welcome back, " +
+    (state.creator || "Creator");
+
+  $("sideCreator").textContent =
+    state.creator || "Creator";
+
+  $("priorityDate").textContent = todayText();
+
+  if(!state.channel){
+
+    $("dashSubs").textContent = "—";
+    $("dashViews").textContent = "—";
+    $("dashVideos").textContent = "—";
+    $("dashOpportunity").textContent = "—";
+
+    $("healthScore").textContent = "—";
+    $("healthLabel").textContent = "Waiting for data";
+    $("healthText").textContent =
+      "Connect API and analyze channel";
+
+    renderPriority();
+
+    return;
+  }
+
+  $("dashSubs").textContent =
+    formatNumber(state.channel.subscribers);
+
+  $("dashViews").textContent =
+    formatNumber(state.channel.views);
+
+  $("dashVideos").textContent =
+    formatNumber(state.channel.videoCount);
+
+  const score = calculateOpportunityScore();
+
+  $("dashOpportunity").textContent =
+    score;
+
+  const health = calculateHealthScore();
+
+  $("healthScore").textContent =
+    health;
+
+  $("healthLabel").textContent =
+    healthLabel(health);
+
+  $("healthText").textContent =
+    healthText(health);
+
+  const avgViews = getAverageViews();
+
+  $("dashAvgViews").textContent =
+    "Average views/video " +
+    formatNumber(avgViews);
+
+  $("dashEngagement").textContent =
+    "Public engagement " +
+    getAverageEngagement().toFixed(2) +
+    "%";
+
+  const recent =
+    state.videos
+      .filter(v=>daysSince(v.published)<=30)
+      .length;
+
+  $("dashUploadActivity").textContent =
+    recent +
+    " video(s) published in last 30 days";
+
+  renderPriority();
+
+}
+
+function calculateHealthScore(){
+
+  if(!state.channel) return 0;
+
+  let score = 50;
+
+  const avgViews = getAverageViews();
+
+  const avgEngagement =
+    getAverageEngagement();
+
+  if(avgViews > 0){
+    score += 10;
+  }
+
+  if(avgEngagement >= 1){
+    score += 5;
+  }
+
+  if(avgEngagement >= 3){
+    score += 10;
+  }
+
+  if(state.videos.length >= 10){
+    score += 5;
+  }
+
+  const recent =
+    state.videos.filter(
+      v=>daysSince(v.published)<=30
+    ).length;
+
+  if(recent >= 4){
+    score += 10;
+  }
+
+  if(Number(state.studio.ctr) >= 7){
+    score += 5;
+  }
+
+  if(Number(state.studio.retention) >= 45){
+    score += 5;
+  }
+
+  return clamp(Math.round(score),0,100);
+}
+
+function healthLabel(score){
+
+  if(score >= 80) return "Strong";
+  if(score >= 65) return "Healthy";
+  if(score >= 50) return "Developing";
+
+  return "Needs Work";
+}
+
+function healthText(score){
+
+  if(score >= 80){
+    return "Current signals support scaling and systematic testing";
+  }
+
+  if(score >= 65){
+    return "Good foundation with clear optimization opportunities";
+  }
+
+  if(score >= 50){
+    return "Build stronger packaging, consistency and measurement";
+  }
+
+  return "Focus on diagnosis before increasing output";
+}
+
+
+/* =========================================================
+   PRIORITY ENGINE
+   ========================================================= */
+
+function renderPriority(){
+
+  const box = $("dailyPriority");
+
+  const priorities = buildPriorities();
+
+  if(!priorities.length){
+
+    box.innerHTML =
+      '<div class="empty">Analyze channel to generate priorities</div>';
+
+    return;
+  }
+
+  box.innerHTML = priorities
+    .slice(0,5)
+    .map((item,index)=>{
+
+      const cls =
+        item.level === "HIGH"
+          ? "red"
+          : item.level === "MEDIUM"
+            ? "yellow"
+            : "blue";
+
+      return `
+        <div class="action-card">
+          <div class="priority">
+            <span class="badge ${cls}">
+              ${escapeHtml(item.level)}
+            </span>
+          </div>
+          <h4>${escapeHtml(item.title)}</h4>
+          <p>${escapeHtml(item.action)}</p>
+        </div>
+      `;
+
+    })
+    .join("");
+
+}
+
+function buildPriorities(){
+
+  const list = [];
+
+  if(!state.channel){
+    return list;
+  }
+
+  const avgViews = getAverageViews();
+  const avgEngagement = getAverageEngagement();
+
+  const weak =
+    state.videos.filter(
+      v=>avgViews>0 && v.views < avgViews*.5
+    );
+
+  const winners =
+    state.videos.filter(
+      v=>avgViews>0 && v.views >= avgViews*1.5
+    );
+
+  const ctr = Number(state.studio.ctr || 0);
+  const retention = Number(
+    state.studio.retention || 0
+  );
+
+  if(ctr && ctr < 5){
+
+    list.push({
+      level:"HIGH",
+      title:"Packaging Priority",
+      action:
+        "CTR 5% အောက်ဖြစ်နေပါက title + thumbnail test ကိုအရင်လုပ်ပါ"
+    });
+
+  }
+
+  if(retention && retention < 35){
+
+    list.push({
+      level:"HIGH",
+      title:"Retention Priority",
+      action:
+        "အစပိုင်း viewer drop ကိုစစ်ပြီး hook နဲ့ pacing ကိုပြန်တည်ဆောက်ပါ"
+    });
+
+  }
+
+  if(winners.length){
+
+    list.push({
+      level:"HIGH",
+      title:"Scale Your Winners",
+      action:
+        winners.length +
+        " winner video(s) တွေထဲက common topic/title pattern ကိုခွဲပြီး sequel/series ထုတ်ပါ"
+    });
+
+  }
+
+  if(weak.length){
+
+    list.push({
+      level:"MEDIUM",
+      title:"Recover Existing Assets",
+      action:
+        weak.length +
+        " weak video(s) ကို title/thumbnail/repackaging test အတွက်ရွေးပါ"
+    });
+
+  }
+
+  if(avgEngagement < 1){
+
+    list.push({
+      level:"MEDIUM",
+      title:"Audience Interaction",
+      action:
+        "Viewer interaction နည်းနေတဲ့အတွက် comment CTA, question format နဲ့ stronger audience promise စမ်းပါ"
+    });
+
+  }
+
+  const recent =
+    state.videos.filter(
+      v=>daysSince(v.published)<=30
+    ).length;
+
+  if(recent < 4){
+
+    list.push({
+      level:"MEDIUM",
+      title:"Publishing Consistency",
+      action:
+        "နောက် 7 ရက်အတွက် content pipeline တည်ဆောက်ပြီး publish cadence တိုးပါ"
+    });
+
+  }
+
+  list.push({
+    level:"LOW",
+    title:"Run One Controlled Test",
+    action:
+      "Title သို့မဟုတ် thumbnail တစ်ခုကို hypothesis တစ်ခုတည်းနဲ့ test လုပ်ပြီး result မှတ်တမ်းတင်ပါ"
+  });
+
+  return list;
+
+}
+
+
+/* =========================================================
+   CHANNEL RENDER
+   ========================================================= */
+
+function renderChannel(){
+
+  if(!$("channelInput").value){
+    $("channelInput").value =
+      state.defaultChannel.url;
+  }
+
+  if(!state.channel){
+
+    $("channelName").textContent = "—";
+    $("channelSubs").textContent = "—";
+    $("channelViews").textContent = "—";
+    $("channelVideoCount").textContent = "—";
+
+    $("channelDiagnosis").innerHTML =
+      '<div class="empty">Analyze Channel ကိုနှိပ်ပါ</div>';
+
+    $("channelVideoTable").innerHTML =
+      '<div class="empty">No video data</div>';
+
+    return;
+  }
+
+  $("channelName").textContent =
+    state.channel.name;
+
+  $("channelHandle").textContent =
+    state.defaultChannel.url;
+
+  $("channelSubs").textContent =
+    formatNumber(state.channel.subscribers);
+
+  $("channelViews").textContent =
+    formatNumber(state.channel.views);
+
+  $("channelVideoCount").textContent =
+    formatNumber(state.channel.videoCount);
+
+  $("channelIdText").textContent =
+    state.channel.id;
+
+  const avgViews = getAverageViews();
+  const avgEngagement = getAverageEngagement();
+
+  const recent =
+    state.videos.filter(
+      v=>daysSince(v.published)<=30
+    ).length;
+
+  const diagnoses = [
+
+    {
+      title:"View Baseline",
+      text:
+        "Latest analyzed videos ရဲ့ average views = " +
+        formatNumber(avgViews)
+    },
+
+    {
+      title:"Public Engagement",
+      text:
+        "Likes + comments based average engagement = " +
+        avgEngagement.toFixed(2) + "%"
+    },
+
+    {
+      title:"Publishing Activity",
+      text:
+        "Last 30 days အတွင်း " +
+        recent +
+        " videos တွေ့ရှိထားပါတယ်"
+    }
+
+  ];
+
+  $("channelDiagnosis").innerHTML =
+    diagnoses.map(x=>`
+      <div class="list-item">
+        <h4>${escapeHtml(x.title)}</h4>
+        <p>${escapeHtml(x.text)}</p>
+      </div>
+    `).join("");
+
+  renderChannelVideoTable();
+
+}
+
+function renderChannelVideoTable(){
+
+  const videos = state.videos || [];
+
+  if(!videos.length){
+
+    $("channelVideoTable").innerHTML =
+      '<div class="empty">No videos found</div>';
+
+    return;
+  }
+
+  const avg = getAverageViews();
+
+  $("latestCount").textContent =
+    videos.length + " videos";
+
+  $("channelVideoTable").innerHTML = `
     <div class="table-wrap">
       <table>
         <thead>
@@ -551,1323 +3496,2211 @@ hr{
             <th>Likes</th>
             <th>Comments</th>
             <th>Engagement</th>
-            <th>Type</th>
+            <th>Diagnosis</th>
           </tr>
         </thead>
-        <tbody id="videoTable"></tbody>
+        <tbody>
+          ${videos.map(video=>{
+
+            const d = publicDiagnosis(video,avg);
+
+            return `
+              <tr>
+
+                <td>
+                  <div style="display:flex;gap:9px;align-items:center">
+                    <img
+                      class="thumb"
+                      src="${escapeHtml(video.thumbnail)}"
+                      alt=""
+                    >
+                    <div class="video-title">
+                      <strong>
+                        ${escapeHtml(video.title)}
+                      </strong>
+                      <div class="small">
+                        ${escapeHtml(
+                          new Date(video.published)
+                          .toLocaleDateString()
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td>${formatNumber(video.views)}</td>
+
+                <td>${formatNumber(video.likes)}</td>
+
+                <td>${formatNumber(video.comments)}</td>
+
+                <td>${video.engagement.toFixed(2)}%</td>
+
+                <td>
+                  <span class="badge ${d.class}">
+                    ${escapeHtml(d.label)}
+                  </span>
+                </td>
+
+              </tr>
+            `;
+
+          }).join("")}
+        </tbody>
       </table>
     </div>
-  </div>
-</section>
+  `;
 
-<!-- OPPORTUNITIES -->
-<section id="opportunities" class="page">
-  <h2>Growth Opportunities</h2>
-  <p class="sub">အခုရှိနေတဲ့ public data ကနေ test လုပ်သင့်တဲ့နေရာတွေကိုရှာမယ်</p>
+}
 
-  <div class="grid">
-    <div class="card">
-      <div class="metric-label">Potential Winners</div>
-      <div class="metric green" id="oppWinners">0</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Low Engagement</div>
-      <div class="metric red" id="oppLow">0</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">High Engagement</div>
-      <div class="metric blue" id="oppHigh">0</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Test Candidates</div>
-      <div class="metric orange" id="oppTests">0</div>
-    </div>
-  </div>
 
-  <div class="grid2">
-    <div class="card">
-      <h3>🏆 Potential Winners</h3>
-      <div id="winnerList" class="video-list"></div>
-    </div>
-    <div class="card">
-      <h3>⚠️ Videos To Rework</h3>
-      <div id="weakList" class="video-list"></div>
-    </div>
-  </div>
-</section>
+/* =========================================================
+   VIDEO INTELLIGENCE
+   ========================================================= */
 
-<!-- TOPICS -->
-<section id="topics" class="page">
-  <h2>Topic Research</h2>
-  <p class="sub">ရှိပြီးသား winning topics ကိုအခြေခံပြီး နောက်ထပ် content angles ထုတ်မယ်</p>
+function renderVideoIntel(){
 
-  <div class="card">
-    <div class="row">
-      <div class="input-group">
-        <label>Main Topic</label>
-        <input id="topicInput" placeholder="ဥပမာ - တရားတော် / AI Music">
-      </div>
-      <div class="input-group">
-        <label>Audience</label>
-        <input id="audienceInput" placeholder="ဥပမာ - မြန်မာလူငယ်များ">
-      </div>
-    </div>
-    <button class="btn primary" onclick="generateTopics()">💡 Generate Opportunities</button>
-  </div>
+  const videos = [...(state.videos || [])];
 
-  <div class="card" style="margin-top:15px">
-    <div id="topicResults"></div>
-  </div>
-</section>
+  const avg = getAverageViews();
 
-<!-- TITLES -->
-<section id="titles" class="page">
-  <h2>Title Lab</h2>
-  <p class="sub">Title idea ကို click appeal, clarity, curiosity အရ စမ်းသပ်မယ်</p>
+  const winners = videos.filter(
+    v=>avg>0 && v.views >= avg*1.5
+  );
 
-  <div class="card">
-    <div class="input-group">
-      <label>Video Topic</label>
-      <textarea id="titleTopic" placeholder="ဒီ video မှာ ဘာအကြောင်းပြောမလဲ"></textarea>
-    </div>
-    <button class="btn primary" onclick="generateTitles()">🏷️ Generate Titles</button>
-  </div>
+  const weak = videos.filter(
+    v=>avg>0 && v.views < avg*.5
+  );
 
-  <div class="card" style="margin-top:15px">
-    <div id="titleResults"></div>
-  </div>
-</section>
+  $("viAvgViews").textContent =
+    formatNumber(avg);
 
-<!-- THUMBNAILS -->
-<section id="thumbnails" class="page">
-  <h2>Thumbnail Intelligence</h2>
-  <p class="sub">Thumbnail technical quality နဲ့ mobile readability ကိုစစ်မယ်</p>
+  $("viWinners").textContent =
+    winners.length;
 
-  <div class="grid2">
-    <div class="card">
-      <h3>Upload Thumbnail</h3>
-      <input type="file" id="thumbFile" accept="image/*" onchange="analyzeThumbnail(event)">
-      <img id="thumbPreview" class="thumb-preview hide">
-    </div>
+  $("viWeak").textContent =
+    weak.length;
 
-    <div class="card">
-      <h3>Technical Analysis</h3>
-      <div id="thumbAnalysis" class="empty">Thumbnail တင်ပြီး analysis လုပ်ပါ</div>
-    </div>
-  </div>
+  $("viEngagement").textContent =
+    getAverageEngagement().toFixed(2) + "%";
 
-  <div class="card">
-    <h3>🖼️ Thumbnail Prompt Builder</h3>
-    <div class="row">
-      <input id="thumbTopic" placeholder="Video topic">
-      <input id="thumbEmotion" placeholder="Emotion / angle">
-    </div>
-    <br>
-    <button class="btn purple" onclick="buildThumbPrompt()">Generate Prompt</button>
-    <textarea id="thumbPrompt" style="margin-top:12px" readonly></textarea>
-  </div>
-</section>
+  if(!videos.length){
 
-<!-- RECOVERY -->
-<section id="recovery" class="page">
-  <h2>Video Recovery Planner</h2>
-  <p class="sub">အရင် video တွေကို data အရ ပြန်တိုးတက်အောင်လုပ်မယ့် plan</p>
+    $("videoIntelTable").innerHTML =
+      '<div class="empty">Analyze channel first</div>';
 
-  <div class="card">
-    <div class="input-group">
-      <label>Select Video</label>
-      <select id="recoveryVideo"></select>
-    </div>
-    <button class="btn orange" onclick="makeRecoveryPlan()">🛠️ Diagnose & Recover</button>
-  </div>
+    return;
+  }
 
-  <div class="card" style="margin-top:15px">
-    <div id="recoveryResult"></div>
-  </div>
-</section>
+  const sort = $("videoSort").value;
 
-<!-- NEXT 10 -->
-<section id="next10" class="page">
-  <h2>Next 10 Videos</h2>
-  <p class="sub">Winning patterns ကိုအသုံးပြုပြီး နောက်ထပ် content plan တည်ဆောက်မယ်</p>
+  videos.sort((a,b)=>{
 
-  <div class="card">
-    <button class="btn primary" onclick="generateNext10()">🚀 Build Next 10 Videos</button>
-  </div>
-
-  <div class="card" style="margin-top:15px">
-    <div id="next10Results"></div>
-  </div>
-</section>
-
-<!-- SPRINT -->
-<section id="sprint" class="page">
-  <h2>7-Day Growth Sprint</h2>
-  <p class="sub">တစ်ပတ်အတွင်း test → measure → improve cycle တစ်ခုလုပ်မယ်</p>
-
-  <div class="grid2">
-    <div class="card">
-      <h3>Day 1 — Diagnose</h3>
-      <p class="sub">Top videos, weak videos, topics စစ်ပါ</p>
-      <button class="btn small green" onclick="checkSprint(1)">Complete</button>
-    </div>
-    <div class="card">
-      <h3>Day 2 — Packaging</h3>
-      <p class="sub">Title + thumbnail concepts 3 ခုစီလုပ်ပါ</p>
-      <button class="btn small green" onclick="checkSprint(2)">Complete</button>
-    </div>
-    <div class="card">
-      <h3>Day 3 — Publish</h3>
-      <p class="sub">Winning topic တစ်ခုနဲ့ video တင်ပါ</p>
-      <button class="btn small green" onclick="checkSprint(3)">Complete</button>
-    </div>
-    <div class="card">
-      <h3>Day 4 — Observe</h3>
-      <p class="sub">Views, engagement, audience response စစ်ပါ</p>
-      <button class="btn small green" onclick="checkSprint(4)">Complete</button>
-    </div>
-    <div class="card">
-      <h3>Day 5 — Improve</h3>
-      <p class="sub">Packaging / opening / topic angle ပြန်ပြင်ပါ</p>
-      <button class="btn small green" onclick="checkSprint(5)">Complete</button>
-    </div>
-    <div class="card">
-      <h3>Day 6 — Double Down</h3>
-      <p class="sub">အလုပ်ဖြစ်တဲ့ pattern ကို နောက် video တစ်ခုလုပ်ပါ</p>
-      <button class="btn small green" onclick="checkSprint(6)">Complete</button>
-    </div>
-    <div class="card">
-      <h3>Day 7 — Review</h3>
-      <p class="sub">ဘာအလုပ်ဖြစ်လဲ ဘာမဖြစ်လဲ မှတ်တမ်းတင်ပါ</p>
-      <button class="btn small green" onclick="checkSprint(7)">Complete</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Sprint Progress</h3>
-    <div class="progress"><span id="sprintProgress" style="width:0%"></span></div>
-    <p id="sprintText" class="sub" style="margin-top:8px">0 / 7 completed</p>
-  </div>
-</section>
-
-<!-- PATTERNS -->
-<section id="patterns" class="page">
-  <h2>Reference Patterns</h2>
-  <p class="sub">သင့် channel ထဲမှာ အလုပ်ဖြစ်နေတဲ့ pattern တွေကိုစုမယ်</p>
-
-  <div class="card">
-    <div id="patternsResult"></div>
-  </div>
-</section>
-
-<!-- MONEY -->
-<section id="money" class="page">
-  <h2>Money Engine</h2>
-  <p class="sub">Revenue target အတွက် required views ကို ခန့်မှန်းတွက်မယ်</p>
-
-  <div class="card">
-    <div class="row3">
-      <div class="input-group">
-        <label>Monthly Revenue Target ($)</label>
-        <input id="moneyTarget" type="number" value="1000">
-      </div>
-      <div class="input-group">
-        <label>Current Monthly Revenue ($)</label>
-        <input id="moneyCurrent" type="number" value="100">
-      </div>
-      <div class="input-group">
-        <label>RPM ($)</label>
-        <input id="moneyRPM" type="number" value="0.70" step="0.01">
-      </div>
-    </div>
-    <button class="btn green" onclick="calculateMoney()">Calculate</button>
-  </div>
-
-  <div class="grid" style="margin-top:15px">
-    <div class="card">
-      <div class="metric-label">Target Views / Month</div>
-      <div class="metric blue" id="requiredViews">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Current Revenue</div>
-      <div class="metric green" id="currentRevenue">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Revenue Gap</div>
-      <div class="metric red" id="revenueGap">—</div>
-    </div>
-    <div class="card">
-      <div class="metric-label">Additional Views Needed</div>
-      <div class="metric orange" id="viewsGap">—</div>
-    </div>
-  </div>
-
-  <div class="notice warn">
-    Revenue calculation က estimate ဖြစ်ပါတယ်. Actual RPM, geography, content type, monetized playbacks နဲ့ YouTube revenue factors တွေအပေါ်မူတည်ပြီး ပြောင်းလဲနိုင်ပါတယ်
-  </div>
-</section>
-
-<!-- TESTS -->
-<section id="tests" class="page">
-  <h2>A/B Test Tracker</h2>
-  <p class="sub">Title နဲ့ thumbnail experiments တွေကို မှတ်တမ်းတင်မယ်</p>
-
-  <div class="card">
-    <div class="row">
-      <div class="input-group">
-        <label>Video</label>
-        <input id="testVideo" placeholder="Video title">
-      </div>
-      <div class="input-group">
-        <label>Test Type</label>
-        <select id="testType">
-          <option>Title</option>
-          <option>Thumbnail</option>
-          <option>Title + Thumbnail</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row3">
-      <input id="testA" placeholder="Version A">
-      <input id="testB" placeholder="Version B">
-      <input id="testResult" placeholder="Result">
-    </div>
-    <br>
-    <button class="btn primary" onclick="addTest()">Add Test</button>
-  </div>
-
-  <div class="card" style="margin-top:15px">
-    <div id="testList"></div>
-  </div>
-</section>
-
-<!-- ACADEMY -->
-<section id="academy" class="page">
-  <h2>Growth Academy</h2>
-  <p class="sub">YouTube growth skill ကို data နဲ့လေ့လာပါ</p>
-
-  <div class="grid2">
-    <div class="card"><h3>01 — Packaging</h3><p class="sub">Title + Thumbnail က viewer click decision အတွက် အရေးကြီးပါတယ်</p></div>
-    <div class="card"><h3>02 — Topic Selection</h3><p class="sub">Audience need နဲ့ channel fit ကိုအခြေခံပြီး topic ရွေးပါ</p></div>
-    <div class="card"><h3>03 — Opening Hook</h3><p class="sub">အစပိုင်းမှာ viewer ဘာကြောင့်ဆက်ကြည့်သင့်လဲဆိုတာရှင်းပါ</p></div>
-    <div class="card"><h3>04 — Retention</h3><p class="sub">Viewer drop-off ဖြစ်တဲ့နေရာတွေကိုရှာပြီး content flow ပြင်ပါ</p></div>
-    <div class="card"><h3>05 — Search Intent</h3><p class="sub">Viewer ရှာဖွေလိုတဲ့ problem ကို title နဲ့ content မှာ တိတိကျကျဖြေပါ</p></div>
-    <div class="card"><h3>06 — Series</h3><p class="sub">အလုပ်ဖြစ်တဲ့ topic ကို related series အဖြစ်ချဲ့ပါ</p></div>
-    <div class="card"><h3>07 — Experiment</h3><p class="sub">တစ်ခါတည်းအများကြီးမပြောင်းဘဲ testable variables ခွဲပါ</p></div>
-    <div class="card"><h3>08 — Measurement</h3><p class="sub">Result ကို views တစ်ခုတည်းနဲ့မဆုံးဖြတ်ဘဲ available analytics နဲ့တိုင်းပါ</p></div>
-  </div>
-</section>
-
-<!-- SETTINGS -->
-<section id="settings" class="page">
-  <h2>Settings</h2>
-  <p class="sub">API connection နဲ့ creator data ကိုစီမံပါ</p>
-
-  <div class="card">
-    <h3>🔑 YouTube Data API</h3>
-
-    <div class="notice warn">
-      API Key ကို GitHub frontend ထဲမှာထည့်ထားတာက secret storage မဟုတ်ပါ
-      API restriction နဲ့ referrer restriction သုံးထားဖို့ အရေးကြီးပါတယ်
-      API Key ကို chat ထဲ မပို့ပါနဲ့
-    </div>
-
-    <div class="input-group">
-      <label>YouTube Data API v3 Key</label>
-      <input id="apiKeyInput" type="password" placeholder="AIza...">
-    </div>
-
-    <div class="actions">
-      <button class="btn primary" onclick="saveApiKey()">💾 Save API Key</button>
-      <button class="btn blue" onclick="testApiKey()">🧪 Test API Key</button>
-      <button class="btn" onclick="removeApiKey()">Remove</button>
-    </div>
-
-    <div id="apiStatus" style="margin-top:12px"></div>
-  </div>
-
-  <div class="card" style="margin-top:15px">
-    <h3>Creator Profile</h3>
-
-    <div class="row">
-      <div class="input-group">
-        <label>Creator Name</label>
-        <input id="creatorName" value="Aung Zar Ni Win">
-      </div>
-      <div class="input-group">
-        <label>Channel Niche</label>
-        <input id="creatorNiche" value="Buddhist Dhamma">
-      </div>
-    </div>
-
-    <button class="btn green" onclick="saveProfile()">Save Profile</button>
-  </div>
-
-  <div class="card" style="margin-top:15px">
-    <h3>Backup</h3>
-    <div class="actions">
-      <button class="btn blue" onclick="exportData()">Export JSON</button>
-      <label class="btn" style="display:inline-block">
-        Import JSON
-        <input type="file" accept=".json" onchange="importData(event)" style="display:none">
-      </label>
-      <button class="btn" onclick="resetApp()">Reset App Data</button>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<div class="footer">
-  Aung YouTube Growth Intelligence V5.1 • Public Data Intelligence System
-</div>
-
-</main>
-</div>
-
-<script>
-const STORE="aung_youtube_growth_intelligence_v51";
-
-let state={
-  creator:"Aung Zar Ni Win",
-  niche:"Buddhist Dhamma",
-  apiKey:"",
-  channel:{
-    name:"Buddha-တရားတော် Channel",
-    url:"https://youtube.com/channel/UCH4D6qoBuA0QmaHP21ijKPA",
-    id:"UCH4D6qoBuA0QmaHP21ijKPA",
-    subscribers:0,
-    views:0,
-    videos:0
-  },
-  videos:[],
-  lastSync:"",
-  sprint:[false,false,false,false,false,false,false],
-  tests:[]
-};
-
-function loadState(){
-  try{
-    const raw=localStorage.getItem(STORE);
-    if(raw){
-      const saved=JSON.parse(raw);
-      state={...state,...saved};
-      state.channel={...state.channel,...(saved.channel||{})};
+    if(sort === "views"){
+      return b.views - a.views;
     }
-  }catch(e){console.error(e)}
-  updateAll();
-}
 
-function saveState(){
-  localStorage.setItem(STORE,JSON.stringify(state));
-}
+    if(sort === "engagement"){
+      return b.engagement - a.engagement;
+    }
 
-function $(id){return document.getElementById(id)}
+    if(sort === "likes"){
+      return b.likes - a.likes;
+    }
 
-function esc(v){
-  return String(v??"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;");
-}
+    if(sort === "comments"){
+      return b.comments - a.comments;
+    }
 
-function fmt(n){
-  n=Number(n||0);
-  if(n>=1000000000)return (n/1000000000).toFixed(1)+"B";
-  if(n>=1000000)return (n/1000000).toFixed(1)+"M";
-  if(n>=1000)return (n/1000).toFixed(1)+"K";
-  return n.toLocaleString();
-}
+    if(sort === "date"){
+      return new Date(b.published) -
+             new Date(a.published);
+    }
 
-function fmtFull(n){
-  return Number(n||0).toLocaleString();
-}
+    return 0;
 
-function showPage(id,btn){
-  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
-  $(id).classList.add("active");
-  document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
-  if(btn)btn.classList.add("active");
-  document.getElementById("sidebar").classList.remove("open");
-
-  if(id==="videos")renderVideos();
-  if(id==="opportunities")renderOpportunities();
-  if(id==="patterns")renderPatterns();
-  if(id==="recovery")populateRecovery();
-}
-
-function showPageById(id){
-  const btn=[...document.querySelectorAll(".nav button")].find(b=>b.getAttribute("onclick")?.includes("'"+id+"'"));
-  showPage(id,btn);
-}
-
-function toggleSidebar(){
-  $("sidebar").classList.toggle("open");
-}
-
-function api(){
-  return state.apiKey.trim();
-}
-
-function apiUrl(endpoint,params){
-  const p=new URLSearchParams(params);
-  p.set("key",api());
-  return "https://www.googleapis.com/youtube/v3/"+endpoint+"?"+p.toString();
-}
-
-async function ytFetch(endpoint,params){
-  if(!api())throw new Error("API_KEY_MISSING");
-
-  const res=await fetch(apiUrl(endpoint,params));
-  let data={};
-
-  try{data=await res.json()}catch(e){}
-
-  if(!res.ok){
-    const reason=data?.error?.errors?.[0]?.reason || data?.error?.status || "API_ERROR";
-    const message=data?.error?.message || "YouTube API request failed";
-    throw new Error(reason+"|"+message);
-  }
-
-  return data;
-}
-
-function friendlyApiError(err){
-  const msg=String(err.message||err);
-
-  if(msg==="API_KEY_MISSING")
-    return "API Key မထည့်ရသေးပါ";
-
-  if(msg.includes("keyInvalid")||msg.includes("API_KEY_INVALID"))
-    return "API Key မမှန်ပါ";
-
-  if(msg.includes("quotaExceeded"))
-    return "YouTube API quota ကုန်သွားပါပြီ";
-
-  if(msg.includes("forbidden"))
-    return "API restriction / permission ကိုစစ်ပါ";
-
-  if(msg.includes("channelNotFound"))
-    return "Channel ကိုရှာမတွေ့ပါ";
-
-  return msg.split("|")[1] || msg;
-}
-
-function parseYouTubeInput(input){
-  input=input.trim();
-
-  let channelId="";
-
-  if(/^UC[a-zA-Z0-9_-]{20,}$/.test(input)){
-    channelId=input;
-  }
-
-  const idMatch=input.match(/youtube\.com\/channel\/(UC[a-zA-Z0-9_-]+)/i);
-  if(idMatch)channelId=idMatch[1];
-
-  let handle="";
-
-  const handleMatch=input.match(/youtube\.com\/@([^/?]+)/i);
-  if(handleMatch)handle=decodeURIComponent(handleMatch[1]);
-
-  if(!handle && input.startsWith("@"))
-    handle=input.substring(1);
-
-  return {channelId,handle};
-}
-
-async function resolveChannelId(input){
-  const parsed=parseYouTubeInput(input);
-
-  if(parsed.channelId)return parsed.channelId;
-
-  if(parsed.handle){
-    const data=await ytFetch("search",{
-      part:"snippet",
-      type:"channel",
-      q:parsed.handle,
-      maxResults:"1"
-    });
-
-    if(!data.items?.length)throw new Error("channelNotFound");
-
-    return data.items[0].snippet.channelId;
-  }
-
-  if(/^https?:\/\//i.test(input)){
-    const data=await ytFetch("search",{
-      part:"snippet",
-      type:"channel",
-      q:input,
-      maxResults:"1"
-    });
-
-    if(!data.items?.length)throw new Error("channelNotFound");
-
-    return data.items[0].snippet.channelId;
-  }
-
-  throw new Error("Channel URL / @Handle / Channel ID ကိုမှန်အောင်ထည့်ပါ");
-}
-
-async function getChannel(channelId){
-  const data=await ytFetch("channels",{
-    part:"snippet,statistics,contentDetails",
-    id:channelId
   });
 
-  if(!data.items?.length)throw new Error("channelNotFound");
+  $("videoIntelTable").innerHTML = `
+    <div class="table-wrap">
+      <table>
 
-  return data.items[0];
+        <thead>
+          <tr>
+            <th>Video</th>
+            <th>Views</th>
+            <th>Views Ratio</th>
+            <th>Engagement</th>
+            <th>Diagnosis</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          ${videos.map(video=>{
+
+            const ratio =
+              avg > 0
+                ? video.views / avg
+                : 0;
+
+            const d =
+              publicDiagnosis(video,avg);
+
+            return `
+              <tr>
+
+                <td>
+                  <div class="video-title">
+                    <strong>
+                      ${escapeHtml(video.title)}
+                    </strong>
+                    <div class="small">
+                      ${new Date(video.published)
+                        .toLocaleDateString()}
+                    </div>
+                  </div>
+                </td>
+
+                <td>${formatNumber(video.views)}</td>
+
+                <td>${ratio.toFixed(2)}x</td>
+
+                <td>${video.engagement.toFixed(2)}%</td>
+
+                <td>
+                  <span class="badge ${d.class}">
+                    ${escapeHtml(d.label)}
+                  </span>
+                </td>
+
+                <td>
+                  <button
+                    class="btn btn-secondary btn-small"
+                    onclick="selectRecovery('${video.id}')">
+                    Recover
+                  </button>
+                </td>
+
+              </tr>
+            `;
+
+          }).join("")}
+
+        </tbody>
+
+      </table>
+    </div>
+  `;
+
 }
 
-async function getUploads(playlistId,limit=30){
-  let items=[];
-  let token="";
 
-  while(items.length<limit){
-    const params={
-      part:"snippet,contentDetails",
-      playlistId,
-      maxResults:String(Math.min(50,limit-items.length))
-    };
+/* =========================================================
+   OPPORTUNITY ENGINE
+   ========================================================= */
 
-    if(token)params.pageToken=token;
+function calculateOpportunityScore(){
 
-    const data=await ytFetch("playlistItems",params);
-
-    items.push(...(data.items||[]));
-
-    token=data.nextPageToken||"";
-    if(!token)break;
+  if(!state.videos.length){
+    return 0;
   }
 
-  return items.slice(0,limit);
-}
+  const avgViews = getAverageViews();
+  const avgEngagement = getAverageEngagement();
 
-async function getVideos(ids){
-  if(!ids.length)return [];
+  let score = 40;
 
-  const chunks=[];
+  const winnerRatio =
+    state.videos.filter(
+      v=>avgViews>0 && v.views>=avgViews*1.5
+    ).length / state.videos.length;
 
-  for(let i=0;i<ids.length;i+=50)
-    chunks.push(ids.slice(i,i+50));
+  const weakRatio =
+    state.videos.filter(
+      v=>avgViews>0 && v.views<avgViews*.5
+    ).length / state.videos.length;
 
-  let result=[];
+  score += winnerRatio * 25;
 
-  for(const chunk of chunks){
-    const data=await ytFetch("videos",{
-      part:"snippet,statistics,contentDetails",
-      id:chunk.join(",")
-    });
+  score += clamp(avgEngagement * 5,0,15);
 
-    result.push(...(data.items||[]));
-  }
+  score += clamp(weakRatio * 20,0,20);
 
-  return result;
-}
+  if(Number(state.studio.ctr) > 0){
 
-async function analyzeChannel(){
-  const input=$("channelUrl").value.trim();
-
-  if(!input){
-    setChannelStatus("Channel URL ထည့်ပါ","warn");
-    return;
-  }
-
-  if(!api()){
-    setChannelStatus("Settings → YouTube API မှာ API Key အရင်ထည့်ပါ","warn");
-    return;
-  }
-
-  setChannelStatus('<span class="loader"></span> YouTube data ကို analyze လုပ်နေပါတယ်',"");
-
-  try{
-    const id=await resolveChannelId(input);
-    const channel=await getChannel(id);
-
-    const uploads=channel.contentDetails?.relatedPlaylists?.uploads;
-
-    let videos=[];
-
-    if(uploads){
-      const playlistItems=await getUploads(uploads,30);
-      const ids=playlistItems
-        .map(x=>x.contentDetails?.videoId)
-        .filter(Boolean);
-
-      const details=await getVideos(ids);
-
-      const map={};
-      details.forEach(v=>map[v.id]=v);
-
-      videos=playlistItems
-        .map(item=>map[item.contentDetails?.videoId])
-        .filter(Boolean)
-        .map(v=>normalizeVideo(v));
-    }
-
-    state.channel={
-      name:channel.snippet?.title||"Unknown Channel",
-      url:input,
-      id:channel.id,
-      subscribers:Number(channel.statistics?.subscriberCount||0),
-      views:Number(channel.statistics?.viewCount||0),
-      videos:Number(channel.statistics?.videoCount||0),
-      description:channel.snippet?.description||"",
-      thumbnail:channel.snippet?.thumbnails?.high?.url||
-                channel.snippet?.thumbnails?.default?.url||""
-    };
-
-    state.videos=videos;
-    state.lastSync=new Date().toLocaleString();
-
-    saveState();
-    updateAll();
-
-    setChannelStatus(
-      "✅ Channel analysis ပြီးပါပြီ — "+esc(state.channel.name),
-      "good"
+    score += clamp(
+      (Number(state.studio.ctr)-4)*2,
+      -8,
+      10
     );
 
-  }catch(err){
-    console.error(err);
-    setChannelStatus("❌ "+esc(friendlyApiError(err)),"warn");
-  }
-}
-
-function normalizeVideo(v){
-  const views=Number(v.statistics?.viewCount||0);
-  const likes=Number(v.statistics?.likeCount||0);
-  const comments=Number(v.statistics?.commentCount||0);
-
-  const engagement=views
-    ? ((likes+comments)/views)*100
-    : 0;
-
-  return {
-    id:v.id,
-    title:v.snippet?.title||"Untitled",
-    published:v.snippet?.publishedAt||"",
-    thumbnail:v.snippet?.thumbnails?.medium?.url||
-             v.snippet?.thumbnails?.default?.url||"",
-    views,
-    likes,
-    comments,
-    engagement,
-    duration:v.contentDetails?.duration||""
-  };
-}
-
-function setChannelStatus(text,type){
-  const box=$("channelStatus");
-  box.innerHTML=text;
-  box.className="notice "+(type||"");
-}
-
-function testApiKey(){
-  const key=$("apiKeyInput").value.trim();
-
-  if(!key){
-    $("apiStatus").innerHTML='<div class="notice warn">API Key ထည့်ပါ</div>';
-    return;
   }
 
-  const old=state.apiKey;
-  state.apiKey=key;
+  return clamp(Math.round(score),0,100);
 
-  ytFetch("channels",{
-    part:"snippet",
-    id:"UC_x5XG1OV2P6uZZ5FSM9Ttw"
-  })
-  .then(()=>{
-    $("apiStatus").innerHTML='<div class="notice good">✅ API Key အလုပ်လုပ်ပါတယ်</div>';
-    state.apiKey=key;
-    saveState();
-  })
-  .catch(err=>{
-    state.apiKey=old;
-    $("apiStatus").innerHTML='<div class="notice warn">❌ '+esc(friendlyApiError(err))+'</div>';
-  });
-}
-
-function saveApiKey(){
-  const key=$("apiKeyInput").value.trim();
-
-  if(!key){
-    $("apiStatus").innerHTML='<div class="notice warn">API Key မထည့်ထားပါ</div>';
-    return;
-  }
-
-  state.apiKey=key;
-  saveState();
-
-  $("apiStatus").innerHTML='<div class="notice good">✅ API Key saved locally</div>';
-}
-
-function removeApiKey(){
-  state.apiKey="";
-  $("apiKeyInput").value="";
-  saveState();
-
-  $("apiStatus").innerHTML='<div class="notice">API Key removed</div>';
-}
-
-function loadSavedChannel(){
-  $("channelUrl").value=state.channel.url||"";
-}
-
-function updateAll(){
-  $("apiKeyInput").value=state.apiKey||"";
-  $("creatorName").value=state.creator||"";
-  $("creatorNiche").value=state.niche||"";
-  $("channelUrl").value=state.channel.url||"";
-
-  $("topChannel").textContent=state.channel.name||"YouTube Channel";
-
-  $("dSubs").textContent=fmt(state.channel.subscribers);
-  $("dViews").textContent=fmt(state.channel.views);
-  $("dVideos").textContent=fmt(state.channel.videos);
-  $("dAnalyzed").textContent=state.videos.length;
-
-  $("cSubs").textContent=fmt(state.channel.subscribers);
-  $("cViews").textContent=fmt(state.channel.views);
-  $("cVideos").textContent=fmt(state.channel.videos);
-  $("cId").textContent=state.channel.id||"—";
-
-  $("dChannel").textContent=state.channel.name||"—";
-  $("dNiche").textContent=state.niche||"—";
-  $("dSync").textContent=state.lastSync||"Not synced";
-
-  renderChannelProfile();
-  renderChannelDiagnosis();
-  renderDashboard();
-  renderVideos();
-  renderOpportunities();
-  renderPatterns();
-  populateRecovery();
-  renderTests();
-  renderSprint();
-}
-
-function renderChannelProfile(){
-  const c=state.channel;
-
-  $("channelProfile").innerHTML=`
-    <div class="kpi"><span>Name</span><strong>${esc(c.name||"—")}</strong></div>
-    <div class="kpi"><span>Subscribers</span><strong>${fmtFull(c.subscribers)}</strong></div>
-    <div class="kpi"><span>Total Views</span><strong>${fmtFull(c.views)}</strong></div>
-    <div class="kpi"><span>Public Videos</span><strong>${fmtFull(c.videos)}</strong></div>
-    <div class="kpi"><span>Channel ID</span><strong>${esc(c.id||"—")}</strong></div>
-  `;
-}
-
-function renderChannelDiagnosis(){
-  const c=state.channel;
-  const vs=state.videos;
-
-  if(!vs.length){
-    $("channelDiagnosis").innerHTML=
-      `<div class="empty">Channel analyze လုပ်ပြီးနောက် diagnosis ပြပါမယ်</div>`;
-    return;
-  }
-
-  const avgViews=vs.reduce((a,b)=>a+b.views,0)/vs.length;
-  const avgEng=vs.reduce((a,b)=>a+b.engagement,0)/vs.length;
-  const top=vs[0];
-
-  const ideas=[];
-
-  if(top && top.views>avgViews*2)
-    ideas.push("🏆 Top video က channel average ထက်အများကြီးမြင့်နေပါတယ် — အလားတူ topic/angle ကို series ချဲ့စမ်းပါ");
-
-  if(avgEng<2)
-    ideas.push("⚠️ Public engagement rate နိမ့်နေပါတယ် — topic relevance နဲ့ opening/CTA ကို test လုပ်ပါ");
-  else
-    ideas.push("✅ Engagement signal ရှိပါတယ် — audience response ကောင်းတဲ့ topic တွေကို ထပ်စမ်းပါ");
-
-  ideas.push("📊 CTR / retention / revenue လို private Studio metrics တွေအတွက် YouTube Analytics/OAuth integration လိုပါမယ်");
-
-  $("channelDiagnosis").innerHTML=ideas.map(x=>`
-    <div class="kpi"><span>${esc(x)}</span></div>
-  `).join("");
-}
-
-function renderDashboard(){
-  const vs=[...state.videos].sort((a,b)=>b.views-a.views);
-
-  $("dashboardTopVideos").innerHTML=vs.length
-    ? vs.slice(0,5).map(videoHTML).join("")
-    : `<div class="empty">Channel analyze လုပ်ပြီး videos တွေကိုပြပါမယ်</div>`;
-
-  const opp=[];
-
-  if(vs.length){
-    const avg=vs.reduce((a,b)=>a+b.views,0)/vs.length;
-    const high=vs.filter(v=>v.views>=avg*1.5).length;
-    const low=vs.filter(v=>v.views<avg*.5).length;
-
-    if(high)opp.push("🔥 "+high+" videos က average ထက် 1.5x+ views ရနေပါတယ်");
-    if(low)opp.push("⚠️ "+low+" videos ကို packaging/topic rework test လုပ်နိုင်ပါတယ်");
-
-    opp.push("💡 Top video titles/topics ကို next 10 planner မှာအသုံးချပါ");
-  }
-
-  $("dashboardOpp").innerHTML=opp.length
-    ? opp.map(x=>`<div class="kpi"><span>${esc(x)}</span></div>`).join("")
-    : `<div class="empty">Data ရလာရင် opportunities ပြပါမယ်</div>`;
-}
-
-function videoHTML(v){
-  const cls=v.engagement>=3?"green":v.engagement>=1?"yellow":"red";
-  const label=v.engagement>=3?"HIGH ENGAGEMENT":
-              v.engagement>=1?"NORMAL":"LOW ENGAGEMENT";
-
-  return `
-  <div class="video">
-    <img src="${esc(v.thumbnail)}" alt="">
-    <div>
-      <div class="video-title">${esc(v.title)}</div>
-      <div class="video-meta">
-        <span>👁 ${fmt(v.views)}</span>
-        <span>👍 ${fmt(v.likes)}</span>
-        <span>💬 ${fmt(v.comments)}</span>
-        <span>${v.engagement.toFixed(2)}%</span>
-        <span class="badge ${cls}">${label}</span>
-      </div>
-    </div>
-  </div>`;
-}
-
-function renderVideos(){
-  const min=Number($("minViews")?.value||0);
-  let vs=state.videos.filter(v=>v.views>=min);
-
-  const sort=$("videoSort")?.value||"views";
-
-  if(sort==="views")vs.sort((a,b)=>b.views-a.views);
-  if(sort==="likes")vs.sort((a,b)=>b.likes-a.likes);
-  if(sort==="comments")vs.sort((a,b)=>b.comments-a.comments);
-  if(sort==="date")vs.sort((a,b)=>new Date(b.published)-new Date(a.published));
-
-  $("videoTable").innerHTML=vs.length
-    ? vs.map(v=>`
-      <tr>
-        <td style="max-width:320px">${esc(v.title)}</td>
-        <td>${fmt(v.views)}</td>
-        <td>${fmt(v.likes)}</td>
-        <td>${fmt(v.comments)}</td>
-        <td>${v.engagement.toFixed(2)}%</td>
-        <td><span class="badge ${v.engagement>=3?"green":v.engagement>=1?"yellow":"red"}">
-        ${v.engagement>=3?"Strong":v.engagement>=1?"Normal":"Weak"}
-        </span></td>
-      </tr>
-    `).join("")
-    : `<tr><td colspan="6">No video data</td></tr>`;
 }
 
 function renderOpportunities(){
-  const vs=state.videos;
 
-  if(!vs.length){
-    ["oppWinners","oppLow","oppHigh","oppTests"].forEach(id=>$(id).textContent="0");
-    $("winnerList").innerHTML='<div class="empty">Analyze channel first</div>';
-    $("weakList").innerHTML='<div class="empty">Analyze channel first</div>';
-    return;
+  const score =
+    calculateOpportunityScore();
+
+  $("oppScore").textContent = score;
+
+  const avg = getAverageViews();
+
+  const scale =
+    state.videos.filter(
+      v=>avg>0 && v.views>=avg*1.5
+    );
+
+  const recovery =
+    state.videos.filter(
+      v=>avg>0 && v.views<avg*.5
+    );
+
+  $("oppScale").textContent =
+    scale.length;
+
+  $("oppRecovery").textContent =
+    recovery.length;
+
+  const list = [];
+
+  if(scale.length){
+
+    list.push({
+      level:"HIGH",
+      title:"Scale Winning Topics",
+      text:
+        scale.slice(0,3)
+          .map(v=>v.title)
+          .join(" | ")
+    });
+
   }
 
-  const avg=vs.reduce((a,b)=>a+b.views,0)/vs.length;
+  if(recovery.length){
 
-  const winners=vs.filter(v=>v.views>=avg*1.5);
-  const low=vs.filter(v=>v.views<avg*.5);
-  const high=vs.filter(v=>v.engagement>=3);
-  const tests=vs.filter(v=>v.views>=avg*.8 && v.views<=avg*1.2);
+    list.push({
+      level:"HIGH",
+      title:"Repackage Weak Videos",
+      text:
+        recovery.length +
+        " videos are below 50% of average views"
+    });
 
-  $("oppWinners").textContent=winners.length;
-  $("oppLow").textContent=low.length;
-  $("oppHigh").textContent=high.length;
-  $("oppTests").textContent=tests.length;
-
-  $("winnerList").innerHTML=winners.length
-    ? winners.slice(0,8).map(videoHTML).join("")
-    : '<div class="empty">Potential winner မတွေ့သေးပါ</div>';
-
-  $("weakList").innerHTML=low.length
-    ? low.slice(0,8).map(videoHTML).join("")
-    : '<div class="empty">Low performers မတွေ့သေးပါ</div>';
-}
-
-function generateTopics(){
-  const base=$("topicInput").value.trim()||state.niche||"YouTube Content";
-  const audience=$("audienceInput").value.trim()||"မြန်မာ audience";
-
-  const topics=[
-    `${base} ကိုစတင်သူတွေ မဖြစ်မနေသိသင့်တဲ့ အချက် ၇ ချက်`,
-    `${base} မှာ လူအများဆုံးလုပ်မိတဲ့ အမှား ၅ ခု`,
-    `${base} ကို ${audience} အတွက် လွယ်လွယ်ကူကူရှင်းပြမယ်`,
-    `${base} နဲ့ပတ်သက်ပြီး လူတွေမေးနေကြတဲ့ မေးခွန်း ၁၀ ခု`,
-    `${base} — Myth vs Fact`,
-    `${base} ကို တကယ်အသုံးချတဲ့ Case Study`,
-    `${base} Beginner Guide`,
-    `${base} Step-by-Step`,
-    `${base} မလုပ်ခင် သိထားရမယ့် အချက်များ`,
-    `${base} အတွက် Advanced Strategy`
-  ];
-
-  $("topicResults").innerHTML=topics.map((x,i)=>`
-    <div class="title-result">
-      <strong>${i+1}. ${esc(x)}</strong>
-      <div class="sub" style="margin:5px 0 0">
-        Audience: ${esc(audience)}
-      </div>
-    </div>
-  `).join("");
-}
-
-function titleScore(title){
-  let score=50;
-
-  if(title.length>=35&&title.length<=75)score+=15;
-  if(/\d/.test(title))score+=8;
-  if(/[?]/.test(title))score+=5;
-  if(/အရေးကြီး|မသိ|အမှား|နည်းလမ်း|အချက်|ဘယ်လို|ဘာကြောင့်|သတိ|တကယ်/.test(title))score+=12;
-  if(title.length>100)score-=15;
-
-  return Math.max(0,Math.min(100,score));
-}
-
-function generateTitles(){
-  const topic=$("titleTopic").value.trim();
-
-  if(!topic){
-    $("titleResults").innerHTML='<div class="notice warn">Video topic ထည့်ပါ</div>';
-    return;
   }
 
-  const titles=[
-    `${topic} — မသိရင် နောက်ကျသွားမယ့် အချက် ၇ ချက်`,
-    `${topic} ကို အစကနေ အဆုံးထိ ရှင်းပြမယ်`,
-    `${topic} မှာ လူအများဆုံးလုပ်မိတဲ့ အမှား ၅ ခု`,
-    `${topic} — Beginner တွေအတွက် Step-by-Step`,
-    `ဘာကြောင့် ${topic} မအောင်မြင်တာလဲ`,
-    `${topic} အတွက် တကယ်အသုံးဝင်တဲ့ နည်းလမ်း ၇ ခု`
-  ];
+  if(Number(state.studio.ctr) > 0 &&
+     Number(state.studio.ctr) < 5){
 
-  $("titleResults").innerHTML=titles.map(t=>{
-    const score=titleScore(t);
+    list.push({
+      level:"HIGH",
+      title:"Improve Packaging",
+      text:
+        "Current CTR is below 5%, so test title and thumbnail"
+    });
 
-    return `
-      <div class="title-result">
-        <span class="title-score">${score}/100</span>
-        <strong>${esc(t)}</strong>
-        <div class="progress">
-          <span style="width:${score}%"></span>
-        </div>
-      </div>
-    `;
-  }).join("");
-}
+  }
 
-function analyzeThumbnail(event){
-  const file=event.target.files[0];
-  if(!file)return;
+  if(Number(state.studio.retention) > 0 &&
+     Number(state.studio.retention) < 35){
 
-  const reader=new FileReader();
+    list.push({
+      level:"HIGH",
+      title:"Improve Retention",
+      text:
+        "Retention is below 35%, so focus on opening and pacing"
+    });
 
-  reader.onload=e=>{
-    $("thumbPreview").src=e.target.result;
-    $("thumbPreview").classList.remove("hide");
+  }
 
-    const img=new Image();
+  if(getAverageEngagement() >= 3){
 
-    img.onload=()=>{
-      const ratio=img.width/img.height;
-      const sixteenNine=Math.abs(ratio-(16/9))<.08;
-      const resolution=img.width>=1280&&img.height>=720;
-      const size=file.size<=2*1024*1024;
+    list.push({
+      level:"MEDIUM",
+      title:"Audience Signal",
+      text:
+        "Public engagement is relatively strong, so build follow-up content"
+    });
 
-      let score=0;
-      if(sixteenNine)score+=35;
-      if(resolution)score+=35;
-      if(size)score+=20;
-      if(img.width>=1920)score+=10;
+  }
 
-      $("thumbAnalysis").innerHTML=`
-        <div class="score">${score}/100</div>
-        <div class="kpi"><span>Resolution</span><strong>${img.width} × ${img.height}</strong></div>
-        <div class="kpi"><span>16:9 Ratio</span><strong>${sixteenNine?"PASS":"CHECK"}</strong></div>
-        <div class="kpi"><span>Resolution Check</span><strong>${resolution?"PASS":"LOW"}</strong></div>
-        <div class="kpi"><span>File Size</span><strong>${(file.size/1024/1024).toFixed(2)} MB</strong></div>
-        <div class="notice" style="margin-top:12px">
-          Technical score သာဖြစ်ပြီး actual CTR ကို ခန့်မှန်းတာမဟုတ်ပါ
+  if(!list.length){
+
+    list.push({
+      level:"MEDIUM",
+      title:"Collect More Data",
+      text:
+        "Analyze more videos and add Studio metrics for deeper diagnosis"
+    });
+
+  }
+
+  $("opportunityList").innerHTML =
+    list.map(item=>{
+
+      const cls =
+        item.level === "HIGH"
+          ? "red"
+          : "yellow";
+
+      return `
+        <div class="action-card">
+          <span class="badge ${cls}">
+            ${item.level}
+          </span>
+          <h4 style="margin-top:8px">
+            ${escapeHtml(item.title)}
+          </h4>
+          <p>${escapeHtml(item.text)}</p>
         </div>
       `;
-    };
 
-    img.src=e.target.result;
+    }).join("");
+
+  renderPatternSignals();
+
+}
+
+function renderPatternSignals(){
+
+  const box = $("patternSignals");
+
+  if(!state.videos.length){
+
+    box.innerHTML =
+      '<div class="empty">No data</div>';
+
+    return;
+  }
+
+  const words = {};
+
+  state.videos.forEach(video=>{
+
+    const tokens =
+      video.title
+        .toLowerCase()
+        .replace(/[^\u1000-\u109f\w\s]/g," ")
+        .split(/\s+/)
+        .filter(x=>x.length>=3);
+
+    tokens.forEach(word=>{
+      words[word] = (words[word] || 0) + 1;
+    });
+
+  });
+
+  const top =
+    Object.entries(words)
+      .sort((a,b)=>b[1]-a[1])
+      .slice(0,8);
+
+  box.innerHTML =
+    top.map(([word,count])=>`
+      <div class="list-item">
+        <h4>${escapeHtml(word)}</h4>
+        <p>Appears in ${count} analyzed title(s)</p>
+      </div>
+    `).join("");
+
+}
+
+
+/* =========================================================
+   ANALYTICS / STUDIO
+   ========================================================= */
+
+function loadStudioForm(){
+
+  $("studioCTR").value =
+    state.studio.ctr || "";
+
+  $("studioRetention").value =
+    state.studio.retention || "";
+
+  $("studioReturning").value =
+    state.studio.returning || "";
+
+  $("studioAVD").value =
+    state.studio.avd || "";
+
+  $("studioWatch").value =
+    state.studio.watch || "";
+
+  $("studioRevenue").value =
+    state.studio.revenue || "";
+
+}
+
+function saveStudioMetrics(){
+
+  state.studio = {
+    ctr:$("studioCTR").value,
+    retention:$("studioRetention").value,
+    returning:$("studioReturning").value,
+    avd:$("studioAVD").value,
+    watch:$("studioWatch").value,
+    revenue:$("studioRevenue").value
   };
 
-  reader.readAsDataURL(file);
+  saveState();
+
+  renderAnalytics();
+  renderDashboard();
+
+  alert("Studio Snapshot သိမ်းပြီးပါပြီ");
+
 }
 
-function buildThumbPrompt(){
-  const topic=$("thumbTopic").value.trim()||"YouTube video";
-  const emotion=$("thumbEmotion").value.trim()||"curiosity";
+function clearStudioMetrics(){
 
-  $("thumbPrompt").value=
-`Create a high-impact YouTube thumbnail for "${topic}".
-Emotion: ${emotion}
-Composition: one clear focal subject, strong visual hierarchy, high contrast, simple background, mobile-first readability, minimal text, cinematic lighting, 16:9 YouTube thumbnail composition, no clutter, professional creator style`;
+  state.studio = {
+    ctr:"",
+    retention:"",
+    returning:"",
+    avd:"",
+    watch:"",
+    revenue:""
+  };
+
+  saveState();
+
+  loadStudioForm();
+  renderAnalytics();
+
 }
 
-function populateRecovery(){
-  const select=$("recoveryVideo");
-  if(!select)return;
+function renderAnalytics(){
 
-  select.innerHTML=state.videos.length
-    ? state.videos.map(v=>`<option value="${esc(v.id)}">${esc(v.title)}</option>`).join("")
-    : `<option>No videos</option>`;
+  const ctr = Number(state.studio.ctr || 0);
+  const retention =
+    Number(state.studio.retention || 0);
+
+  $("anCTR").textContent =
+    ctr ? ctr.toFixed(1) + "%" : "—";
+
+  $("anRetention").textContent =
+    retention
+      ? retention.toFixed(1) + "%"
+      : "—";
+
+  $("anReturning").textContent =
+    state.studio.returning
+      ? Number(state.studio.returning).toFixed(1) + "%"
+      : "—";
+
+  $("anRevenue").textContent =
+    state.studio.revenue
+      ? formatMoney(state.studio.revenue)
+      : "—";
+
+  $("anCTRText").textContent =
+    ctr
+      ? ctrDiagnosis(ctr)
+      : "Enter CTR";
+
+  $("anRetentionText").textContent =
+    retention
+      ? retentionDiagnosis(retention)
+      : "Enter retention";
+
+  renderAnalyticsMatrix();
+  renderStudioDiagnosis();
+
 }
 
-function makeRecoveryPlan(){
-  const id=$("recoveryVideo").value;
-  const v=state.videos.find(x=>x.id===id);
+function ctrDiagnosis(ctr){
 
-  if(!v){
-    $("recoveryResult").innerHTML='<div class="empty">Video data မရှိသေးပါ</div>';
+  if(ctr >= 8){
+    return "Strong packaging signal";
+  }
+
+  if(ctr >= 6){
+    return "Healthy packaging range";
+  }
+
+  if(ctr >= 4){
+    return "Test packaging";
+  }
+
+  return "High packaging priority";
+}
+
+function retentionDiagnosis(retention){
+
+  if(retention >= 50){
+    return "Strong viewer hold";
+  }
+
+  if(retention >= 40){
+    return "Healthy";
+  }
+
+  if(retention >= 30){
+    return "Improve opening";
+  }
+
+  return "High retention priority";
+}
+
+function renderAnalyticsMatrix(){
+
+  const ctr = Number(state.studio.ctr || 0);
+  const retention =
+    Number(state.studio.retention || 0);
+
+  const matrix = $("analyticsMatrix");
+
+  if(!ctr || !retention){
+
+    matrix.innerHTML = `
+      <div class="quad">
+        <h4>Enter CTR + Retention</h4>
+        <p>
+          YouTube Studio မှာရှိတဲ့ metrics ကိုထည့်ပြီး diagnosis လုပ်ပါ
+        </p>
+      </div>
+
+      <div class="quad">
+        <h4>Packaging</h4>
+        <p>CTR နိမ့်ရင် title / thumbnail ကိုစစ်ပါ</p>
+      </div>
+
+      <div class="quad">
+        <h4>Retention</h4>
+        <p>Retention နိမ့်ရင် hook / pacing ကိုစစ်ပါ</p>
+      </div>
+
+      <div class="quad">
+        <h4>Scale</h4>
+        <p>CTR + retention နှစ်ခုလုံးကောင်းရင် content pattern ကိုချဲ့ပါ</p>
+      </div>
+    `;
+
     return;
   }
 
-  const avg=state.videos.reduce((a,b)=>a+b.views,0)/state.videos.length;
+  let quadrant;
 
-  let diagnosis=[];
-  let actions=[];
+  if(ctr >= 6 && retention >= 40){
 
-  if(v.views<avg*.5){
-    diagnosis.push("Views က channel analyzed average ထက်နိမ့်နေပါတယ်");
-    actions.push("Title angle ကိုပြန်စမ်းပါ");
-    actions.push("Thumbnail ကို simpler focal point နဲ့ test လုပ်ပါ");
-    actions.push("Same topic ကို stronger viewer problem နဲ့ပြန် package လုပ်ပါ");
+    quadrant = {
+      title:"SCALE / DOUBLE DOWN",
+      text:
+        "Packaging နဲ့ viewer response နှစ်ခုလုံးက strong signal ဖြစ်နေပါတယ်",
+      cls:"green"
+    };
+
+  }else if(ctr < 6 && retention >= 40){
+
+    quadrant = {
+      title:"PACKAGING OPPORTUNITY",
+      text:
+        "Content response ကောင်းပေမယ့် click side ကိုပိုစမ်းသပ်နိုင်ပါတယ်",
+      cls:"yellow"
+    };
+
+  }else if(ctr >= 6 && retention < 40){
+
+    quadrant = {
+      title:"RETENTION OPPORTUNITY",
+      text:
+        "Click ရနေသော်လည်း viewer hold ကိုပိုတိုးဖို့လိုပါတယ်",
+      cls:"yellow"
+    };
+
+  }else{
+
+    quadrant = {
+      title:"REWORK / TEST",
+      text:
+        "Packaging နဲ့ viewer experience နှစ်ဖက်လုံးကို hypothesis နဲ့စမ်းပါ",
+      cls:"red"
+    };
+
   }
 
-  if(v.engagement<1){
-    diagnosis.push("Public engagement signal နည်းပါတယ်");
-    actions.push("Audience relevance နဲ့ CTA ကိုပြန်စစ်ပါ");
-  }
+  matrix.innerHTML = `
 
-  if(!diagnosis.length){
-    diagnosis.push("Video က extreme underperforming မဟုတ်ပါ");
-    actions.push("Related follow-up video တစ်ခုလုပ်ပါ");
-    actions.push("Title/thumbnail pattern ကို record လုပ်ပါ");
-  }
-
-  $("recoveryResult").innerHTML=`
-    <h3>${esc(v.title)}</h3>
-    <br>
-    ${diagnosis.map(x=>`<div class="notice warn">⚠️ ${esc(x)}</div>`).join("")}
-    <h3>Action Plan</h3>
-    ${actions.map((x,i)=>`
-      <div class="kpi"><span>${i+1}. ${esc(x)}</span></div>
-    `).join("")}
-  `;
-}
-
-function generateNext10(){
-  const vs=[...state.videos].sort((a,b)=>b.views-a.views);
-  const base=vs[0]?.title||state.niche||"Your Main Topic";
-
-  const formats=[
-    "Beginner Guide",
-    "Mistakes",
-    "FAQ",
-    "Step-by-Step",
-    "Case Study",
-    "Myth vs Fact",
-    "Deep Dive",
-    "Comparison",
-    "Story / Explanation",
-    "Series Episode"
-  ];
-
-  $("next10Results").innerHTML=formats.map((f,i)=>`
-    <div class="title-result">
-      <strong>${i+1}. ${esc(f)} — ${esc(base)}</strong>
-      <div class="sub" style="margin:6px 0 0">
-        Test angle: ${esc(f)}
+    <div class="quad">
+      <h4>High CTR / High Retention</h4>
+      <p>Scale candidate</p>
+      <div class="q-scale">
+        <span>CTR ${ctr.toFixed(1)}%</span>
+        <span>Retention ${retention.toFixed(1)}%</span>
       </div>
     </div>
-  `).join("");
-}
 
-function checkSprint(day){
-  state.sprint[day-1]=true;
-  saveState();
-  renderSprint();
-}
-
-function renderSprint(){
-  const done=state.sprint.filter(Boolean).length;
-  const percent=(done/7)*100;
-
-  $("sprintProgress").style.width=percent+"%";
-  $("sprintText").textContent=done+" / 7 completed";
-}
-
-function renderPatterns(){
-  const vs=[...state.videos].sort((a,b)=>b.views-a.views);
-
-  if(!vs.length){
-    $("patternsResult").innerHTML='<div class="empty">Analyze channel first</div>';
-    return;
-  }
-
-  const avg=vs.reduce((a,b)=>a+b.views,0)/vs.length;
-  const winners=vs.filter(v=>v.views>=avg*1.5).slice(0,10);
-
-  $("patternsResult").innerHTML=`
-    <div class="notice good">
-      Average views of analyzed videos: <strong>${fmt(avg)}</strong>
+    <div class="quad">
+      <h4>Low CTR / High Retention</h4>
+      <p>Packaging opportunity</p>
+      <div class="q-scale">
+        <span>Improve title</span>
+        <span>Improve thumbnail</span>
+      </div>
     </div>
-    ${winners.length
-      ? winners.map((v,i)=>`
-        <div class="kpi">
-          <span>${i+1}. ${esc(v.title)}</span>
-          <strong>${fmt(v.views)} views</strong>
-        </div>
-      `).join("")
-      : `<div class="empty">Strong pattern မတွေ့သေးပါ</div>`
-    }
+
+    <div class="quad">
+      <h4>High CTR / Low Retention</h4>
+      <p>Retention opportunity</p>
+      <div class="q-scale">
+        <span>Hook</span>
+        <span>Pacing</span>
+      </div>
+    </div>
+
+    <div class="quad">
+      <h4>Low CTR / Low Retention</h4>
+      <p>Rework / test</p>
+      <div class="q-scale">
+        <span>CTR ${ctr.toFixed(1)}%</span>
+        <span>Retention ${retention.toFixed(1)}%</span>
+      </div>
+    </div>
+
+    <div class="quad" style="grid-column:1/-1">
+      <span class="badge ${quadrant.cls}">
+        ${quadrant.title}
+      </span>
+      <h4 style="margin-top:10px">
+        Current diagnosis
+      </h4>
+      <p>
+        ${quadrant.text}
+      </p>
+    </div>
+
   `;
+
 }
 
-function calculateMoney(){
-  const target=Number($("moneyTarget").value||0);
-  const current=Number($("moneyCurrent").value||0);
-  const rpm=Number($("moneyRPM").value||0);
+function renderStudioDiagnosis(){
 
-  if(rpm<=0){
-    $("requiredViews").textContent="—";
-    return;
+  const box = $("studioDiagnosis");
+
+  const ctr = Number(state.studio.ctr || 0);
+  const retention =
+    Number(state.studio.retention || 0);
+
+  const returning =
+    Number(state.studio.returning || 0);
+
+  const items = [];
+
+  if(!ctr && !retention){
+
+    items.push({
+      title:"No Studio metrics",
+      text:
+        "YouTube Studio မှာ CTR နဲ့ retention ကိုထည့်ပြီးပိုတိကျတဲ့ diagnosis ရယူပါ"
+    });
+
+  }else{
+
+    if(ctr < 5){
+
+      items.push({
+        title:"Packaging",
+        text:
+          "CTR နည်းနေတဲ့အတွက် title/thumbnail test ကို priority ပေးပါ"
+      });
+
+    }else if(ctr >= 7){
+
+      items.push({
+        title:"Packaging",
+        text:
+          "CTR signal ကောင်းနေတဲ့အတွက် winning packaging pattern ကိုမှတ်ထားပါ"
+      });
+
+    }
+
+    if(retention < 35){
+
+      items.push({
+        title:"Retention",
+        text:
+          "အစပိုင်း hook, pacing နဲ့ viewer promise alignment ကိုစစ်ပါ"
+      });
+
+    }else if(retention >= 45){
+
+      items.push({
+        title:"Retention",
+        text:
+          "Viewer hold ကောင်းတဲ့အတွက် content structure ကို series အဖြစ်ချဲ့နိုင်ပါတယ်"
+      });
+
+    }
+
+    if(returning > 0){
+
+      items.push({
+        title:"Returning Viewers",
+        text:
+          "Returning viewers " +
+          returning.toFixed(1) +
+          "%"
+      });
+
+    }
+
   }
 
-  const required=(target/rpm)*1000;
-  const currentViews=(current/rpm)*1000;
-  const gap=Math.max(0,target-current);
-  const viewGap=Math.max(0,required-currentViews);
+  box.innerHTML =
+    items.map(x=>`
+      <div class="list-item">
+        <h4>${escapeHtml(x.title)}</h4>
+        <p>${escapeHtml(x.text)}</p>
+      </div>
+    `).join("");
 
-  $("requiredViews").textContent=fmt(required);
-  $("currentRevenue").textContent="$"+current.toFixed(2);
-  $("revenueGap").textContent="$"+gap.toFixed(2);
-  $("viewsGap").textContent=fmt(viewGap);
 }
 
-function addTest(){
-  const video=$("testVideo").value.trim();
-  const type=$("testType").value;
-  const a=$("testA").value.trim();
-  const b=$("testB").value.trim();
-  const result=$("testResult").value.trim();
 
-  if(!video)return;
+/* =========================================================
+   TOPIC RESEARCH
+   ========================================================= */
 
-  state.tests.unshift({
-    video,type,a,b,result,
-    date:new Date().toLocaleDateString()
+function generateTopics(){
+
+  const topic =
+    $("topicInput").value.trim() ||
+    "Myanmar audience problem";
+
+  const format =
+    $("topicFormat").value;
+
+  const templates = [
+
+    "What nobody tells you about " + topic,
+
+    "5 practical lessons about " + topic,
+
+    "Before you start " + topic + ", know this",
+
+    "The biggest mistake people make with " + topic,
+
+    "A simple way to understand " + topic,
+
+    "Real-world guide to " + topic,
+
+    "7 things to remember about " + topic,
+
+    "Why " + topic + " matters more than you think",
+
+    "Step-by-step " + topic + " guide",
+
+    "The complete beginner guide to " + topic
+
+  ];
+
+  state.topics = templates.map((title,index)=>({
+
+    id:Date.now()+index,
+    title,
+    format,
+    score:clamp(
+      70 +
+      Math.round(Math.random()*25),
+      0,
+      100
+    )
+
+  }));
+
+  saveState();
+
+  $("topicResults").innerHTML =
+    state.topics.map(item=>`
+
+      <div class="card">
+
+        <div class="card-title">
+          <h3>${escapeHtml(item.title)}</h3>
+          <span>${item.score}/100</span>
+        </div>
+
+        <p class="small">
+          Format: ${escapeHtml(item.format)}
+        </p>
+
+        <div style="margin-top:12px">
+          <div class="progress">
+            <div style="width:${item.score}%"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <button
+            class="btn btn-secondary btn-small"
+            onclick="useTopicForTitle(${item.id})">
+            Send to Title Lab
+          </button>
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+function useTopicForTitle(id){
+
+  const item =
+    state.topics.find(x=>x.id===id);
+
+  if(!item) return;
+
+  $("titleTopic").value =
+    item.title;
+
+  goPage("titleLab");
+
+}
+
+
+/* =========================================================
+   TITLE LAB
+   ========================================================= */
+
+function generateTitles(){
+
+  const topic =
+    $("titleTopic").value.trim() ||
+    "your topic";
+
+  const intent =
+    $("titleIntent").value;
+
+  const titles = [
+
+    topic,
+
+    "ဒီအကြောင်းကို လူတိုင်းသိထားသင့်တဲ့အချက်များ",
+
+    "မသိသေးရင် နောက်ကျသွားနိုင်တဲ့ " + topic,
+
+    topic + " ကို လွယ်လွယ်ကူကူနားလည်အောင်ရှင်းပြမယ်",
+
+    topic + " နဲ့ပတ်သက်ပြီး လူအများဆုံးမှားနေတဲ့အချက်",
+
+    topic + " — သိထားသင့်တဲ့ အရေးကြီးဆုံးအချက်များ",
+
+    "ဒီ ၇ ချက်ကို သိရင် " + topic + " ကိုပိုနားလည်လာမယ်",
+
+    topic + " ကို ဒီလိုလုပ်ကြည့်ပါ",
+
+    "ဘာကြောင့် " + topic + " ကိုလူတွေရှာနေကြတာလဲ",
+
+    topic + " အတွက် လက်တွေ့အသုံးချနည်း"
+
+  ];
+
+  state.titles = titles.map((title,index)=>{
+
+    const score =
+      clamp(
+        72 +
+        (intent === "Curiosity" ? 5 : 0) +
+        (title.length < 80 ? 6 : 0) +
+        (index % 3 === 0 ? 5 : 0),
+        0,
+        100
+      );
+
+    return {
+      id:Date.now()+index,
+      title,
+      score
+    };
+
   });
 
   saveState();
-  renderTests();
 
-  $("testVideo").value="";
-  $("testA").value="";
-  $("testB").value="";
-  $("testResult").value="";
+  $("titleResults").innerHTML =
+    state.titles.map(item=>`
+
+      <div class="list-item">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          gap:10px;
+          align-items:center
+        ">
+
+          <div style="flex:1">
+            <h4>
+              ${escapeHtml(item.title)}
+            </h4>
+            <p>
+              Score ${item.score}/100
+            </p>
+          </div>
+
+          <span class="badge ${
+            item.score>=85
+              ? "green"
+              : item.score>=75
+                ? "yellow"
+                : "gray"
+          }">
+            ${item.score}
+          </span>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
 }
 
-function renderTests(){
-  if(!state.tests.length){
-    $("testList").innerHTML='<div class="empty">Test records မရှိသေးပါ</div>';
+
+/* =========================================================
+   THUMBNAIL INTELLIGENCE
+   ========================================================= */
+
+$("thumbFile").addEventListener("change",function(){
+
+  const file = this.files[0];
+
+  if(!file) return;
+
+  const url =
+    URL.createObjectURL(file);
+
+  const image = new Image();
+
+  image.onload = function(){
+
+    const width = image.naturalWidth;
+    const height = image.naturalHeight;
+
+    const ratio =
+      width / height;
+
+    $("thumbPreview").innerHTML = `
+      <div style="max-width:520px">
+        <img
+          src="${url}"
+          style="
+            width:100%;
+            border-radius:12px;
+            display:block
+          "
+        >
+      </div>
+    `;
+
+    $("thumbResolution").textContent =
+      width + " × " + height;
+
+    $("thumbRatio").textContent =
+      ratio.toFixed(2);
+
+    const ratioGood =
+      ratio >= 1.75 &&
+      ratio <= 1.85;
+
+    const resolutionGood =
+      width >= 1280 &&
+      height >= 720;
+
+    $("thumbReadiness").textContent =
+      ratioGood && resolutionGood
+        ? "READY"
+        : "CHECK";
+
+    $("thumbReadiness").className =
+      "value " +
+      (
+        ratioGood && resolutionGood
+          ? "kpi-good"
+          : "kpi-warn"
+      );
+
+    const checks = [
+
+      {
+        title:"Resolution",
+        ok:resolutionGood,
+        text:
+          resolutionGood
+            ? "Resolution is suitable for YouTube thumbnail use"
+            : "Use at least 1280 × 720"
+      },
+
+      {
+        title:"Aspect Ratio",
+        ok:ratioGood,
+        text:
+          ratioGood
+            ? "16:9 style ratio detected"
+            : "Aim for approximately 16:9"
+      },
+
+      {
+        title:"Mobile Readability",
+        ok:true,
+        text:
+          "Preview thumbnail at small size before publishing"
+      },
+
+      {
+        title:"Single Main Idea",
+        ok:true,
+        text:
+          "Avoid putting too many competing messages into one thumbnail"
+      },
+
+      {
+        title:"Title + Thumbnail Relationship",
+        ok:true,
+        text:
+          "Do not repeat the exact same sentence in both places"
+      }
+
+    ];
+
+    $("thumbChecklist").innerHTML =
+      checks.map(check=>`
+
+        <div class="list-item">
+
+          <div style="
+            display:flex;
+            justify-content:space-between;
+            gap:10px
+          ">
+
+            <div>
+              <h4>${escapeHtml(check.title)}</h4>
+              <p>${escapeHtml(check.text)}</p>
+            </div>
+
+            <span class="badge ${
+              check.ok
+                ? "green"
+                : "yellow"
+            }">
+              ${check.ok ? "PASS" : "CHECK"}
+            </span>
+
+          </div>
+
+        </div>
+
+      `).join("");
+
+  };
+
+  image.src = url;
+
+});
+
+
+/* =========================================================
+   VIDEO RECOVERY
+   ========================================================= */
+
+function renderRecoverySelect(){
+
+  const select =
+    $("recoveryVideo");
+
+  if(!state.videos.length){
+
+    select.innerHTML =
+      '<option value="">No videos available</option>';
+
     return;
   }
 
-  $("testList").innerHTML=state.tests.map((t,i)=>`
-    <div class="title-result">
-      <strong>${esc(t.video)}</strong>
-      <div class="sub" style="margin:5px 0">
-        ${esc(t.type)} • ${esc(t.date)}
+  select.innerHTML =
+    state.videos.map(video=>`
+
+      <option value="${escapeHtml(video.id)}">
+        ${escapeHtml(
+          video.title.slice(0,80)
+        )}
+      </option>
+
+    `).join("");
+
+}
+
+function selectRecovery(id){
+
+  goPage("videoRecovery");
+
+  setTimeout(()=>{
+
+    $("recoveryVideo").value = id;
+
+    buildRecoveryPlan();
+
+  },50);
+
+}
+
+function buildRecoveryPlan(){
+
+  const id =
+    $("recoveryVideo").value;
+
+  const video =
+    state.videos.find(v=>v.id===id);
+
+  if(!video){
+
+    $("recoveryPlan").innerHTML =
+      '<div class="empty">Select a video</div>';
+
+    return;
+  }
+
+  const avg =
+    getAverageViews();
+
+  const diagnosis =
+    publicDiagnosis(video,avg);
+
+  const plans = [
+
+    {
+      title:"Step 1 — Diagnose",
+      text:diagnosis.reason
+    },
+
+    {
+      title:"Step 2 — Title Test",
+      text:
+        "Create 3 alternative titles using different intent angles"
+    },
+
+    {
+      title:"Step 3 — Thumbnail Test",
+      text:
+        "Create a simpler visual with one dominant subject and one clear promise"
+    },
+
+    {
+      title:"Step 4 — Description / Packaging",
+      text:
+        "Align first lines and metadata with the video's actual viewer promise"
+    },
+
+    {
+      title:"Step 5 — Distribution",
+      text:
+        "Use relevant Shorts, community posts or related content to create a new traffic path"
+    },
+
+    {
+      title:"Step 6 — Measure",
+      text:
+        "Compare impressions, CTR, watch time and viewer response after the test"
+    }
+
+  ];
+
+  $("recoveryPlan").innerHTML =
+    plans.map(x=>`
+
+      <div class="action-card">
+
+        <h4>${escapeHtml(x.title)}</h4>
+
+        <p>
+          ${escapeHtml(x.text)}
+        </p>
+
       </div>
-      <div class="kpi"><span>A</span><strong>${esc(t.a)}</strong></div>
-      <div class="kpi"><span>B</span><strong>${esc(t.b)}</strong></div>
-      <div class="kpi"><span>Result</span><strong>${esc(t.result)}</strong></div>
-      <br>
-      <button class="btn small" onclick="deleteTest(${i})">Delete</button>
-    </div>
-  `).join("");
+
+    `).join("");
+
 }
 
-function deleteTest(i){
-  state.tests.splice(i,1);
+
+/* =========================================================
+   NEXT 10
+   ========================================================= */
+
+function generateNext10(){
+
+  const audience =
+    $("nextAudience").value.trim() ||
+    "Myanmar audience";
+
+  const goal =
+    $("nextGoal").value;
+
+  const winners =
+    getWinningVideos();
+
+  const base =
+    winners.length
+      ? winners[0].title
+      : "Your core topic";
+
+  const ideas = [
+
+    "Part 2 — " + base,
+
+    "The mistakes people make with " + base,
+
+    "7 lessons from " + base,
+
+    "Beginner guide to " + base,
+
+    "Advanced strategy for " + base,
+
+    "Real example: " + base,
+
+    "Before vs after: " + base,
+
+    "Questions people ask about " + base,
+
+    "Myth vs reality: " + base,
+
+    "Complete roadmap: " + base
+
+  ];
+
+  state.next10 =
+    ideas.map((title,index)=>({
+
+      id:Date.now()+index,
+      title,
+      audience,
+      goal,
+      format:
+        index % 4 === 0
+          ? "Long-form"
+          : index % 4 === 1
+            ? "Shorts"
+            : index % 4 === 2
+              ? "Long-form"
+              : "Series",
+
+      priority:
+        index < 3
+          ? "HIGH"
+          : index < 7
+            ? "MEDIUM"
+            : "LOW"
+
+    }));
+
   saveState();
+
+  $("next10Results").innerHTML =
+    state.next10.map((item,index)=>`
+
+      <div class="card">
+
+        <div class="card-title">
+
+          <h3>
+            #${index+1}
+          </h3>
+
+          <span class="badge ${
+            item.priority === "HIGH"
+              ? "red"
+              : item.priority === "MEDIUM"
+                ? "yellow"
+                : "gray"
+          }">
+            ${item.priority}
+          </span>
+
+        </div>
+
+        <h4 style="font-size:14px">
+          ${escapeHtml(item.title)}
+        </h4>
+
+        <p class="small" style="margin-top:5px">
+          Audience: ${escapeHtml(item.audience)}
+        </p>
+
+        <p class="small">
+          Goal: ${escapeHtml(item.goal)}
+        </p>
+
+        <p class="small">
+          Format: ${escapeHtml(item.format)}
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   7-DAY SPRINT
+   ========================================================= */
+
+function generateSprint(){
+
+  const actions = [
+
+    {
+      day:"Day 1",
+      title:"Audit Winners",
+      text:
+        "Top-performing videos 5 ခုရွေးပြီး title, topic, structure pattern ကိုမှတ်ပါ"
+    },
+
+    {
+      day:"Day 2",
+      title:"Packaging Test",
+      text:
+        "Next video အတွက် title 3 ခုနဲ့ thumbnail concepts 3 ခုတည်ဆောက်ပါ"
+    },
+
+    {
+      day:"Day 3",
+      title:"Hook Upgrade",
+      text:
+        "Video opening ကို viewer benefit နဲ့စပြီး unnecessary intro ကိုလျှော့ပါ"
+    },
+
+    {
+      day:"Day 4",
+      title:"Publish",
+      text:
+        "Strongest topic တစ်ခုကို polished long-form video အဖြစ် publish လုပ်ပါ"
+    },
+
+    {
+      day:"Day 5",
+      title:"Create Supporting Short",
+      text:
+        "Long-form ရဲ့ strongest moment ကို Shorts အဖြစ် repurpose လုပ်ပါ"
+    },
+
+    {
+      day:"Day 6",
+      title:"Measure",
+      text:
+        "Views, impressions, CTR, retention, watch time ကိုစုစည်းပါ"
+    },
+
+    {
+      day:"Day 7",
+      title:"Decide Next Experiment",
+      text:
+        "Data အပေါ်အခြေခံပြီး နောက်တစ်ပတ်အတွက် hypothesis တစ်ခုရွေးပါ"
+    }
+
+  ];
+
+  state.sprint = actions;
+
+  saveState();
+
+  $("sprintResults").innerHTML =
+    actions.map((item,index)=>`
+
+      <div class="action-card">
+
+        <div style="
+          display:flex;
+          gap:10px;
+          align-items:center
+        ">
+
+          <span class="badge blue">
+            ${escapeHtml(item.day)}
+          </span>
+
+          <h4>
+            ${escapeHtml(item.title)}
+          </h4>
+
+        </div>
+
+        <p style="margin-top:8px">
+          ${escapeHtml(item.text)}
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   REFERENCE PATTERNS
+   ========================================================= */
+
+function addPattern(){
+
+  const name =
+    $("patternName").value.trim();
+
+  const category =
+    $("patternCategory").value;
+
+  const notes =
+    $("patternNotes").value.trim();
+
+  if(!name){
+
+    alert("Pattern name ထည့်ပါ");
+
+    return;
+  }
+
+  state.patterns.unshift({
+
+    id:Date.now(),
+    name,
+    category,
+    notes,
+    created:new Date().toISOString()
+
+  });
+
+  saveState();
+
+  $("patternName").value = "";
+  $("patternNotes").value = "";
+
+  renderPatterns();
+
+}
+
+function renderPatterns(){
+
+  const box = $("patternList");
+
+  if(!state.patterns.length){
+
+    box.innerHTML =
+      '<div class="empty">No reference patterns saved</div>';
+
+    return;
+  }
+
+  box.innerHTML =
+    state.patterns.map(item=>`
+
+      <div class="card">
+
+        <div class="card-title">
+
+          <h3>
+            ${escapeHtml(item.name)}
+          </h3>
+
+          <span class="badge blue">
+            ${escapeHtml(item.category)}
+          </span>
+
+        </div>
+
+        <p class="small">
+          ${escapeHtml(item.notes || "No notes")}
+        </p>
+
+        <div style="margin-top:12px">
+          <button
+            class="btn btn-danger btn-small"
+            onclick="deletePattern(${item.id})">
+            Delete
+          </button>
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+function deletePattern(id){
+
+  state.patterns =
+    state.patterns.filter(
+      x=>x.id!==id
+    );
+
+  saveState();
+
+  renderPatterns();
+
+}
+
+
+/* =========================================================
+   A/B TEST TRACKER
+   ========================================================= */
+
+function addTest(){
+
+  const item = {
+
+    id:Date.now(),
+
+    type:$("testType").value,
+
+    video:$("testVideo").value.trim(),
+
+    a:$("variantA").value.trim(),
+
+    b:$("variantB").value.trim(),
+
+    metric:$("testMetric").value,
+
+    result:$("testResult").value,
+
+    created:new Date().toISOString()
+
+  };
+
+  if(!item.video){
+
+    alert("Video name ထည့်ပါ");
+
+    return;
+  }
+
+  state.tests.unshift(item);
+
+  saveState();
+
+  $("testVideo").value = "";
+  $("variantA").value = "";
+  $("variantB").value = "";
+
   renderTests();
+
 }
 
-function saveProfile(){
-  state.creator=$("creatorName").value.trim()||"Aung Zar Ni Win";
-  state.niche=$("creatorNiche").value.trim()||"YouTube";
+function renderTests(){
+
+  const box = $("testTable");
+
+  if(!state.tests.length){
+
+    box.innerHTML =
+      '<div class="empty">No tests recorded</div>';
+
+    return;
+  }
+
+  box.innerHTML = `
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Type</th>
+            <th>Video</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Metric</th>
+            <th>Result</th>
+            <th></th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${state.tests.map(item=>`
+
+            <tr>
+
+              <td>${escapeHtml(item.type)}</td>
+
+              <td>${escapeHtml(item.video)}</td>
+
+              <td>${escapeHtml(item.a)}</td>
+
+              <td>${escapeHtml(item.b)}</td>
+
+              <td>${escapeHtml(item.metric)}</td>
+
+              <td>
+                <span class="badge ${
+                  item.result === "A" ||
+                  item.result === "B"
+                    ? "green"
+                    : item.result === "Running"
+                      ? "yellow"
+                      : "gray"
+                }">
+                  ${escapeHtml(item.result)}
+                </span>
+              </td>
+
+              <td>
+
+                <button
+                  class="btn btn-danger btn-small"
+                  onclick="deleteTest(${item.id})">
+                  Delete
+                </button>
+
+              </td>
+
+            </tr>
+
+          `).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+function deleteTest(id){
+
+  state.tests =
+    state.tests.filter(
+      x=>x.id!==id
+    );
+
   saveState();
-  updateAll();
-  alert("Profile saved");
+
+  renderTests();
+
+}
+
+
+/* =========================================================
+   MONEY ENGINE
+   ========================================================= */
+
+function calculateMoney(){
+
+  const target =
+    Number($("moneyTarget").value || 0);
+
+  const current =
+    Number($("moneyCurrent").value || 0);
+
+  const rpm =
+    Number($("moneyRPM").value || 0);
+
+  const avgViews =
+    Number($("moneyAvgViews").value || 0);
+
+  const videos =
+    Number($("moneyVideos").value || 0);
+
+  const other =
+    Number($("moneyOther").value || 0);
+
+  const gap =
+    Math.max(
+      0,
+      target-current-other
+    );
+
+  const requiredViews =
+    rpm > 0
+      ? (gap / rpm) * 1000
+      : 0;
+
+  const projected =
+    (avgViews / 1000) *
+    rpm *
+    videos +
+    other;
+
+  const viewsVideo =
+    videos > 0
+      ? requiredViews / videos
+      : 0;
+
+  $("moneyGap").textContent =
+    formatMoney(gap);
+
+  $("moneyViewsRequired").textContent =
+    formatNumber(requiredViews);
+
+  $("moneyProjected").textContent =
+    formatMoney(projected);
+
+  $("moneyViewsVideo").textContent =
+    formatNumber(viewsVideo);
+
+  const plans = [
+
+    {
+      title:"Target Gap",
+      text:
+        "Current target gap = " +
+        formatMoney(gap)
+    },
+
+    {
+      title:"Required Views",
+      text:
+        "At RPM $" +
+        rpm.toFixed(2) +
+        ", roughly " +
+        formatNumber(requiredViews) +
+        " monetized views are required for the remaining gap"
+    },
+
+    {
+      title:"Publishing Model",
+      text:
+        videos +
+        " videos/month × " +
+        formatNumber(avgViews) +
+        " average views/video"
+    },
+
+    {
+      title:"Optimization Lever",
+      text:
+        "If required views are too high, improve average views/video, publishing mix, RPM, and additional revenue streams"
+    }
+
+  ];
+
+  $("moneyPlan").innerHTML =
+    plans.map(x=>`
+
+      <div class="list-item">
+
+        <h4>${escapeHtml(x.title)}</h4>
+
+        <p>${escapeHtml(x.text)}</p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+function saveCreator(){
+
+  const name =
+    $("creatorNameInput").value.trim();
+
+  if(!name){
+
+    alert("Creator name ထည့်ပါ");
+
+    return;
+  }
+
+  state.creator = name;
+
+  saveState();
+
+  $("sideCreator").textContent =
+    name;
+
+  $("dashboardWelcome").textContent =
+    "Welcome back, " + name;
+
+  alert("Creator profile သိမ်းပြီးပါပြီ");
+
+}
+
+function saveDefaultChannel(){
+
+  const url =
+    $("defaultChannelInput").value.trim();
+
+  if(!url){
+
+    alert("Channel URL ထည့်ပါ");
+
+    return;
+  }
+
+  state.defaultChannel.url = url;
+
+  saveState();
+
+  $("channelInput").value = url;
+
+  alert("Default channel သိမ်းပြီးပါပြီ");
+
 }
 
 function exportData(){
-  const blob=new Blob(
-    [JSON.stringify(state,null,2)],
-    {type:"application/json"}
+
+  const data =
+    JSON.stringify(
+      state,
+      null,
+      2
+    );
+
+  const blob =
+    new Blob(
+      [data],
+      {type:"application/json"}
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+
+  a.download =
+    "aung-youtube-growth-v52-backup.json";
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  URL.revokeObjectURL(url);
+
+}
+
+$("importFile").addEventListener(
+  "change",
+  function(){
+
+    const file = this.files[0];
+
+    if(!file) return;
+
+    const reader =
+      new FileReader();
+
+    reader.onload = function(){
+
+      try{
+
+        const imported =
+          JSON.parse(reader.result);
+
+        state =
+          Object.assign(
+            JSON.parse(
+              JSON.stringify(DEFAULT_STATE)
+            ),
+            imported
+          );
+
+        saveState();
+
+        location.reload();
+
+      }catch(error){
+
+        alert(
+          "JSON file မမှန်ပါ"
+        );
+
+      }
+
+    };
+
+    reader.readAsText(file);
+
+  }
+);
+
+function resetAllData(){
+
+  const yes =
+    confirm(
+      "V5.2 app data အားလုံးဖျက်မလား"
+    );
+
+  if(!yes) return;
+
+  localStorage.removeItem(STORAGE_KEY);
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   DEFAULT FORM VALUES
+   ========================================================= */
+
+function loadSettingsForm(){
+
+  $("apiKeyInput").value =
+    state.apiKey || "";
+
+  $("creatorNameInput").value =
+    state.creator || "";
+
+  $("defaultChannelInput").value =
+    state.defaultChannel.url || "";
+
+  $("channelInput").value =
+    state.defaultChannel.url || "";
+
+}
+
+
+/* =========================================================
+   DATA HELPERS
+   ========================================================= */
+
+function getAverageViews(){
+
+  return average(
+    state.videos.map(
+      v=>v.views
+    )
   );
 
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download="aung-youtube-growth-v51-backup.json";
-  a.click();
-  URL.revokeObjectURL(url);
 }
 
-function importData(event){
-  const file=event.target.files[0];
-  if(!file)return;
+function getAverageEngagement(){
 
-  const reader=new FileReader();
+  return average(
+    state.videos.map(
+      v=>v.engagement
+    )
+  );
 
-  reader.onload=e=>{
-    try{
-      const data=JSON.parse(e.target.result);
-
-      state={...state,...data};
-      state.channel={...state.channel,...(data.channel||{})};
-
-      saveState();
-      updateAll();
-
-      alert("Import completed");
-    }catch(err){
-      alert("Invalid JSON file");
-    }
-  };
-
-  reader.readAsText(file);
 }
 
-function resetApp(){
-  if(!confirm("App data အားလုံးဖျက်မလား"))return;
+function getWinningVideos(){
 
-  localStorage.removeItem(STORE);
-  location.reload();
+  const avg =
+    getAverageViews();
+
+  return state.videos
+    .filter(
+      v=>avg>0 && v.views>=avg*1.5
+    )
+    .sort(
+      (a,b)=>b.views-a.views
+    );
+
 }
 
-loadState();
+
+/* =========================================================
+   INITIAL RENDER
+   ========================================================= */
+
+function renderAll(){
+
+  loadSettingsForm();
+
+  updateApiStatus();
+
+  renderDashboard();
+
+  renderChannel();
+
+  renderVideoIntel();
+
+  renderOpportunities();
+
+  loadStudioForm();
+
+  renderAnalytics();
+
+  renderRecoverySelect();
+
+  renderPatterns();
+
+  renderTests();
+
+  calculateMoney();
+
+  renderTopicResultsIfAny();
+
+  renderTitleResultsIfAny();
+
+  renderNext10IfAny();
+
+  renderSprintIfAny();
+
+}
+
+function renderTopicResultsIfAny(){
+
+  if(!state.topics.length) return;
+
+  $("topicResults").innerHTML =
+    state.topics.map(item=>`
+
+      <div class="card">
+
+        <div class="card-title">
+          <h3>${escapeHtml(item.title)}</h3>
+          <span>${item.score}/100</span>
+        </div>
+
+        <p class="small">
+          Format: ${escapeHtml(item.format)}
+        </p>
+
+        <div style="margin-top:12px">
+          <div class="progress">
+            <div style="width:${item.score}%"></div>
+          </div>
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+function renderTitleResultsIfAny(){
+
+  if(!state.titles.length) return;
+
+  $("titleResults").innerHTML =
+    state.titles.map(item=>`
+
+      <div class="list-item">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          gap:10px
+        ">
+
+          <div>
+            <h4>
+              ${escapeHtml(item.title)}
+            </h4>
+            <p>
+              Score ${item.score}/100
+            </p>
+          </div>
+
+          <span class="badge ${
+            item.score>=85
+              ? "green"
+              : item.score>=75
+                ? "yellow"
+                : "gray"
+          }">
+            ${item.score}
+          </span>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+function renderNext10IfAny(){
+
+  if(!state.next10.length) return;
+
+  $("next10Results").innerHTML =
+    state.next10.map((item,index)=>`
+
+      <div class="card">
+
+        <div class="card-title">
+
+          <h3>#${index+1}</h3>
+
+          <span class="badge ${
+            item.priority==="HIGH"
+              ? "red"
+              : item.priority==="MEDIUM"
+                ? "yellow"
+                : "gray"
+          }">
+            ${item.priority}
+          </span>
+
+        </div>
+
+        <h4>
+          ${escapeHtml(item.title)}
+        </h4>
+
+        <p class="small">
+          ${escapeHtml(item.format)}
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+function renderSprintIfAny(){
+
+  if(!state.sprint.length) return;
+
+  $("sprintResults").innerHTML =
+    state.sprint.map(item=>`
+
+      <div class="action-card">
+
+        <span class="badge blue">
+          ${escapeHtml(item.day)}
+        </span>
+
+        <h4 style="margin-top:8px">
+          ${escapeHtml(item.title)}
+        </h4>
+
+        <p>
+          ${escapeHtml(item.text)}
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    renderAll();
+
+  }
+);
+
 </script>
 
 </body>
