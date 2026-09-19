@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#0b1020">
-<title>Aung YouTube Growth Intelligence V5</title>
+<meta name="theme-color" content="#090d16">
+<title>Aung YouTube Growth Intelligence V5.1</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#070b16;
-  --panel:#0f172a;
-  --panel2:#111c31;
-  --panel3:#17233b;
-  --line:#26334d;
-  --text:#f8fafc;
+  --bg:#090d16;
+  --panel:#111827;
+  --panel2:#151f31;
+  --line:#263247;
+  --text:#f4f7fb;
   --muted:#94a3b8;
-  --accent:#7c5cff;
-  --accent2:#00d4ff;
+  --accent:#ef4444;
+  --accent2:#f97316;
   --green:#22c55e;
-  --yellow:#f59e0b;
-  --red:#ef4444;
-  --orange:#fb923c;
+  --yellow:#eab308;
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
 }
+html{scroll-behavior:smooth}
 body{
   font-family:Arial,"Noto Sans Myanmar",sans-serif;
   background:var(--bg);
@@ -33,368 +33,310 @@ button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 .app{display:flex;min-height:100vh}
 .sidebar{
-  width:265px;
-  background:#0a1020;
+  width:260px;
+  background:#0b111d;
   border-right:1px solid var(--line);
   position:fixed;
-  left:0;
-  top:0;
-  bottom:0;
-  z-index:50;
+  top:0;bottom:0;left:0;
   overflow-y:auto;
+  z-index:50;
 }
 .brand{
   padding:22px 18px;
   border-bottom:1px solid var(--line);
 }
-.brand h1{font-size:19px}
-.brand p{font-size:11px;color:var(--muted);margin-top:5px}
+.brand h1{font-size:19px;line-height:1.3}
+.brand p{font-size:11px;color:var(--muted);margin-top:6px}
 .nav{padding:12px}
 .nav button{
   width:100%;
   border:0;
   background:transparent;
-  color:#aebbd0;
+  color:#b8c3d4;
   padding:12px 13px;
   border-radius:10px;
   text-align:left;
   margin-bottom:4px;
 }
 .nav button:hover,.nav button.active{
-  background:#18233a;
-  color:white;
+  background:#172033;
+  color:#fff;
 }
-.nav .group{
-  color:#64748b;
-  font-size:10px;
-  text-transform:uppercase;
-  padding:14px 12px 6px;
-}
+.nav .danger{color:#fca5a5}
 .main{
-  margin-left:265px;
-  width:calc(100% - 265px);
-  min-width:0;
+  margin-left:260px;
+  width:calc(100% - 260px);
 }
 .topbar{
-  height:68px;
-  border-bottom:1px solid var(--line);
-  background:rgba(7,11,22,.92);
-  backdrop-filter:blur(10px);
   position:sticky;
   top:0;
   z-index:30;
+  background:rgba(9,13,22,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  padding:13px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.mobile-menu{display:none}
+.status{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:0 24px;
+  gap:8px;
+  color:var(--muted);
+  font-size:12px;
 }
-.topbar h2{font-size:18px}
-.topbar small{color:var(--muted)}
-.menu-btn{
-  display:none;
-  background:var(--panel);
-  border:1px solid var(--line);
-  color:white;
-  padding:8px 11px;
-  border-radius:8px;
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--green);
 }
 .content{padding:24px;max-width:1500px;margin:auto}
 .page{display:none}
 .page.active{display:block}
-.hero{
-  background:
-    radial-gradient(circle at 80% 10%,rgba(124,92,255,.22),transparent 35%),
-    radial-gradient(circle at 10% 80%,rgba(0,212,255,.12),transparent 30%),
-    var(--panel);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:25px;
-  margin-bottom:18px;
-}
-.hero h1{font-size:27px;margin-bottom:8px}
-.hero p{color:var(--muted);line-height:1.7}
+h2{font-size:25px;margin-bottom:6px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:20px}
 .grid{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(4,1fr);
   gap:14px;
+  margin-bottom:18px;
 }
 .grid2{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(2,1fr);
   gap:14px;
+  margin-bottom:18px;
 }
 .card{
   background:var(--panel);
   border:1px solid var(--line);
   border-radius:15px;
   padding:17px;
-  margin-bottom:14px;
 }
-.card h3{font-size:15px;margin-bottom:8px}
-.card .desc{color:var(--muted);font-size:12px;line-height:1.6}
+.card h3{
+  font-size:15px;
+  margin-bottom:13px;
+}
+.metric-label{font-size:12px;color:var(--muted)}
 .metric{
-  min-height:125px;
-}
-.metric .label{color:var(--muted);font-size:12px}
-.metric .value{
-  font-size:27px;
+  font-size:26px;
   font-weight:800;
-  margin:10px 0 5px;
+  margin-top:7px;
 }
-.metric .sub{font-size:11px;color:var(--muted)}
-.green{color:var(--green)!important}
-.yellow{color:var(--yellow)!important}
-.red{color:var(--red)!important}
-.blue{color:var(--accent2)!important}
-.orange{color:var(--orange)!important}
-.progress{
-  height:9px;
-  background:#202c43;
-  border-radius:20px;
-  overflow:hidden;
-  margin:12px 0;
+.metric.green{color:var(--green)}
+.metric.red{color:#fb7185}
+.metric.orange{color:#fb923c}
+.metric.blue{color:#60a5fa}
+.metric.purple{color:#a78bfa}
+.section-title{
+  font-size:17px;
+  font-weight:800;
+  margin:25px 0 12px;
 }
-.progress span{
+.input-group{margin-bottom:13px}
+.input-group label{
   display:block;
-  height:100%;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  border-radius:20px;
-}
-label{
-  display:block;
-  font-size:11px;
-  color:#a9b5c9;
+  color:#cbd5e1;
+  font-size:12px;
   margin-bottom:6px;
 }
 input,textarea,select{
   width:100%;
-  background:#0b1324;
-  color:white;
+  background:#0b1220;
+  color:#fff;
   border:1px solid var(--line);
   border-radius:9px;
   padding:11px 12px;
   outline:none;
 }
 input:focus,textarea:focus,select:focus{
-  border-color:var(--accent);
+  border-color:#64748b;
 }
-textarea{min-height:95px;resize:vertical}
-.field{margin-bottom:12px}
+textarea{min-height:100px;resize:vertical}
+.row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.row3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
 .btn{
   border:0;
   border-radius:9px;
-  padding:10px 14px;
-  color:white;
-  background:#26334d;
-  margin:3px;
+  padding:11px 15px;
+  font-weight:700;
+  color:#fff;
+  background:#334155;
 }
-.btn:hover{filter:brightness(1.15)}
-.btn.primary{
-  background:linear-gradient(135deg,#6d4aff,#4f46e5);
-}
-.btn.green{background:#166534}
-.btn.red{background:#7f1d1d}
-.btn.orange{background:#9a3412}
-.btn.small{padding:7px 10px;font-size:11px}
-.actions{display:flex;flex-wrap:wrap;gap:5px}
-.section-title{
+.btn:hover{filter:brightness(1.12)}
+.btn.primary{background:var(--accent)}
+.btn.green{background:#15803d}
+.btn.blue{background:#1d4ed8}
+.btn.purple{background:#6d28d9}
+.btn.orange{background:#c2410c}
+.btn.full{width:100%}
+.btn.small{padding:7px 10px;font-size:12px}
+.actions{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:22px 0 12px;
+  gap:8px;
+  flex-wrap:wrap;
 }
-.section-title h2{font-size:18px}
-.section-title span{font-size:11px;color:var(--muted)}
 .notice{
-  border-left:3px solid var(--accent2);
-  background:#0c1829;
+  border:1px solid #374151;
+  background:#0d1524;
+  border-radius:11px;
   padding:13px;
-  border-radius:8px;
   color:#cbd5e1;
   font-size:12px;
-  line-height:1.7;
-  margin-bottom:14px;
+  line-height:1.6;
+  margin-bottom:15px;
 }
-.priority{
-  border:1px solid #4b3b99;
-  background:linear-gradient(135deg,#171433,#0f172a);
+.notice.warn{
+  border-color:#854d0e;
+  background:#1c1608;
 }
-.priority .big{
-  font-size:21px;
-  font-weight:800;
-  margin:8px 0;
+.notice.good{
+  border-color:#166534;
+  background:#07170d;
 }
-.kpi-list{list-style:none}
-.kpi-list li{
-  padding:10px 0;
-  border-bottom:1px solid #1d2940;
+.table-wrap{overflow:auto}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+th,td{
+  padding:11px 9px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
   font-size:12px;
 }
-.kpi-list li:last-child{border-bottom:0}
+th{color:#94a3b8;font-weight:700}
+td{color:#e2e8f0}
 .badge{
   display:inline-block;
   padding:4px 8px;
   border-radius:20px;
   font-size:10px;
-  font-weight:bold;
-  background:#24314a;
-  color:#dbeafe;
+  font-weight:800;
 }
-.badge.green{background:#123b25}
-.badge.yellow{background:#45330e}
-.badge.red{background:#451518}
-.badge.blue{background:#103746}
-.badge.purple{background:#30205a}
-.video-row{
+.badge.green{background:#052e16;color:#86efac}
+.badge.red{background:#450a0a;color:#fca5a5}
+.badge.yellow{background:#422006;color:#fde68a}
+.badge.blue{background:#172554;color:#93c5fd}
+.badge.purple{background:#2e1065;color:#c4b5fd}
+.video-list{display:grid;gap:10px}
+.video{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:12px;
+  background:#0d1524;
   border:1px solid var(--line);
-  background:#0b1324;
   border-radius:11px;
-  padding:13px;
-  margin-bottom:9px;
+  padding:10px;
 }
-.video-row h4{
+.video img{
+  width:120px;
+  height:68px;
+  object-fit:cover;
+  border-radius:7px;
+}
+.video-title{
   font-size:13px;
-  line-height:1.5;
-  margin:6px 0;
+  font-weight:700;
+  line-height:1.4;
 }
 .video-meta{
   display:flex;
-  gap:10px;
   flex-wrap:wrap;
+  gap:7px;
   color:var(--muted);
-  font-size:10px;
-}
-.two-col{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.quad{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.quad .q{
-  padding:15px;
-  border-radius:11px;
-  border:1px solid var(--line);
-  min-height:120px;
-}
-.q h4{font-size:13px;margin-bottom:7px}
-.q p{font-size:11px;color:var(--muted);line-height:1.6}
-.table-wrap{overflow-x:auto}
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:650px;
-}
-th,td{
-  text-align:left;
-  padding:10px;
-  border-bottom:1px solid var(--line);
   font-size:11px;
+  margin-top:7px;
 }
-th{color:#94a3b8}
+.progress{
+  height:8px;
+  background:#1e293b;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:8px;
+}
+.progress span{
+  display:block;
+  height:100%;
+  background:var(--accent);
+}
 .empty{
-  padding:28px;
+  padding:30px;
   text-align:center;
   color:var(--muted);
   border:1px dashed var(--line);
   border-radius:12px;
 }
-.score-ring{
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background:conic-gradient(var(--accent) 0deg,#202c43 0deg);
+.kpi{
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
-  margin:auto;
-}
-.score-ring div{
-  width:76px;
-  height:76px;
-  border-radius:50%;
-  background:var(--panel);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  font-weight:800;
-}
-.matrix{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px;
-}
-.matrix-box{
-  min-height:145px;
-  border-radius:12px;
-  padding:15px;
-  border:1px solid var(--line);
-}
-.matrix-box h4{margin-bottom:7px}
-.matrix-box p{font-size:11px;color:var(--muted);line-height:1.6}
-.day{
-  display:flex;
-  gap:12px;
-  padding:13px 0;
+  padding:10px 0;
   border-bottom:1px solid var(--line);
+  font-size:12px;
 }
-.day:last-child{border-bottom:0}
-.day-num{
-  width:42px;height:42px;flex:0 0 42px;
-  border-radius:10px;
-  background:#1b2540;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:800;
+.kpi:last-child{border-bottom:0}
+.score{
+  font-size:35px;
+  font-weight:900;
 }
-.day h4{font-size:13px;margin-bottom:5px}
-.day p{font-size:11px;color:var(--muted);line-height:1.6}
-.ref-card{
+.title-result{
+  padding:12px;
+  background:#0d1524;
   border:1px solid var(--line);
-  background:#0b1324;
-  padding:13px;
-  border-radius:11px;
-  margin-bottom:9px;
-}
-.ref-card h4{font-size:13px}
-.ref-card p{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.5}
-.toast{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  background:#16233a;
-  border:1px solid var(--line);
-  color:white;
-  padding:12px 15px;
   border-radius:10px;
-  z-index:100;
-  display:none;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  margin-bottom:8px;
 }
-.overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:40;
+.title-result strong{font-size:13px}
+.title-score{
+  float:right;
+  font-weight:900;
 }
-.file-box{
-  border:1px dashed #3b4b6a;
+.thumb-preview{
+  width:100%;
+  max-height:300px;
+  object-fit:contain;
+  background:#05080e;
   border-radius:10px;
-  padding:15px;
-  text-align:center;
+  margin-top:10px;
 }
+.loader{
+  display:inline-block;
+  width:15px;height:15px;
+  border:2px solid #64748b;
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  vertical-align:middle;
+  margin-right:7px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 hr{
   border:0;
   border-top:1px solid var(--line);
-  margin:15px 0;
+  margin:18px 0;
 }
+.footer{
+  color:#64748b;
+  text-align:center;
+  padding:25px;
+  font-size:11px;
+}
+.hide{display:none!important}
+
 @media(max-width:1000px){
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:760px){
   .sidebar{
@@ -406,13 +348,22 @@ hr{
     margin-left:0;
     width:100%;
   }
-  .menu-btn{display:block}
-  .overlay.show{display:block}
-  .topbar{padding:0 14px}
-  .content{padding:14px}
-  .grid,.grid2,.two-col{grid-template-columns:1fr}
-  .hero{padding:18px}
-  .hero h1{font-size:22px}
+  .mobile-menu{
+    display:block;
+    background:#172033;
+    border:0;
+    color:#fff;
+    border-radius:8px;
+    padding:8px 11px;
+  }
+  .content{padding:15px}
+  .topbar{padding:10px 13px}
+  .grid,.grid2,.row,.row3{
+    grid-template-columns:1fr;
+  }
+  .metric{font-size:23px}
+  .video{grid-template-columns:90px 1fr}
+  .video img{width:90px;height:52px}
 }
 </style>
 </head>
@@ -423,1321 +374,1236 @@ hr{
 
 <aside class="sidebar" id="sidebar">
   <div class="brand">
-    <h1>⚡ AUNG YOUTUBE</h1>
-    <p>Growth Intelligence V5</p>
+    <h1>▶ Aung YouTube<br>Growth Intelligence</h1>
+    <p>V5.1 • Creator Growth System</p>
   </div>
 
   <nav class="nav">
-    <div class="group">Command Center</div>
-    <button class="active" onclick="showPage('dashboard',this)">⌂ Dashboard</button>
-    <button onclick="showPage('channel',this)">◉ Channel Intel</button>
-    <button onclick="showPage('videos',this)">▶ Video Intelligence</button>
-    <button onclick="showPage('opportunities',this)">⚡ Opportunities</button>
-
-    <div class="group">Growth Engine</div>
-    <button onclick="showPage('topics',this)">⌕ Topic Research</button>
-    <button onclick="showPage('titles',this)">✎ Title Test Lab</button>
-    <button onclick="showPage('thumbnail',this)">▣ Thumbnail Intel</button>
-    <button onclick="showPage('recovery',this)">↻ Video Recovery</button>
-    <button onclick="showPage('next10',this)">➜ Next 10 Videos</button>
-
-    <div class="group">Management</div>
-    <button onclick="showPage('sprint',this)">◷ 7-Day Sprint</button>
-    <button onclick="showPage('references',this)">★ Reference Patterns</button>
-    <button onclick="showPage('revenue',this)">💰 Money Engine</button>
-    <button onclick="showPage('tests',this)">A/B Test Tracker</button>
-
-    <div class="group">System</div>
-    <button onclick="showPage('academy',this)">▤ Growth Academy</button>
-    <button onclick="showPage('settings',this)">⚙ Settings</button>
+    <button class="active" onclick="showPage('dashboard',this)">📊 Dashboard</button>
+    <button onclick="showPage('channel',this)">📺 Channel Intel</button>
+    <button onclick="showPage('videos',this)">🎬 Video Intelligence</button>
+    <button onclick="showPage('opportunities',this)">🔥 Opportunities</button>
+    <button onclick="showPage('topics',this)">💡 Topic Research</button>
+    <button onclick="showPage('titles',this)">🏷️ Title Lab</button>
+    <button onclick="showPage('thumbnails',this)">🖼️ Thumbnail Intel</button>
+    <button onclick="showPage('recovery',this)">🛠️ Video Recovery</button>
+    <button onclick="showPage('next10',this)">🚀 Next 10 Videos</button>
+    <button onclick="showPage('sprint',this)">⚡ 7-Day Sprint</button>
+    <button onclick="showPage('patterns',this)">🧠 Reference Patterns</button>
+    <button onclick="showPage('money',this)">💰 Money Engine</button>
+    <button onclick="showPage('tests',this)">🧪 A/B Test Tracker</button>
+    <button onclick="showPage('academy',this)">🎓 Growth Academy</button>
+    <button onclick="showPage('settings',this)">⚙️ Settings</button>
   </nav>
 </aside>
-
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <main class="main">
 
 <header class="topbar">
-  <div style="display:flex;align-items:center;gap:10px">
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <div>
-      <h2 id="pageTitle">Dashboard</h2>
-      <small>YouTube Growth Intelligence System</small>
-    </div>
-  </div>
+  <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
   <div>
-    <span class="badge purple">V5 PROFESSIONAL</span>
+    <strong id="topChannel">Buddha-တရားတော် Channel</strong>
+  </div>
+  <div class="status">
+    <span class="dot"></span>
+    V5.1 Live Intelligence
   </div>
 </header>
 
 <div class="content">
 
 <!-- DASHBOARD -->
-<section class="page active" id="dashboard">
-  <div class="hero">
-    <h1>🎯 YouTube Growth Command Center</h1>
-    <p>
-      Channel data ကိုကြည့် → ပြဿနာရှာ → အရေးကြီးဆုံးအရာကိုရွေး → Test လုပ် → Result တိုင်း → နောက် Video မှာ ပြန်အသုံးချ
-    </p>
-  </div>
+<section id="dashboard" class="page active">
+  <h2>Creator Command Center</h2>
+  <p class="sub">YouTube public data ကိုအသုံးပြုပြီး channel growth opportunity တွေကိုရှာဖွေမယ်</p>
 
-  <div class="card priority">
-    <div class="badge purple">TODAY'S PRIORITY</div>
-    <div class="big" id="priorityTitle">Channel data ထည့်ပြီး ပထမဆုံး Diagnosis လုပ်ပါ</div>
-    <p class="desc" id="priorityText">
-      Subscribers, videos နဲ့ Analytics data ထည့်လိုက်တာနဲ့ ဒီနေရာမှာ အရေးကြီးဆုံးလုပ်ဆောင်ချက်ကို ပြမယ်
-    </p>
-    <button class="btn primary" onclick="showPageById('channel')">Start Channel Analysis →</button>
+  <div class="notice good">
+    <strong>Growth principle</strong><br>
+    Data → Diagnosis → Test → Measure → Improve
   </div>
 
   <div class="grid">
-    <div class="card metric">
-      <div class="label">Subscribers</div>
-      <div class="value" id="dSubs">—</div>
-      <div class="sub">Channel Intelligence</div>
+    <div class="card">
+      <div class="metric-label">Subscribers</div>
+      <div class="metric green" id="dSubs">—</div>
     </div>
-    <div class="card metric">
-      <div class="label">Total Views</div>
-      <div class="value" id="dViews">—</div>
-      <div class="sub">Public channel data</div>
+    <div class="card">
+      <div class="metric-label">Total Views</div>
+      <div class="metric blue" id="dViews">—</div>
     </div>
-    <div class="card metric">
-      <div class="label">Videos Tracked</div>
-      <div class="value" id="dVideos">0</div>
-      <div class="sub">Your local intelligence database</div>
+    <div class="card">
+      <div class="metric-label">Public Videos</div>
+      <div class="metric purple" id="dVideos">—</div>
     </div>
-    <div class="card metric">
-      <div class="label">Revenue Target</div>
-      <div class="value" id="dRevenue">$0</div>
-      <div class="sub">Monthly target</div>
+    <div class="card">
+      <div class="metric-label">Analyzed Videos</div>
+      <div class="metric orange" id="dAnalyzed">0</div>
     </div>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <h3>📊 Channel Health</h3>
-      <div style="display:flex;align-items:center;gap:20px">
-        <div class="score-ring" id="healthRing">
-          <div id="healthScore">0</div>
-        </div>
-        <div style="flex:1">
-          <div class="kpi-list">
-            <li>Packaging: <b id="healthPackaging">—</b></li>
-            <li>Retention: <b id="healthRetention">—</b></li>
-            <li>Content: <b id="healthContent">—</b></li>
-            <li>Monetization: <b id="healthMoney">—</b></li>
-          </div>
-        </div>
-      </div>
+      <h3>🎯 Current Channel</h3>
+      <div class="kpi"><span>Channel</span><strong id="dChannel">—</strong></div>
+      <div class="kpi"><span>Category</span><strong id="dNiche">—</strong></div>
+      <div class="kpi"><span>Last Sync</span><strong id="dSync">—</strong></div>
+      <br>
+      <button class="btn primary full" onclick="showPageById('channel')">Analyze Channel</button>
     </div>
 
     <div class="card">
-      <h3>🚨 Quick Diagnosis</h3>
-      <ul class="kpi-list" id="quickDiagnosis">
-        <li>Analytics data ထည့်ပြီး Diagnosis စလုပ်ပါ</li>
-      </ul>
+      <h3>🔥 Immediate Opportunities</h3>
+      <div id="dashboardOpp"></div>
     </div>
   </div>
 
-  <div class="section-title">
-    <h2>🔥 Tracked Winning Videos</h2>
-    <span>Heuristic — not a guarantee</span>
-  </div>
-  <div class="card" id="dashboardWinners"></div>
-
-  <div class="section-title">
-    <h2>✅ Today's Action List</h2>
-  </div>
   <div class="card">
-    <ul class="kpi-list" id="todayActions">
-      <li>1. Channel data ထည့်ပါ</li>
-      <li>2. အနည်းဆုံး Video 3 ခုရဲ့ CTR / Retention ထည့်ပါ</li>
-      <li>3. Recovery opportunity ရှာပါ</li>
-      <li>4. Next 10 Videos ထဲက တစ်ခုကို ရွေးပါ</li>
-    </ul>
+    <h3>🏆 Recent Top Videos</h3>
+    <div id="dashboardTopVideos" class="video-list"></div>
   </div>
 </section>
 
 <!-- CHANNEL -->
-<section class="page" id="channel">
-  <div class="hero">
-    <h1>◉ Channel Intelligence</h1>
-    <p>Public YouTube channel information နဲ့ ကိုယ်တိုင်ထည့်ထားတဲ့ Studio Analytics ကို တစ်နေရာထဲမှာ စုစည်းပါ</p>
+<section id="channel" class="page">
+  <h2>Channel Intelligence</h2>
+  <p class="sub">Public YouTube channel data ကို live analyze လုပ်ရန်</p>
+
+  <div class="card">
+    <div class="input-group">
+      <label>YouTube Channel URL / @Handle / Channel ID</label>
+      <input id="channelUrl" placeholder="https://youtube.com/@yourchannel">
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" onclick="analyzeChannel()">🔍 Analyze Channel</button>
+      <button class="btn blue" onclick="loadSavedChannel()">↻ Load Saved</button>
+    </div>
+
+    <div id="channelStatus" style="margin-top:12px"></div>
   </div>
 
-  <div class="notice">
-    YouTube Studio ရဲ့ CTR, Retention, Returning Viewers, Revenue စတဲ့ private analytics တွေကို GitHub Pages ကနေ တိုက်ရိုက်ဖတ်လို့မရသေးပါ
-    အောက်မှာ ကိုယ်တိုင်ထည့်ပေးရင် V5 က Diagnosis Engine အဖြစ် အသုံးပြုပေးမယ်
+  <div class="grid" style="margin-top:18px">
+    <div class="card">
+      <div class="metric-label">Subscribers</div>
+      <div class="metric green" id="cSubs">—</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Total Views</div>
+      <div class="metric blue" id="cViews">—</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Public Videos</div>
+      <div class="metric purple" id="cVideos">—</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Channel ID</div>
+      <div class="metric" style="font-size:12px" id="cId">—</div>
+    </div>
   </div>
 
   <div class="grid2">
     <div class="card">
       <h3>Channel Profile</h3>
-
-      <div class="field">
-        <label>Channel Name</label>
-        <input id="channelName" placeholder="ဥပမာ Buddha-တရားတော် Channel">
-      </div>
-
-      <div class="field">
-        <label>Channel URL</label>
-        <input id="channelUrl" placeholder="https://youtube.com/@channel">
-      </div>
-
-      <div class="field">
-        <label>Niche / Main Content</label>
-        <input id="channelNiche" placeholder="ဥပမာ Buddhist Dhamma / AI Music">
-      </div>
-
-      <div class="field">
-        <label>Subscribers</label>
-        <input id="subsInput" type="number" placeholder="10000">
-      </div>
-
-      <div class="field">
-        <label>Total Channel Views</label>
-        <input id="viewsInput" type="number" placeholder="1000000">
-      </div>
-
-      <div class="field">
-        <label>Total Videos</label>
-        <input id="videoCountInput" type="number" placeholder="100">
-      </div>
-
-      <div class="actions">
-        <button class="btn primary" onclick="saveChannel()">Save Channel Data</button>
-        <button class="btn" onclick="loadChannel()">Reload</button>
-      </div>
+      <div id="channelProfile"></div>
     </div>
-
     <div class="card">
-      <h3>📈 Studio Analytics Snapshot</h3>
-
-      <div class="two-col">
-        <div class="field">
-          <label>Average CTR %</label>
-          <input id="avgCtr" type="number" step="0.1" placeholder="5.5">
-        </div>
-        <div class="field">
-          <label>Average Retention %</label>
-          <input id="avgRetention" type="number" step="0.1" placeholder="40">
-        </div>
-        <div class="field">
-          <label>Returning Viewers %</label>
-          <input id="returning" type="number" step="0.1" placeholder="20">
-        </div>
-        <div class="field">
-          <label>Average Views / Video</label>
-          <input id="avgViews" type="number" placeholder="5000">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>What is your biggest problem right now?</label>
-        <select id="mainProblem">
-          <option value="views">Views နည်း</option>
-          <option value="ctr">CTR နည်း</option>
-          <option value="retention">Retention နည်း</option>
-          <option value="subscribers">Subscribers မတက်</option>
-          <option value="money">ဝင်ငွေနည်း</option>
-          <option value="consistency">Consistency မရှိ</option>
-        </select>
-      </div>
-
-      <button class="btn primary" onclick="saveAnalytics()">Save & Diagnose</button>
+      <h3>Channel Growth Diagnosis</h3>
+      <div id="channelDiagnosis"></div>
     </div>
   </div>
 
   <div class="card">
-    <h3>🎯 Channel Diagnosis</h3>
-    <div id="channelDiagnosis" class="empty">Analytics data ထည့်ပြီး Diagnose ကိုနှိပ်ပါ</div>
+    <h3>🎬 Latest Videos</h3>
+    <div id="channelVideos" class="video-list"></div>
   </div>
 </section>
 
 <!-- VIDEOS -->
-<section class="page" id="videos">
-  <div class="hero">
-    <h1>▶ Video Intelligence</h1>
-    <p>ကိုယ့် Video တစ်ခုချင်းစီကို View + CTR + Retention + Engagement အရ စစ်ပြီး Winner / Opportunity / Rework အဖြစ်ခွဲပါ</p>
-  </div>
+<section id="videos" class="page">
+  <h2>Video Intelligence</h2>
+  <p class="sub">သင့် channel ရဲ့ public video performance ကိုနှိုင်းယှဉ်စစ်ဆေးမယ်</p>
 
-  <div class="grid2">
-    <div class="card">
-      <h3>Add Video Performance</h3>
-
-      <div class="field">
-        <label>Video Title</label>
-        <input id="vTitle" placeholder="Video title">
+  <div class="card">
+    <div class="row">
+      <div class="input-group">
+        <label>Minimum Views</label>
+        <input id="minViews" type="number" value="0">
       </div>
-
-      <div class="field">
-        <label>YouTube URL</label>
-        <input id="vUrl" placeholder="https://youtube.com/watch?v=...">
+      <div class="input-group">
+        <label>Sort</label>
+        <select id="videoSort" onchange="renderVideos()">
+          <option value="views">Views</option>
+          <option value="likes">Likes</option>
+          <option value="comments">Comments</option>
+          <option value="date">Newest</option>
+        </select>
       </div>
-
-      <div class="two-col">
-        <div class="field">
-          <label>Views</label>
-          <input id="vViews" type="number">
-        </div>
-        <div class="field">
-          <label>Impressions</label>
-          <input id="vImpressions" type="number">
-        </div>
-        <div class="field">
-          <label>CTR %</label>
-          <input id="vCtr" type="number" step="0.1">
-        </div>
-        <div class="field">
-          <label>Retention %</label>
-          <input id="vRetention" type="number" step="0.1">
-        </div>
-        <div class="field">
-          <label>Likes</label>
-          <input id="vLikes" type="number">
-        </div>
-        <div class="field">
-          <label>Comments</label>
-          <input id="vComments" type="number">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Topic / Content Type</label>
-        <input id="vTopic" placeholder="ဥပမာ တရားတော် / AI Music / Story">
-      </div>
-
-      <button class="btn primary" onclick="addVideo()">Add Video</button>
-    </div>
-
-    <div class="card">
-      <h3>📌 Video Intelligence Rules</h3>
-      <ul class="kpi-list">
-        <li><b>High CTR + High Retention</b> → Scale / Series ပြုလုပ်ရန်</li>
-        <li><b>Low CTR + High Retention</b> → Thumbnail / Title ပြန် Test</li>
-        <li><b>High CTR + Low Retention</b> → Hook / Promise / Delivery စစ်</li>
-        <li><b>Low CTR + Low Retention</b> → Topic + Packaging + Hook ပြန်စဉ်းစား</li>
-      </ul>
     </div>
   </div>
 
-  <div class="section-title">
-    <h2>Video Database</h2>
-    <span id="videoCountLabel">0 videos</span>
+  <div class="card" style="margin-top:15px">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Video</th>
+            <th>Views</th>
+            <th>Likes</th>
+            <th>Comments</th>
+            <th>Engagement</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody id="videoTable"></tbody>
+      </table>
+    </div>
   </div>
-  <div class="card" id="videoList"></div>
 </section>
 
 <!-- OPPORTUNITIES -->
-<section class="page" id="opportunities">
-  <div class="hero">
-    <h1>⚡ Opportunity Engine</h1>
-    <p>Channel ထဲမှာ အမြန်ဆုံး Test လုပ်သင့်တဲ့ Opportunity ကို ဦးစားပေးစီမံပေးမယ်</p>
-  </div>
+<section id="opportunities" class="page">
+  <h2>Growth Opportunities</h2>
+  <p class="sub">အခုရှိနေတဲ့ public data ကနေ test လုပ်သင့်တဲ့နေရာတွေကိုရှာမယ်</p>
 
-  <div class="card">
-    <h3>CTR × Retention Matrix</h3>
-    <div class="matrix">
-      <div class="matrix-box" style="background:#10251a">
-        <h4 class="green">HIGH CTR + HIGH RETENTION</h4>
-        <p>ဒီ Video Pattern ကို Series ပြန်လုပ်ပါ<br>Topic, Hook, Format ကို မှတ်တမ်းတင်ပြီး ဆက်လက်စမ်းသပ်ပါ</p>
-      </div>
-      <div class="matrix-box" style="background:#261f0e">
-        <h4 class="yellow">LOW CTR + HIGH RETENTION</h4>
-        <p>Content က စိတ်ဝင်စားစရာဖြစ်နိုင်ပါတယ်<br>Title + Thumbnail Packaging ကို အရင် Test လုပ်ပါ</p>
-      </div>
-      <div class="matrix-box" style="background:#241b0d">
-        <h4 class="orange">HIGH CTR + LOW RETENTION</h4>
-        <p>Click ရနေပြီး Watch မဆက်ဖြစ်နိုင်ပါတယ်<br>Opening 30 seconds, promise နဲ့ delivery ကို စစ်ပါ</p>
-      </div>
-      <div class="matrix-box" style="background:#251416">
-        <h4 class="red">LOW CTR + LOW RETENTION</h4>
-        <p>Topic + Packaging + Hook သုံးခုလုံးကို Rework/Test လုပ်ဖို့လိုနိုင်ပါတယ်</p>
-      </div>
+  <div class="grid">
+    <div class="card">
+      <div class="metric-label">Potential Winners</div>
+      <div class="metric green" id="oppWinners">0</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Low Engagement</div>
+      <div class="metric red" id="oppLow">0</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">High Engagement</div>
+      <div class="metric blue" id="oppHigh">0</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Test Candidates</div>
+      <div class="metric orange" id="oppTests">0</div>
     </div>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <h3>🏆 Winners</h3>
-      <div id="winnerList"></div>
+      <h3>🏆 Potential Winners</h3>
+      <div id="winnerList" class="video-list"></div>
     </div>
-
     <div class="card">
-      <h3>🚨 Underperforming</h3>
-      <div id="underList"></div>
+      <h3>⚠️ Videos To Rework</h3>
+      <div id="weakList" class="video-list"></div>
     </div>
-  </div>
-
-  <div class="card">
-    <h3>Priority Opportunity</h3>
-    <div id="opportunityText" class="empty"></div>
   </div>
 </section>
 
 <!-- TOPICS -->
-<section class="page" id="topics">
-  <div class="hero">
-    <h1>⌕ Topic Research Lab</h1>
-    <p>Random idea generator မဟုတ်ဘဲ Audience + Niche + Existing Winners ကို အခြေခံပြီး Testable topics ထုတ်ပါ</p>
-  </div>
+<section id="topics" class="page">
+  <h2>Topic Research</h2>
+  <p class="sub">ရှိပြီးသား winning topics ကိုအခြေခံပြီး နောက်ထပ် content angles ထုတ်မယ်</p>
 
   <div class="card">
-    <div class="two-col">
-      <div class="field">
-        <label>Audience</label>
-        <input id="topicAudience" placeholder="ဥပမာ မြန်မာတရားနာသူများ">
-      </div>
-      <div class="field">
+    <div class="row">
+      <div class="input-group">
         <label>Main Topic</label>
-        <input id="topicMain" placeholder="ဥပမာ တရားတော်">
+        <input id="topicInput" placeholder="ဥပမာ - တရားတော် / AI Music">
+      </div>
+      <div class="input-group">
+        <label>Audience</label>
+        <input id="audienceInput" placeholder="ဥပမာ - မြန်မာလူငယ်များ">
       </div>
     </div>
-    <button class="btn primary" onclick="generateTopics()">Generate Opportunity Topics</button>
+    <button class="btn primary" onclick="generateTopics()">💡 Generate Opportunities</button>
   </div>
 
-  <div class="card">
-    <h3>💡 Testable Topic Ideas</h3>
-    <div id="topicResults" class="empty">Generate လုပ်ပါ</div>
+  <div class="card" style="margin-top:15px">
+    <div id="topicResults"></div>
   </div>
 </section>
 
 <!-- TITLES -->
-<section class="page" id="titles">
-  <div class="hero">
-    <h1>✎ Title Test Lab</h1>
-    <p>Title ကို “လှတယ်/မလှဘူး” မဟုတ်ဘဲ Click intent, clarity, curiosity, promise အရ စမ်းသပ်ပါ</p>
-  </div>
+<section id="titles" class="page">
+  <h2>Title Lab</h2>
+  <p class="sub">Title idea ကို click appeal, clarity, curiosity အရ စမ်းသပ်မယ်</p>
 
   <div class="card">
-    <div class="field">
-      <label>Current Title</label>
-      <input id="currentTitle" placeholder="လက်ရှိ Title">
+    <div class="input-group">
+      <label>Video Topic</label>
+      <textarea id="titleTopic" placeholder="ဒီ video မှာ ဘာအကြောင်းပြောမလဲ"></textarea>
     </div>
-    <div class="field">
-      <label>Video Topic / Promise</label>
-      <textarea id="titleTopic" placeholder="ဒီ Video က Viewer ကို ဘာရစေမလဲ"></textarea>
-    </div>
-    <button class="btn primary" onclick="generateTitles()">Generate Test Variations</button>
+    <button class="btn primary" onclick="generateTitles()">🏷️ Generate Titles</button>
   </div>
 
-  <div class="card">
-    <h3>Title Intelligence</h3>
-    <div id="titleResults" class="empty">Title ထည့်ပြီး Generate လုပ်ပါ</div>
+  <div class="card" style="margin-top:15px">
+    <div id="titleResults"></div>
   </div>
 </section>
 
-<!-- THUMBNAIL -->
-<section class="page" id="thumbnail">
-  <div class="hero">
-    <h1>▣ Thumbnail Intelligence</h1>
-    <p>Thumbnail ကို mobile viewer မြင်ကွင်း၊ composition၊ text density နဲ့ contrast အခြေခံပြီး စစ်ပါ</p>
-  </div>
+<!-- THUMBNAILS -->
+<section id="thumbnails" class="page">
+  <h2>Thumbnail Intelligence</h2>
+  <p class="sub">Thumbnail technical quality နဲ့ mobile readability ကိုစစ်မယ်</p>
 
   <div class="grid2">
     <div class="card">
       <h3>Upload Thumbnail</h3>
-      <div class="file-box">
-        <input type="file" id="thumbFile" accept="image/*" onchange="analyzeThumbnail(event)">
-      </div>
-      <div id="thumbPreview" style="margin-top:12px"></div>
+      <input type="file" id="thumbFile" accept="image/*" onchange="analyzeThumbnail(event)">
+      <img id="thumbPreview" class="thumb-preview hide">
     </div>
 
     <div class="card">
-      <h3>Thumbnail Diagnosis</h3>
-      <div id="thumbResult" class="empty">Image တင်ပြီး စစ်ပါ</div>
+      <h3>Technical Analysis</h3>
+      <div id="thumbAnalysis" class="empty">Thumbnail တင်ပြီး analysis လုပ်ပါ</div>
     </div>
   </div>
 
   <div class="card">
-    <h3>🧠 Thumbnail Prompt Builder</h3>
-    <div class="two-col">
-      <div class="field">
-        <label>Subject</label>
-        <input id="thumbSubject" placeholder="ဥပမာ Monk / Product / Singer">
-      </div>
-      <div class="field">
-        <label>Emotion / Message</label>
-        <input id="thumbEmotion" placeholder="ဥပမာ Peace / Surprise / Important">
-      </div>
+    <h3>🖼️ Thumbnail Prompt Builder</h3>
+    <div class="row">
+      <input id="thumbTopic" placeholder="Video topic">
+      <input id="thumbEmotion" placeholder="Emotion / angle">
     </div>
-    <button class="btn primary" onclick="buildThumbPrompt()">Create Design Brief</button>
-    <div id="thumbPrompt" class="notice" style="display:none;margin-top:12px"></div>
+    <br>
+    <button class="btn purple" onclick="buildThumbPrompt()">Generate Prompt</button>
+    <textarea id="thumbPrompt" style="margin-top:12px" readonly></textarea>
   </div>
 </section>
 
 <!-- RECOVERY -->
-<section class="page" id="recovery">
-  <div class="hero">
-    <h1>↻ Video Recovery Planner</h1>
-    <p>View နည်းတဲ့ Video တိုင်းကို ဖျက်ပြီး ပြန်တင်မယ့်အစား ဘာကို Test လုပ်သင့်လဲ စီစဉ်ပါ</p>
-  </div>
+<section id="recovery" class="page">
+  <h2>Video Recovery Planner</h2>
+  <p class="sub">အရင် video တွေကို data အရ ပြန်တိုးတက်အောင်လုပ်မယ့် plan</p>
 
   <div class="card">
-    <div class="field">
-      <label>Select Tracked Video</label>
-      <select id="recoveryVideo" onchange="loadRecoveryVideo()"></select>
+    <div class="input-group">
+      <label>Select Video</label>
+      <select id="recoveryVideo"></select>
     </div>
-
-    <div class="grid">
-      <div class="metric card">
-        <div class="label">CTR</div>
-        <div class="value" id="rCtr">—</div>
-      </div>
-      <div class="metric card">
-        <div class="label">Retention</div>
-        <div class="value" id="rRetention">—</div>
-      </div>
-      <div class="metric card">
-        <div class="label">Views</div>
-        <div class="value" id="rViews">—</div>
-      </div>
-      <div class="metric card">
-        <div class="label">Diagnosis</div>
-        <div class="value" id="rDiagnosis" style="font-size:15px">—</div>
-      </div>
-    </div>
+    <button class="btn orange" onclick="makeRecoveryPlan()">🛠️ Diagnose & Recover</button>
   </div>
 
-  <div class="card">
-    <h3>Recovery Action Plan</h3>
-    <div id="recoveryPlan" class="empty">Video ရွေးပါ</div>
+  <div class="card" style="margin-top:15px">
+    <div id="recoveryResult"></div>
   </div>
 </section>
 
 <!-- NEXT 10 -->
-<section class="page" id="next10">
-  <div class="hero">
-    <h1>➜ Next 10 Videos Planner</h1>
-    <p>ရှိပြီးသား Winning Pattern တွေကနေ နောက်ထပ် Testable Content Series တည်ဆောက်ပါ</p>
-  </div>
+<section id="next10" class="page">
+  <h2>Next 10 Videos</h2>
+  <p class="sub">Winning patterns ကိုအသုံးပြုပြီး နောက်ထပ် content plan တည်ဆောက်မယ်</p>
 
   <div class="card">
-    <div class="two-col">
-      <div class="field">
-        <label>Channel Niche</label>
-        <input id="nextNiche" placeholder="Channel niche">
-      </div>
-      <div class="field">
-        <label>Main Audience</label>
-        <input id="nextAudience" placeholder="Target audience">
-      </div>
-    </div>
-    <button class="btn primary" onclick="generateNext10()">Build Next 10</button>
+    <button class="btn primary" onclick="generateNext10()">🚀 Build Next 10 Videos</button>
   </div>
 
-  <div class="card">
-    <div id="next10Results" class="empty">Generate လုပ်ပါ</div>
+  <div class="card" style="margin-top:15px">
+    <div id="next10Results"></div>
   </div>
 </section>
 
 <!-- SPRINT -->
-<section class="page" id="sprint">
-  <div class="hero">
-    <h1>◷ 7-Day Growth Sprint</h1>
-    <p>တစ်ပတ်လုံး random အလုပ်လုပ်မယ့်အစား Test → Publish → Measure → Learn loop နဲ့သွားပါ</p>
-  </div>
-
-  <div class="card">
-    <div id="sprintList"></div>
-  </div>
-</section>
-
-<!-- REFERENCES -->
-<section class="page" id="references">
-  <div class="hero">
-    <h1>★ Reference Pattern Board</h1>
-    <p>အခြား Channel တွေကို Copy မလုပ်ဘဲ Winning Pattern ကို လေ့လာပြီး ကိုယ့် Channel အတွက် ပြန်တည်ဆောက်ပါ</p>
-  </div>
-
-  <div class="card">
-    <div class="two-col">
-      <div class="field">
-        <label>Reference Channel</label>
-        <input id="refName" placeholder="Channel name">
-      </div>
-      <div class="field">
-        <label>URL</label>
-        <input id="refUrl" placeholder="https://youtube.com/...">
-      </div>
-    </div>
-    <div class="field">
-      <label>Winning Pattern / Observation</label>
-      <textarea id="refPattern" placeholder="ဥပမာ Title pattern, thumbnail pattern, series pattern"></textarea>
-    </div>
-    <div class="field">
-      <label>Winning Video Example</label>
-      <input id="refVideo" placeholder="Video title / URL">
-    </div>
-    <button class="btn primary" onclick="addReference()">Save Pattern</button>
-  </div>
-
-  <div class="card">
-    <h3>Pattern Library</h3>
-    <div id="referenceList"></div>
-  </div>
-
-  <div class="card">
-    <h3>🔎 Repeated Patterns</h3>
-    <div id="patternSummary" class="empty">Reference data ထည့်ပါ</div>
-  </div>
-</section>
-
-<!-- REVENUE -->
-<section class="page" id="revenue">
-  <div class="hero">
-    <h1>💰 Money Engine</h1>
-    <p>Income target ကို views, RPM နဲ့ချိတ်ပြီး လက်ရှိ gap ကိုမြင်အောင်လုပ်ပါ</p>
-  </div>
+<section id="sprint" class="page">
+  <h2>7-Day Growth Sprint</h2>
+  <p class="sub">တစ်ပတ်အတွင်း test → measure → improve cycle တစ်ခုလုပ်မယ်</p>
 
   <div class="grid2">
     <div class="card">
-      <h3>Monthly Target</h3>
-      <div class="field">
-        <label>Target Income USD</label>
-        <input id="targetMoney" type="number" placeholder="1000">
-      </div>
-      <div class="field">
-        <label>Current Monthly Income USD</label>
-        <input id="currentMoney" type="number" placeholder="100">
-      </div>
-      <div class="field">
-        <label>Actual RPM USD</label>
-        <input id="rpm" type="number" step="0.01" placeholder="0.70">
-      </div>
-      <button class="btn primary" onclick="calculateRevenue()">Calculate</button>
+      <h3>Day 1 — Diagnose</h3>
+      <p class="sub">Top videos, weak videos, topics စစ်ပါ</p>
+      <button class="btn small green" onclick="checkSprint(1)">Complete</button>
     </div>
-
     <div class="card">
-      <h3>Revenue Gap</h3>
-      <div class="metric">
-        <div class="label">Required Monthly Views</div>
-        <div class="value" id="requiredViews">—</div>
-      </div>
-      <div class="metric">
-        <div class="label">Additional Views Needed</div>
-        <div class="value orange" id="gapViews">—</div>
-      </div>
+      <h3>Day 2 — Packaging</h3>
+      <p class="sub">Title + thumbnail concepts 3 ခုစီလုပ်ပါ</p>
+      <button class="btn small green" onclick="checkSprint(2)">Complete</button>
+    </div>
+    <div class="card">
+      <h3>Day 3 — Publish</h3>
+      <p class="sub">Winning topic တစ်ခုနဲ့ video တင်ပါ</p>
+      <button class="btn small green" onclick="checkSprint(3)">Complete</button>
+    </div>
+    <div class="card">
+      <h3>Day 4 — Observe</h3>
+      <p class="sub">Views, engagement, audience response စစ်ပါ</p>
+      <button class="btn small green" onclick="checkSprint(4)">Complete</button>
+    </div>
+    <div class="card">
+      <h3>Day 5 — Improve</h3>
+      <p class="sub">Packaging / opening / topic angle ပြန်ပြင်ပါ</p>
+      <button class="btn small green" onclick="checkSprint(5)">Complete</button>
+    </div>
+    <div class="card">
+      <h3>Day 6 — Double Down</h3>
+      <p class="sub">အလုပ်ဖြစ်တဲ့ pattern ကို နောက် video တစ်ခုလုပ်ပါ</p>
+      <button class="btn small green" onclick="checkSprint(6)">Complete</button>
+    </div>
+    <div class="card">
+      <h3>Day 7 — Review</h3>
+      <p class="sub">ဘာအလုပ်ဖြစ်လဲ ဘာမဖြစ်လဲ မှတ်တမ်းတင်ပါ</p>
+      <button class="btn small green" onclick="checkSprint(7)">Complete</button>
     </div>
   </div>
 
   <div class="card">
-    <h3>💡 Revenue Strategy</h3>
-    <ul class="kpi-list" id="revenueStrategy"></ul>
+    <h3>Sprint Progress</h3>
+    <div class="progress"><span id="sprintProgress" style="width:0%"></span></div>
+    <p id="sprintText" class="sub" style="margin-top:8px">0 / 7 completed</p>
+  </div>
+</section>
+
+<!-- PATTERNS -->
+<section id="patterns" class="page">
+  <h2>Reference Patterns</h2>
+  <p class="sub">သင့် channel ထဲမှာ အလုပ်ဖြစ်နေတဲ့ pattern တွေကိုစုမယ်</p>
+
+  <div class="card">
+    <div id="patternsResult"></div>
+  </div>
+</section>
+
+<!-- MONEY -->
+<section id="money" class="page">
+  <h2>Money Engine</h2>
+  <p class="sub">Revenue target အတွက် required views ကို ခန့်မှန်းတွက်မယ်</p>
+
+  <div class="card">
+    <div class="row3">
+      <div class="input-group">
+        <label>Monthly Revenue Target ($)</label>
+        <input id="moneyTarget" type="number" value="1000">
+      </div>
+      <div class="input-group">
+        <label>Current Monthly Revenue ($)</label>
+        <input id="moneyCurrent" type="number" value="100">
+      </div>
+      <div class="input-group">
+        <label>RPM ($)</label>
+        <input id="moneyRPM" type="number" value="0.70" step="0.01">
+      </div>
+    </div>
+    <button class="btn green" onclick="calculateMoney()">Calculate</button>
+  </div>
+
+  <div class="grid" style="margin-top:15px">
+    <div class="card">
+      <div class="metric-label">Target Views / Month</div>
+      <div class="metric blue" id="requiredViews">—</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Current Revenue</div>
+      <div class="metric green" id="currentRevenue">—</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Revenue Gap</div>
+      <div class="metric red" id="revenueGap">—</div>
+    </div>
+    <div class="card">
+      <div class="metric-label">Additional Views Needed</div>
+      <div class="metric orange" id="viewsGap">—</div>
+    </div>
+  </div>
+
+  <div class="notice warn">
+    Revenue calculation က estimate ဖြစ်ပါတယ်. Actual RPM, geography, content type, monetized playbacks နဲ့ YouTube revenue factors တွေအပေါ်မူတည်ပြီး ပြောင်းလဲနိုင်ပါတယ်
   </div>
 </section>
 
 <!-- TESTS -->
-<section class="page" id="tests">
-  <div class="hero">
-    <h1>A/B Test Tracker</h1>
-    <p>“ဒီ Title ပိုကောင်းတယ်ထင်တယ်” မဟုတ်ဘဲ Test Result ကို မှတ်တမ်းတင်ပြီး ကိုယ့် Channel အတွက် Learning Database တည်ဆောက်ပါ</p>
-  </div>
+<section id="tests" class="page">
+  <h2>A/B Test Tracker</h2>
+  <p class="sub">Title နဲ့ thumbnail experiments တွေကို မှတ်တမ်းတင်မယ်</p>
 
   <div class="card">
-    <div class="two-col">
-      <div class="field">
+    <div class="row">
+      <div class="input-group">
         <label>Video</label>
-        <select id="testVideo"></select>
+        <input id="testVideo" placeholder="Video title">
       </div>
-      <div class="field">
+      <div class="input-group">
         <label>Test Type</label>
         <select id="testType">
           <option>Title</option>
           <option>Thumbnail</option>
-          <option>Hook</option>
-          <option>Topic</option>
+          <option>Title + Thumbnail</option>
         </select>
       </div>
     </div>
 
-    <div class="two-col">
-      <div class="field">
-        <label>Version A</label>
-        <input id="testA" placeholder="Version A">
-      </div>
-      <div class="field">
-        <label>Version B</label>
-        <input id="testB" placeholder="Version B">
-      </div>
-      <div class="field">
-        <label>CTR A %</label>
-        <input id="ctrA" type="number" step="0.1">
-      </div>
-      <div class="field">
-        <label>CTR B %</label>
-        <input id="ctrB" type="number" step="0.1">
-      </div>
+    <div class="row3">
+      <input id="testA" placeholder="Version A">
+      <input id="testB" placeholder="Version B">
+      <input id="testResult" placeholder="Result">
     </div>
-
-    <div class="field">
-      <label>Learning / Notes</label>
-      <textarea id="testNotes"></textarea>
-    </div>
-
-    <button class="btn primary" onclick="addTest()">Save Test</button>
+    <br>
+    <button class="btn primary" onclick="addTest()">Add Test</button>
   </div>
 
-  <div class="card">
-    <h3>Test History</h3>
+  <div class="card" style="margin-top:15px">
     <div id="testList"></div>
   </div>
 </section>
 
 <!-- ACADEMY -->
-<section class="page" id="academy">
-  <div class="hero">
-    <h1>▤ Growth Academy</h1>
-    <p>Data-driven YouTube growth ရဲ့ အခြေခံ Framework</p>
-  </div>
+<section id="academy" class="page">
+  <h2>Growth Academy</h2>
+  <p class="sub">YouTube growth skill ကို data နဲ့လေ့လာပါ</p>
 
   <div class="grid2">
-    <div class="card"><h3>01 — Packaging</h3><p class="desc">Title + Thumbnail က Viewer ကို Click လုပ်စေဖို့ ဘယ်လို Test လုပ်မလဲ</p></div>
-    <div class="card"><h3>02 — Hook</h3><p class="desc">ပထမပိုင်းမှာ Viewer ကို ဘာကြောင့်ဆက်ကြည့်စေမလဲ</p></div>
-    <div class="card"><h3>03 — Retention</h3><p class="desc">Retention graph ကိုကြည့်ပြီး Drop-off point ရှာနည်း</p></div>
-    <div class="card"><h3>04 — Winners</h3><p class="desc">Winner Video ရဲ့ Topic + Format + Packaging ကို Pattern အဖြစ်ယူနည်း</p></div>
-    <div class="card"><h3>05 — Content Gap</h3><p class="desc">Audience လိုချင်တာနဲ့ ကိုယ်မဖန်တီးရသေးတာကြားက Opportunity</p></div>
-    <div class="card"><h3>06 — Testing</h3><p class="desc">တစ်ခါတည်းအရာအားလုံးမပြောင်းဘဲ Test တစ်ခုချင်းလုပ်နည်း</p></div>
-    <div class="card"><h3>07 — Monetization</h3><p class="desc">RPM နဲ့ Revenue Target ကို Views Target အဖြစ်ပြောင်းနည်း</p></div>
-    <div class="card"><h3>08 — Learning Loop</h3><p class="desc">Result ကို နောက် Video ရဲ့ Strategy အဖြစ်ပြန်အသုံးချနည်း</p></div>
+    <div class="card"><h3>01 — Packaging</h3><p class="sub">Title + Thumbnail က viewer click decision အတွက် အရေးကြီးပါတယ်</p></div>
+    <div class="card"><h3>02 — Topic Selection</h3><p class="sub">Audience need နဲ့ channel fit ကိုအခြေခံပြီး topic ရွေးပါ</p></div>
+    <div class="card"><h3>03 — Opening Hook</h3><p class="sub">အစပိုင်းမှာ viewer ဘာကြောင့်ဆက်ကြည့်သင့်လဲဆိုတာရှင်းပါ</p></div>
+    <div class="card"><h3>04 — Retention</h3><p class="sub">Viewer drop-off ဖြစ်တဲ့နေရာတွေကိုရှာပြီး content flow ပြင်ပါ</p></div>
+    <div class="card"><h3>05 — Search Intent</h3><p class="sub">Viewer ရှာဖွေလိုတဲ့ problem ကို title နဲ့ content မှာ တိတိကျကျဖြေပါ</p></div>
+    <div class="card"><h3>06 — Series</h3><p class="sub">အလုပ်ဖြစ်တဲ့ topic ကို related series အဖြစ်ချဲ့ပါ</p></div>
+    <div class="card"><h3>07 — Experiment</h3><p class="sub">တစ်ခါတည်းအများကြီးမပြောင်းဘဲ testable variables ခွဲပါ</p></div>
+    <div class="card"><h3>08 — Measurement</h3><p class="sub">Result ကို views တစ်ခုတည်းနဲ့မဆုံးဖြတ်ဘဲ available analytics နဲ့တိုင်းပါ</p></div>
   </div>
 </section>
 
 <!-- SETTINGS -->
-<section class="page" id="settings">
-  <div class="hero">
-    <h1>⚙ Settings</h1>
-    <p>App data ကို ဒီ Browser ထဲမှာ Local Storage နဲ့ သိမ်းထားပါတယ်</p>
-  </div>
+<section id="settings" class="page">
+  <h2>Settings</h2>
+  <p class="sub">API connection နဲ့ creator data ကိုစီမံပါ</p>
 
   <div class="card">
-    <h3>App Settings</h3>
-    <div class="field">
-      <label>Creator Name</label>
-      <input id="creatorName" placeholder="Aung Zar Ni Win">
+    <h3>🔑 YouTube Data API</h3>
+
+    <div class="notice warn">
+      API Key ကို GitHub frontend ထဲမှာထည့်ထားတာက secret storage မဟုတ်ပါ
+      API restriction နဲ့ referrer restriction သုံးထားဖို့ အရေးကြီးပါတယ်
+      API Key ကို chat ထဲ မပို့ပါနဲ့
     </div>
-    <button class="btn primary" onclick="saveSettings()">Save Settings</button>
+
+    <div class="input-group">
+      <label>YouTube Data API v3 Key</label>
+      <input id="apiKeyInput" type="password" placeholder="AIza...">
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" onclick="saveApiKey()">💾 Save API Key</button>
+      <button class="btn blue" onclick="testApiKey()">🧪 Test API Key</button>
+      <button class="btn" onclick="removeApiKey()">Remove</button>
+    </div>
+
+    <div id="apiStatus" style="margin-top:12px"></div>
   </div>
 
-  <div class="card">
-    <h3>💾 Data Backup</h3>
-    <p class="desc" style="margin-bottom:10px">
-      Browser data မပျောက်အောင် JSON Backup ထုတ်ထားနိုင်ပါတယ်
-    </p>
+  <div class="card" style="margin-top:15px">
+    <h3>Creator Profile</h3>
+
+    <div class="row">
+      <div class="input-group">
+        <label>Creator Name</label>
+        <input id="creatorName" value="Aung Zar Ni Win">
+      </div>
+      <div class="input-group">
+        <label>Channel Niche</label>
+        <input id="creatorNiche" value="Buddhist Dhamma">
+      </div>
+    </div>
+
+    <button class="btn green" onclick="saveProfile()">Save Profile</button>
+  </div>
+
+  <div class="card" style="margin-top:15px">
+    <h3>Backup</h3>
     <div class="actions">
-      <button class="btn green" onclick="exportData()">Export Backup</button>
-      <label class="btn" style="display:inline-block;width:auto">
-        Import Backup
+      <button class="btn blue" onclick="exportData()">Export JSON</button>
+      <label class="btn" style="display:inline-block">
+        Import JSON
         <input type="file" accept=".json" onchange="importData(event)" style="display:none">
       </label>
-      <button class="btn red" onclick="resetData()">Reset All Data</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>System Note</h3>
-    <div class="notice">
-      YouTube Data API Key ကို frontend GitHub Pages ထဲထည့်ထားရင် secret မဖြစ်ပါ
-      API Key သုံးမယ်ဆိုရင် Google Cloud မှာ API restrictions ထားပါ
-      Private YouTube Studio analytics အတွက် နောက်ပိုင်းမှာ OAuth + backend architecture သုံးတာ ပိုသင့်တော်ပါတယ်
+      <button class="btn" onclick="resetApp()">Reset App Data</button>
     </div>
   </div>
 </section>
 
 </div>
+
+<div class="footer">
+  Aung YouTube Growth Intelligence V5.1 • Public Data Intelligence System
+</div>
+
 </main>
 </div>
 
-<div class="toast" id="toast"></div>
-
 <script>
-"use strict";
+const STORE="aung_youtube_growth_intelligence_v51";
 
-/* =========================================================
-   AUNG YOUTUBE GROWTH INTELLIGENCE V5
-   Local-first creator management system
-========================================================= */
-
-const STORAGE_KEY = "aung_youtube_growth_intelligence_v5";
-
-const defaultState = {
+let state={
   creator:"Aung Zar Ni Win",
+  niche:"Buddhist Dhamma",
+  apiKey:"",
   channel:{
     name:"Buddha-တရားတော် Channel",
     url:"https://youtube.com/channel/UCH4D6qoBuA0QmaHP21ijKPA",
-    niche:"Buddhist Dhamma",
+    id:"UCH4D6qoBuA0QmaHP21ijKPA",
     subscribers:0,
     views:0,
     videos:0
   },
-  analytics:{
-    ctr:0,
-    retention:0,
-    returning:0,
-    avgViews:0,
-    problem:"views"
-  },
-  revenue:{
-    target:1000,
-    current:0,
-    rpm:0.70
-  },
   videos:[],
-  references:[],
+  lastSync:"",
+  sprint:[false,false,false,false,false,false,false],
   tests:[]
 };
 
-let state = loadState();
-
-function clone(obj){
-  return JSON.parse(JSON.stringify(obj));
-}
-
 function loadState(){
   try{
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if(saved){
-      const parsed = JSON.parse(saved);
-      return Object.assign(clone(defaultState),parsed,{
-        channel:Object.assign(clone(defaultState.channel),parsed.channel||{}),
-        analytics:Object.assign(clone(defaultState.analytics),parsed.analytics||{}),
-        revenue:Object.assign(clone(defaultState.revenue),parsed.revenue||{}),
-        videos:Array.isArray(parsed.videos)?parsed.videos:[],
-        references:Array.isArray(parsed.references)?parsed.references:[],
-        tests:Array.isArray(parsed.tests)?parsed.tests:[]
-      });
+    const raw=localStorage.getItem(STORE);
+    if(raw){
+      const saved=JSON.parse(raw);
+      state={...state,...saved};
+      state.channel={...state.channel,...(saved.channel||{})};
     }
-  }catch(e){}
-  return clone(defaultState);
+  }catch(e){console.error(e)}
+  updateAll();
 }
 
 function saveState(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
-  refreshAll();
+  localStorage.setItem(STORE,JSON.stringify(state));
 }
 
-function toast(message){
-  const el=document.getElementById("toast");
-  el.textContent=message;
-  el.style.display="block";
-  clearTimeout(window.__toastTimer);
-  window.__toastTimer=setTimeout(()=>{
-    el.style.display="none";
-  },2200);
-}
+function $(id){return document.getElementById(id)}
 
-function esc(value){
-  return String(value??"")
+function esc(v){
+  return String(v??"")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    .replace(/"/g,"&quot;");
 }
 
-function num(value){
-  const n=Number(value);
-  return Number.isFinite(n)?n:0;
-}
-
-function fmt(value){
-  const n=num(value);
+function fmt(n){
+  n=Number(n||0);
+  if(n>=1000000000)return (n/1000000000).toFixed(1)+"B";
+  if(n>=1000000)return (n/1000000).toFixed(1)+"M";
+  if(n>=1000)return (n/1000).toFixed(1)+"K";
   return n.toLocaleString();
 }
 
-function pct(value){
-  return num(value).toFixed(1)+"%";
+function fmtFull(n){
+  return Number(n||0).toLocaleString();
 }
 
-function median(values){
-  const a=values.filter(v=>Number.isFinite(v)).sort((x,y)=>x-y);
-  if(!a.length)return 0;
-  const mid=Math.floor(a.length/2);
-  return a.length%2?a[mid]:(a[mid-1]+a[mid])/2;
-}
+function showPage(id,btn){
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+  $(id).classList.add("active");
+  document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+  if(btn)btn.classList.add("active");
+  document.getElementById("sidebar").classList.remove("open");
 
-function avg(values){
-  const a=values.filter(v=>Number.isFinite(v));
-  if(!a.length)return 0;
-  return a.reduce((s,v)=>s+v,0)/a.length;
-}
-
-function showPage(id,button){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  const page=document.getElementById(id);
-  if(page)page.classList.add("active");
-
-  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
-  if(button)button.classList.add("active");
-
-  const names={
-    dashboard:"Dashboard",
-    channel:"Channel Intelligence",
-    videos:"Video Intelligence",
-    opportunities:"Opportunities",
-    topics:"Topic Research",
-    titles:"Title Test Lab",
-    thumbnail:"Thumbnail Intelligence",
-    recovery:"Video Recovery",
-    next10:"Next 10 Videos",
-    sprint:"7-Day Growth Sprint",
-    references:"Reference Patterns",
-    revenue:"Money Engine",
-    tests:"A/B Test Tracker",
-    academy:"Growth Academy",
-    settings:"Settings"
-  };
-
-  document.getElementById("pageTitle").textContent=names[id]||"Dashboard";
-  closeMenu();
-  window.scrollTo({top:0,behavior:"smooth"});
+  if(id==="videos")renderVideos();
+  if(id==="opportunities")renderOpportunities();
+  if(id==="patterns")renderPatterns();
+  if(id==="recovery")populateRecovery();
 }
 
 function showPageById(id){
-  const button=[...document.querySelectorAll(".nav button")]
-    .find(b=>b.getAttribute("onclick")&&b.getAttribute("onclick").includes("'"+id+"'"));
-  showPage(id,button);
+  const btn=[...document.querySelectorAll(".nav button")].find(b=>b.getAttribute("onclick")?.includes("'"+id+"'"));
+  showPage(id,btn);
 }
 
-function toggleMenu(){
-  document.getElementById("sidebar").classList.toggle("open");
-  document.getElementById("overlay").classList.toggle("show");
+function toggleSidebar(){
+  $("sidebar").classList.toggle("open");
 }
 
-function closeMenu(){
-  document.getElementById("sidebar").classList.remove("open");
-  document.getElementById("overlay").classList.remove("show");
+function api(){
+  return state.apiKey.trim();
 }
 
-/* ================= CHANNEL ================= */
-
-function loadChannel(){
-  document.getElementById("channelName").value=state.channel.name||"";
-  document.getElementById("channelUrl").value=state.channel.url||"";
-  document.getElementById("channelNiche").value=state.channel.niche||"";
-  document.getElementById("subsInput").value=state.channel.subscribers||"";
-  document.getElementById("viewsInput").value=state.channel.views||"";
-  document.getElementById("videoCountInput").value=state.channel.videos||"";
-
-  document.getElementById("avgCtr").value=state.analytics.ctr||"";
-  document.getElementById("avgRetention").value=state.analytics.retention||"";
-  document.getElementById("returning").value=state.analytics.returning||"";
-  document.getElementById("avgViews").value=state.analytics.avgViews||"";
-  document.getElementById("mainProblem").value=state.analytics.problem||"views";
+function apiUrl(endpoint,params){
+  const p=new URLSearchParams(params);
+  p.set("key",api());
+  return "https://www.googleapis.com/youtube/v3/"+endpoint+"?"+p.toString();
 }
 
-function saveChannel(){
-  state.channel.name=document.getElementById("channelName").value.trim();
-  state.channel.url=document.getElementById("channelUrl").value.trim();
-  state.channel.niche=document.getElementById("channelNiche").value.trim();
-  state.channel.subscribers=num(document.getElementById("subsInput").value);
-  state.channel.views=num(document.getElementById("viewsInput").value);
-  state.channel.videos=num(document.getElementById("videoCountInput").value);
-  saveState();
-  toast("Channel data saved");
+async function ytFetch(endpoint,params){
+  if(!api())throw new Error("API_KEY_MISSING");
+
+  const res=await fetch(apiUrl(endpoint,params));
+  let data={};
+
+  try{data=await res.json()}catch(e){}
+
+  if(!res.ok){
+    const reason=data?.error?.errors?.[0]?.reason || data?.error?.status || "API_ERROR";
+    const message=data?.error?.message || "YouTube API request failed";
+    throw new Error(reason+"|"+message);
+  }
+
+  return data;
 }
 
-function saveAnalytics(){
-  state.analytics.ctr=num(document.getElementById("avgCtr").value);
-  state.analytics.retention=num(document.getElementById("avgRetention").value);
-  state.analytics.returning=num(document.getElementById("returning").value);
-  state.analytics.avgViews=num(document.getElementById("avgViews").value);
-  state.analytics.problem=document.getElementById("mainProblem").value;
-  saveState();
-  diagnoseChannel();
-  toast("Analytics saved & diagnosed");
+function friendlyApiError(err){
+  const msg=String(err.message||err);
+
+  if(msg==="API_KEY_MISSING")
+    return "API Key မထည့်ရသေးပါ";
+
+  if(msg.includes("keyInvalid")||msg.includes("API_KEY_INVALID"))
+    return "API Key မမှန်ပါ";
+
+  if(msg.includes("quotaExceeded"))
+    return "YouTube API quota ကုန်သွားပါပြီ";
+
+  if(msg.includes("forbidden"))
+    return "API restriction / permission ကိုစစ်ပါ";
+
+  if(msg.includes("channelNotFound"))
+    return "Channel ကိုရှာမတွေ့ပါ";
+
+  return msg.split("|")[1] || msg;
 }
 
-function diagnoseChannel(){
-  const a=state.analytics;
-  const c=state.channel;
+function parseYouTubeInput(input){
+  input=input.trim();
 
-  let packaging="No data";
-  let retention="No data";
-  let content="No data";
-  let money="Needs setup";
+  let channelId="";
 
-  if(a.ctr>0){
-    packaging=a.ctr>=7?"Strong":a.ctr>=4?"Test":"Needs attention";
+  if(/^UC[a-zA-Z0-9_-]{20,}$/.test(input)){
+    channelId=input;
   }
 
-  if(a.retention>0){
-    retention=a.retention>=50?"Strong":a.retention>=35?"Test":"Needs attention";
-  }
+  const idMatch=input.match(/youtube\.com\/channel\/(UC[a-zA-Z0-9_-]+)/i);
+  if(idMatch)channelId=idMatch[1];
 
-  if(c.videos>0 && c.views>0){
-    const av=c.views/c.videos;
-    content=av>=a.avgViews && a.avgViews>0?"Good":"Needs testing";
-  }
+  let handle="";
 
-  if(state.revenue.current>0 || state.revenue.target>0){
-    money=state.revenue.current>=state.revenue.target?"On target":"Gap exists";
-  }
+  const handleMatch=input.match(/youtube\.com\/@([^/?]+)/i);
+  if(handleMatch)handle=decodeURIComponent(handleMatch[1]);
 
-  document.getElementById("channelDiagnosis").innerHTML=
-    `<div class="grid">
-      <div class="card metric">
-        <div class="label">Packaging</div>
-        <div class="value">${esc(packaging)}</div>
-        <div class="sub">CTR ${pct(a.ctr)}</div>
-      </div>
-      <div class="card metric">
-        <div class="label">Retention</div>
-        <div class="value">${esc(retention)}</div>
-        <div class="sub">${pct(a.retention)}</div>
-      </div>
-      <div class="card metric">
-        <div class="label">Content</div>
-        <div class="value">${esc(content)}</div>
-        <div class="sub">Avg views ${fmt(a.avgViews)}</div>
-      </div>
-      <div class="card metric">
-        <div class="label">Revenue</div>
-        <div class="value">${esc(money)}</div>
-        <div class="sub">$${fmt(state.revenue.current)} / $${fmt(state.revenue.target)}</div>
-      </div>
-    </div>
-    <div class="notice" style="margin-top:12px">
-      ${esc(channelDiagnosisText())}
-    </div>`;
+  if(!handle && input.startsWith("@"))
+    handle=input.substring(1);
+
+  return {channelId,handle};
 }
 
-function channelDiagnosisText(){
-  const a=state.analytics;
+async function resolveChannelId(input){
+  const parsed=parseYouTubeInput(input);
 
-  if(a.problem==="ctr"){
-    return "အဓိက Test = Title + Thumbnail Packaging. Content ပြောင်းတာထက် Packaging test ကို အရင်လုပ်ပါ";
+  if(parsed.channelId)return parsed.channelId;
+
+  if(parsed.handle){
+    const data=await ytFetch("search",{
+      part:"snippet",
+      type:"channel",
+      q:parsed.handle,
+      maxResults:"1"
+    });
+
+    if(!data.items?.length)throw new Error("channelNotFound");
+
+    return data.items[0].snippet.channelId;
   }
 
-  if(a.problem==="retention"){
-    return "အဓိက Test = Opening Hook + pacing + promise delivery. ပထမပိုင်း Drop-off ကို အရင်စစ်ပါ";
+  if(/^https?:\/\//i.test(input)){
+    const data=await ytFetch("search",{
+      part:"snippet",
+      type:"channel",
+      q:input,
+      maxResults:"1"
+    });
+
+    if(!data.items?.length)throw new Error("channelNotFound");
+
+    return data.items[0].snippet.channelId;
   }
 
-  if(a.problem==="subscribers"){
-    return "အဓိက Test = Viewer ကို next video ဆက်ကြည့်စေမယ့် series structure နဲ့ subscribe reason တည်ဆောက်ပါ";
-  }
-
-  if(a.problem==="money"){
-    return "အဓိက Test = RPM, views mix, long-form/Shorts mix နဲ့ monetization sources ကို ခွဲစိတ်ပါ";
-  }
-
-  if(a.problem==="consistency"){
-    return "အဓိက Test = 7-Day publishing system တစ်ခုတည်ဆောက်ပြီး idea → production → publish cycle ကို အရင်တည်ငြိမ်အောင်လုပ်ပါ";
-  }
-
-  return "အဓိက Test = Winning videos ကိုရှာပြီး အောင်မြင်တဲ့ Topic + Format + Packaging pattern ကို နောက်ထပ် content အဖြစ် စမ်းသပ်ပါ";
+  throw new Error("Channel URL / @Handle / Channel ID ကိုမှန်အောင်ထည့်ပါ");
 }
 
-/* ================= VIDEO ================= */
+async function getChannel(channelId){
+  const data=await ytFetch("channels",{
+    part:"snippet,statistics,contentDetails",
+    id:channelId
+  });
 
-function addVideo(){
-  const title=document.getElementById("vTitle").value.trim();
-  if(!title){
-    toast("Video title ထည့်ပါ");
+  if(!data.items?.length)throw new Error("channelNotFound");
+
+  return data.items[0];
+}
+
+async function getUploads(playlistId,limit=30){
+  let items=[];
+  let token="";
+
+  while(items.length<limit){
+    const params={
+      part:"snippet,contentDetails",
+      playlistId,
+      maxResults:String(Math.min(50,limit-items.length))
+    };
+
+    if(token)params.pageToken=token;
+
+    const data=await ytFetch("playlistItems",params);
+
+    items.push(...(data.items||[]));
+
+    token=data.nextPageToken||"";
+    if(!token)break;
+  }
+
+  return items.slice(0,limit);
+}
+
+async function getVideos(ids){
+  if(!ids.length)return [];
+
+  const chunks=[];
+
+  for(let i=0;i<ids.length;i+=50)
+    chunks.push(ids.slice(i,i+50));
+
+  let result=[];
+
+  for(const chunk of chunks){
+    const data=await ytFetch("videos",{
+      part:"snippet,statistics,contentDetails",
+      id:chunk.join(",")
+    });
+
+    result.push(...(data.items||[]));
+  }
+
+  return result;
+}
+
+async function analyzeChannel(){
+  const input=$("channelUrl").value.trim();
+
+  if(!input){
+    setChannelStatus("Channel URL ထည့်ပါ","warn");
     return;
   }
 
-  const views=num(document.getElementById("vViews").value);
-  const impressions=num(document.getElementById("vImpressions").value);
-  let ctr=num(document.getElementById("vCtr").value);
-
-  if(!ctr && impressions>0 && views>0){
-    ctr=(views/impressions)*100;
+  if(!api()){
+    setChannelStatus("Settings → YouTube API မှာ API Key အရင်ထည့်ပါ","warn");
+    return;
   }
 
-  const video={
-    id:Date.now(),
-    title,
-    url:document.getElementById("vUrl").value.trim(),
+  setChannelStatus('<span class="loader"></span> YouTube data ကို analyze လုပ်နေပါတယ်',"");
+
+  try{
+    const id=await resolveChannelId(input);
+    const channel=await getChannel(id);
+
+    const uploads=channel.contentDetails?.relatedPlaylists?.uploads;
+
+    let videos=[];
+
+    if(uploads){
+      const playlistItems=await getUploads(uploads,30);
+      const ids=playlistItems
+        .map(x=>x.contentDetails?.videoId)
+        .filter(Boolean);
+
+      const details=await getVideos(ids);
+
+      const map={};
+      details.forEach(v=>map[v.id]=v);
+
+      videos=playlistItems
+        .map(item=>map[item.contentDetails?.videoId])
+        .filter(Boolean)
+        .map(v=>normalizeVideo(v));
+    }
+
+    state.channel={
+      name:channel.snippet?.title||"Unknown Channel",
+      url:input,
+      id:channel.id,
+      subscribers:Number(channel.statistics?.subscriberCount||0),
+      views:Number(channel.statistics?.viewCount||0),
+      videos:Number(channel.statistics?.videoCount||0),
+      description:channel.snippet?.description||"",
+      thumbnail:channel.snippet?.thumbnails?.high?.url||
+                channel.snippet?.thumbnails?.default?.url||""
+    };
+
+    state.videos=videos;
+    state.lastSync=new Date().toLocaleString();
+
+    saveState();
+    updateAll();
+
+    setChannelStatus(
+      "✅ Channel analysis ပြီးပါပြီ — "+esc(state.channel.name),
+      "good"
+    );
+
+  }catch(err){
+    console.error(err);
+    setChannelStatus("❌ "+esc(friendlyApiError(err)),"warn");
+  }
+}
+
+function normalizeVideo(v){
+  const views=Number(v.statistics?.viewCount||0);
+  const likes=Number(v.statistics?.likeCount||0);
+  const comments=Number(v.statistics?.commentCount||0);
+
+  const engagement=views
+    ? ((likes+comments)/views)*100
+    : 0;
+
+  return {
+    id:v.id,
+    title:v.snippet?.title||"Untitled",
+    published:v.snippet?.publishedAt||"",
+    thumbnail:v.snippet?.thumbnails?.medium?.url||
+             v.snippet?.thumbnails?.default?.url||"",
     views,
-    impressions,
-    ctr,
-    retention:num(document.getElementById("vRetention").value),
-    likes:num(document.getElementById("vLikes").value),
-    comments:num(document.getElementById("vComments").value),
-    topic:document.getElementById("vTopic").value.trim(),
-    created:new Date().toISOString()
+    likes,
+    comments,
+    engagement,
+    duration:v.contentDetails?.duration||""
   };
-
-  state.videos.unshift(video);
-  saveState();
-
-  ["vTitle","vUrl","vViews","vImpressions","vCtr","vRetention","vLikes","vComments","vTopic"]
-    .forEach(id=>document.getElementById(id).value="");
-
-  toast("Video added");
 }
 
-function videoLabel(v){
-  const ctr=v.ctr;
-  const ret=v.retention;
-
-  if(ctr>=7 && ret>=45)return {text:"WINNER / SCALE",cls:"green"};
-  if(ctr<5 && ret>=45)return {text:"PACKAGING OPPORTUNITY",cls:"yellow"};
-  if(ctr>=7 && ret<35)return {text:"RETENTION OPPORTUNITY",cls:"orange"};
-  if(ctr<5 && ret<35)return {text:"REWORK / TEST",cls:"red"};
-  return {text:"PROMISING / TEST",cls:"blue"};
+function setChannelStatus(text,type){
+  const box=$("channelStatus");
+  box.innerHTML=text;
+  box.className="notice "+(type||"");
 }
 
-function deleteVideo(id){
-  state.videos=state.videos.filter(v=>v.id!==id);
+function testApiKey(){
+  const key=$("apiKeyInput").value.trim();
+
+  if(!key){
+    $("apiStatus").innerHTML='<div class="notice warn">API Key ထည့်ပါ</div>';
+    return;
+  }
+
+  const old=state.apiKey;
+  state.apiKey=key;
+
+  ytFetch("channels",{
+    part:"snippet",
+    id:"UC_x5XG1OV2P6uZZ5FSM9Ttw"
+  })
+  .then(()=>{
+    $("apiStatus").innerHTML='<div class="notice good">✅ API Key အလုပ်လုပ်ပါတယ်</div>';
+    state.apiKey=key;
+    saveState();
+  })
+  .catch(err=>{
+    state.apiKey=old;
+    $("apiStatus").innerHTML='<div class="notice warn">❌ '+esc(friendlyApiError(err))+'</div>';
+  });
+}
+
+function saveApiKey(){
+  const key=$("apiKeyInput").value.trim();
+
+  if(!key){
+    $("apiStatus").innerHTML='<div class="notice warn">API Key မထည့်ထားပါ</div>';
+    return;
+  }
+
+  state.apiKey=key;
   saveState();
-  toast("Video deleted");
+
+  $("apiStatus").innerHTML='<div class="notice good">✅ API Key saved locally</div>';
+}
+
+function removeApiKey(){
+  state.apiKey="";
+  $("apiKeyInput").value="";
+  saveState();
+
+  $("apiStatus").innerHTML='<div class="notice">API Key removed</div>';
+}
+
+function loadSavedChannel(){
+  $("channelUrl").value=state.channel.url||"";
+}
+
+function updateAll(){
+  $("apiKeyInput").value=state.apiKey||"";
+  $("creatorName").value=state.creator||"";
+  $("creatorNiche").value=state.niche||"";
+  $("channelUrl").value=state.channel.url||"";
+
+  $("topChannel").textContent=state.channel.name||"YouTube Channel";
+
+  $("dSubs").textContent=fmt(state.channel.subscribers);
+  $("dViews").textContent=fmt(state.channel.views);
+  $("dVideos").textContent=fmt(state.channel.videos);
+  $("dAnalyzed").textContent=state.videos.length;
+
+  $("cSubs").textContent=fmt(state.channel.subscribers);
+  $("cViews").textContent=fmt(state.channel.views);
+  $("cVideos").textContent=fmt(state.channel.videos);
+  $("cId").textContent=state.channel.id||"—";
+
+  $("dChannel").textContent=state.channel.name||"—";
+  $("dNiche").textContent=state.niche||"—";
+  $("dSync").textContent=state.lastSync||"Not synced";
+
+  renderChannelProfile();
+  renderChannelDiagnosis();
+  renderDashboard();
+  renderVideos();
+  renderOpportunities();
+  renderPatterns();
+  populateRecovery();
+  renderTests();
+  renderSprint();
+}
+
+function renderChannelProfile(){
+  const c=state.channel;
+
+  $("channelProfile").innerHTML=`
+    <div class="kpi"><span>Name</span><strong>${esc(c.name||"—")}</strong></div>
+    <div class="kpi"><span>Subscribers</span><strong>${fmtFull(c.subscribers)}</strong></div>
+    <div class="kpi"><span>Total Views</span><strong>${fmtFull(c.views)}</strong></div>
+    <div class="kpi"><span>Public Videos</span><strong>${fmtFull(c.videos)}</strong></div>
+    <div class="kpi"><span>Channel ID</span><strong>${esc(c.id||"—")}</strong></div>
+  `;
+}
+
+function renderChannelDiagnosis(){
+  const c=state.channel;
+  const vs=state.videos;
+
+  if(!vs.length){
+    $("channelDiagnosis").innerHTML=
+      `<div class="empty">Channel analyze လုပ်ပြီးနောက် diagnosis ပြပါမယ်</div>`;
+    return;
+  }
+
+  const avgViews=vs.reduce((a,b)=>a+b.views,0)/vs.length;
+  const avgEng=vs.reduce((a,b)=>a+b.engagement,0)/vs.length;
+  const top=vs[0];
+
+  const ideas=[];
+
+  if(top && top.views>avgViews*2)
+    ideas.push("🏆 Top video က channel average ထက်အများကြီးမြင့်နေပါတယ် — အလားတူ topic/angle ကို series ချဲ့စမ်းပါ");
+
+  if(avgEng<2)
+    ideas.push("⚠️ Public engagement rate နိမ့်နေပါတယ် — topic relevance နဲ့ opening/CTA ကို test လုပ်ပါ");
+  else
+    ideas.push("✅ Engagement signal ရှိပါတယ် — audience response ကောင်းတဲ့ topic တွေကို ထပ်စမ်းပါ");
+
+  ideas.push("📊 CTR / retention / revenue လို private Studio metrics တွေအတွက် YouTube Analytics/OAuth integration လိုပါမယ်");
+
+  $("channelDiagnosis").innerHTML=ideas.map(x=>`
+    <div class="kpi"><span>${esc(x)}</span></div>
+  `).join("");
+}
+
+function renderDashboard(){
+  const vs=[...state.videos].sort((a,b)=>b.views-a.views);
+
+  $("dashboardTopVideos").innerHTML=vs.length
+    ? vs.slice(0,5).map(videoHTML).join("")
+    : `<div class="empty">Channel analyze လုပ်ပြီး videos တွေကိုပြပါမယ်</div>`;
+
+  const opp=[];
+
+  if(vs.length){
+    const avg=vs.reduce((a,b)=>a+b.views,0)/vs.length;
+    const high=vs.filter(v=>v.views>=avg*1.5).length;
+    const low=vs.filter(v=>v.views<avg*.5).length;
+
+    if(high)opp.push("🔥 "+high+" videos က average ထက် 1.5x+ views ရနေပါတယ်");
+    if(low)opp.push("⚠️ "+low+" videos ကို packaging/topic rework test လုပ်နိုင်ပါတယ်");
+
+    opp.push("💡 Top video titles/topics ကို next 10 planner မှာအသုံးချပါ");
+  }
+
+  $("dashboardOpp").innerHTML=opp.length
+    ? opp.map(x=>`<div class="kpi"><span>${esc(x)}</span></div>`).join("")
+    : `<div class="empty">Data ရလာရင် opportunities ပြပါမယ်</div>`;
+}
+
+function videoHTML(v){
+  const cls=v.engagement>=3?"green":v.engagement>=1?"yellow":"red";
+  const label=v.engagement>=3?"HIGH ENGAGEMENT":
+              v.engagement>=1?"NORMAL":"LOW ENGAGEMENT";
+
+  return `
+  <div class="video">
+    <img src="${esc(v.thumbnail)}" alt="">
+    <div>
+      <div class="video-title">${esc(v.title)}</div>
+      <div class="video-meta">
+        <span>👁 ${fmt(v.views)}</span>
+        <span>👍 ${fmt(v.likes)}</span>
+        <span>💬 ${fmt(v.comments)}</span>
+        <span>${v.engagement.toFixed(2)}%</span>
+        <span class="badge ${cls}">${label}</span>
+      </div>
+    </div>
+  </div>`;
 }
 
 function renderVideos(){
-  const box=document.getElementById("videoList");
-  document.getElementById("videoCountLabel").textContent=state.videos.length+" videos";
+  const min=Number($("minViews")?.value||0);
+  let vs=state.videos.filter(v=>v.views>=min);
 
-  if(!state.videos.length){
-    box.innerHTML='<div class="empty">Video data မရှိသေးပါ</div>';
-    return;
-  }
+  const sort=$("videoSort")?.value||"views";
 
-  box.innerHTML=state.videos.map(v=>{
-    const label=videoLabel(v);
-    const engagement=v.views>0?((v.likes+v.comments)/v.views*100):0;
+  if(sort==="views")vs.sort((a,b)=>b.views-a.views);
+  if(sort==="likes")vs.sort((a,b)=>b.likes-a.likes);
+  if(sort==="comments")vs.sort((a,b)=>b.comments-a.comments);
+  if(sort==="date")vs.sort((a,b)=>new Date(b.published)-new Date(a.published));
 
-    return `
-      <div class="video-row">
-        <div class="actions" style="justify-content:space-between">
-          <span class="badge ${label.cls}">${label.text}</span>
-          <button class="btn small red" onclick="deleteVideo(${v.id})">Delete</button>
-        </div>
-        <h4>${esc(v.title)}</h4>
-        <div class="video-meta">
-          <span>👁 ${fmt(v.views)}</span>
-          <span>CTR ${pct(v.ctr)}</span>
-          <span>Retention ${pct(v.retention)}</span>
-          <span>Likes ${fmt(v.likes)}</span>
-          <span>Comments ${fmt(v.comments)}</span>
-          <span>Engagement ${pct(engagement)}</span>
-        </div>
-        ${v.topic?`<div style="margin-top:7px"><span class="badge">${esc(v.topic)}</span></div>`:""}
-      </div>`;
-  }).join("");
+  $("videoTable").innerHTML=vs.length
+    ? vs.map(v=>`
+      <tr>
+        <td style="max-width:320px">${esc(v.title)}</td>
+        <td>${fmt(v.views)}</td>
+        <td>${fmt(v.likes)}</td>
+        <td>${fmt(v.comments)}</td>
+        <td>${v.engagement.toFixed(2)}%</td>
+        <td><span class="badge ${v.engagement>=3?"green":v.engagement>=1?"yellow":"red"}">
+        ${v.engagement>=3?"Strong":v.engagement>=1?"Normal":"Weak"}
+        </span></td>
+      </tr>
+    `).join("")
+    : `<tr><td colspan="6">No video data</td></tr>`;
 }
-
-/* ================= OPPORTUNITIES ================= */
 
 function renderOpportunities(){
-  const videos=state.videos;
+  const vs=state.videos;
 
-  if(!videos.length){
-    document.getElementById("winnerList").innerHTML='<div class="empty">Video data ထည့်ပါ</div>';
-    document.getElementById("underList").innerHTML='<div class="empty">Video data ထည့်ပါ</div>';
-    document.getElementById("opportunityText").textContent="Video data မရှိသေးပါ";
+  if(!vs.length){
+    ["oppWinners","oppLow","oppHigh","oppTests"].forEach(id=>$(id).textContent="0");
+    $("winnerList").innerHTML='<div class="empty">Analyze channel first</div>';
+    $("weakList").innerHTML='<div class="empty">Analyze channel first</div>';
     return;
   }
 
-  const medViews=median(videos.map(v=>v.views));
-  const winners=videos
-    .filter(v=>v.views>=medViews && v.ctr>=5 && v.retention>=35)
-    .sort((a,b)=>b.views-a.views);
+  const avg=vs.reduce((a,b)=>a+b.views,0)/vs.length;
 
-  const under=videos
-    .filter(v=>v.views<medViews || v.ctr<5 || v.retention<35)
-    .sort((a,b)=>a.views-b.views);
+  const winners=vs.filter(v=>v.views>=avg*1.5);
+  const low=vs.filter(v=>v.views<avg*.5);
+  const high=vs.filter(v=>v.engagement>=3);
+  const tests=vs.filter(v=>v.views>=avg*.8 && v.views<=avg*1.2);
 
-  document.getElementById("winnerList").innerHTML=winners.length
-    ? winners.slice(0,8).map(v=>`
-      <div class="ref-card">
-        <span class="badge green">WINNER</span>
-        <h4>${esc(v.title)}</h4>
-        <p>${fmt(v.views)} views · CTR ${pct(v.ctr)} · Retention ${pct(v.retention)}</p>
-      </div>`).join("")
-    : '<div class="empty">Current data အရ clear winner မတွေ့သေးပါ</div>';
+  $("oppWinners").textContent=winners.length;
+  $("oppLow").textContent=low.length;
+  $("oppHigh").textContent=high.length;
+  $("oppTests").textContent=tests.length;
 
-  document.getElementById("underList").innerHTML=under.length
-    ? under.slice(0,8).map(v=>{
-      const l=videoLabel(v);
-      return `<div class="ref-card">
-        <span class="badge ${l.cls}">${l.text}</span>
-        <h4>${esc(v.title)}</h4>
-        <p>${fmt(v.views)} views · CTR ${pct(v.ctr)} · Retention ${pct(v.retention)}</p>
-      </div>`;
-    }).join("")
-    : '<div class="empty">Underperforming candidate မတွေ့ပါ</div>';
+  $("winnerList").innerHTML=winners.length
+    ? winners.slice(0,8).map(videoHTML).join("")
+    : '<div class="empty">Potential winner မတွေ့သေးပါ</div>';
 
-  const pack=videos.filter(v=>v.ctr>0&&v.ctr<5&&v.retention>=35).length;
-  const ret=videos.filter(v=>v.ctr>=7&&v.retention>0&&v.retention<35).length;
-  const scale=winners.length;
-
-  let text="အခုအချိန်မှာ Data မလုံလောက်သေးပါ";
-
-  if(pack>=1){
-    text=`Packaging Opportunity ${pack} ခုရှိပါတယ် — CTR နည်းပေမယ့် Retention ကောင်းတဲ့ Video ကို Title + Thumbnail test အရင်လုပ်ပါ`;
-  }else if(ret>=1){
-    text=`Retention Opportunity ${ret} ခုရှိပါတယ် — Click ရနေတဲ့ Video တွေရဲ့ Opening / Hook / pacing ကို အရင်စစ်ပါ`;
-  }else if(scale>=1){
-    text=`Winner Pattern ${scale} ခုတွေ့ပါတယ် — အဲဒီ Video ရဲ့ Topic + Format + Packaging ကို Series အဖြစ် ထပ်စမ်းပါ`;
-  }else{
-    text="Video 5–10 ခုလောက် Data စုလာတာနဲ့ Pattern detection ပိုအသုံးဝင်လာပါမယ်";
-  }
-
-  document.getElementById("opportunityText").innerHTML=
-    `<div class="priority" style="padding:16px;border-radius:10px">
-      <b>${esc(text)}</b>
-      <p class="desc" style="margin-top:7px">ဒီဟာက heuristic diagnosis ဖြစ်ပြီး YouTube recommendation outcome ကို အာမခံတာမဟုတ်ပါ</p>
-    </div>`;
+  $("weakList").innerHTML=low.length
+    ? low.slice(0,8).map(videoHTML).join("")
+    : '<div class="empty">Low performers မတွေ့သေးပါ</div>';
 }
-
-/* ================= TOPICS ================= */
 
 function generateTopics(){
-  const audience=document.getElementById("topicAudience").value.trim()||"သင့် Audience";
-  const main=document.getElementById("topicMain").value.trim()||state.channel.niche||"သင့် Main Topic";
+  const base=$("topicInput").value.trim()||state.niche||"YouTube Content";
+  const audience=$("audienceInput").value.trim()||"မြန်မာ audience";
 
-  const winnerTopics=state.videos
-    .filter(v=>videoLabel(v).text==="WINNER / SCALE")
-    .slice(0,3)
-    .map(v=>v.topic||v.title);
-
-  const base=[
-    `${main} ကို လူတိုင်းနားလည်အောင် ရှင်းပြထားတဲ့ Beginner Guide`,
-    `${main} နဲ့ပတ်သက်ပြီး လူအများမှားနေတဲ့ အချက် 7 ခု`,
-    `${main} ကို နေ့စဉ်ဘဝမှာ အသုံးချနိုင်မယ့် နည်းလမ်း 5 ခု`,
-    `${main} အကြောင်း မသိသေးတဲ့ အရေးကြီးဆုံးအချက်များ`,
-    `${main} — မေးလေ့ရှိတဲ့ မေးခွန်း 10 ခု`,
-    `${main} ကို 10 မိနစ်အတွင်း နားလည်အောင်ရှင်းပြခြင်း`,
-    `${main} ရဲ့ ဖြစ်ရပ်မှန် / Case Study တစ်ခုကို ခွဲခြမ်းခြင်း`,
-    `${main} မလုပ်ခင် သိထားသင့်တဲ့ အချက်များ`,
-    `${main} Series — Episode 1`,
-    `${main} နဲ့ပတ်သက်တဲ့ Trending Question ကို ဖြေရှင်းခြင်း`
+  const topics=[
+    `${base} ကိုစတင်သူတွေ မဖြစ်မနေသိသင့်တဲ့ အချက် ၇ ချက်`,
+    `${base} မှာ လူအများဆုံးလုပ်မိတဲ့ အမှား ၅ ခု`,
+    `${base} ကို ${audience} အတွက် လွယ်လွယ်ကူကူရှင်းပြမယ်`,
+    `${base} နဲ့ပတ်သက်ပြီး လူတွေမေးနေကြတဲ့ မေးခွန်း ၁၀ ခု`,
+    `${base} — Myth vs Fact`,
+    `${base} ကို တကယ်အသုံးချတဲ့ Case Study`,
+    `${base} Beginner Guide`,
+    `${base} Step-by-Step`,
+    `${base} မလုပ်ခင် သိထားရမယ့် အချက်များ`,
+    `${base} အတွက် Advanced Strategy`
   ];
 
-  const extra=winnerTopics.length
-    ? winnerTopics.map(x=>`Winning Pattern Extension — ${x} ကို ${audience} အတွက် ပြန်တည်ဆောက်ခြင်း`)
-    : [];
-
-  const all=[...base,...extra].slice(0,10);
-
-  document.getElementById("topicResults").innerHTML=
-    all.map((x,i)=>`
-      <div class="video-row">
-        <span class="badge purple">IDEA ${i+1}</span>
-        <h4>${esc(x)}</h4>
-        <div class="video-meta">
-          <span>Audience: ${esc(audience)}</span>
-          <span>Hypothesis — test before scaling</span>
-        </div>
-      </div>`).join("");
+  $("topicResults").innerHTML=topics.map((x,i)=>`
+    <div class="title-result">
+      <strong>${i+1}. ${esc(x)}</strong>
+      <div class="sub" style="margin:5px 0 0">
+        Audience: ${esc(audience)}
+      </div>
+    </div>
+  `).join("");
 }
 
-/* ================= TITLES ================= */
-
 function titleScore(title){
-  let score=0;
-  if(title.length>=30&&title.length<=75)score+=25;
-  if(/[0-9]/.test(title))score+=10;
-  if(/[?!]/.test(title))score+=10;
-  if(/how|why|what|best|secret|mistake|important|guide|နည်း|ဘာကြောင့်|အရေးကြီး|လျှို့ဝှက်|အမှား/i.test(title))score+=20;
-  if(title.length>90)score-=15;
-  if(title.length<15)score-=10;
-  return Math.max(0,Math.min(100,50+score));
+  let score=50;
+
+  if(title.length>=35&&title.length<=75)score+=15;
+  if(/\d/.test(title))score+=8;
+  if(/[?]/.test(title))score+=5;
+  if(/အရေးကြီး|မသိ|အမှား|နည်းလမ်း|အချက်|ဘယ်လို|ဘာကြောင့်|သတိ|တကယ်/.test(title))score+=12;
+  if(title.length>100)score-=15;
+
+  return Math.max(0,Math.min(100,score));
 }
 
 function generateTitles(){
-  const current=document.getElementById("currentTitle").value.trim();
-  const topic=document.getElementById("titleTopic").value.trim()||current||state.channel.niche||"Main Topic";
+  const topic=$("titleTopic").value.trim();
 
-  if(!current && !topic){
-    toast("Topic ထည့်ပါ");
+  if(!topic){
+    $("titleResults").innerHTML='<div class="notice warn">Video topic ထည့်ပါ</div>';
     return;
   }
 
-  const ideas=[
-    `${topic} ကို ဒီအချက်တွေမသိဘဲ မလုပ်သင့်ပါ`,
-    `${topic} အကြောင်း လူအများ မသိသေးတဲ့ အချက် ${5}`,
-    `${topic} ကို နားလည်ဖို့ ဒီ Video တစ်ခုနဲ့ လုံလောက်ပါတယ်`,
-    `${topic} — အရေးကြီးဆုံး ${7} ချက်`,
-    `${topic} ကို လူအများ ဘာကြောင့် မှားနားလည်နေကြတာလဲ`,
-    `${topic} ကို လက်တွေ့အသုံးချမယ်ဆိုရင် သိထားသင့်တဲ့အချက်`
+  const titles=[
+    `${topic} — မသိရင် နောက်ကျသွားမယ့် အချက် ၇ ချက်`,
+    `${topic} ကို အစကနေ အဆုံးထိ ရှင်းပြမယ်`,
+    `${topic} မှာ လူအများဆုံးလုပ်မိတဲ့ အမှား ၅ ခု`,
+    `${topic} — Beginner တွေအတွက် Step-by-Step`,
+    `ဘာကြောင့် ${topic} မအောင်မြင်တာလဲ`,
+    `${topic} အတွက် တကယ်အသုံးဝင်တဲ့ နည်းလမ်း ၇ ခု`
   ];
 
-  let html="";
+  $("titleResults").innerHTML=titles.map(t=>{
+    const score=titleScore(t);
 
-  if(current){
-    const score=titleScore(current);
-    html+=`
-      <div class="notice">
-        Current Title Score: <b>${score}/100</b><br>
-        Score က heuristic ဖြစ်ပြီး actual CTR ကို မခန့်မှန်းနိုင်ပါ
-      </div>`;
-  }
-
-  html+=ideas.map((x,i)=>`
-    <div class="video-row">
-      <span class="badge blue">TEST ${i+1}</span>
-      <h4>${esc(x)}</h4>
-      <div class="video-meta">
-        <span>Curiosity</span>
-        <span>Clear Promise</span>
-        <span>Test with actual CTR</span>
+    return `
+      <div class="title-result">
+        <span class="title-score">${score}/100</span>
+        <strong>${esc(t)}</strong>
+        <div class="progress">
+          <span style="width:${score}%"></span>
+        </div>
       </div>
-    </div>`).join("");
-
-  document.getElementById("titleResults").innerHTML=html;
+    `;
+  }).join("");
 }
 
-/* ================= THUMBNAIL ================= */
-
 function analyzeThumbnail(event){
-  const file=event.target.files&&event.target.files[0];
+  const file=event.target.files[0];
   if(!file)return;
 
   const reader=new FileReader();
 
-  reader.onload=function(e){
+  reader.onload=e=>{
+    $("thumbPreview").src=e.target.result;
+    $("thumbPreview").classList.remove("hide");
+
     const img=new Image();
 
-    img.onload=function(){
+    img.onload=()=>{
       const ratio=img.width/img.height;
+      const sixteenNine=Math.abs(ratio-(16/9))<.08;
+      const resolution=img.width>=1280&&img.height>=720;
+      const size=file.size<=2*1024*1024;
+
       let score=0;
-      const checks=[];
+      if(sixteenNine)score+=35;
+      if(resolution)score+=35;
+      if(size)score+=20;
+      if(img.width>=1920)score+=10;
 
-      if(ratio>=1.7&&ratio<=1.85){
-        score+=25;
-        checks.push("16:9 ratio ကောင်းပါတယ်");
-      }else{
-        checks.push("16:9 ratio နဲ့ မနီးသေးပါ");
-      }
-
-      if(img.width>=1280&&img.height>=720){
-        score+=25;
-        checks.push("Resolution ကောင်းပါတယ်");
-      }else{
-        checks.push("Resolution မြှင့်ဖို့လိုနိုင်ပါတယ်");
-      }
-
-      if(file.size<2*1024*1024){
-        score+=15;
-        checks.push("File size သင့်တော်ပါတယ်");
-      }else{
-        checks.push("File size ကြီးနေပါတယ်");
-      }
-
-      score+=20;
-      checks.push("Mobile readability ကို actual device နဲ့ စစ်ပါ");
-
-      score+=15;
-      checks.push("Text များလွန်းမလား စစ်ပါ");
-
-      document.getElementById("thumbPreview").innerHTML=
-        `<img src="${e.target.result}" style="width:100%;max-height:280px;object-fit:contain;border-radius:10px;background:#050914">`;
-
-      document.getElementById("thumbResult").innerHTML=
-        `<div class="score-ring" style="background:conic-gradient(var(--accent) ${score*3.6}deg,#202c43 0deg)">
-          <div>${score}</div>
-        </div>
-        <div style="text-align:center;margin-top:10px;font-weight:bold">Thumbnail Technical Score</div>
-        <ul class="kpi-list" style="margin-top:10px">
-          ${checks.map(x=>`<li>✓ ${esc(x)}</li>`).join("")}
-        </ul>
+      $("thumbAnalysis").innerHTML=`
+        <div class="score">${score}/100</div>
+        <div class="kpi"><span>Resolution</span><strong>${img.width} × ${img.height}</strong></div>
+        <div class="kpi"><span>16:9 Ratio</span><strong>${sixteenNine?"PASS":"CHECK"}</strong></div>
+        <div class="kpi"><span>Resolution Check</span><strong>${resolution?"PASS":"LOW"}</strong></div>
+        <div class="kpi"><span>File Size</span><strong>${(file.size/1024/1024).toFixed(2)} MB</strong></div>
         <div class="notice" style="margin-top:12px">
-          Technical score က Click-through performance ကို အာမခံတာမဟုတ်ပါ
-          Actual CTR နဲ့ test လုပ်ပြီးဆုံးဖြတ်ပါ
-        </div>`;
+          Technical score သာဖြစ်ပြီး actual CTR ကို ခန့်မှန်းတာမဟုတ်ပါ
+        </div>
+      `;
     };
 
     img.src=e.target.result;
@@ -1747,112 +1613,70 @@ function analyzeThumbnail(event){
 }
 
 function buildThumbPrompt(){
-  const subject=document.getElementById("thumbSubject").value.trim()||"main subject";
-  const emotion=document.getElementById("thumbEmotion").value.trim()||"clear emotional message";
+  const topic=$("thumbTopic").value.trim()||"YouTube video";
+  const emotion=$("thumbEmotion").value.trim()||"curiosity";
 
-  const prompt=
-`YouTube thumbnail design brief:
-Subject: ${subject}
-Primary emotion/message: ${emotion}
-Format: 16:9
-Composition: one dominant subject, strong focal point, clean background
-Mobile-first readability
-Minimal text, large readable typography
-Strong separation between subject and background
-Clear visual hierarchy
-No unnecessary objects
-Designed for a YouTube thumbnail, not a poster`;
-
-  const el=document.getElementById("thumbPrompt");
-  el.style.display="block";
-  el.textContent=prompt;
+  $("thumbPrompt").value=
+`Create a high-impact YouTube thumbnail for "${topic}".
+Emotion: ${emotion}
+Composition: one clear focal subject, strong visual hierarchy, high contrast, simple background, mobile-first readability, minimal text, cinematic lighting, 16:9 YouTube thumbnail composition, no clutter, professional creator style`;
 }
 
-/* ================= RECOVERY ================= */
+function populateRecovery(){
+  const select=$("recoveryVideo");
+  if(!select)return;
 
-function populateVideoSelects(){
-  const recovery=document.getElementById("recoveryVideo");
-  const test=document.getElementById("testVideo");
-
-  const options=state.videos.map(v=>
-    `<option value="${v.id}">${esc(v.title)}</option>`
-  ).join("");
-
-  recovery.innerHTML=state.videos.length
-    ? `<option value="">Select video</option>${options}`
-    : `<option value="">No videos</option>`;
-
-  test.innerHTML=state.videos.length
-    ? `<option value="">Select video</option>${options}`
-    : `<option value="">No videos</option>`;
+  select.innerHTML=state.videos.length
+    ? state.videos.map(v=>`<option value="${esc(v.id)}">${esc(v.title)}</option>`).join("")
+    : `<option>No videos</option>`;
 }
 
-function loadRecoveryVideo(){
-  const id=Number(document.getElementById("recoveryVideo").value);
+function makeRecoveryPlan(){
+  const id=$("recoveryVideo").value;
   const v=state.videos.find(x=>x.id===id);
 
   if(!v){
-    ["rCtr","rRetention","rViews","rDiagnosis"].forEach(id=>{
-      document.getElementById(id).textContent="—";
-    });
-    document.getElementById("recoveryPlan").innerHTML='<div class="empty">Video ရွေးပါ</div>';
+    $("recoveryResult").innerHTML='<div class="empty">Video data မရှိသေးပါ</div>';
     return;
   }
 
-  document.getElementById("rCtr").textContent=pct(v.ctr);
-  document.getElementById("rRetention").textContent=pct(v.retention);
-  document.getElementById("rViews").textContent=fmt(v.views);
+  const avg=state.videos.reduce((a,b)=>a+b.views,0)/state.videos.length;
 
-  const label=videoLabel(v);
-  document.getElementById("rDiagnosis").textContent=label.text;
-
+  let diagnosis=[];
   let actions=[];
 
-  if(v.ctr<5){
-    actions.push("1. Thumbnail ကို mobile size နဲ့ပြန်စစ်ပါ");
-    actions.push("2. Title ကို promise ရှင်းပြီး curiosity ရှိအောင် Test Version 2 ခုလုပ်ပါ");
+  if(v.views<avg*.5){
+    diagnosis.push("Views က channel analyzed average ထက်နိမ့်နေပါတယ်");
+    actions.push("Title angle ကိုပြန်စမ်းပါ");
+    actions.push("Thumbnail ကို simpler focal point နဲ့ test လုပ်ပါ");
+    actions.push("Same topic ကို stronger viewer problem နဲ့ပြန် package လုပ်ပါ");
   }
 
-  if(v.retention>0&&v.retention<35){
-    actions.push("3. Opening 30 seconds ကို ပြန်ကြည့်ပြီး unnecessary intro ဖယ်ပါ");
-    actions.push("4. Title/Thumbnail ကပေးထားတဲ့ promise ကို အစပိုင်းမှာ မြန်မြန် deliver လုပ်ပါ");
+  if(v.engagement<1){
+    diagnosis.push("Public engagement signal နည်းပါတယ်");
+    actions.push("Audience relevance နဲ့ CTA ကိုပြန်စစ်ပါ");
   }
 
-  if(v.ctr>=7&&v.retention>=45){
-    actions.push("1. ဒီ Video ကို Winner Pattern အဖြစ် မှတ်တမ်းတင်ပါ");
-    actions.push("2. Topic / Format / Packaging ကို မတူညီတဲ့ angle နဲ့ Series ပြန်လုပ်ပါ");
+  if(!diagnosis.length){
+    diagnosis.push("Video က extreme underperforming မဟုတ်ပါ");
+    actions.push("Related follow-up video တစ်ခုလုပ်ပါ");
+    actions.push("Title/thumbnail pattern ကို record လုပ်ပါ");
   }
 
-  if(!actions.length){
-    actions=[
-      "1. Current result ကို Baseline အဖြစ်သိမ်းပါ",
-      "2. Test တစ်ခုတည်းကို ရွေးပြီး ပြောင်းပါ",
-      "3. Result ကို 7-day test cycle နဲ့ ပြန်တိုင်းပါ"
-    ];
-  }
-
-  document.getElementById("recoveryPlan").innerHTML=
-    `<div class="priority" style="padding:16px;border-radius:10px">
-      <h3>${esc(v.title)}</h3>
-      <ul class="kpi-list" style="margin-top:8px">
-        ${actions.map(x=>`<li>${esc(x)}</li>`).join("")}
-      </ul>
-    </div>`;
+  $("recoveryResult").innerHTML=`
+    <h3>${esc(v.title)}</h3>
+    <br>
+    ${diagnosis.map(x=>`<div class="notice warn">⚠️ ${esc(x)}</div>`).join("")}
+    <h3>Action Plan</h3>
+    ${actions.map((x,i)=>`
+      <div class="kpi"><span>${i+1}. ${esc(x)}</span></div>
+    `).join("")}
+  `;
 }
 
-/* ================= NEXT 10 ================= */
-
 function generateNext10(){
-  const niche=document.getElementById("nextNiche").value.trim()||state.channel.niche||"Your niche";
-  const audience=document.getElementById("nextAudience").value.trim()||"Your audience";
-
-  const winners=state.videos
-    .filter(v=>videoLabel(v).text==="WINNER / SCALE")
-    .slice(0,3);
-
-  const winnerContext=winners.length
-    ? winners.map(v=>v.topic||v.title).join(", ")
-    : "No confirmed winner pattern yet";
+  const vs=[...state.videos].sort((a,b)=>b.views-a.views);
+  const base=vs[0]?.title||state.niche||"Your Main Topic";
 
   const formats=[
     "Beginner Guide",
@@ -1867,396 +1691,134 @@ function generateNext10(){
     "Series Episode"
   ];
 
-  const html=formats.map((format,i)=>{
-    let topic;
-
-    if(winners.length){
-      const base=winners[i%winners.length].topic||winners[i%winners.length].title;
-      topic=`${base} — ${format} angle`;
-    }else{
-      topic=`${niche} — ${format} for ${audience}`;
-    }
-
-    return `
-      <div class="video-row">
-        <span class="badge purple">VIDEO ${i+1}</span>
-        <h4>${esc(topic)}</h4>
-        <div class="video-meta">
-          <span>Format: ${format}</span>
-          <span>Audience: ${esc(audience)}</span>
-          <span>Hypothesis: test before scaling</span>
-        </div>
-      </div>`;
-  }).join("");
-
-  document.getElementById("next10Results").innerHTML=
-    `<div class="notice">
-      Current winning context: <b>${esc(winnerContext)}</b>
-    </div>${html}`;
+  $("next10Results").innerHTML=formats.map((f,i)=>`
+    <div class="title-result">
+      <strong>${i+1}. ${esc(f)} — ${esc(base)}</strong>
+      <div class="sub" style="margin:6px 0 0">
+        Test angle: ${esc(f)}
+      </div>
+    </div>
+  `).join("");
 }
 
-/* ================= SPRINT ================= */
+function checkSprint(day){
+  state.sprint[day-1]=true;
+  saveState();
+  renderSprint();
+}
 
 function renderSprint(){
-  const days=[
-    ["1","Diagnose","Channel Analytics ထဲက CTR, Retention, Views ကို စုစည်းပြီး အကြီးဆုံး bottleneck တစ်ခုရွေးပါ"],
-    ["2","Find Winner","လက်ရှိ Video တွေထဲက views + CTR + retention ကောင်းတဲ့ pattern ကိုရှာပါ"],
-    ["3","Packaging Test","Winner/Opportunity Video တစ်ခုအတွက် Title + Thumbnail test versions ပြုလုပ်ပါ"],
-    ["4","Create","Next 10 Planner ထဲက hypothesis တစ်ခုကို Video အဖြစ်ထုတ်လုပ်ပါ"],
-    ["5","Publish","Title, Thumbnail, Description, first 30 seconds ကို တစ်ကြိမ်ပြန်စစ်ပြီး Publish လုပ်ပါ"],
-    ["6","Measure","CTR + retention + views velocity ကို baseline နဲ့နှိုင်းပါ"],
-    ["7","Learn","ဘာအလုပ်ဖြစ်/မဖြစ်ကို Test Tracker ထဲသိမ်းပြီး နောက် Video strategy ပြန်တည်ဆောက်ပါ"]
-  ];
+  const done=state.sprint.filter(Boolean).length;
+  const percent=(done/7)*100;
 
-  document.getElementById("sprintList").innerHTML=days.map(d=>`
-    <div class="day">
-      <div class="day-num">${d[0]}</div>
-      <div>
-        <h4>${d[1]}</h4>
-        <p>${d[2]}</p>
-      </div>
-    </div>
-  `).join("");
+  $("sprintProgress").style.width=percent+"%";
+  $("sprintText").textContent=done+" / 7 completed";
 }
 
-/* ================= REFERENCES ================= */
+function renderPatterns(){
+  const vs=[...state.videos].sort((a,b)=>b.views-a.views);
 
-function addReference(){
-  const name=document.getElementById("refName").value.trim();
-  const pattern=document.getElementById("refPattern").value.trim();
-
-  if(!name||!pattern){
-    toast("Channel name နဲ့ pattern ထည့်ပါ");
+  if(!vs.length){
+    $("patternsResult").innerHTML='<div class="empty">Analyze channel first</div>';
     return;
   }
 
-  state.references.unshift({
-    id:Date.now(),
-    name,
-    url:document.getElementById("refUrl").value.trim(),
-    pattern,
-    video:document.getElementById("refVideo").value.trim()
-  });
+  const avg=vs.reduce((a,b)=>a+b.views,0)/vs.length;
+  const winners=vs.filter(v=>v.views>=avg*1.5).slice(0,10);
 
-  saveState();
-
-  ["refName","refUrl","refPattern","refVideo"]
-    .forEach(id=>document.getElementById(id).value="");
-
-  toast("Pattern saved");
+  $("patternsResult").innerHTML=`
+    <div class="notice good">
+      Average views of analyzed videos: <strong>${fmt(avg)}</strong>
+    </div>
+    ${winners.length
+      ? winners.map((v,i)=>`
+        <div class="kpi">
+          <span>${i+1}. ${esc(v.title)}</span>
+          <strong>${fmt(v.views)} views</strong>
+        </div>
+      `).join("")
+      : `<div class="empty">Strong pattern မတွေ့သေးပါ</div>`
+    }
+  `;
 }
 
-function deleteReference(id){
-  state.references=state.references.filter(x=>x.id!==id);
-  saveState();
-}
+function calculateMoney(){
+  const target=Number($("moneyTarget").value||0);
+  const current=Number($("moneyCurrent").value||0);
+  const rpm=Number($("moneyRPM").value||0);
 
-function renderReferences(){
-  const box=document.getElementById("referenceList");
-
-  if(!state.references.length){
-    box.innerHTML='<div class="empty">Reference pattern မရှိသေးပါ</div>';
-    document.getElementById("patternSummary").innerHTML='<div class="empty">Reference data ထည့်ပါ</div>';
+  if(rpm<=0){
+    $("requiredViews").textContent="—";
     return;
   }
 
-  box.innerHTML=state.references.map(r=>`
-    <div class="ref-card">
-      <div class="actions" style="justify-content:space-between">
-        <span class="badge purple">${esc(r.name)}</span>
-        <button class="btn small red" onclick="deleteReference(${r.id})">Delete</button>
-      </div>
-      <h4 style="margin-top:8px">${esc(r.pattern)}</h4>
-      ${r.video?`<p>Example: ${esc(r.video)}</p>`:""}
-      ${r.url?`<p>${esc(r.url)}</p>`:""}
-    </div>
-  `).join("");
+  const required=(target/rpm)*1000;
+  const currentViews=(current/rpm)*1000;
+  const gap=Math.max(0,target-current);
+  const viewGap=Math.max(0,required-currentViews);
 
-  const words={};
-
-  state.references.forEach(r=>{
-    r.pattern.toLowerCase()
-      .split(/\s+/)
-      .map(x=>x.replace(/[^\w\u1000-\u109F-]/g,""))
-      .filter(x=>x.length>=4)
-      .forEach(w=>words[w]=(words[w]||0)+1);
-  });
-
-  const repeated=Object.entries(words)
-    .filter(x=>x[1]>=2)
-    .sort((a,b)=>b[1]-a[1])
-    .slice(0,12);
-
-  document.getElementById("patternSummary").innerHTML=
-    repeated.length
-    ? `<div class="actions">${repeated.map(x=>`<span class="badge blue">${esc(x[0])} ×${x[1]}</span>`).join("")}</div>`
-    : `<div class="notice">တူညီတဲ့ repeated pattern ကို သတ်မှတ်ဖို့ reference data ပိုလိုပါသေးတယ်</div>`;
+  $("requiredViews").textContent=fmt(required);
+  $("currentRevenue").textContent="$"+current.toFixed(2);
+  $("revenueGap").textContent="$"+gap.toFixed(2);
+  $("viewsGap").textContent=fmt(viewGap);
 }
-
-/* ================= REVENUE ================= */
-
-function calculateRevenue(){
-  state.revenue.target=num(document.getElementById("targetMoney").value);
-  state.revenue.current=num(document.getElementById("currentMoney").value);
-  state.revenue.rpm=num(document.getElementById("rpm").value);
-
-  saveState();
-  toast("Revenue target saved");
-}
-
-function renderRevenue(){
-  document.getElementById("targetMoney").value=state.revenue.target||"";
-  document.getElementById("currentMoney").value=state.revenue.current||"";
-  document.getElementById("rpm").value=state.revenue.rpm||"";
-
-  const target=state.revenue.target;
-  const current=state.revenue.current;
-  const rpm=state.revenue.rpm;
-
-  const required=rpm>0?(target/rpm)*1000:0;
-  const currentViews=rpm>0?(current/rpm)*1000:0;
-  const gap=Math.max(0,required-currentViews);
-
-  document.getElementById("requiredViews").textContent=required?fmt(Math.round(required)):"—";
-  document.getElementById("gapViews").textContent=gap?fmt(Math.round(gap)):"0";
-
-  const strategy=[
-    `Target: $${fmt(target)} / Current: $${fmt(current)}`,
-    `RPM $${rpm.toFixed(2)} ဖြစ်ရင် Target ရောက်ဖို့ ခန့်မှန်း ${fmt(Math.round(required))} monthly views လိုနိုင်ပါတယ်`,
-    "RPM က Video type, audience, geography, seasonality စတာတွေနဲ့ ပြောင်းလဲနိုင်လို့ actual Studio revenue ကို baseline အဖြစ်သုံးပါ",
-    "Revenue တိုးဖို့ Views တစ်ခုတည်းမဟုတ်ဘဲ audience quality, long-form mix, monetization eligibility နဲ့ additional revenue streams ကိုလည်း ခွဲကြည့်ပါ"
-  ];
-
-  document.getElementById("revenueStrategy").innerHTML=
-    strategy.map(x=>`<li>${esc(x)}</li>`).join("");
-}
-
-/* ================= TESTS ================= */
 
 function addTest(){
-  const id=Number(document.getElementById("testVideo").value);
-  const v=state.videos.find(x=>x.id===id);
+  const video=$("testVideo").value.trim();
+  const type=$("testType").value;
+  const a=$("testA").value.trim();
+  const b=$("testB").value.trim();
+  const result=$("testResult").value.trim();
 
-  if(!v){
-    toast("Video ရွေးပါ");
-    return;
-  }
+  if(!video)return;
 
   state.tests.unshift({
-    id:Date.now(),
-    videoId:id,
-    videoTitle:v.title,
-    type:document.getElementById("testType").value,
-    a:document.getElementById("testA").value.trim(),
-    b:document.getElementById("testB").value.trim(),
-    ctrA:num(document.getElementById("ctrA").value),
-    ctrB:num(document.getElementById("ctrB").value),
-    notes:document.getElementById("testNotes").value.trim(),
+    video,type,a,b,result,
     date:new Date().toLocaleDateString()
   });
 
   saveState();
+  renderTests();
 
-  ["testA","testB","ctrA","ctrB","testNotes"]
-    .forEach(id=>document.getElementById(id).value="");
-
-  toast("Test saved");
-}
-
-function deleteTest(id){
-  state.tests=state.tests.filter(x=>x.id!==id);
-  saveState();
+  $("testVideo").value="";
+  $("testA").value="";
+  $("testB").value="";
+  $("testResult").value="";
 }
 
 function renderTests(){
-  const box=document.getElementById("testList");
-
   if(!state.tests.length){
-    box.innerHTML='<div class="empty">Test history မရှိသေးပါ</div>';
+    $("testList").innerHTML='<div class="empty">Test records မရှိသေးပါ</div>';
     return;
   }
 
-  box.innerHTML=state.tests.map(t=>{
-    let result="No result";
-    let cls="";
-
-    if(t.ctrA>0||t.ctrB>0){
-      if(t.ctrA>t.ctrB){
-        result="A higher CTR";
-        cls="green";
-      }else if(t.ctrB>t.ctrA){
-        result="B higher CTR";
-        cls="blue";
-      }else{
-        result="Equal";
-        cls="yellow";
-      }
-    }
-
-    return `
-      <div class="video-row">
-        <div class="actions" style="justify-content:space-between">
-          <span class="badge">${esc(t.type)}</span>
-          <button class="btn small red" onclick="deleteTest(${t.id})">Delete</button>
-        </div>
-        <h4>${esc(t.videoTitle)}</h4>
-        <p class="desc">A: ${esc(t.a)} · CTR ${pct(t.ctrA)}</p>
-        <p class="desc">B: ${esc(t.b)} · CTR ${pct(t.ctrB)}</p>
-        <p style="margin-top:7px"><span class="badge ${cls}">${result}</span></p>
-        ${t.notes?`<p class="desc" style="margin-top:7px">${esc(t.notes)}</p>`:""}
-      </div>`;
-  }).join("");
+  $("testList").innerHTML=state.tests.map((t,i)=>`
+    <div class="title-result">
+      <strong>${esc(t.video)}</strong>
+      <div class="sub" style="margin:5px 0">
+        ${esc(t.type)} • ${esc(t.date)}
+      </div>
+      <div class="kpi"><span>A</span><strong>${esc(t.a)}</strong></div>
+      <div class="kpi"><span>B</span><strong>${esc(t.b)}</strong></div>
+      <div class="kpi"><span>Result</span><strong>${esc(t.result)}</strong></div>
+      <br>
+      <button class="btn small" onclick="deleteTest(${i})">Delete</button>
+    </div>
+  `).join("");
 }
 
-/* ================= DASHBOARD ================= */
-
-function getHealth(){
-  const a=state.analytics;
-  let packaging=0;
-  let retention=0;
-  let content=0;
-  let money=0;
-
-  if(a.ctr>0)packaging=Math.min(100,(a.ctr/8)*100);
-  if(a.retention>0)retention=Math.min(100,(a.retention/50)*100);
-
-  if(state.videos.length){
-    const winners=state.videos.filter(v=>videoLabel(v).text==="WINNER / SCALE").length;
-    content=Math.min(100,30+winners/state.videos.length*70);
-  }
-
-  if(state.revenue.target>0){
-    money=Math.min(100,(state.revenue.current/state.revenue.target)*100);
-  }
-
-  const parts=[packaging,retention,content,money].filter(x=>x>0);
-  const total=parts.length?Math.round(avg(parts)):0;
-
-  return {packaging,retention,content,money,total};
-}
-
-function updateDashboard(){
-  document.getElementById("dSubs").textContent=state.channel.subscribers?fmt(state.channel.subscribers):"—";
-  document.getElementById("dViews").textContent=state.channel.views?fmt(state.channel.views):"—";
-  document.getElementById("dVideos").textContent=state.videos.length;
-  document.getElementById("dRevenue").textContent="$"+fmt(state.revenue.current);
-
-  const h=getHealth();
-  document.getElementById("healthScore").textContent=h.total;
-  document.getElementById("healthPackaging").textContent=h.packaging?Math.round(h.packaging)+"/100":"—";
-  document.getElementById("healthRetention").textContent=h.retention?Math.round(h.retention)+"/100":"—";
-  document.getElementById("healthContent").textContent=h.content?Math.round(h.content)+"/100":"—";
-  document.getElementById("healthMoney").textContent=h.money?Math.round(h.money)+"/100":"—";
-
-  const ring=document.getElementById("healthRing");
-  ring.style.background=`conic-gradient(var(--accent) ${h.total*3.6}deg,#202c43 0deg)`;
-
-  let priorityTitle="Channel data ထည့်ပြီး ပထမဆုံး Diagnosis လုပ်ပါ";
-  let priorityText="Subscribers, views, CTR, retention နဲ့ Video data ထည့်လိုက်ပါ";
-
-  if(state.videos.length){
-    const pack=state.videos.filter(v=>v.ctr<5&&v.retention>=35);
-    const ret=state.videos.filter(v=>v.ctr>=7&&v.retention>0&&v.retention<35);
-    const win=state.videos.filter(v=>videoLabel(v).text==="WINNER / SCALE");
-
-    if(pack.length){
-      priorityTitle="Priority #1 — Packaging Test";
-      priorityText=`CTR နည်းပြီး Retention ကောင်းတဲ့ Video ${pack.length} ခုရှိပါတယ် — Title + Thumbnail ကို Test လုပ်ပါ`;
-    }else if(ret.length){
-      priorityTitle="Priority #1 — Retention Fix";
-      priorityText=`Click ရနေပြီး Retention နည်းတဲ့ Video ${ret.length} ခုရှိပါတယ် — Hook နဲ့ opening ကို ပြန်စစ်ပါ`;
-    }else if(win.length){
-      priorityTitle="Priority #1 — Scale the Winner Pattern";
-      priorityText=`Winner pattern ${win.length} ခုတွေ့ပါတယ် — နောက်ထပ် angle တွေနဲ့ Series ပြန်စမ်းပါ`;
-    }else{
-      priorityTitle="Priority #1 — Build More Data";
-      priorityText="Video 5–10 ခုရဲ့ CTR + Retention data စုပါ";
-    }
-  }else if(state.analytics.ctr>0||state.analytics.retention>0){
-    priorityTitle="Priority #1 — Add Video-Level Data";
-    priorityText="Channel average တစ်ခုတည်းထက် Video တစ်ခုချင်းစီရဲ့ CTR + Retention က Opportunity ရှာဖို့ ပိုအသုံးဝင်ပါတယ်";
-  }
-
-  document.getElementById("priorityTitle").textContent=priorityTitle;
-  document.getElementById("priorityText").textContent=priorityText;
-
-  const diagnosis=[];
-
-  if(state.analytics.ctr>0){
-    diagnosis.push(
-      state.analytics.ctr<5
-      ? "CTR နည်းနိုင်တဲ့အတွက် Title + Thumbnail test"
-      : "CTR baseline ကောင်းပါတယ် — winner videos ကို compare"
-    );
-  }
-
-  if(state.analytics.retention>0){
-    diagnosis.push(
-      state.analytics.retention<35
-      ? "Retention အားနည်းနိုင်တဲ့အတွက် Hook / pacing စစ်"
-      : "Retention baseline ကောင်းပါတယ် — winning structure မှတ်တမ်းတင်"
-    );
-  }
-
-  if(!state.videos.length){
-    diagnosis.push("Video-level data အနည်းဆုံး 3 ခုထည့်ပါ");
-  }
-
-  if(!diagnosis.length){
-    diagnosis.push("Analytics Snapshot ထည့်ပြီး Diagnosis စပါ");
-  }
-
-  document.getElementById("quickDiagnosis").innerHTML=
-    diagnosis.map(x=>`<li>• ${esc(x)}</li>`).join("");
-
-  const winners=state.videos
-    .filter(v=>videoLabel(v).text==="WINNER / SCALE")
-    .slice(0,5);
-
-  document.getElementById("dashboardWinners").innerHTML=
-    winners.length
-    ? winners.map(v=>`
-      <div class="video-row">
-        <span class="badge green">WINNER / SCALE</span>
-        <h4>${esc(v.title)}</h4>
-        <div class="video-meta">
-          <span>${fmt(v.views)} views</span>
-          <span>CTR ${pct(v.ctr)}</span>
-          <span>Retention ${pct(v.retention)}</span>
-        </div>
-      </div>`).join("")
-    : '<div class="empty">Winner detector အလုပ်လုပ်ဖို့ Video data ထည့်ပါ</div>';
-
-  const actions=[];
-
-  if(!state.channel.subscribers)actions.push("Channel data ထည့်ပါ");
-  if(!state.analytics.ctr)actions.push("YouTube Studio Average CTR ထည့်ပါ");
-  if(!state.analytics.retention)actions.push("Average Retention ထည့်ပါ");
-  if(state.videos.length<3)actions.push("အနည်းဆုံး Video 3 ခုကို Performance data နဲ့ထည့်ပါ");
-
-  if(state.videos.length>=3){
-    actions.push("Opportunity Engine မှာ Packaging / Retention opportunity စစ်ပါ");
-    actions.push("Next 10 Videos ထဲက Test တစ်ခုရွေးပါ");
-  }
-
-  if(state.revenue.target>state.revenue.current){
-    actions.push("Money Engine မှာ Revenue Gap ကို track လုပ်ပါ");
-  }
-
-  document.getElementById("todayActions").innerHTML=
-    actions.slice(0,6).map((x,i)=>`<li>${i+1}. ${esc(x)}</li>`).join("");
-}
-
-/* ================= SETTINGS ================= */
-
-function saveSettings(){
-  state.creator=document.getElementById("creatorName").value.trim()||"Aung Zar Ni Win";
+function deleteTest(i){
+  state.tests.splice(i,1);
   saveState();
-  toast("Settings saved");
+  renderTests();
 }
 
-function loadSettings(){
-  document.getElementById("creatorName").value=state.creator||"Aung Zar Ni Win";
+function saveProfile(){
+  state.creator=$("creatorName").value.trim()||"Aung Zar Ni Win";
+  state.niche=$("creatorNiche").value.trim()||"YouTube";
+  saveState();
+  updateAll();
+  alert("Profile saved");
 }
 
 function exportData(){
@@ -2268,77 +1830,44 @@ function exportData(){
   const url=URL.createObjectURL(blob);
   const a=document.createElement("a");
   a.href=url;
-  a.download="aung-youtube-growth-v5-backup.json";
+  a.download="aung-youtube-growth-v51-backup.json";
   a.click();
   URL.revokeObjectURL(url);
-  toast("Backup exported");
 }
 
 function importData(event){
-  const file=event.target.files&&event.target.files[0];
+  const file=event.target.files[0];
   if(!file)return;
 
   const reader=new FileReader();
 
-  reader.onload=function(){
+  reader.onload=e=>{
     try{
-      const imported=JSON.parse(reader.result);
+      const data=JSON.parse(e.target.result);
 
-      state=Object.assign(clone(defaultState),imported,{
-        channel:Object.assign(clone(defaultState.channel),imported.channel||{}),
-        analytics:Object.assign(clone(defaultState.analytics),imported.analytics||{}),
-        revenue:Object.assign(clone(defaultState.revenue),imported.revenue||{}),
-        videos:Array.isArray(imported.videos)?imported.videos:[],
-        references:Array.isArray(imported.references)?imported.references:[],
-        tests:Array.isArray(imported.tests)?imported.tests:[]
-      });
+      state={...state,...data};
+      state.channel={...state.channel,...(data.channel||{})};
 
       saveState();
-      loadChannel();
-      loadSettings();
-      toast("Backup imported");
-    }catch(e){
-      toast("Backup file မမှန်ပါ");
+      updateAll();
+
+      alert("Import completed");
+    }catch(err){
+      alert("Invalid JSON file");
     }
   };
 
   reader.readAsText(file);
 }
 
-function resetData(){
-  if(!confirm("App data အားလုံးကို ဖျက်မှာ သေချာပါသလား"))return;
+function resetApp(){
+  if(!confirm("App data အားလုံးဖျက်မလား"))return;
 
-  localStorage.removeItem(STORAGE_KEY);
-  state=clone(defaultState);
-
-  refreshAll();
-  loadChannel();
-  loadSettings();
-
-  toast("All data reset");
+  localStorage.removeItem(STORE);
+  location.reload();
 }
 
-/* ================= REFRESH ================= */
-
-function refreshAll(){
-  updateDashboard();
-  renderVideos();
-  renderOpportunities();
-  populateVideoSelects();
-  renderSprint();
-  renderReferences();
-  renderRevenue();
-  renderTests();
-  diagnoseChannel();
-}
-
-function init(){
-  loadChannel();
-  loadSettings();
-  refreshAll();
-}
-
-init();
+loadState();
 </script>
 
 </body>
